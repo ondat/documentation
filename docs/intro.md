@@ -2,34 +2,34 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+This documentation is aimed at **architects, engineers, developers, sysadmins** and anybody who wants to understand how to use Ondat. It assumes some knowledge of Docker containers and container orchestrators.
 
-## Getting Started
+## What is Ondat?
+Ondat is a persistent data storage layer for cloud native Kubernetes clusters.
 
-Get started by **creating a new site**.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## How does Ondat work with Kubernetes?
 
-## Generate a new site
+### Clusters
+Ondat clusters represent groups of nodes which run a common distributed control plane.
 
-Generate a new Docusaurus site using the **classic template**:
+Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.
 
-```shell
-npm init docusaurus@latest my-website classic
-```
+Clusters use etcd to maintain state and manage distributed consensus between nodes.
 
-## Start your site
+### Clusters
+Ondat clusters represent groups of nodes which run a common distributed control plane.
 
-Run the development server:
+Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.
 
-```shell
-cd my-website
+Clusters use etcd to maintain state and manage distributed consensus between nodes.
 
-npx docusaurus start
-```
+### Clusters
+Ondat clusters represent groups of nodes which run a common distributed control plane.
 
-Your site starts at `http://localhost:3000`.
+Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.
 
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and displays your changes.
+Clusters use etcd to maintain state and manage distributed consensus between nodes.
+
