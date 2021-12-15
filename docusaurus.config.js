@@ -51,6 +51,9 @@ const config = {
         },
         items: [
           {
+            type: 'docsVersionDropdown',
+          },  
+          {
             type: 'doc',
             docId: 'intro',
             position: 'left',
