@@ -15,7 +15,10 @@ jobs:
     steps:
       - name: feed content to backend
         working-directory: ${{ env.working_directory }}
-        env: 
+        env:
+          GIT_USERNAME: rovandep
+          GIT_EMAIL: rovandep@users.noreply.github.com
+          GIT_URL: github.com/ondat/documentation-backend.git
           GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
         shell: /bin/bash -e {0}
         run: |
@@ -47,11 +50,11 @@ jobs:
           echo "--> Adding, committing, and pushing the latest build to gh-pages"
           cd ../../gh-pages/
           touch .nojekyll
-          git config --global user.name 'GitHub Ondat Actions'
-          git config --global user.email 'git@ondat.io'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ondat/documentation-backend.git          
+          git config --global user.name "${{ env.GIT_USERNAME }}"
+          git config --global user.email "${{ env.GIT_EMAIL }}"
+          git remote set-url origin https://x-access-token:${{ env.GITHUB_TOKEN }}@${{ env.GIT_URL }}           
           git add --all .
-          git commit -m "GitHub Actions Push"
+          git commit -m "GitHub Actions Push on `date +"%Y-%m-%d %H:%M"`"
           git push 
           echo "--> Time to clean up"
           cd ../..
