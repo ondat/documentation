@@ -16,7 +16,7 @@ jobs:
       - name: feed content to backend
         working-directory: ${{ env.working_directory }}
         env: 
-          GITHUB_TOKEN: ${{ secrets.DOC_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
         shell: /bin/bash -e {0}
         run: |
           echo "--> Creating a tempory working directory"
@@ -49,7 +49,7 @@ jobs:
           touch .nojekyll
           git config --global user.name 'GitHub Ondat Actions'
           git config --global user.email 'git@ondat.io'
-          git remote set-url origin https://x-access-token:${{ secrets.DOC_SECRET }}@github.com/ondat/documentation-backend.git          
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAGES }}@github.com/ondat/documentation-backend.git          
           git add --all .
           git commit -m "GitHub Actions Push"
           git push 
