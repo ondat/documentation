@@ -1,0 +1,58 @@
+# This is a basic workflow to help you get started with Actions
+name: Documentation Rendering 
+on:
+## Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  working_directory: .
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: feed content to backend
+        working-directory: ${{ env.working_directory }}
+        env: 
+          GITHUB_TOKEN: ${{ secrets.DOC_SECRET }}
+        shell: /bin/bash -e {0}
+        run: |
+          echo "--> Creating a tempory working directory"
+          mkdir -p tmp
+          cd tmp
+          echo "--> Cloning to get main branch from documentation repo"
+          git clone --branch main https://github.com/ondat/documentation.git doc
+          echo "--> Cloning to get main branch from backend repo"          
+          git clone --branch main https://github.com/ondat/documentation-backend.git backend
+          echo "--> Cloning to get gh-pages as a destination for rendered pages"
+          git clone --branch gh-pages https://github.com/ondat/documentation-backend.git gh-pages
+          echo "--> Moving contents to hugo native folder structure"
+          cp -R doc/docs backend/hugo-backend/content/
+          cp -R doc/images backend/hugo-backend/static/
+          cp -R doc/sh backend/hugo-backend/static/
+          cp -R doc/yaml backend/hugo-backend/static/
+          echo "--> Getting latest known working hugo binary with current framework"
+          cd backend/hugo-backend
+          wget https://github.com/gohugoio/hugo/releases/download/v0.91.0/hugo_extended_0.91.0_Linux-64bit.tar.gz
+          tar xvzf hugo_extended_0.91.0_Linux-64bit.tar.gz
+          echo "--> Rendering markdown to html based on config/latest.toml file"
+          npm install -g npm@8.3.0
+          npm install postcss-cli
+          npm install autoprefixer
+          ./hugo -D --config config/latest.toml
+          echo "--> Copying latest version to gh-pages"
+          cp -R sites/latest/* ../../gh-pages/
+          echo "--> Adding, committing, and pushing the latest build to gh-pages"
+          cd ../../gh-pages/
+          touch .nojekyll
+          git config --global user.name 'GitHub Ondat Actions'
+          git config --global user.email 'git@ondat.io'
+          git remote set-url origin https://x-access-token:${{ secrets.DOC_SECRET }}@github.com/ondat/documentation-backend.git          
+          git add --all .
+          git commit -m "GitHub Actions Push"
+          git push 
+          echo "--> Time to clean up"
+          cd ../..
+          rm -rf tmp
