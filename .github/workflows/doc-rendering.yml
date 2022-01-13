@@ -49,7 +49,7 @@ jobs:
           touch .nojekyll
           git config --global user.name 'GitHub Ondat Actions'
           git config --global user.email 'git@ondat.io'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAGES }}@github.com/ondat/documentation-backend.git          
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ondat/documentation-backend.git          
           git add --all .
           git commit -m "GitHub Actions Push"
           git push 
