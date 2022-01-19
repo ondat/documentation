@@ -1,8 +1,7 @@
 ---
+title: "Fencing"
 linkTitle: Fencing
 ---
-
-# Fencing
 
 ## StatefulSet behaviour
 

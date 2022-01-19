@@ -1,8 +1,7 @@
 ---
+title: "Nodes"
 linkTitle: Nodes
 ---
-
-# Nodes
 
 An Ondat node is any machine (virtual or physical) that is running the
 Ondat daemonset pod. A node must be running a daemonset pod in order to

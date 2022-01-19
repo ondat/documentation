@@ -1,8 +1,7 @@
 ---
+title: "Cluster Topologies"
 linkTitle: "Cluster Topologies"
 ---
-
-# Cluster Topologies
 
 Ondat makes it possible for you to organise your cluster in multiple ways,
 depending on your priorities and needs. The approaches below are idealised

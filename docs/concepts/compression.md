@@ -1,8 +1,7 @@
 ---
+title: "Compression"
 linkTitle: Compression
 ---
-
-# Compression
 
 Ondat compression is handled on a per volume basis and is disabled by
 default in v2.2+, as performance is generally increased when compression is

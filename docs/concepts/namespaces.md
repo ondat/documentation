@@ -1,8 +1,7 @@
 ---
+title: "Namespaces"
 linkTitle: Namespaces
 ---
-
-# Namespaces
 
 Ondat namespaces are an identical concept to Kubernetes namespaces. They
 are intended to allow an Ondat cluster to be used by multiple teams across
