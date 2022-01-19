@@ -1,8 +1,7 @@
 ---
+title: "Replication"
 linkTitle: Replication
 ---
-
-# Replication
 
 Ondat replicates volumes across nodes for data protection and high
 availability. Synchronous replication ensures strong consistency for

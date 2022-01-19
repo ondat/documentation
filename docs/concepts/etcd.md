@@ -1,8 +1,7 @@
 ---
+title: "Etcd"
 linkTitle: Etcd
 ---
-
-# Etcd
 
 [Etcd](https://etcd.io) is an open-source distributed, strongly consistent key
 value store that is used by Ondat to durably persist the Ondat cluster

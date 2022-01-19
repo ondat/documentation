@@ -1,8 +1,7 @@
 ---
+title: "Policies"
 linkTitle: Policies
 ---
-
-# Policies
 
 Ondat policies are a way to control user and group access to Ondat
 [Namespaces](/docs/concepts/namespaces). To grant a user or group

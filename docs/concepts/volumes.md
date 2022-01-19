@@ -1,8 +1,7 @@
 ---
+title: "Volumes"
 linkTitle: Volumes
 ---
-
-# Volumes
 
 Ondat volumes are a logical construct which represent a writeable volume
 and exhibit standard POSIX semantics. Ondat presents volumes as mounts into

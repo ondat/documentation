@@ -1,8 +1,7 @@
 ---
+title: "Ondat Components"
 linkTitle: "Ondat Components"
 ---
-
-# Ondat Components
 
 Ondat is a software-defined storage platform for running stateful
 applications in Kubernetes.
