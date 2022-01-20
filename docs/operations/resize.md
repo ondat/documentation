@@ -1,8 +1,7 @@
 ---
+title: "Volume Resize"
 linkTitle: Volume Resize
 ---
-
-# Volume Resize
 
 Ondat supports offline resize of volumes, either through editing a PVC
 storage request, or by updating the volume config via the CLI or UI. A volume

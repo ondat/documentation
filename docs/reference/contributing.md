@@ -1,8 +1,7 @@
 ---
+title: "Contributing to the documentation"
 linkTitle: Contributing to the documentation
 ---
-
-# Contributing to the docs
 
 We are always looking to improve our documentation. If you like to help people
 and can write, read on for the process for submitting your contributions. If your

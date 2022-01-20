@@ -1,5 +1,5 @@
 ---
-title: Best Practices
+title: Ondat Best Practices
 linkTitle: Best Practices
 weight: 450
 ---

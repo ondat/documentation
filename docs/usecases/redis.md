@@ -1,8 +1,7 @@
 ---
+title: "Redis"
 linkTitle: Redis
 ---
-
-# Redis
 
 ![redislogo](/images/docs/explore/redis.png)
 

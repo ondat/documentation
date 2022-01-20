@@ -1,8 +1,7 @@
 ---
+title: "MS SQL"
 linkTitle: MS SQL
 ---
-
-# MS SQL
 
 ![mssqllogo](/images/docs/explore/mssql.png)
 

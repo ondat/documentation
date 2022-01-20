@@ -1,8 +1,7 @@
 ---
+title: "Zookeeper"
 linkTitle: Zookeeper
 ---
-
-# Zookeeper
 
 ![zookeeperlog](/images/docs/explore/zookeeper.png)
 

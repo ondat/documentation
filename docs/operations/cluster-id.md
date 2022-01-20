@@ -1,8 +1,7 @@
 ---
+title: "ClusterID"
 linkTitle: ClusterID
 ---
-
-# ClusterID
 
 Every Ondat cluster has a unique ClusterID generated at bootstrap. A
 Ondat Licence is specific for a ClusterID.

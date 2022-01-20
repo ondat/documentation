@@ -1,8 +1,7 @@
 ---
+title: "Kubectl plugin"
 linkTitle: Kubectl plugin
 ---
-
-# Kubectl plugin
 
 Ondat has implemented a kubectl plugin to facilitate operations when
 installing and interacting with Ondat clusters.

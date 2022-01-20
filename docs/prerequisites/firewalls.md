@@ -1,9 +1,8 @@
 ---
+title: "Firewalls"
 linkTitle: Firewalls
 weight: 200
 ---
-
-# Firewalls
 
 ## Port list
 Ondat daemons listen on specific ports, which we require to be accessible

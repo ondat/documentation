@@ -1,8 +1,7 @@
 ---
+title: "Ondat Open Source Software Attribution Notice"
 linkTitle: Ondat Open Source Software Attribution Notice
 ---
-
-# Ondat Open Source Software Attribution Notice
 
 The following document lists the open source software attributions in the Ondat Control Plane, Data Plane and CLI.
 

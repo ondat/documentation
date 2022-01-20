@@ -1,8 +1,7 @@
 ---
+title: "MySQL"
 linkTitle: MySQL
 ---
-
-# MySQL
 
 ![image](/images/docs/explore/mysqllogo.png)
 

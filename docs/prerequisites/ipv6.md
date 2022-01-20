@@ -1,9 +1,8 @@
 ---
+title: "Availability of IPv6"
 linkTitle: Availability of IPv6
 weight: 200
 ---
-
-# Availability of IPv6
 
 ## Availability of IPv6 Address Family
 Certain Ondat components need to be able to listen on a standard

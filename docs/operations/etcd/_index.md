@@ -1,8 +1,7 @@
 ---
+title: "Etcd"
 linkTitle: Etcd
 ---
-
-# Etcd
 
 Check the [etcd prerequisites page](/docs/prerequisites/etcd)
 for a step by step installation of etcd.

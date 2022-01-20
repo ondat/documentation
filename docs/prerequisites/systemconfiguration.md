@@ -1,9 +1,8 @@
 ---
+title: "System Configuration"
 linkTitle: System Configuration
 weight: 100
 ---
-
-# System Configuration
 
 Ondat requires certain kernel modules to function. In particular it
 requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source

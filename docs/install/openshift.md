@@ -1,9 +1,8 @@
 ---
+title: "OpenShift"
 linkTitle: "OpenShift"
 weight: 20
 ---
-
-# OpenShift
 
 > Make sure the
 > [prerequisites for Ondat](/docs/prerequisites/_index) are

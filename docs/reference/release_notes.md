@@ -1,8 +1,7 @@
 ---
+title: "Release notes"
 linkTitle: Release notes
 ---
-
-# Release notes
 
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.

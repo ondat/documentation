@@ -1,8 +1,7 @@
 ---
+title: "Troubleshooting"
 linkTitle: Troubleshooting
 ---
-
-# Troubleshooting
 
 This section is aimed to help you troubleshoot issues in your cluster, whether
 they are related to the Ondat installation, integration with

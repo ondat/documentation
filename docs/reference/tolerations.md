@@ -1,8 +1,7 @@
 ---
+title: "Tolerations"
 linkTitle: Tolerations
 ---
-
-# Tolerations
 
 ## Kubernetes Tolerations
 

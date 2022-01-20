@@ -1,8 +1,7 @@
 ---
+title: "Support bundle"
 linkTitle: Support bundle
 ---
-
-# Support bundle
 
 The support bundle is a tool that gathers information both about Ondat and
 the environment in which it is operating. It provides information about the

@@ -1,8 +1,7 @@
 ---
+title: "Cluster Operator"
 linkTitle: Cluster Operator
 ---
-
-# Cluster Operator
 
 Our cluster operator is a [Kubernetes native
 application](https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/)

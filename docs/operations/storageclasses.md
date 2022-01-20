@@ -1,8 +1,7 @@
 ---
+title: "Storagelasses"
 linkTitle: StorageClasses
 ---
-
-# StorageClasses
 
 [StorageClasses](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 in Kubernetes are used to link PVCs with a backend storage provisioner - for

@@ -1,8 +1,7 @@
 ---
+title: "Update"
 linkTitle: Update
 ---
-
-# Update volume
 
 ```bash
 Usage:

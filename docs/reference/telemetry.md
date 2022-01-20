@@ -1,8 +1,7 @@
 ---
+title: "Ondat Telemetry"
 linkTitle: Ondat Telemetry
 ---
-
-# Ondat Telemetry
 
 Ondat collects telemetry and error reports from Ondat clusters via two
 different methods for two different purposes.

@@ -1,8 +1,7 @@
 ---
+title: "Namespaces"
 linkTitle: Namespaces
 ---
-
-# Namespaces
 
 Namespaces help different projects or teams share a Ondat cluster. Only the
 default namespace is created by default.

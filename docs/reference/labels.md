@@ -1,8 +1,7 @@
 ---
+title: "Labels"
 linkTitle: Labels
 ---
-
-# Labels
 
 Feature labels are a powerful and flexible way to control storage features.
 

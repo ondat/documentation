@@ -1,8 +1,7 @@
 ---
+title: "Velero Backups"
 linkTitle: Velero Backups
 ---
-
-# Velero Backups
 
 ## Using Velero to backup your Ondat volumes
 

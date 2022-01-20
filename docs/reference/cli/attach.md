@@ -1,8 +1,7 @@
 ---
+title: "Attach"
 linkTitle: Attach
 ---
-
-# Attach
 
 ```bash
 $ storageos attach --help

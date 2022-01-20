@@ -1,8 +1,7 @@
 ---
+title: "Sidecar Backups"
 linkTitle: Sidecar Backups
 ---
-
-# Sidecar Backups
 
 In this example use case we provide three different strategies for accessing
 files that have been written to a Ondat  persistent volume.

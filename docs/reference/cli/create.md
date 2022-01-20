@@ -1,8 +1,7 @@
 ---
+title: "Create"
 linkTitle: Create
 ---
-
-# Create
 
 ```bash
 $ storageos create --help

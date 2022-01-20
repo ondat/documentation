@@ -1,9 +1,8 @@
 ---
+title: "Kubernetes"
 linkTitle: "Kubernetes"
 weight: 1
 ---
-
-# Kubernetes
 
 > Make sure the
 > [prerequisites for Ondat](/docs/prerequisites/_index) are

@@ -1,4 +1,5 @@
 ---
+title: "Quickstart"
 linkTitle: Quickstart
 weight: 20
 description: >
@@ -6,8 +7,6 @@ description: >
     a simple installation in your cluster and check out the use cases to deploy
     popular, real life applications using persistent storage.
 ---
-
-# Quickstart
 
 * Start by [understanding the architecture](/docs/concepts/components).
 

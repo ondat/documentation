@@ -1,8 +1,7 @@
 ---
+title: "Docker Enterprise Edition"
 linkTitle: Docker Enterprise Edition
 ---
-
-# Docker Enterprise Edition
 
 To install Ondat on DockerEE, follow our Kubernetes [installation instructions](/docs/install/kubernetes) page.
 

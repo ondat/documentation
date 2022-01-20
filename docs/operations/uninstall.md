@@ -1,8 +1,7 @@
 ---
+title: "Uninstall Ondat"
 linkTitle: Uninstall Ondat
 ---
-
-# Uninstall Ondat
 
 This document details a step-by-step procedure on how to remove Ondat from a
 Kubernetes cluster.

@@ -1,8 +1,7 @@
 ---
+title: "Encryption"
 linkTitle: Encryption
 ---
-
-# Encryption
 
 For more detail on encryption at rest in Ondat, see [the reference page](/docs/reference/encryption).
 

@@ -1,8 +1,7 @@
 ---
+title: "Get"
 linkTitle: Get
 ---
-
-# Get
 
 ```bash
 $ storageos get --help

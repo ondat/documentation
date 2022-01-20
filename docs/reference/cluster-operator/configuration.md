@@ -1,9 +1,8 @@
 ---
+title: "Configuration"
 linkTitle: Configuration
 weight: 20
 ---
-
-# Configuration
 
 ## StorageOSCluster Resource Configuration
 

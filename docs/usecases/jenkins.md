@@ -1,8 +1,7 @@
 ---
+title: "Jenkins"
 linkTitle: Jenkins
 ---
-
-# Jenkins
 
 ![jenkinslog](/images/docs/explore/jenkins.png)
 

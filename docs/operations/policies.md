@@ -1,8 +1,7 @@
 ---
+title: "Policies"
 linkTitle: Policies
 ---
-
-# Policies
 
 Policies control access to Ondat namespaces. Policies can be
 configured at the group or user level so access can be controlled granularly.

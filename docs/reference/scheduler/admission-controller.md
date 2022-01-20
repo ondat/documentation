@@ -1,8 +1,7 @@
 ---
+title: "Admission Controller"
 linkTitle: Admission Controller
 ---
-
-# Admission Controller
 
 Ondat implements a `MutatingAdmissionWebhook` [Admission
 Controller](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks)
