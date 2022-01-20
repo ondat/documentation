@@ -1,6 +1,6 @@
 ---
 title: "Cassandra"
-linkTitle: Use Cases
+linkTitle: Cassandra
 ---
 
 ![cassandra log](/images/docs/explore/cassandralogo.png)
