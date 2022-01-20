@@ -1,12 +1,11 @@
 ---
+title: "Supported Platforms and Orchestrators"
 linkTitle: Supported Platforms
 weight: 40
 description: >
     Ondat runs on a variety of platforms and orchestrators. The following
     sections detail these, and any known platform specific limitations.
 ---
-
-# Supported Platforms and Orchestrators
 
 ## OS
 

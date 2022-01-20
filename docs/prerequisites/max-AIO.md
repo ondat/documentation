@@ -1,9 +1,8 @@
 ---
+title: "Max AIO"
 linkTitle: Max AIO
 weight: 500
 ---
-
-# Max AIO
 
 As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat

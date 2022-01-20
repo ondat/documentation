@@ -1,9 +1,8 @@
 ---
+title: "Cluster Operator upgrade"
 linkTitle: Contributing to the documentation
 weight: 40
 ---
-
-# Operator upgrade
 
 ## Upgrade Ondat operator from yaml manifest
 

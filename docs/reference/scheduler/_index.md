@@ -1,8 +1,7 @@
 ---
+title: "Ondat Scheduler"
 linkTitle: Ondat Scheduler
 ---
-
-# Ondat Scheduler
 
 Ondat has the capacity to influence Kubernetes Pod placement decisions to
 ensure that Pods are scheduled on the same nodes as their data. This

@@ -1,8 +1,7 @@
 ---
+title: "Failure Modes"
 linkTitle: Failure Modes
 ---
-
-## Failure Modes
 
 For more information about replication and failure modes, see our
 [Replication concepts page](/docs/concepts/replication).

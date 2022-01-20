@@ -1,9 +1,8 @@
 ---
+title: "Install"
 linkTitle: Install
 weight: 1
 ---
-
-# Install
 
 To install the operator follow the installation page for your orchestrator.
 

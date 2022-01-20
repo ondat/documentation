@@ -1,8 +1,7 @@
 ---
+title: "Prometheus"
 linkTitle: Prometheus
 ---
-
-# Prometheus
 
 ![prometheuslogo](/images/docs/explore/prom.png)
 

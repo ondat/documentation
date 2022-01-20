@@ -1,8 +1,7 @@
 ---
+title: "Describe"
 linkTitle: Describe
 ---
-
-# Describe
 
 ```bash
 $ storageos describe --help

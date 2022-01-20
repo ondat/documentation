@@ -1,8 +1,7 @@
 ---
+title: "Elasticsearch"
 linkTitle: Elasticsearch
 ---
-
-# Elasticsearch
 
 ![elasticlogo](/images/docs/explore/elasticsearch.png)
 

@@ -1,4 +1,5 @@
 ---
+title: "API Reference"
 linkTitle: API Reference
 type: swagger
 ---

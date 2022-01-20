@@ -1,12 +1,11 @@
 ---
+title: "Ondat Overview"
 linkTitle: Ondat Overview
 weight: 10
 description: >
     Ondat V2 is built from the knowledge and experience of running
     stateful production workloads in the fast changing container world.
 ---
-
-# Ondat Overview
 
 Over the past several months, we've been hard at work on Ondat V2, which
 contains some significant enhancements over our v1 product. We've built V2

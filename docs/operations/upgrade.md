@@ -1,8 +1,7 @@
 ---
+title: "Upgrade Ondat"
 linkTitle: Upgrade Ondat
 ---
-
-# Upgrade Ondat
 
 This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 

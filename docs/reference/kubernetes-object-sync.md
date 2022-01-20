@@ -1,8 +1,7 @@
 ---
+title: "Kubernetes Object Sync"
 linkTitle: Kubernetes Object Sync
 ---
-
-# Kubernetes Object Sync
 
 The below controllers are part of the [Ondat API manager](/docs/concepts/components), and handle a variety of cases where
 information about Kubernetes objects from your cluster needs to be synced to

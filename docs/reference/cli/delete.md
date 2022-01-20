@@ -1,8 +1,7 @@
 ---
+title: "Delete"
 linkTitle: Delete
 ---
-
-# Delete
 
 ```bash
 $ storageos delete -h

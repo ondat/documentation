@@ -1,9 +1,8 @@
 ---
+title: "Etcd"
 linkTitle: Etcd
 weight: 600
 ---
-
-# Etcd
 
 Ondat requires an etcd cluster in order to function. For more information
 on why etcd is required please see our [etcd concepts](/docs/concepts/etcd) page.

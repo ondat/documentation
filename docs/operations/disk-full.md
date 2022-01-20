@@ -1,9 +1,7 @@
 ---
+title: "Disk Full"
 linkTitle: Disk Full
 ---
-
-# Disk Full
-
 
 When the physical disks in your cluster get full, or start using disk space too
 fast, Kubernetes will automatically apply the `DiskPressure:NoExecute` taint.

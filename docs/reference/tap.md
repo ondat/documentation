@@ -1,8 +1,7 @@
 ---
+title: "Topology-Aware Placement"
 linkTitle: Topology-Aware Placement
 ---
-
-# Topology-Aware Placement
 
 Ondat Topology-Aware Placement is a feature that enforces placement of data
 across failure domains to guarantee high availability. Topology-Aware Placement

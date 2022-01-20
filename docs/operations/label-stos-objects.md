@@ -1,8 +1,7 @@
 ---
+title: "Labeling Ondat Objects"
 linkTitle: Labeling Ondat Objects
 ---
-
-# Labeling Ondat Objects
 
 For more information regarding the Ondat Label Sync feature, see our
 [Kubernetes Object Sync reference page.](/docs/reference/kubernetes-object-sync)

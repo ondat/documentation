@@ -1,8 +1,7 @@
 ---
-linkTitle: First Volume
+title: "Ondat Volume Guide"
+linkTitle: First PVC
 ---
-
-# First PVC
 
 Follow the recipes on this page to create your first PVC (Persistent Volume
 Claim) using Ondat. Ondat implements dynamic provisioning, so the

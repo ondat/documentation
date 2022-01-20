@@ -1,8 +1,7 @@
 ---
+title: "Rancher"
 linkTitle: Rancher
 ---
-
-# Rancher
 
 To install Ondat on Rancher, please follow our [installation instructions](/docs/install/rancher) page.
 

@@ -1,8 +1,7 @@
 ---
+title: "InfluxDB"
 linkTitle: InfluxDB
 ---
-
-# InfluxDB
 
 ![influxdblogo](/images/docs/explore/influxdb.png)
 

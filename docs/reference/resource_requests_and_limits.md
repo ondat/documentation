@@ -1,8 +1,7 @@
 ---
-linkTitle: Resource Requests and Limites
+title: "Resource Requests and Limits"
+linkTitle: Resource Requests and Limits
 ---
-
-# Resource Requests and Limits
 
 ## Managing Resources for Ondat containers
 

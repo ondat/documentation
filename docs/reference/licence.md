@@ -1,10 +1,7 @@
 ---
+title: "Licence"
 linkTitle: Licence
-description: >
-  A cluster requires a licence to be issued within the first 24 hours.
 ---
-
-# Licence
 
 A newly installed Ondat cluster does not include a licence. A cluster can
 run unlicensed for 24 hours. After that, new operations such as volume

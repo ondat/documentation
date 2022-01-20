@@ -1,9 +1,8 @@
 ---
+title: "Rancher"
 linkTitle: "Rancher"
 weight: 30
 --- 
-
-# Rancher
 
 Ondat is a certified Rancher application. We offer two installation
 methods:

@@ -1,8 +1,7 @@
 ---
+title: "ReadWriteMany"
 linkTitle: ReadWriteMany
 ---
-
-# ReadWriteMany
 
 > Note: Ondat Project edition is required to create RWX Volumes.
 

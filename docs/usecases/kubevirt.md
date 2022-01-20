@@ -1,8 +1,7 @@
 ---
+title: "Kubevirt"
 linkTitle: Kubevirt
 ---
-
-# Kubevirt
 
 ![image](/images/docs/explore/kubevirt.png)
 

@@ -1,8 +1,7 @@
 ---
+title: "Fencing"
 linkTitle: Fencing
 ---
-
-## Fencing
 
 For information regarding the Ondat Fencing feature, see our
 [fencing concepts page](/docs/concepts/fencing).

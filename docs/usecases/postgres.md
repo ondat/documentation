@@ -1,8 +1,7 @@
 ---
+title: "PostgreSQL"
 linkTitle: PostgreSQL
 ---
-
-# PostgreSQL
 
 ![postgresqllogo](/images/docs/explore/postgres.png)
 

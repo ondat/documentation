@@ -1,8 +1,7 @@
 ---
+title: "Help"
 linkTitle: Help
 ---
-
-# Help
 
 ```bash
 $ storageos help

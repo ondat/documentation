@@ -1,8 +1,7 @@
 ---
+title: "Command Line Interface"
 linkTitle: CLI
 ---
-
-# Command line interface
 
 The `storageos` command line interface (CLI) is used to manage cluster-wide
 configuration.

@@ -1,8 +1,7 @@
 ---
+title: "GUI"
 linkTitle: GUI
 ---
-
-# GUI
 
 Ondat provides a GUI for cluster and volume management.
 

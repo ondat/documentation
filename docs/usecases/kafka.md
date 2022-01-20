@@ -1,8 +1,7 @@
 ---
+title: "Kafka"
 linkTitle: Kafka
 ---
-
-# Kafka
 
 ![kafkalogo](/images/docs/explore/kafka.png)
 

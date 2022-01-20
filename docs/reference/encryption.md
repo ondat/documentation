@@ -1,8 +1,7 @@
 ---
-linkTitle: ontributing to the documentationC
+title: "Encryption"
+linkTitle: Encryption
 ---
-
-# Encryption
 
 Ondat supports encryption for data-at-rest and data-in-transit.
 

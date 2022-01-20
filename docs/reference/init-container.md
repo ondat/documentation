@@ -1,8 +1,7 @@
 ---
+title: "Init container"
 linkTitle: Init container
 ---
-
-# Init container
 
 Ondat has requirements for the configuration of host systems. As such,
 Ondat starts an init container that sets the system configuration for

@@ -1,8 +1,7 @@
 ---
+title: "Detach"
 linkTitle: Detach
 ---
-
-# Detach Volume
 
 ```bash
 $ storageos detach --help

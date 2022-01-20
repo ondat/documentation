@@ -1,9 +1,8 @@
 ---
+title: "PID Limits"
 linkTitle: PID Limits
 weight: 400
 ---
-
-# PID Limits
 
 Ondat recommends that a [PID
 cgroup](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid)

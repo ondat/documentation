@@ -1,8 +1,7 @@
 ---
+title: "Licensing"
 linkTitle: Licensing
 ---
-
-# Licensing
 
 A newly installed Ondat cluster doesn't include a default licence. The cluster
 will run unlicenced for 24 hours without any limitations. After this time

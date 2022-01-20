@@ -1,8 +1,7 @@
 ---
+title: "Cluster Health"
 linkTitle: Cluster Health
 ---
-
-# Cluster health
 
 Various tools are available for checking on the status of a cluster.
 

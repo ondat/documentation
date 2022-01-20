@@ -1,8 +1,7 @@
 ---
+title: "Diagnostic bundle"
 linkTitle: Diagnostic bundle
 ---
-
-# Diagnostic bundle
 
 Ondat can generate a cluster diagnostic bundle from the GUI or CLI under
 user request. The bundle packages the information needed for the engineering

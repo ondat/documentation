@@ -1,8 +1,7 @@
 ---
+title: "NGINX"
 linkTitle: NGINX
 ---
-
-# Nginx
 
 ![nginxlogo](/images/docs/explore/nginx.png)
 

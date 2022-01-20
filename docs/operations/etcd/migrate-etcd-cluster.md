@@ -1,8 +1,7 @@
 ---
+title: "Etcd node migration"
 linkTitle: Etcd node migration
 ---
-
-# Etcd node migration
 
 This procedure explains how to add a new etcd member for your Ondat etcd
 cluster while removing one of the current members. This is useful when the

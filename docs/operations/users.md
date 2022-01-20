@@ -1,8 +1,7 @@
 ---
+title: "User Management"
 linkTitle: User Management
 ---
-
-# User Management
 
 An Ondat cluster admin can create users and restrict their access rights to
 Ondat [namespaces](/docs/operations/namespaces) using

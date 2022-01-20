@@ -1,9 +1,8 @@
 ---
+title: "Cluster Operator examples"
 linkTitle: Examples
 weight: 30
 ---
-
-# Cluster Operator examples
 
 Before deploying a Ondat cluster, create a Secret to define the Ondat
 API Username and Password in base64 encoding.

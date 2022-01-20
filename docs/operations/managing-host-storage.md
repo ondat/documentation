@@ -1,8 +1,7 @@
 ---
+title: "Host Storage"
 linkTitle: Host Storage
 ---
-
-# Host Storage
 
 Ondat uses the storage available on the nodes where it is installed to
 present as available for volumes.

@@ -1,8 +1,7 @@
 ---
+title: "Apply"
 linkTitle: Apply
 ---
-
-# Apply
 
 ## Apply changes to resources
 ```bash

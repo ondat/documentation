@@ -1,8 +1,7 @@
 ---
+title: "Encryption communication with Etcd"
 linkTitle: mTLS
 ---
-
-# Encrypting communication with Etcd
 
 Ondat supports secure communication with an external etcd cluster using
 mutual TLS (mTLS). With mTLS both Ondat and etcd authenticate each other
