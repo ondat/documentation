@@ -15,7 +15,7 @@ weight: 20
 > If you have installed OpenShift in AWS ensure that the requisite ports are
 > opened for the worker nodes' security group.
 
-> Make sure to add a Ondat licence after installing.
+> Make sure to add an Ondat licence after installing.
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 
@@ -321,4 +321,4 @@ To obtain a license, follow the instructions on our [licensing operations](/docs
 ## First Ondat volume
 
 If this is your first installation you may wish to follow the [Ondat volume guide](/docs/operations/firstpvc) for an example of how
-to mount a Ondat volume in a Pod.
+to mount an Ondat volume in a Pod.

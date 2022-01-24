@@ -15,7 +15,7 @@ Scheduler - `storageos-scheduler`.
 
 During Pod creation, Kubernetes sends a web request to the Ondat
 WebHook with the Pod specification. The PodSpec is only altered to use the
-Ondat scheduler if the Pod uses a Ondat volume.
+Ondat scheduler if the Pod uses an Ondat volume.
 
 ## Web Server
 

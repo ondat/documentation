@@ -13,7 +13,7 @@ weight: 1
 
 > Ondat supports the five most recent Kubernetes releases, at minimum.
 
-> Make sure to add a Ondat licence after installing.
+> Make sure to add an Ondat licence after installing.
 
 &nbsp;
 
@@ -324,4 +324,4 @@ StorageOSCluster. Check the kubectl plugin reference for the
 ## First Ondat volume
 
 If this is your first installation you may wish to follow the [Ondat Volume guide](/docs/operations/firstpvc) for an example of how
-to mount a Ondat volume in a Pod.
+to mount an Ondat volume in a Pod.

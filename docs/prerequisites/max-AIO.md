@@ -6,7 +6,7 @@ weight: 500
 
 As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat
-requires 4 AIO contexts per deployment (i.e. a Ondat volume deployment,
+requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
 whether master or replica).
 
 ## Max AIO prerequisite.

@@ -59,7 +59,7 @@ triggered when the Kubernetes node is removed.
 Whenever a node delete event occurs the Node Delete Controller will trigger if
 the node has the Ondat CSI driver annotation.
 
-If the node holds a Ondat Volume without a replica then it cannot be
+If the node holds an Ondat Volume without a replica then it cannot be
 deleted by this controller. The Volume must be deleted first and then the node.
 This is to prevent data loss by accidental deletion of a master volume. 
 

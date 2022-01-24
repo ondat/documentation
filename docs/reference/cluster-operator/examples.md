@@ -4,7 +4,7 @@ linkTitle: Examples
 weight: 30
 ---
 
-Before deploying a Ondat cluster, create a Secret to define the Ondat
+Before deploying an Ondat cluster, create a Secret to define the Ondat
 API Username and Password in base64 encoding.
 
 ```bash

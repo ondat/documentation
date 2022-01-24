@@ -178,7 +178,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.
 To obtain a license, follow the instructions on our [licensing operations](operations/licensing.md) page.
 
 
-## Provision a Ondat Volume
+## Provision an Ondat Volume
 
 Now that we have a working Ondat cluster, we can provision a volume to test
 everything is working as expected.
@@ -246,7 +246,7 @@ everything is working as expected.
     $ kubectl get pod d1 -w
     ```
 
-    The pod mounts a Ondat volume under `/mnt` so any files written there
+    The pod mounts an Ondat volume under `/mnt` so any files written there
     will persist beyond the lifetime of the pod. This can be demonstrated using
     the following commands.
 
@@ -537,7 +537,7 @@ best results, test using your application of choice with a representative
 configuration and real world data.
 
 As an example of benchmarking an application the following steps lay out how to
-benchmark a Postgres database backed by a Ondat volume.
+benchmark a Postgres database backed by an Ondat volume.
 
 1. Start by cloning the Ondat use cases repository. Note this is the same
    repository that we cloned earlier so if you already have a copy just `cd
