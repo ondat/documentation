@@ -17,9 +17,9 @@ between all nodes in the cluster:
 | 5711          | TCP & UDP   | Gossip service          |
 | 25705-25960   | TCP         | RWX Volume Endpoints    |
 
-Ondat also uses [ephemeral](https://en.wikipedia.org/wiki/Ephemeral_port)
-ports to dial-out to these ports on other Ondat nodes. For this reason,
-outgoing traffic should be enabled.
+> 💡 Ondat also uses [ephemeral](https://en.wikipedia.org/wiki/Ephemeral_port)
+> ports to dial-out to these ports on other Ondat nodes. For this reason,
+> outgoing traffic should to other nodes be enabled.
 
 ## Firewalls and VPS providers
 Some VPS providers (such as Digital Ocean) ship default firewall rulesets which
@@ -62,6 +62,5 @@ iptables -I OUTPUT -o lo -m comment --comment 'Permit loopback traffic' -j ACCEP
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment 'Permit outbound traffic' -j ACCEPT
 ```
 
-Please ensure that the iptables rules you have added above come before any
-default DROP or REJECT rules.
+> ⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.
 

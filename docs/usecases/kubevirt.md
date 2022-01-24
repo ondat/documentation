@@ -42,7 +42,7 @@ enabled.
 
 ## Deploying KubeVirt on Kubernetes
 
-> For ease of installation we have enabled hardware emulation. If your VMs
+> 💡 For ease of installation we have enabled hardware emulation. If your VMs
 > support nested virtualization then edit the Kubevirt ConfigMap
 > `./kubevirt-install/10-cm.yaml`, removing the line `debug.useEmulation:
 > "true"`.
@@ -134,7 +134,7 @@ CDI allows for images to be cloned using a DataVolume manifest. Verify that the
 cirros pvc, created as part of the vm-cirros.yaml file, exists before
 attempting to clone the volume.
 
-> N.B. Ensure that the `VMI` is stopped before continuing!
+> ⚠️ Ensure that the `VMI` is stopped before continuing!
 
 1. Verify that the VMI is stopped before continuing, and that the cirros pvc,
    created as part of the vm-cirros.yaml file, exists before attempting to

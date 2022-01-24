@@ -18,7 +18,7 @@ We require the following modules to be loaded:
 * `target_core_user`
 * `uio`
 
-> N.B. Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO)
+> ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO)
 > cannot be run concurrently with Ondat. Doing so may result in corruption
 > of data. On startup, Ondat will detect if other applications are using
 > TCMU and fall back to FUSE. However if Ondat is started first there is no
@@ -42,7 +42,7 @@ The following distributions are supported by default:
 
 Ubuntu 16.04/18.04 requires the installation of additional packages.
 
-> N.B. Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
+> ⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
 > necessary linux-image-extra package - [see
 > below](/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels) for more information
 
@@ -70,8 +70,7 @@ sudo apt -y install linux-modules-extra-$(uname -r)
 linux-image-extra package. As such you should either use **Debian**, **CentOS**
 or **RHEL**, or install the non-cloud-provider optimised Ubuntu kernel.
 
-Installing the non-cloud-provider optimised Ubuntu kernel is something that
-should only be done with full understanding of potential ramifications.
+> ⚠️ Installing the non-cloud-provider optimised Ubuntu kernel is something that should only be done with full understanding of potential ramifications.
 
 ```bash
 sudo apt -y update

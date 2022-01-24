@@ -43,7 +43,7 @@ Here are the prerequisites for running Velero in your Kubernetes cluster:
 1. Kubernetes cluster version 1.18 to 1.22 with DNS
 1. Kubectl installed
 1. Velero cli installed https://Velero.io/docs/main/basic-install/
-> Velero can also be installed from a helm chart
+> 💡 Velero can also be installed from a helm chart
 
 ## Install MinIO with a Ondat volume
 
@@ -84,7 +84,7 @@ the Velero directory:
 Use the following command to install Velero via the Velero CLI or alternatively
 use the helm chart. To install it using the Velero cli, just run this command:
 
-> The AWS plugin is being used because MinIO implements the S3 API. This is
+> 💡 The AWS plugin is being used because MinIO implements the S3 API. This is
 > required even if you're not using AWS.
 
 ```bash 
@@ -214,7 +214,7 @@ completed successfully:
 1. After the backup is finished, delete the StatefulSet and PVC.
 
 
-    > N.B. It's important to make sure that the StatefulSet is deleted because the
+    > ⚠️ It's important to make sure that the StatefulSet is deleted because the
     > restore would be unable to complete if a StatefulSet pod is recreated during
     > the restore process.
 

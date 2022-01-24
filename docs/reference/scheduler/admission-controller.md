@@ -58,7 +58,7 @@ metadata:
 
 ## Explicit SchedulerName
 
-> It is not necessary to explicitly set the SchedulerName as the [Admission
+> 💡 It is not necessary to explicitly set the SchedulerName as the [Admission
 > Controller](admission-controller.md)
 > automatically populates the PodSpec field. Set the SchedulerName in your
 > manifests, manually, only if you disable or can't execute the Ondat

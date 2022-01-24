@@ -101,7 +101,7 @@ Ondat will use the new available space to create new data files.
 
     Note that the node node0 has increased the TOTAL capacity in 100Gi.
 
-> Persist the mount at boot by adding the mount endpoint to `/etc/fstab`
+> 💡 Persist the mount at boot by adding the mount endpoint to `/etc/fstab`
 
 
 ## Option 2: Expand Existing Devices Backed by LVM
@@ -161,7 +161,7 @@ This option enables operators to take advantage of LVM to manage disks.
 
 1. Resize the FileSystem
 
-    > Your filesystem must support the option to be expanded, and to do so
+    > ⚠️ Your filesystem must support the option to be expanded, and to do so
     > while in use. Otherwise, you need to unmount first.
 
     ```
@@ -192,4 +192,4 @@ This option enables operators to take advantage of LVM to manage disks.
     206,158,430,208 # --> 100G more available
     ```
 
-> Persist the mount at boot by adding the mount point to `/etc/fstab`
+> 💡 Persist the mount at boot by adding the mount point to `/etc/fstab`

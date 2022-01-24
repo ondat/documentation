@@ -61,10 +61,10 @@ A replica on a full disk can't be failed over successfully.
 To recover from a disk full error, you can either add new storage space
 into the affected node, or delete existing persistent volume claims.
 
->**N.B.** However you choose to resolve the issue, the **Ondat Daemonset
+> ⚠️ However you choose to resolve the issue, the **Ondat Daemonset
 >Pod must be restarted**.
 
-This is because the blob files disallow operations at runtime via the
+> 💡 This is because the blob files disallow operations at runtime via the
 previously discussed error flag stored in memory. This flag does not survive
 boot cycles, so after the pod restarts, volumes can operate normally once more.
 

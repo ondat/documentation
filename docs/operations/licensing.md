@@ -113,7 +113,7 @@ NaalLsK/96bJov6tpbg96g==
 1.  Paste the licence key into the pop-up window
 1.  To apply the license click __Upgrade__
 
-> Note: It is crucial to paste all the licence text into the pop-up and not
+> ⚠️ It is crucial to paste all the licence text into the pop-up and not
 > just the signature. Keep in mind that the encoding of the file must not
 > change.
 

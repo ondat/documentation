@@ -11,4 +11,4 @@ It is not necessary to create Ondat namespaces manually, as Ondat maps
 Kubernetes namespaces on a one-to-one basis when PersistentVolumeClaims using
 the Ondat StorageClass are created.
 
-Access to Namespaces is controlled through user or group level [policies](/docs/concepts/policies).
+💡 Access to Namespaces is controlled through user or group level [policies](/docs/concepts/policies).

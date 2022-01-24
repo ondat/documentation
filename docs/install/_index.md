@@ -80,5 +80,5 @@ Here's an example Ansible snippet that might be used to achieve this
       notify: restart docker
     ...
 
-> Note: Use at own risk; you may need to adapt the example to work in your
+> ⚠️ Use at your own risk; you may need to adapt the example to work in your
 > environment
