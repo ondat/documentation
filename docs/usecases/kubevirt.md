@@ -18,7 +18,7 @@ running off the PersistentVolume. [Containerized Data Importer
 (CDI)](https://github.com/kubevirt/containerized-data-importer) can also be
 used to prepare Ondat volumes with disk images in an automated fashion.
 Simply by declaring that a `VirtualMachine` will use a DataVolume and providing
-the disk image URL, a Ondat volume can be dynamically provisioned and
+the disk image URL, an Ondat volume can be dynamically provisioned and
 automatically prepared with the disk image.
 
 This usecase will guide you through installing KubeVirt and CDI on your
@@ -101,7 +101,7 @@ enabled.
 
 1. Check that the `VMI` is running. Note that the
    `VMI` will only be created after CDI has downloaded the
-   Cirros disk image onto a Ondat persistent volume so depending on your
+   Cirros disk image onto an Ondat persistent volume so depending on your
    connection speed this may take some time.
 
    ```bash

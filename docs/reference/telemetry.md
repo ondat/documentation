@@ -50,7 +50,7 @@ The DNS query includes:
 
 The once per day report contains information about the Ondat cluster and
 Kubernetes versions to help Ondat focus our development efforts on the most
-popular platforms. The once per day data is encrypted and sent to a Ondat
+popular platforms. The once per day data is encrypted and sent to an Ondat
 telemetry server so it is never processed outside of Ondat assets.
 
 An exhaustive list of information included in the once per day report is below:

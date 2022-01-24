@@ -54,8 +54,8 @@ $ echo "<licence file contents>" | storageos apply licence --from-stdin
 
 Flags:
       --cas string         make changes to a resource conditional upon matching the provided version
-      --from-file string   reads a Ondat product licence from a specified file path
-      --from-stdin         reads a Ondat product licence from the standard input
+      --from-file string   reads an Ondat product licence from a specified file path
+      --from-stdin         reads an Ondat product licence from the standard input
   -h, --help               help for licence
 
 Global Flags:

@@ -45,7 +45,7 @@ Here are the prerequisites for running Velero in your Kubernetes cluster:
 1. Velero cli installed https://Velero.io/docs/main/basic-install/
 > Velero can also be installed from a helm chart
 
-## Install MinIO with a Ondat volume
+## Install MinIO with an Ondat volume
 
 1. First, make sure to clone the Ondat use cases repository and navigate to
 the Velero directory:

@@ -14,7 +14,7 @@ Kubernetes Cluster needs to be synced to your Ondat cluster.
 
 The below guide shows how to apply a label to your PVCs, and how these labels
 sync through to your Ondat Volumes. This operation is used often - for
-example it is used here to add replicas to a Ondat Volume.
+example it is used here to add replicas to an Ondat Volume.
 
 1. Create a PVC, following the instructions [here](/docs/operations/firstpvc). 
 When you create a PVC, Ondat

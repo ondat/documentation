@@ -16,7 +16,7 @@ watches for node failures and determines if there are any pods targeted for
 fencing. In order for a pod to be fenced, the following criteria is required.
 
 * The pod must have the label `storageos.com/fenced=true`
-* The pod to be fenced must claim a Ondat volume
+* The pod to be fenced must claim an Ondat volume
 * The Ondat volume claimed by the pod needs to be `online`
 
 If the node becomes offline and these criteria are met, the pod is deleted and

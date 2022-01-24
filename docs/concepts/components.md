@@ -82,7 +82,7 @@ Kubernetes-style labels and selectors, prefixed with `storageos.com/`. By
 default, volumes are cached to improve read performance and compressed to
 reduce network traffic.
 
-Any pod may mount a Ondat virtual volume from any node that is also
+Any pod may mount an Ondat virtual volume from any node that is also
 running Ondat, regardless of whether the pod and volume are
 collocated on the same node. Therefore, applications may be started or
 restarted on any node and access volumes transparently.
