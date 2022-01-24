@@ -15,6 +15,8 @@ weight: 1
 
 > Make sure to add an Ondat licence after installing.
 
+> Ondat also has an official Helm chart, see [the charts repository](https://github.com/ondat/charts/tree/main/charts/ondat-operator) for instructions.
+
 &nbsp;
 
 ## Install ondat on kubernetes 1.22
