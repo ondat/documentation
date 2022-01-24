@@ -64,7 +64,7 @@ kubectl storageos bundle /tmp/storageos-kubectl-config.yaml
 should update the bundle-configuration.yaml under
 `spec.collectors.run.nodeselector` to reflect this.
 
-Note also that the bundle tool expects there to be a Ondat CLI running in
+Note also that the bundle tool expects there to be an Ondat CLI running in
 kube-system as a Pod with the label `run=cli`. The tool will exec into this pod
 to get information from the Ondat API. If the Ondat CLI Pod does not
 match this criteria, you can either pull the YAML file and change the selector

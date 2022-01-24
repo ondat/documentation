@@ -12,7 +12,7 @@ fails, the cluster is only in a degraded state for as long as it takes
 Kubernetes to restart the pod. When the pod comes back up the pod data is
 immediately available. Should Kubernetes schedule the Cassandra pod on a
 new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not a Ondat master is located on the same node.
+irrespective of whether or not an Ondat master is located on the same node.
 
 As Cassandra has features to allow it to handle replication careful
 consideration of whether to allow Ondat or Cassandra to handle replication

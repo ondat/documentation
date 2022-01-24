@@ -98,7 +98,7 @@ BASE64PASSWORD=$(echo -n $PASSWORD | base64)
 
 Note that the Kubernetes secret containing a strong password *must* be created
 before bootstrapping the cluster. Multiple installation procedures use this
-Secret to create a Ondat account when the cluster first starts.
+Secret to create an Ondat account when the cluster first starts.
 
 ## Ondat Pod placement
 

@@ -9,8 +9,8 @@ developed to deploy and configure Ondat clusters, and assist with
 maintenance operations. We recommend its use for standard installations. 
 
 The operator acts as a Kubernetes controller that watches the `StorageOSCluster`
-CR (Custom Resource). Once the controller is ready, a Ondat cluster definition can be
-created. The operator will deploy a Ondat cluster based on the
+CR (Custom Resource). Once the controller is ready, an Ondat cluster definition can be
+created. The operator will deploy an Ondat cluster based on the
 configuration specified in the cluster definition.
 
 You can find the source code in the [cluster-operator
@@ -18,7 +18,7 @@ repository](https://github.com/storageos/cluster-operator).
 
 Install the operator following orchestrator specific procedure.
 
-To deploy a Ondat cluster you will need to fulfil the following steps.
+To deploy an Ondat cluster you will need to fulfil the following steps.
 
 1. Install Etcd
 1. Install operator

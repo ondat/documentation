@@ -3,7 +3,7 @@ title: "Namespaces"
 linkTitle: Namespaces
 ---
 
-Namespaces help different projects or teams share a Ondat cluster. Only the
+Namespaces help different projects or teams share an Ondat cluster. Only the
 default namespace is created by default.
 
 Namespaces apply to volumes.

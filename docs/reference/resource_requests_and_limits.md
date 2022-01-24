@@ -13,9 +13,9 @@ CPU and Memory.
 As Ondat is an infrastructure component, the health of other applications
 depends on being able to write to the Ondat volumes. As such it is of
 paramount importance to avoid restarts of the Ondat DaemonSet Pods.
-Restarting a Ondat Pod results in the volumes of the node the Ondat Pod
+Restarting an Ondat Pod results in the volumes of the node the Ondat Pod
 is running on being marked as Read Only, and causes the failover of primary
-volumes on that node to their replicas. After a Ondat Pod restart, once the
+volumes on that node to their replicas. After an Ondat Pod restart, once the
 Ondat DaemonSet Pod is "READY", the application Pods running on the node
 need to be restarted in order to trigger a mount of the filesystem hosted on
 the Ondat volume and resume normal operations. To avoid restarts of the

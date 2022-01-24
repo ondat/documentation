@@ -4,7 +4,7 @@ linkTitle: Sidecar Backups
 ---
 
 In this example use case we provide three different strategies for accessing
-files that have been written to a Ondat  persistent volume.
+files that have been written to an Ondat  persistent volume.
 
 In the following examples the "application" container is the container `main`,
 which has a rsync, [Nginx](https://www.nginx.com/) or sftp sidecar container. The Ondat volume that
@@ -13,7 +13,7 @@ files written by the application are available for export. Files can be
 exported using Nginx as a web file server, transferred using rsync or accessed
 via SFTP.
 
-The files create a stateful set that can be used *AFTER* a Ondat cluster
+The files create a stateful set that can be used *AFTER* an Ondat cluster
 has been created. [See our guide on how to install Ondat on Kubernetes for more
 information](/docs/install/kubernetes).
 

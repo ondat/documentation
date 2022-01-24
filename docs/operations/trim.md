@@ -5,7 +5,7 @@ linkTitle: TRIM
 
 Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
 Ondat creates uncompressed volumes by default so all of these volumes will
-support TRIM/Unmap calls. TRIM'ing a Ondat volume will release space taken
+support TRIM/Unmap calls. TRIM'ing an Ondat volume will release space taken
 up by deleted blocks in the Ondat volume blob files.
 
 TRIM can either be called periodically via `fstrim` or continously using the
@@ -17,7 +17,7 @@ In order to TRIM a volume you can run `fstrim` against the volume filesystem.
 The volume filesystem will be presented at the mount point for the Ondat
 device.
 
-The example below shows the effect of `fstrim` on a Ondat volume mounted on
+The example below shows the effect of `fstrim` on an Ondat volume mounted on
 `/mnt`.
 ```
 # A Ondat volume with some data written to it.
