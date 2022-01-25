@@ -209,6 +209,9 @@ Note that the resulting file is not the license itself - the license is wrapped 
 
 ```shell
 curl -XGET "https://t.api.ondat.io/license?email=sally@acme.io&payload=ABCC..."
+```
+
+```
 {
   "clusterID": "704dd165-9580-4da4-a554-0acb96d328cb",
   "email": "sally@acme.io",
