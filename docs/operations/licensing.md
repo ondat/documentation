@@ -55,8 +55,8 @@ Kubernetes worker nodes. For convenience, it's often the easiest to configure
 port forward to the service using the following kubectl incantation (this will
 block your current terminal session till the port-forward is stopped):
 
-```
-$ kubectl port-forward -n storageos svc/storageos 5705
+```shell
+kubectl port-forward -n storageos svc/storageos 5705
 ```
 
 The Ondat GUI can then be accessed from `http://localhost:5705` using the default
@@ -68,8 +68,8 @@ Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
 this IP can be set with the address parameter as such: 
 
-```
-$ kubectl port-forward -n storageos svc/storageos 5705 --address 10.20.20.20
+```shell
+kubectl port-forward -n storageos svc/storageos 5705 --address 10.20.20.20
 ```
 
 The Ondat GUI can then be accessed from `http://10.20.20.20:5705`  As an
