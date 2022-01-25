@@ -105,7 +105,10 @@ kubectl storageos install  \
 Ondat installs all its components in the `storageos` namespace.
 
 ```bash
-$ kubectl -n storageos get pod -w
+kubectl -n storageos get pod -w
+```
+
+```
 NAME                                     READY   STATUS    RESTARTS   AGE
 storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
 storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
@@ -186,13 +189,13 @@ everything is working as expected.
 1. Create a PVC
 
     ```bash
-    $ kubectl create -f - <<END
+    kubectl create -f - <<END
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
       name: pvc-1
     spec:
-      storageClassName: "ondat"
+      storageClassName: "storageos"
       accessModes:
         - ReadWriteOnce
       resources:
@@ -204,21 +207,22 @@ everything is working as expected.
 1. Create 2 replicas by labeling your PVC
 
     ```bash
-    $ kubectl label pvc pvc-1 storageos.com/replicas=2
+    kubectl label pvc pvc-1 storageos.com/replicas=2
     ```
 
 1. Verify that the volume and replicas were created with the CLI
 
-    >`pvc-1` should be listed in the CLI output
+    > `pvc-1` should be listed in the CLI output
 
       ```bash
-      $ kubectl -n storageos exec -it cli -- storageos get volumes
+      POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+      kubectl -n storageos exec $POD -- storageos get volumes
       ```
 
 1. Create a pod that consumes the PVC
 
     ```bash
-   $ kubectl create -f - <<END
+   kubectl create -f - <<END
    apiVersion: v1
    kind: Pod
    metadata:
@@ -227,8 +231,7 @@ everything is working as expected.
      containers:
        - name: debian
          image: debian:9-slim
-         command: ["/bin/sleep"]
-         args: [ "3600" ]
+         command: ["/bin/sh","-c","while true; do sleep 3600; done"]
          volumeMounts:
            - mountPath: /mnt
              name: v1
@@ -243,7 +246,7 @@ everything is working as expected.
    the Ondat cluster is working correctly
 
     ```bash
-    $ kubectl get pod d1 -w
+    kubectl get pod d1 -w
     ```
 
     The pod mounts an Ondat volume under `/mnt` so any files written there
@@ -253,23 +256,23 @@ everything is working as expected.
 1. Execute a shell inside the pod and write some data to a file
 
     ```bash
-    $ kubectl exec -it d1 -- bash
-    root@d1:/# echo Hello World! > /mnt/hello
-    root@d1:/# cat /mnt/hello
+    kubectl exec -it d1 -- bash
+    # echo Hello World! > /mnt/hello
+    # cat /mnt/hello
     ```
 
-    >`Hello World!` should be printed out.
+    > `Hello World!` should be printed to the console.
 
 1. Delete the pod
 
     ```bash
-    $ kubectl delete pod d1
+    kubectl delete pod d1
     ```
 
 1. Recreate the pod
 
     ```bash
-   $ kubectl create -f - <<END
+   kubectl create -f - <<END
    apiVersion: v1
    kind: Pod
    metadata:
@@ -278,8 +281,7 @@ everything is working as expected.
      containers:
        - name: debian
          image: debian:9-slim
-         command: ["/bin/sleep"]
-         args: [ "3600" ]
+         command: ["/bin/sh","-c","while true; do sleep 3600; done"]
          volumeMounts:
            - mountPath: /mnt
              name: v1
@@ -293,10 +295,10 @@ everything is working as expected.
 1. Open a shell inside the pod and check the contents of `/mnt/hello`
 
     ```bash
-    $ kubectl exec -it d1 -- cat /mnt/hello
+    kubectl exec -it d1 -- cat /mnt/hello
     ```
 
-    >`Hello World!` should be printed out.
+    > `Hello World!` should be printed to the console.
 
 ## Ondat Features
 
@@ -329,7 +331,7 @@ information on volume replication.
 1. To test volume replication create the following PersistentVolumeClaim
 
     ```bash
-   $ kubectl create -f - <<END
+   kubectl create -f - <<END
    apiVersion: v1
    kind: PersistentVolumeClaim
    metadata:
@@ -353,14 +355,15 @@ information on volume replication.
    or UI
 
     ```bash
-    $ kubectl -n storageos exec -it storageos-cli -- storageos get volumes
+    POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+    kubectl -n storageos exec $POD -- storageos get volumes
     ```
 
 
 1. Create a pod that uses the PVC
 
     ```bash
-    $ kubectl create -f - <<END
+    kubectl create -f - <<END
     apiVersion: v1
     kind: Pod
     metadata:
@@ -384,12 +387,12 @@ information on volume replication.
 1. Write data to the volume
 
     ```bash
-    $ kubectl exec -it replicated-pod -- bash
-    root@replicated-pod:/# echo Hello World! > /mnt/hello
-    root@replicated-pod:/# cat /mnt/hello
+    kubectl exec -it replicated-pod -- bash
+    # echo Hello World! > /mnt/hello
+    # cat /mnt/hello
     ```
 
-    >`Hello World!` should be printed out.
+    >`Hello World!` should be printed to the console.
 
 1. Find the location of the master volume and shutdown the node
 
@@ -398,11 +401,20 @@ information on volume replication.
     to become the new master.
 
     ```bash
-    $ kubectl get pvc
+    kubectl get pvc
+    ```
+
+    ```
     NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
     pvc-replicated Bound    pvc-29e2ad6e-8c4e-11e9-8356-027bfbbece86   5Gi        RWO            storageos       1m
+    ```
 
-    $ kubectl exec -it -n storageos cli -- storageos get volumes
+    ```
+    POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+    kubectl -n storageos exec $POD -- storageos get volumes
+    ```
+
+    ```
     NAMESPACE  NAME                                      SIZE     LOCATION              ATTACHED ON   REPLICAS  AGE
     default    pvc-4e796a62-0271-45f9-9908-21d58789a3fe  5.0 GiB  kind-worker (online)  kind-worker2  1/1       26 seconds ago
 
@@ -413,7 +425,11 @@ information on volume replication.
    shutdown then the pod will need to be recreated.
 
     ```bash
-    $ kubectl exec -it -n storageos storageos-cli -- storageos get volumes
+    POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+    kubectl -n storageos exec $POD -- storageos get volumes
+    ```
+
+    ```
     NAMESPACE  NAME                                      SIZE     LOCATION               ATTACHED ON   REPLICAS  AGE
     default    pvc-4e796a62-0271-45f9-9908-21d58789a3fe  5.0 GiB  kind-worker2 (online)  kind-worker2  1/1       46 seconds ago
     ```
@@ -421,11 +437,11 @@ information on volume replication.
 1. Check that the data is still accessible to the pod
 
     ```bash
-    $ kubectl exec -it replicated-pod -- bash
-    root@replicated-pod:/# cat /mnt/hello
+    kubectl exec -it replicated-pod -- bash
+    # cat /mnt/hello
     ```
 
-    >`Hello World!` should be printed out.
+    > `Hello World!` should be printed to the console.
 
 &nbsp;
 ## Benchmarking
@@ -544,20 +560,20 @@ benchmark a Postgres database backed by an Ondat volume.
    storageos-usecases/pgbench`.
 
     ```bash
-    $ git clone https://github.com/storageos/use-cases.git storageos-usecases
+    git clone https://github.com/storageos/use-cases.git storageos-usecases
     ```
 
 1. Move into the Postgres examples folder
 
     ```bash
-    $ cd storageos-usecases/pgbench
+    cd storageos-usecases/pgbench
     ```
 
 1. Decide which node you want the pgbench pod and volume to be located on. The
    node needs to be labelled `app=postgres`
 
     ```bash
-    $ kubectl label node <NODE> app=postgres
+    kubectl label node <NODE> app=postgres
     ```
 
 1. Then set the `storageos.com/hint.master` label in
@@ -566,26 +582,27 @@ benchmark a Postgres database backed by an Ondat volume.
    obtained using the cli and doing a `describe node`
 
     ```bash
-    $ kubectl create -f .
+    kubectl create -f .
     ```
 
 1. Confirm that Postgres is up and running
 
     ```bash
-    $ kubectl get pods -w -l app=postgres
+    kubectl get pods -w -l app=postgres
     ```
 
 1. Use the Ondat CLI or the GUI to check the master volume location and the
    mount location. They should match
 
     ```bash
-    $ kubectl -n storageos exec -it storageos-cli -- storageos get volumes
+    POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+    kubectl -n storageos exec $POD -- storageos get volumes
     ```
 
 1. Exec into the pgbench container and run pgbench
 
     ```bash
-    $ kubectl exec -it pgbench -- bash -c '/opt/cpm/bin/start.sh'
+    kubectl exec -it pgbench -- bash -c '/opt/cpm/bin/start.sh'
     ```
 
 &nbsp;
