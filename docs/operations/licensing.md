@@ -208,7 +208,7 @@ Note that the resulting file is not the license itself - the license is wrapped 
 `jq` or similar to unwrap it in order to activate it:
 
 ```shell
-curl -XGET "https://t.api.ondat.io/license?email=sally@acme.io&payload=ABCC..."
+curl -XGET "https://t.api.ondat.io/license?email=sally@acme.io&payload=ABCC..." | jq -r '.license' > license.dat
 ```
 
 ```
@@ -217,7 +217,7 @@ curl -XGET "https://t.api.ondat.io/license?email=sally@acme.io&payload=ABCC..."
   "email": "sally@acme.io",
   "license": "..."
   "expiryTime": "2022-12-12T08:47:20.000Z"
-} | jq -r '.license' > license.dat
+} 
 ```
 
 The above command will 'unwrap' the license in raw mode and create the file `license.dat` in the correct
