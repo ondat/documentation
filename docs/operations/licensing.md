@@ -78,17 +78,161 @@ Ondat cluster by browsing the __Licence__ page as shown below:
 
 ![license](/images/docs/concepts/licensing.png)
 
-## Ondat GUI - Obtaining a Licence via the GUI 
+## Ondat CLI - Running the CLI
 
-Contact Ondat Customer Success team via getstarted@ondat.io and provide the
-following information:
-- **First** and **last** name
-- **Company** **name** and **role** (optional for Personal licence, mandatory
-  for Commercial licence)
-- **Cluster ID**
+In order to get the CLI running, we must launch it on the target Kubernetes
+cluster:
 
-In return to the registration, you will receive a licence file with a content
-similar to this one:
+```shell
+kubectl -n storageos create -f-<<END
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storageos-cli
+  namespace: storageos
+  labels:
+    app: storageos
+    run: cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storageos-cli
+      run: cli
+  template:
+    metadata:
+      labels:
+        app: storageos-cli
+        run: cli
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - "while true; do sleep 3600; done"
+        env:
+        - name: STORAGEOS_ENDPOINTS
+          value: http://storageos:5705
+        - name: STORAGEOS_USERNAME
+          value: storageos
+        - name: STORAGEOS_PASSWORD
+          value: storageos
+        image: storageos/cli:v2.5.0
+        name: cli
+END
+```
+
+Be sure to edit the environment variables appropriately for your target cluster, eg. the
+username/password for the administrative user. 
+
+Once the pod is launched, we can retrieve it's unique identifier:
+
+```shell
+POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+```
+
+Now we've set the `POD` variable, the pod is accessible via that variable for the rest of the lifetime of
+that terminal. If you open a new terminal, you'll need to run this command again to rediscover the ID of
+the pod.
+
+## Ondat CLI - Retrieving a cluster ID via the Ondat CLI
+
+Make sure that you have the CLI running, as described in the previous step!
+
+```shell
+kubectl -n storageos exec $POD -- storageos get volumes
+```
+
+```
+ID:               704dd165-9580-4da4-a554-0acb96d328cb
+Licence:
+  expiration:     2021-03-25T13:48:46Z (1 year from now)
+  capacity:       5.0 TiB
+  kind:           professional
+  customer name:  storageos
+Created at:       2020-03-25T13:48:33Z (1 hour ago)
+Updated at:       2020-03-25T13:48:46Z (1 hour ago)
+```
+
+Don't worry if you don't see all of these fields - some of them are only
+visible once you have activated a license. 
+
+The UUID in the `ID` field is unique to your cluster and is the only information 
+you need in order to obtain your first license.
+
+## Ondat - Obtaining a Personal Licence
+
+A personal license is aimed at individuals looking to try Ondat themselves before
+running it any business-critical situation. We're happy to provide guidance and 
+best-effort support with the Ondat community through our [slack channel](https://storageos.slack.com/) 
+or directly by email via info@ondat.io.
+
+To enable self-service for licenses, we provide a simple API. To request a license with curl, run:
+
+```shell
+curl -XPOST --data '{
+"clusterID": "704dd165-9580-4da4-a554-0acb96d328cb",
+"name": "Sally Forth",
+"country": "GB",
+"company": "Acme Ltd",
+"companySize": 100,
+"email": "sally@acme.io"
+}' https://t.api.ondat.io/license
+```
+
+```
+{
+  "code": "200",
+  "message": "License processed, please check your email for a download link."
+}
+```
+
+> Be sure to change the details to reflect your own!
+
+Do note that:
+- `clusterID` must be correct for your cluster, or the license won't apply!
+- `company` and `companySize` are totally optional, feel free to omit them
+- `country` can be a country in ISO 3166 format or the English name of the country
+- `email` will be validated and must be available and non-disposable
+
+> If you receive an `Internal Service Error`, double-check that all the information you've 
+submitted fits the above requirements!
+
+Now check your inbox! You will have received an automatically generated email with a link to
+your license file. If you don't see it, be sure to give it a few minutes and check your spam folder!
+
+The `Download license` button on the email will work as many times as you'd like to retrieve the license - 
+to renew, just submit another new license request!
+
+Note that the resulting file is not the license itself - the license is wrapped in JSON, so you must use
+`jq` or similar to unwrap it in order to activate it:
+
+```shell
+curl -XGET "https://t.api.ondat.io/license?email=sally@acme.io&payload=ABCC..."
+{
+  "clusterID": "704dd165-9580-4da4-a554-0acb96d328cb",
+  "email": "sally@acme.io",
+  "license": "..."
+  "expiryTime": "2022-12-12T08:47:20.000Z"
+} | jq -r '.license' > license.dat
+```
+
+The above command will 'unwrap' the license in raw mode and create the file `license.dat` in the correct
+format to be imported by Ondat. The `jq` command can be run directly through a `curl` command or on a license
+file downloaded from the email (eg. via 'Save Page As'), like so:
+
+```shell
+jq -r '.license' email_license.json > license.dat
+```
+
+## Ondat - The license file format
+
+A license contains a list of capabilities and capacities, the cluster ID, an expiry time,
+any extra features and a license type alongside a digital signature.
+
+```shell
+cat license.dat
+```
 
 ```
 clusterCapacityGiB: 5120 
@@ -107,7 +251,8 @@ kvl6vWW7YIS9r655S25jMMU7brrGDQVdjvU7tSA74BrnzDFHu7/poopIuFqcxZc/NLrKp/akkvyZI5Ex
 NaalLsK/96bJov6tpbg96g==
 ```
 
-## Ondat GUI - Applying a Licence via the Ondat GUI To apply a licence:
+## Ondat GUI - Applying a Licence via the Ondat GUI 
+To apply a licence:
 1.  Browse the __Licence__ page of the Ondat GUI
 1.  Click the __Upgrade__ button, for the specific licence level you purchased
 1.  Paste the licence key into the pop-up window
@@ -119,63 +264,13 @@ NaalLsK/96bJov6tpbg96g==
 
 ![Apply Licence Key](/images/docs/operations/licensing/apply-licence-key.png)
 
-## Ondat CLI - Retrieving a cluster ID via the Ondat CLI
+## Ondat CLI - Applying a licence via the CLI
 
-For the purpose of this document, it is assumed that the Ondat CLI has been deployed locally on
-the same machine hosting kubectl. To retrieve the cluster ID using the Ondat
-CLI, perform the following:
+The following command will apply the licence key stored in `/path/to/storageos-licence.dat`, 
+assuming that you have the CLI running as described in the sections above:
 
-```
-$ storageos get cluster
-ID:               704dd165-9580-4da4-a554-0acb96d328cb
-Licence:
-  expiration:     2021-03-25T13:48:46Z (1 year from now)
-  capacity:       5.0 TiB
-  kind:           professional
-  customer name:  storageos
-Created at:       2020-03-25T13:48:33Z (1 hour ago)
-Updated at:       2020-03-25T13:48:46Z (1 hour ago)
-```
-
-N.B. All of this string is necessary to activate a licence - not just the
-signature.
-
- ## Ondat CLI - Obtaining a Licence via the CLI
-
-Contact Ondat Customer Success team via getstarted@ondat.io and provide the
-following information:
-* **First** and **last** name
-* **Company** **name** and **role** (optional for Personal licence, mandatory
-  for Commercial licence)
-* **Cluster ID**
-
-In return to the registration, you will receive a licence file with a content
-similar to this one:
-
-```
-clusterCapacityGiB: 5120
-clusterID: 164237eb-f88a-4bb8-a7cf-a23d468e07c0
-customerName: storageos
-expiresAt: "2021-11-15T14:00:00Z"
-features:
-- nfs
-kind: project
-
-------------- LICENCE SIGNATURE -------------
-KyjNleTcdmieZVLmZ/rg0SzdAM7I/CH0j22FIFJJSJaeB71OvQrTMtHGyL5TSFNMrEGbyh1HQlDgZb5A
-V1HyjBlS3LjoB/MoagulTxIlZh/R8eRXCOQ46qNZ8Yb7+dHLdCVXBnRqZT11hLqZsMqIeO1y9f5dw65H
-kvl6vWW7YIS9r655S25jMMU7brrGDQVdjvU7tSA74BrnzDFHu7/poopIuFqcxZc/NLrKp/akkvyZI5Ex
-1wH7D4onjVG2pgi30Kia+mjbI1B9pxQyRppQQ4hNXy4qBUUNMFh0menh0wHdQoM1VLU4Il22PrkeICV0
-NaalLsK/96bJov6tpbg96g==
-```
-
-## Ondat CLI  - Applying a licence via the CLI
-
-The following command will apply the licence key stored in
-`/path/to/storageos-licence.dat`:
-
-```
-$ storageos apply licence --from-file /path/to/storageos-licence.dat
+```shell
+cat /path/to/storageos-license.dat | kubectl -n storageos exec -it $POD -- storageos apply license --from-stdin
 ```
 
 For more information refer to the licence
