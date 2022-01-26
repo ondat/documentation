@@ -1,5 +1,5 @@
 ---
-title: "ReadWrteMany"
+title: "ReadWriteMany (RWX)"
 linkTitle: ReadWriteMany
 ---
 
