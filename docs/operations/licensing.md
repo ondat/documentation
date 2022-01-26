@@ -141,22 +141,17 @@ the pod.
 > ⚠️ Make sure that you have the CLI running, as described in the previous step!
 
 ```shell
-kubectl -n storageos exec $POD -- storageos get volumes
+kubectl -n storageos exec $POD -- storageos get cluster
 ```
 
 ```
-ID:               704dd165-9580-4da4-a554-0acb96d328cb
-Licence:
-  expiration:     2021-03-25T13:48:46Z (1 year from now)
-  capacity:       5.0 TiB
-  kind:           professional
-  customer name:  storageos
-Created at:       2020-03-25T13:48:33Z (1 hour ago)
-Updated at:       2020-03-25T13:48:46Z (1 hour ago)
+ID:           704dd165-9580-4da4-a554-0acb96d328cb
+Created at:   2022-01-10T13:58:00Z (2 weeks ago)
+Updated at:   2022-01-10T14:05:27Z (2 weeks ago)
+Nodes:        3
+  Healthy:    3
+  Unhealthy:  0
 ```
-
-Don't worry if you don't see all of these fields - some of them are only
-visible once you have activated a license. 
 
 The UUID in the `ID` field is unique to your cluster and is the only information 
 you need in order to obtain your first license.
@@ -276,6 +271,28 @@ assuming that you have the CLI running as described in the sections above:
 ```shell
 cat /path/to/storageos-license.dat | kubectl -n storageos exec -it $POD -- storageos apply license --from-stdin
 ```
+
+Once the license has been applied, any extra features provided by your license will be listed with the following command:
+
+```shell
+kubectl -n storageos exec $POD -- storageos get license
+```
+
+```
+ClusterID:      033a4774-c18f-4d05-ba86-90b818957f34
+Expiration:     2024-01-01T23:59:59Z (2 years from now)
+Capacity:       15 TiB (16520591704064)
+Used:           0 B (0)
+Kind:           standard
+Features:       [nfs]
+Customer name:  Sally Forth
+```
+
+> 💡 If you have any problems running this command, make sure that the CLI is
+> running and that the POD variable is set as per the CLI instructions above
+
+> 💡 Don't worry if you don't see all of these fields - some of them are only
+visible when they are relevant to your individual license.
 
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
