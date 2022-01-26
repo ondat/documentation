@@ -243,7 +243,7 @@ service/storageos-etcd          ClusterIP   None             <none>      2379/TC
 service/storageos-etcd-client   ClusterIP   172.30.132.255   <none>      2379/TCP            22h
 ```
 
-> The URL from the Service `storageos-etcd-client.storageos-etcd.svc:2379`
+> 💡 The URL from the Service `storageos-etcd-client.storageos-etcd.svc:2379`
 > will be used later in the Ondat Cluster CustomResource the
 > `kvBackend.address`.
 
@@ -299,7 +299,7 @@ You can choose between two installation options.
 This section documents the steps required for manual installation of etcd
 using standard package management commands and systemd manifests.
 
-> **Repeat the following steps on all the nodes that will run etcd as a
+> ⚠️ **Repeat the following steps on all the nodes that will run etcd as a
 > systemd service.**
 
 1. Configure Etcd version and ports
@@ -309,7 +309,7 @@ using standard package management commands and systemd manifests.
     export CLIENT_PORT="2379"
     export PEERS_PORT="2380"
     ```
-    > __If targeting Kubernetes Master nodes, you must change
+    > ⚠️ __If targeting Kubernetes Master nodes, you must change
     > `CLIENT_PORT`, `PEERS_PORT`__
 
 1. Download Etcd from CoreOS official site
@@ -405,12 +405,12 @@ using standard package management commands and systemd manifests.
     WantedBy=multi-user.target
     ```
 
-    > `$NODE_IP` is the IP address of the machine you are installing etcd on.`
+    > 💡 `$NODE_IP` is the IP address of the machine you are installing etcd on.`
 
-    > Note that setting the advertise-client-urls incorrectly will cause any
+    > ⚠️ Note that setting the advertise-client-urls incorrectly will cause any
     > client connection to fail. Ondat will fail to communicate to Etcd.
 
-    > If enabling TLS, it is recomended to generate your own CA certificate
+    > ⚠️ If enabling TLS, it is recomended to generate your own CA certificate
     > and key. You will need to distribute the keys and certificates for the
     > client auth on all etcd nodes. Moreover, the `ExecStart` value should
     > look as below:
@@ -449,7 +449,7 @@ using standard package management commands and systemd manifests.
 
 1. Installation Verification
 
-    > The `etcdctl` binary is installed at `/usr/local/bin` on the nodes.
+    > 💡 The `etcdctl` binary is installed at `/usr/local/bin` on the nodes.
 
     ```bash
     $ ssh $NODE # Any node running the new etcd
@@ -459,7 +459,7 @@ using standard package management commands and systemd manifests.
     8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
     ```
 
-    > Read the [etcd operations](/docs/operations/etcd/_index)
+    > 💡 Read the [etcd operations](/docs/operations/etcd/_index)
     > page for our etcd recommendations.
 
 ### Installation - Ansible
@@ -474,7 +474,7 @@ help you deploy etcd on standalone virtual machines.
     cd k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd
     ```
 1. Edit the inventory file
-    > The inventory file targets the nodes that will run etcd. The file
+    > 💡 The inventory file targets the nodes that will run etcd. The file
     > `hosts` is an example of such an inventory file.
 
 
@@ -489,12 +489,12 @@ help you deploy etcd on standalone virtual machines.
     $ vi hosts # Or your own inventory file
     ```
 
-    > The ip or fqdn are used to expose the advertise-client-urls of Etcd.
+    > ⚠️ The ip or fqdn are used to expose the advertise-client-urls of Etcd.
     > Failing to provide valid ip/fqdn will cause any client connection to
     > fail. Ondat will fail to communicate to Etcd.
 
 1. Edit the etcd configuration
-    > __If targeting Kubernetes Master nodes, you must change
+    > ⚠️  __If targeting Kubernetes Master nodes, you must change
     > `etcd_port_client`, `etcd_port_peers`__
 
     ```bash
@@ -524,11 +524,11 @@ help you deploy etcd on standalone virtual machines.
     $ vi group_vars/all
     ```
 
-    > Choose between using IP addressing or FQDN in the `advertise_format`
+    > 💡 Choose between using IP addressing or FQDN in the `advertise_format`
     > parameter. It allows you to decide how Etcd advertises its address to
     > clients. This is particularly relevant when using TLS.
 
-    > If enabling TLS, it is recomended to generate your own CA certificate
+    > 💡 If enabling TLS, it is recomended to generate your own CA certificate
     > and key. You can do it by generating the CA from the machine running
     > Ansible by: `ansible-playbook create_ca.yaml`.
 
@@ -538,7 +538,7 @@ help you deploy etcd on standalone virtual machines.
     ```
 
 1. Installation Verification
-    > The playbook installs the `etcdctl` binary on the nodes, at
+    > 💡 The playbook installs the `etcdctl` binary on the nodes, at
     > `/usr/local/bin`.
 
     ```bash

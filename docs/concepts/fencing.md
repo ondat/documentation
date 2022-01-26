@@ -56,7 +56,7 @@ Safety](https://github.com/kubernetes/community/blob/master/contributors/design-
 
 ## Ondat Fencing Controller
 
-> The Ondat Fencing Controller is part of the Ondat API Manager which
+> 💡 The Ondat Fencing Controller is part of the Ondat API Manager which
 > is deployed in high availability when Ondat is installed.
 
 __HA for StatefulSet applications can be achieved with the Ondat Fencing

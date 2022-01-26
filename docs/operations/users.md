@@ -7,7 +7,7 @@ An Ondat cluster admin can create users and restrict their access rights to
 Ondat [namespaces](/docs/operations/namespaces) using
 [policies](/docs/operations/policies).
 
->Note: Users are created with access to the default namespace. This access is
+>💡 Users are created with access to the default namespace. This access is
 >only revoked when a policy is created for the user or their group. 
 
 ## Managing users

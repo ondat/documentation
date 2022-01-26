@@ -8,7 +8,7 @@ Ondat recommends that a [PID
 cgroup](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid)
 limit of 32768 be used for Ondat pods.
 
-> Most environments fulfill this prerequisite by default. Check the
+> 💡 Most environments fulfill this prerequisite by default. Check the
 > Ondat init container logs as shown below to ensure this is the case.
 
 Ondat pods running in Kubernetes are part of a PID cgroup that may limit

@@ -61,14 +61,14 @@ spec:
   ...
 ```
 
-> See example on how to configure the [Ondat Custom
+> 💡 See example on how to configure the [Ondat Custom
 > Resource](/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container).
 
 &nbsp; <!-- this is a blank line -->
 
 (Option 2) Mount propagation is not enabled.
 
-> Applies only if Option 1 is configured properly.
+> ⚠️ Applies only if Option 1 is configured properly.
 
 ### Assert:
 
@@ -161,7 +161,7 @@ If the pods are not READY, the service will not forward traffic to the API they
 serve hence PVC will remain in pending state until Ondat pods are
 available.
 
-> Kubernetes keeps trying to execute the action until it succeeds. If
+> 💡 Kubernetes keeps trying to execute the action until it succeeds. If
 > a PVC is created before Ondat finish starting, the PVC will be created
 > eventually.
 
@@ -223,7 +223,7 @@ StorageClass expects it or that is has been deployed with a different name.
       csi.storage.k8s.io/secret-namespace: storageos
     ```
 
-    > Note that the parameters specify `secret-namespace` and `secret-name`.
+    > 💡 Note that the parameters specify `secret-namespace` and `secret-name`.
 
 1. Check if the secret exists according to those parameters
     ```bash
@@ -304,7 +304,7 @@ show information from all known cluster members. If all the ports are blocked
 during the first bootstrap of the cluster, the diagnostics won't show any data
 as nodes couldn't register.
 
-> Ondat networks diagnostics are available for storageos-rc5 and
+> 💡 Ondat networks diagnostics are available for storageos-rc5 and
 > storageos-cli-rc3 and above.
 
 ```bash

@@ -14,13 +14,13 @@ enable Topology-Aware Placement on a PVC, set it to the `soft` Failure Mode.
 
 ## HowTo enable TAP per volume
 
-> Note that labels can be applied to a PVC directly, or indirectly by adding them
+> 💡 Labels can be applied to a PVC directly, or indirectly by adding them
 > as parameters on a StorageClass.
 
 1. Ensure that all nodes in your cluster have the topology key set. Here we
    will set a custom node zone label.
 
-    > If PVC label `storageos.com/topology-key` is not set, the node label
+    > 💡 If PVC label `storageos.com/topology-key` is not set, the node label
     > `topology.kubernetes.io/zone` is used by default.
 
     ```
@@ -55,7 +55,7 @@ enable Topology-Aware Placement on a PVC, set it to the `soft` Failure Mode.
     ```
     $ kubectl label pvc pvc-tap storageos.com/replicas=3
     ```
-    > To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
+    > 💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
     > replicas).
 
 ## Result

@@ -18,7 +18,7 @@ the bundle.
 ```bash
 $ storageos get diagnostics
 ```
-> The file generated is in the form of `diagnostics-${TIME_STAMP}.gz`
+> 💡 The file generated is in the form of `diagnostics-${TIME_STAMP}.gz`
 
 ### GUI
 

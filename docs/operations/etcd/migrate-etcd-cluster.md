@@ -7,11 +7,11 @@ This procedure explains how to add a new etcd member for your Ondat etcd
 cluster while removing one of the current members. This is useful when the
 nodes hosting etcd must be recycled.
 
-> **It is assumed** that the Ondat etcd cluster is installed following the
+> ⚠️ **It is assumed** that the Ondat etcd cluster is installed following the
 > [production etcd installation](/docs/prerequisites/etcd#production)
 > page, where etcd nodes are installed on their own machines.
 
-> **It is also assumed** that etcd members are referenced from Kubernetes using a External
+> ⚠️ **It is also assumed** that etcd members are referenced from Kubernetes using a External
 > Service. Example available in the [etcd external
 > Service](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc)
 > example. This service should be referred to in the `spec.kvbackend.address`
@@ -76,12 +76,12 @@ page.
 
 ## Migration
 
-> In the following procedure NODE4 is a new member to add to the cluster, while
+> 💡 In the following procedure NODE4 is a new member to add to the cluster, while
 > NODE1 ought to be removed.
 
 1. Amend etcd configuration to reference the new node (NODE4)
 
-    > Make the following change on all running etcd members and NODE4
+    > 💡 Make the following change on all running etcd members and NODE4
 
     ```
     $ # NODE4_IP is the NEW_NODE_ADDRESS
@@ -103,7 +103,7 @@ page.
 
 1. Amend SystemD service file on the new etcd node (NODE4)
 
-    > The SystemD service file is expected in `/etc/systemd/system/etcd3.service`
+    > 💡 The SystemD service file is expected in `/etc/systemd/system/etcd3.service`
 
     Change the `--initial-cluster-state` to `existing` and add the reference to
     NODE4 in the `--initial-cluster` variable.
@@ -129,7 +129,7 @@ page.
 
     ```
 
-    > Note the reference to NODE4 at the end of the `--initial-cluster`
+    > 💡 Note the reference to NODE4 at the end of the `--initial-cluster`
     > variable
 
     __Make sure etcd is not started on the new member NODE4__
@@ -174,12 +174,12 @@ page.
     +------------------+-----------+----------------------+-----------------------------+-----------------------------+------------+
     ```
 
-    > Note that the learner is not started yet
+    > 💡 Note that the learner is not started yet
 
 
 1. Start etcd on the new node (NODE4)
 
-    > Make sure that `/etc/systemd/system/etcd.service` only have __currently
+    > ⚠️ Make sure that `/etc/systemd/system/etcd.service` only have __currently
     > active__ nodes specified in the `--initial-cluster` flag.
 
    ```bash
@@ -207,7 +207,7 @@ page.
 
     ```
 
-    > Note that the learner is started
+    > 💡 Note that the learner is started
 
 1. Check that the new learner has the same revision applied as the current
    members
@@ -228,14 +228,14 @@ page.
     +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
     ```
 
-    > Wait until the cluster has the learner ready, by ensuring that the
+    > ⚠️ Wait until the cluster has the learner ready, by ensuring that the
     > RAFT TERM and RAFT INDEX of the learner node match the rest of the
     > cluster.
 
 
 1. Remove the node that needs to be evicted (NODE1)
 
-    > Before promoting the learner to a full member, it is best to remove the
+    > 💡 Before promoting the learner to a full member, it is best to remove the
     > node from the cluster that initially was selected to be decommissioned to
     > avoid breaking quorum while having 4 nodes being part of the cluster. For
     > more details, check the [official etcd
@@ -265,7 +265,7 @@ page.
     Member 52e5c9ac117b3df2 promoted in cluster b4f4ed717ea44b8d
     ```
 
-   > The promotion will fail if the learner is not in sync with the leader
+   > ⚠️ The promotion will fail if the learner is not in sync with the leader
    > member.
 
 1. Check the etcd health
@@ -292,12 +292,12 @@ page.
     +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
     ```
 
-    > Note that NODE4 is now a full quorum member, while NODE1 is no longer
+    > 💡 Note that NODE4 is now a full quorum member, while NODE1 is no longer
     > part of the cluster
 
 1. Edit Endpoints referencing the Kubernetes Service
 
-    > Remove the reference to NODE1 and add the IP for NODE4
+    > 💡 Remove the reference to NODE1 and add the IP for NODE4
 
    ```bash
    $ kubectl edit -n storageos-etcd endpoints/storageos-etcd
@@ -306,5 +306,5 @@ page.
 1. Make amendments in the SystemD configuration files removing any reference to
    NODE1
 
-   > It is not required to restart the etcd service, but to keep the service
+   > 💡 It is not required to restart the etcd service - this is just to keep the service
    > file up to date.

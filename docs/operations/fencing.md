@@ -22,7 +22,7 @@ fencing. In order for a pod to be fenced, the following criteria is required.
 If the node becomes offline and these criteria are met, the pod is deleted and
 rescheduled on another node.
 
-> No changes are made to Pods that have Ondat volumes that are unhealthy.
+> 💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
 This is typically the case when a volume was configured to not have any
 replicas, and the node with the single copy of the data is offline. In this
 case it is better to wait for the Node to recover.
@@ -32,7 +32,7 @@ case it is better to wait for the Node to recover.
 The following example shows how a Statefulset can enable fencing to all its
 pods.
 
-> Note that the `fenced` label is applied only in the
+> ⚠️ Note that the `fenced` label is applied only in the
 > `.spec.template.metadata.label` section, as the label must only be present on
 > the Pod, but not on the PVC.
 
@@ -103,7 +103,7 @@ The following example shows how the Ondat API manager fences a Pod.
     data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
     ```
 
-    > Note that the mysql-0 pod has the `storageos.com/fenced=true` label.
+    > 💡 Note that the mysql-0 pod has the `storageos.com/fenced=true` label.
 
 1. Stop node hosting the `mysql-0` pod
     ```
@@ -134,7 +134,7 @@ The following example shows how the Ondat API manager fences a Pod.
     ...
     ```
 
-    > The Ondat API Manager detects all the pods that are on the failed
+    > 💡 The Ondat API Manager detects all the pods that are on the failed
     > node, and selects only the ones that meet the fencing criteria as
     > described above. In this case only `mysql-0` is selected for fencing.
 
@@ -147,4 +147,4 @@ The following example shows how the Ondat API manager fences a Pod.
     mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   <none>           <none>            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
     ```
 
-    > The pod `mysql-0` started on a different node successfully.
+    > 💡 The pod `mysql-0` started on a different node successfully.

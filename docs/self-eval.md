@@ -13,8 +13,8 @@ Ondat. This guide is divided into three sections:
 * __Feature Testing__ - short walkthrough of some of our features
 * __Benchmarking__ - a recipe to benchmark Ondat on your infrastructure
 
-For more comprehensive documentation including installation advice for complex
-setups, operational guides, and use-cases, please see our main [documentation site](https://docs.ondat.io).
+> 💡 For more comprehensive documentation including installation advice for complex
+> setups, operational guides, and use-cases, please see our main [documentation site](https://docs.ondat.io).
 
 ## Support for Self Evaluations
 
@@ -60,7 +60,7 @@ modern distributions:
 
 ### Install the storageos kubectl plugin
 
-> Run the following command where `kubectl` is installed and with the context
+> 💡 Run the following command where `kubectl` is installed and with the context
 > set for your Kubernetes cluster
 
 ```
@@ -72,19 +72,19 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl plugin](https://github.com/storageos/kubectl-storageos/releases).
+> 💡 You can find binaries for different architectures and systems in [kubectl plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Prepare Etcd StorageClass
 
 The following procedure deploys a local-path StorageClass for the Ondat Etcd.
-Note that this Etcd __is suitable for evaluation purposes only__. Do not use
-this cluster for production workloads.
+
+> ⚠️  Note that this Etcd __is suitable for evaluation purposes only__. Do not use this cluster for production workloads.
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 ```
 
-> The `local-path` StorageClass does not guarantee data safety or availability.
+> ⚠️ The `local-path` StorageClass does not guarantee data safety or availability.
 > Therefore the Ondat cluster cannot operate normally if the Etcd cluster
 > becomes unavailable. For a production Etcd install check the 
 > [Etcd prerequisites page](prerequisites/etcd.md).
@@ -123,7 +123,7 @@ storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
 storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 ```
 
-> Wait until all the pods are ready. It usually takes ~60 seconds to complete
+> 💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete
 
 
 ### Deploy the Ondat CLI as a container
@@ -166,7 +166,7 @@ spec:
 END
 ```
 
-> You can get the ClusterId required on the next step using the CLI pod
+> 💡 You can get the ClusterId required on the next step using the CLI pod
 
 ```
 POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
@@ -175,8 +175,8 @@ kubectl -n storageos exec $POD -- storageos get licence
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](operations/licensing.md) page.
 
@@ -310,8 +310,8 @@ Ondat features are all enabled/disabled by applying labels to volumes.
 These labels can be passed to Ondat via persistent volume claims (PVCs) or
 can be applied to volumes using the Ondat CLI or GUI.
 
-The following is not an exhaustive feature list but outlines features which are
-commonly of use during a self-evaluation.
+> 💡 The following is not an exhaustive feature list but outlines features which are
+> commonly of use during a self-evaluation.
 
 ### Volume Replication
 
@@ -325,8 +325,8 @@ volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn't already contain a replica of the same volume.
 
-See our [replication documentation](concepts/replication) for more
-information on volume replication.
+> 💡 See our [replication documentation](concepts/replication) for more
+> information on volume replication.
 
 1. To test volume replication create the following PersistentVolumeClaim
 
@@ -348,7 +348,7 @@ information on volume replication.
    END
     ```
 
-    > Note that volume replication is enabled by setting the
+    > 💡 Note that volume replication is enabled by setting the
     > `storageos.com/replicas` label on the volume.
 
 1. Confirm that a replicated volume has been created by using the Ondat CLI
@@ -532,8 +532,8 @@ four scenarios using the following command:
   curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/deploy-synthetic-benchmarks.sh | bash
   ```
 
-The script will take approximately 20 minutes to complete, and will print the
-results to STDOUT.
+> 💡 The script will take approximately 20 minutes to complete, and will print the
+> results to STDOUT.
 
 The exact results observed will depend on the particular platform and
 environment, but the following trends should be observable:
@@ -609,7 +609,7 @@ benchmark a Postgres database backed by an Ondat volume.
 ## Conclusion
 
 After completing these steps you will have benchmark scores for Ondat.
-Please keep in mind that benchmarks are only part of the story and that there
-is no replacement for testing actual production or production like workloads.
+> 💡 Please keep in mind that benchmarks are only part of the story and that there
+> is no replacement for testing actual production or production like workloads.
 
 Ondat invites you to provide feedback on your self-evaluation to the [slack channel](https://storageos.slack.com) or by directly emailing us at <info@ondat.io>.

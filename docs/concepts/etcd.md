@@ -14,7 +14,7 @@ written to etcd before the request is completed. Using etcd as a configuration
 store allows nodes to retrieve the current cluster state after being offlined,
 allowing offlined nodes to rejoin the cluster.
 
-> N.B. Ondat v2.0 does not provide an embedded etcd server as previous
+> ⚠️ Ondat v2.0 does not provide an embedded etcd server as previous
 > versions did. You will need to setup an etcd server for Ondat to use
 > prior to installation of Ondat. For more information on how
 > to install and configure etcd, see our [etcd prerequisites](

@@ -93,7 +93,7 @@ spec:
 Alternatively a cronjob on the node itself could be used to `fstrim` mounted
 Ondat volumes using similar logic.
 
-> N.B. TRIM can be an I/O intensive operation so care should be taken when
+> ⚠️ TRIM can be an I/O intensive operation so care should be taken when
 > running `fstrim` against multiple volumes at once.
 
 ## Continuous discard

@@ -19,7 +19,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ## Examples
@@ -30,7 +30,7 @@ curl -sSLo kubectl-storageos.tar.gz \
 kubectl storageos install
 ```
 
-> The plugin will prompt you to get the url/s for etcd.
+> 💡 The plugin will prompt you to get the url/s for etcd.
 
 ### Installation with custom username/password
 
