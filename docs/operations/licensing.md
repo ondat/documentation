@@ -122,8 +122,8 @@ spec:
 END
 ```
 
-Be sure to edit the environment variables appropriately for your target cluster, eg. the
-username/password for the administrative user. 
+> ⚠️ Be sure to edit the environment variables appropriately for your target cluster, eg. the
+> username/password for the administrative user. 
 
 Once the pod is launched, you can retrieve it's unique identifier:
 
@@ -137,7 +137,7 @@ the pod.
 
 ## Ondat CLI - Retrieving a cluster ID via the Ondat CLI
 
-Make sure that you have the CLI running, as described in the previous step!
+> ⚠️ Make sure that you have the CLI running, as described in the previous step!
 
 ```shell
 kubectl -n storageos exec $POD -- storageos get volumes
@@ -187,7 +187,7 @@ curl -XPOST --data '{
 }
 ```
 
-> Be sure to change the details to reflect your own!
+> ⚠️ Be sure to change the details to reflect your own!
 
 Do note that:
 - `clusterID` must be correct for your cluster, or the license won't apply!
@@ -195,7 +195,7 @@ Do note that:
 - `country` can be a country in ISO 3166 format or the English name of the country
 - `email` will be validated and must be available and non-disposable
 
-> If you receive an `Internal Service Error`, double-check that all the information you've 
+> 💡 If you receive an `Internal Service Error`, double-check that all the information you've 
 submitted fits the above requirements!
 
 Now check your inbox! You will have received an automatically generated email with a link to
@@ -261,7 +261,7 @@ To apply a licence:
 1.  Paste the licence key into the pop-up window
 1.  To apply the license click __Upgrade__
 
-> Note: It is crucial to paste all the licence text into the pop-up and not
+> ⚠️ It is crucial to paste all the licence text into the pop-up and not
 > just the signature. Keep in mind that the encoding of the file must not
 > change.
 
@@ -276,6 +276,6 @@ assuming that you have the CLI running as described in the sections above:
 cat /path/to/storageos-license.dat | kubectl -n storageos exec -it $POD -- storageos apply license --from-stdin
 ```
 
-For more information refer to the licence
+> 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
 
