@@ -1,6 +1,6 @@
 ---
 title: "ReadWriteMany (RWX)"
-linkTitle: ReadWriteMany
+linkTitle: "ReadWriteMany (RWX)"
 ---
 
 # ReadWriteMany
