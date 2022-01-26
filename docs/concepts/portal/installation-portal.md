@@ -4,7 +4,7 @@ linkTitle: "Ondat Portal Installation Guide"
 ---
 
 
-# Setting Up a Local Cluster 
+# (Optional) Setting Up a Local Cluster 
 
 The following guide will take you through the process of setting up a cluster on your machine. If you are using an Apple M1 machine you need to run kind inside an amd64 VM hosted on a Cloud Service of your choice. Local emulation will not work on a machine using Apple M1. 
 
@@ -24,7 +24,7 @@ The following guide will take you through the process of setting up a cluster on
 4. Create a local cluster using kind. You can find the latest `---image` tags on [Docker Hub](https://hub.docker.com/r/storageos/kind-node/tags)
 `kind create cluster --image storageos/kind-node:v1.22.3 --name portal-dev`
 
-# Creating Credentials foy Your Cluster
+# Creating Credentials for Your Cluster
 
 1. Open [Ondat Portal](https://portal.ondat.io/dashboard).
 2. Log into your account using your account's credentials.
@@ -35,7 +35,7 @@ The following guide will take you through the process of setting up a cluster on
 
 # Installing Ondat on Your Cluster Using the Ondat Portal Manager
 
-Execute this command if you are configuring a cluster without having installed Ondat beforehand.
+Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:
 `kubectl storageos install --include-etcd=true --stos-version=develop --enable-portal-manager --portal-client-id=<clientid> --portal-secret=<secret> --portal-api-url=<api-url> --portal-tenant-id=<tenantId>`
 
 

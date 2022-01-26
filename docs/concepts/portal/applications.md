@@ -3,7 +3,7 @@ title: " Applications Page Reference"
 linkTitle: "Applications Page Reference"
 ---
 
-The __Applications__ tab displays all of your applications including the undeployed. For a detailed explanation of the view, refer to the table below:
+The __Applications__ tab displays all of your applications. For a detailed explanation of the view, refer to the table below:
 
 
 
