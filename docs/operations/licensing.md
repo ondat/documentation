@@ -80,7 +80,7 @@ Ondat cluster by browsing the __Licence__ page as shown below:
 
 ## Ondat CLI - Running the CLI
 
-In order to get the CLI running, we must launch it on the target Kubernetes
+In order to get the CLI running, you must launch it on the target Kubernetes
 cluster:
 
 ```shell
@@ -125,13 +125,13 @@ END
 Be sure to edit the environment variables appropriately for your target cluster, eg. the
 username/password for the administrative user. 
 
-Once the pod is launched, we can retrieve it's unique identifier:
+Once the pod is launched, you can retrieve it's unique identifier:
 
 ```shell
 POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
 ```
 
-Now we've set the `POD` variable, the pod is accessible via that variable for the rest of the lifetime of
+Now that the `POD` variable is set, the pod is accessible via that variable for the rest of the lifetime of
 that terminal. If you open a new terminal, you'll need to run this command again to rediscover the ID of
 the pod.
 
@@ -201,7 +201,7 @@ submitted fits the above requirements!
 Now check your inbox! You will have received an automatically generated email with a link to
 your license file. If you don't see it, be sure to give it a few minutes and check your spam folder!
 
-The `Download license` button on the email will work as many times as you'd like to retrieve the license - 
+The **Download license** button on the email will work as many times as you'd like to retrieve the license - 
 to renew, just submit another new license request!
 
 Note that the resulting file is not the license itself - the license is wrapped in JSON, so you must use
