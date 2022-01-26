@@ -34,7 +34,7 @@ kubectl label node $NODE storageos.com/computeonly=true
 
 Volumes do not have any feature labels present by default.
 
->  __WARNING__: The encryption, caching and compression labels can only apply
+>  ⚠️ The encryption, caching and compression labels can only apply
 >  at provisioning time, they can't be changed during execution.
 
 | Feature             | Label                               | Values                                  | Description                                                                                                                                  |
@@ -89,7 +89,7 @@ To create a volume with a feature label, choose one of the following options:
       csi.storage.k8s.io/secret-namespace: storageos
     ```
 
-> N.B. The Ondat API manager periodically syncs labels from Kubernetes PVCs
+> ⚠️ The Ondat API manager periodically syncs labels from Kubernetes PVCs
 > to the corresponding Ondat volume. Therefore changes to Ondat volume
 > labels should be made to the corresponding Kubernetes PVC rather than to the
 > Ondat volume directly.
@@ -100,7 +100,7 @@ To create a volume with a feature label, choose one of the following options:
 | :------------- | :---------------------------- | :----------------------------------- | :----------------------------- |
 | Pod fencing   | `storageos.com/fenced`         | true / false                         | Targets a pod to be fenced in case of node failure. The default value is `false` |
 
-> For a pod to be fenced by Ondat, a few requirements described in the
+> ⚠️ For a pod to be fenced by Ondat, a few requirements described in the
 > [Fencing Operations](/docs/operations/fencing) page need to be fulfilled.
 
 ```bash

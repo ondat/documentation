@@ -127,6 +127,7 @@ END
 
 Once the pod is launched, you can retrieve it's unique identifier:
 
+
 ```shell
 POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
 ```

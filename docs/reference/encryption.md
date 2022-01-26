@@ -61,7 +61,7 @@ Ondat encryption.
 
 Ondat saves encryption keys in Kubernetes Secrets.
 Backups are therefore imperative in case the Kubernetes Etcd is lost.
-**Ondat has no ability to decrypt a volume whose encryption keys have been
+> ⚠️ **Ondat has no ability to decrypt a volume whose encryption keys have been
 lost.**
 
 Secrets in Kubernetes are not encrypted by default, they are stored in the

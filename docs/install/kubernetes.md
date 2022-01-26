@@ -4,16 +4,16 @@ linkTitle: "Kubernetes"
 weight: 1
 ---
 
-> Make sure the
+> ⚠️ Make sure the
 > [prerequisites for Ondat](/docs/prerequisites/_index) are
 > satisfied before proceeding.
 
-> Any Kubernetes managed service such as EKS, AKS, GKE, DO or DockerEE
+> ⚠️ Make sure to add a Ondat licence after installing.
+
+> 💡 Any Kubernetes managed service such as EKS, AKS, GKE, DO or DockerEE
 > platform can use the following Kubernetes guide to install Ondat.
 
-> Ondat supports the five most recent Kubernetes releases, at minimum.
-
-> Make sure to add an Ondat licence after installing.
+> 💡 Ondat supports the five most recent Kubernetes releases, at minimum.
 
 &nbsp;
 
@@ -30,7 +30,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Install Ondat
@@ -42,9 +42,9 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
 
-> If the etcd endpoints are not defined, the plugin will promt you and
+> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
 ### Verify Ondat installation
@@ -71,8 +71,8 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
 
@@ -89,7 +89,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Install Ondat
@@ -101,9 +101,9 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
 
-> If the etcd endpoints are not defined, the plugin will promt you and
+> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
 ### Verify Ondat installation
@@ -130,8 +130,8 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
 
@@ -148,7 +148,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Install Ondat
@@ -160,9 +160,9 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
 
-> If the etcd endpoints are not defined, the plugin will promt you and
+> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
 ### Verify Ondat installation
@@ -189,8 +189,8 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
 
@@ -207,7 +207,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Install Ondat
@@ -219,9 +219,9 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
 
-> If the etcd endpoints are not defined, the plugin will promt you and
+> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
 ### Verify Ondat installation
@@ -248,8 +248,8 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
@@ -267,7 +267,7 @@ curl -sSLo kubectl-storageos.tar.gz \
     && rm kubectl-storageos.tar.gz
 ```
 
-> You can find binaries for different architectures and systems in [kubectl
+> 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
 ### Install Ondat
@@ -279,9 +279,9 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
 
-> If the etcd endpoints are not defined, the plugin will promt you and
+> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
 ### Verify Ondat installation
@@ -308,8 +308,8 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 ### License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+> personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 

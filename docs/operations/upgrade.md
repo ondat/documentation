@@ -9,11 +9,11 @@ Keep in mind that upgrading a cluster will require minor downtime of
 applications using Ondat volumes. However we will take steps to minimize
 the required downtime as much as possible.
 
-> Ensure that you have read the [PIDs prerequisite introduced in Ondat
+> ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat
 > v2.3](/docs/prerequisites/pidlimits) and that you check the
 > init container logs to ensure your environments PID limits are set correctly.
 
-> Warning: To reduce downtime, it is recommended to `docker pull` the new
+> ⚠️ To reduce downtime, it is recommended to `docker pull` the new
 > Ondat container image `storageos/node:< param latest_node_version >`
 > on the nodes beforehand so that the cluster spins up faster!
 
@@ -57,7 +57,7 @@ the required downtime as much as possible.
     kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints "<ETCD-IP1>:2379,<ETCD-IP2>:2379,<ETCD-IP3>:2379"
     ```
 
-    > The plugin uses the `--uninstall-stos-operator-namespace` argument
+    > 💡 The plugin uses the `--uninstall-stos-operator-namespace` argument
     > because it uninstalls the cluster first and then reinstalls it with the
     > new version.
 
@@ -65,7 +65,7 @@ the required downtime as much as possible.
     `.spec.kvBackend` section of StorageOS object in the
     `/tmp/storageos-config.yaml` file.
 
-    > If at any point something goes wrong with the upgrade process, backups of all the relevant
+    > 💡 If at any point something goes wrong with the upgrade process, backups of all the relevant
     > Kubernetes manifests can be found in `~/.kube/storageos/`.
 
 1. Wait for all the Ondat pods to enter the `RUNNING` state

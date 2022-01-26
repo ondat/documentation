@@ -11,7 +11,7 @@ Additionally user specific policies can be created to grant a user access to a
 namespace. Users can belong to any number of groups and have any number of
 user level policies configured.
 
->Note: Users are created with access to the default namespace. Policies cannot
+> ⚠️ Users are created with access to the default namespace. Policies cannot
 be applied to the default namespace.
 
 ## Managing Policies

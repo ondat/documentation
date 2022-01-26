@@ -4,18 +4,18 @@ linkTitle: "OpenShift"
 weight: 20
 ---
 
-> Make sure the
+> ⚠️ Make sure the
 > [prerequisites for Ondat](/docs/prerequisites/_index) are
 > satisfied before proceeding. Including the deployment of an etcd cluster and
 > configuration of CRI-O PID limits.
 
-> For OpenShift upgrades, refer to the
-> [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).
-
-> If you have installed OpenShift in AWS ensure that the requisite ports are
+> ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
 > opened for the worker nodes' security group.
 
-> Make sure to add an Ondat licence after installing.
+> ⚠️ Make sure to add a Ondat licence after installing.
+
+> 💡 For OpenShift upgrades, refer to the
+> [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 
@@ -26,7 +26,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-0](/images/docs/openshift4/storageos-v2/000-operatorhub-find-storageos.png)
 
-   > Choose between using the RedHat Market Place or the Community Operators
+   > 💡 Choose between using the RedHat Marketplace or the Community Operators
    > installation.
 
 1. Select Ondat and click install
@@ -98,7 +98,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-9](/images/docs/openshift4/storageos-v2/090-operator-hub-installed.png)
 
-    > Verify that the Ondat Cluster Operator is installed
+    > 💡 Verify that the Ondat Cluster Operator is installed
 
 1. Go to the "Ondat Cluster" section
 
@@ -109,7 +109,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-11](/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png)
 
-    > A Ondat Cluster is defined using a Custom Resource Definition
+    > 💡 An Ondat Cluster is defined using a Custom Resource Definition
 
 1. Create the Custom Resource
 
@@ -117,8 +117,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
    created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
    the `kvBackend.address` are mandatory.
 
-   Additional `spec` parameters are available on the [Cluster Operator
-   configuration](/docs/reference/cluster-operator/configuration) page.
+   > 💡 Additional `spec` parameters are available on the [Cluster Operator configuration](/docs/reference/cluster-operator/configuration) page.
 
    ```bash
    apiVersion: "storageos.com/v1"
@@ -165,7 +164,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 ## Red Hat Marketplace
 
 
-> The installation of Ondat using the Red Hat Marketplace requires the
+> ⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 > Openshift cluster to be registered to the Marketplace Portal, including the
 > roll out of the PullSecret in your cluster. Failure to do so will result in a
 > image pull authentication failure with the Red Hat registry.
@@ -174,7 +173,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-0](/images/docs/openshift4/marketplace/1.png)
 
-   > Choose the RedHat Marketplace option.
+   > 💡 Choose the RedHat Marketplace option.
 
 1. Select Ondat and click purchase. Note that Openshift needs to be
    registered with the Red Hat Marketplace portal.
@@ -185,7 +184,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-2](/images/docs/openshift4/marketplace/3.png)
 
-    > Project Edition is suitable for production workloads, Developer Edition
+    > 💡 Project Edition is suitable for production workloads, Developer Edition
     > for personal experimentation and evaluation.
 
 1. Specify the product configuration to fit your needs.
@@ -248,7 +247,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-9](/images/docs/openshift4/marketplace/8.png)
 
-    > Verify that the Ondat Cluster Operator is installed
+    > 💡 Verify that the Ondat Cluster Operator is installed
 
 1. Go to the "Ondat Cluster" section
 
@@ -259,7 +258,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-11](/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png)
 
-    > A Ondat Cluster is defined using a Custom Resource Definition
+    > 💡 An Ondat Cluster is defined using a Custom Resource Definition
 
 1. Create the Custom Resource
 
@@ -267,8 +266,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
    created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
    the `kvBackend.address` are mandatory.
 
-   Additional `spec` parameters are available on the [Cluster Operator
-   configuration](/docs/reference/cluster-operator/configuration) page.
+   > 💡 Additional `spec` parameters are available on the [Cluster Operator configuration](/docs/reference/cluster-operator/configuration) page.
 
    ```bash
    apiVersion: "storageos.com/v1"
@@ -302,19 +300,19 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
     ![install-13](/images/docs/openshift4/storageos-v2/130-cr-created.png)
 
-    > It can take up to a minute to report the Ondat Pods ready
+    > 💡 It can take up to a minute to report the Ondat Pods ready
 
 1. Check the Ondat Pods in the `kube-system` project
 
     ![install-14](/images/docs/openshift4/storageos-v2/140-storageos-pods.png)
 
-    > A Status of 3/3 for the Daemonset Pods indicates that Ondat is
+    > 💡 A Status of 3/3 for the Daemonset Pods indicates that Ondat is
     > bootstrapped successfully.
 
 ## License cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. For more information, 
-check the [reference licence page](/docs/reference/licence).
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. For more information, 
+> check the [reference licence page](/docs/reference/licence).
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 

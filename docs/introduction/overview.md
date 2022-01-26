@@ -29,7 +29,7 @@ We've built V2 with these architectures and design patterns in mind. Not only
 does it scale well, but it contains the foundations we need to implement a rich
 set of multi-cluster functionality.
 
-## Upgraded Control Plane
+## 🚀 Upgraded Control Plane
 
 At the heart of the V2 release is an upgraded control plane. We've changed a
 lot here. Firstly, our usage of etcd is vastly improved. We've learnt a lot
@@ -70,7 +70,7 @@ decorated with rich context to help you understand what is happening within
 your cluster, and we'll output in json by default, for easy ingestion into log
 aggregators such as Elasticsearch.
 
-## Upgraded Data Plane
+## 🚀 Upgraded Data Plane
 
 Not to be outdone, our data plane contains some significant improvements.
 

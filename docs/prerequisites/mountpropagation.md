@@ -4,7 +4,7 @@ linkTitle: Mount Propagation
 weight: 300
 ---
 
-> Modern versions of Kubernetes, Docker or other Container Runtimes enable
+> 💡 Modern versions of Kubernetes, Docker or other Container Runtimes enable
 > mount propagation by default.
 
 Ondat requires mount propagation enabled to present devices as volumes for

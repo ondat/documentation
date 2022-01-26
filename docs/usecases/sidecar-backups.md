@@ -26,7 +26,7 @@ Kubernetes objects.
 $ git clone https://github.com/storageos/use-cases.git storageos-usecases
 $ cd storageos-usecases/backup
 ```
-> Before deploying the backup-example stateful set we recommend looking
+> 💡 Before deploying the backup-example stateful set we recommend looking
 > through the examples to understand how the different containers are
 > configured
 

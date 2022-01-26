@@ -25,7 +25,7 @@ errors.
     $ kubectl -n $NS delete pvc $PVC
     ```
 
-    > **This will delete data held by Ondat and won't be recoverable.**
+    > ⚠️ **This will delete data held by Ondat and won't be recoverable.**
 
 ## Removing Ondat Cluster
 
@@ -42,17 +42,17 @@ errors.
     ```
 ## Uninstalling the Ondat Operator
 
-> **Delete the Cluster Operator once the Ondat Pods are terminated**
+> ⚠️ **Delete the Cluster Operator once the Ondat Pods are terminated**
 **The procedure is finished. Ondat is now uninstalled.**
 
-## Removeing Ondat contents and metadata (unrecoverable)
+## Removing Ondat contents and metadata (unrecoverable)
 
 The steps up until now have been recoverable - as long as the etcd backing
 Ondat and the contents of /var/lib/storageos on your nodes are safe then
 Ondat can be reinstalled. For complete removal and recovery of disk space,
 proceed as follows:
 
-> **Warning: The following steps will delete all data held by Ondat and won't be
+> ⚠️ **Warning: The following steps will delete all data held by Ondat and won't be
 > recoverable.**
 
 1. Remove the Ondat data directory
@@ -69,7 +69,7 @@ proceed as follows:
     1. (Option 2) Execute the following command to deploy a DaemonSet that removes the
        Ondat data directory.
 
-        > **N.B This step is irreversible and once the data is removed it cannot
+        > ⚠️ ** This step is irreversible and once the data is removed it cannot
         > be recovered.**
 
         > Run the following command where `kubectl` is installed and with the
@@ -81,7 +81,7 @@ proceed as follows:
 
 2. Flush Etcd Data
 
-    **This will remove any keys written by Ondat.**
+    > ⚠️ **This will remove any keys written by Ondat.**
 
     ```bash
     $ export ETCDCTL_API=3

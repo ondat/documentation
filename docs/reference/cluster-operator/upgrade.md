@@ -12,7 +12,7 @@ Upgrade the Ondat operator using the following yaml manifest.
 kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml
 ```
 
->  When you run the above command Ondat Operator resources will be updated.
+>  💡 When you run the above command Ondat Operator resources will be updated.
 >  Since, the Update Strategy of the Ondat Operator Deployment is set to
 >  rolling update, a new Ondat Operator Pod will be created. Only when
 >  the new Pod enters the Running Phase will the old Pod be deleted.
@@ -35,7 +35,7 @@ $ helm repo update
 $ helm upgrade $NAME storageos/storageos-operator
 ```
 
->  When you run the above command Ondat Operator resources will be updated.
+>  💡 When you run the above command Ondat Operator resources will be updated.
 >  Since, the Update Strategy of the Ondat Operator Deployment is set to
 >  rolling update, a new Ondat Operator Pod will be created. Only when
 >  the new Pod enters the Running Phase will the old Pod be deleted.

@@ -39,7 +39,7 @@ ensure that it is not in use.
 In order to edit a PVC you can use `kubectl edit` or `kubectl apply` to make
 changes. 
 
-> N.B. Resizing a volume without updating the PVC directly will NOT result in
+> ⚠️ Resizing a volume without updating the PVC directly will NOT result in
 > the PVC being updated. The methods below are included for completeness. In
 > Kubernetes environments editing the PVC is the preferred method for resizing
 > a volume.

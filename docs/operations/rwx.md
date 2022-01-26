@@ -3,7 +3,7 @@ title: "ReadWriteMany"
 linkTitle: ReadWriteMany
 ---
 
-> Note: Ondat Project edition is required to create RWX Volumes.
+> ⚠️ Ondat Project edition is required to create RWX Volumes.
 
 Ondat supports ReadWriteMany (RWX) [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
