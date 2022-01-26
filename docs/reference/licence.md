@@ -8,7 +8,7 @@ run unlicensed for 24 hours. After that, new operations such as volume
 provisioning or adding nodes are not permitted. Normal functioning of the
 cluster can be unlocked by applying a Free Personal licence.
 
-To learn how to apply a licence to your cluster, check the [operations
+To learn how to obtain and apply a licence to your cluster, check the [operations
 licensing](/docs/operations/licensing) page.
 
 ## Free Personal licence
@@ -26,7 +26,7 @@ are some of the features that are available under the personal licence.
 ## Commercial licences
 
 For information on our commercial offerings, including support, please contact
-sales@storageos.com.
+getstarted@ondat.io.
 
 ## Note about capacity limits
 
