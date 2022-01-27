@@ -5,7 +5,7 @@ linkTitle: Cluster Health
 
 Various tools are available for checking on the status of a cluster.
 
-The [CLI](/docs/reference/cli/_index) displays the
+The [CLI](/docs/reference/cli/) displays the
 status of nodes in the cluster.
 
 ```bash

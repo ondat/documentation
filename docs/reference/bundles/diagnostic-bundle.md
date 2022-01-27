@@ -12,7 +12,7 @@ issues you may be experiencing.
 
 ### CLI
 
-The [CLI](/docs/reference/cli/_index) can generate
+The [CLI](/docs/reference/cli/) can generate
 the bundle.
 
 ```bash

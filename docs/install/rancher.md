@@ -10,7 +10,7 @@ methods:
 * Rancher Catalogue - this is the easiest and requires just a few clicks
 * Manual - allowing more control and visibility
 
-> ⚠️ Before proceeding, ensure that you have followed our [prerequisites](/docs/prerequisites/_index). 
+> ⚠️ Before proceeding, ensure that you have followed our [prerequisites](/docs/prerequisites/).
 
 
 > ⚠️ On Rancher, pay particular attention to
@@ -94,7 +94,7 @@ customization of the Ondat installation.
 ![install-7](/images/docs/rancher-ui-v2/rancher-7.png)
 
 * **Cluster Operator namespace**
-: The Kubernetes namespace where the [Ondat Cluster Operator](/docs/reference/cluster-operator/_index) and other resources will be
+: The Kubernetes namespace where the [Ondat Cluster Operator](/docs/reference/cluster-operator/) and other resources will be
 created.
 * **Container Images** : By default images are pulled from DockerHub, you can
 * specify the image URLs

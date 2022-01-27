@@ -16,4 +16,4 @@ description: >
   [Rancher](/docs/install/rancher).
 
 * Dive into our Use Case documentation for Workloads deployed in
-  [Kubernetes](/docs/usecases/_index).
+  [Kubernetes](/docs/usecases/).

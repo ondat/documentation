@@ -25,7 +25,7 @@ One machine with the following:
 
 1. At least three nodes for replication and high availability.
 1. Kubernetes 1.18 to 1.22
-1. [Install the Ondat CLI](/docs/reference/cli/_index).
+1. [Install the Ondat CLI](/docs/reference/cli/).
 1. If using Helm2, make sure the tiller ServiceAccount has enough privileges to
    create resources such as Namespaces, ClusterRoles, etc. For instance, following this [installation
    procedure](https://v2.helm.sh/docs/using_helm/#role-based-access-control).
