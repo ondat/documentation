@@ -21,7 +21,7 @@ landscape is changing rapidly, watch this space), and our production guidance
 remains to install etcd on separate machines outside of your Kubernetes
 cluster. This method is the best way to ensure a stable Ondat cluster.
 Please see our etcd operations page for additional information on deployment
-[best practices](/docs/operations/etcd/_index) and concerns.
+[best practices](/docs/operations/etcd/) and concerns.
 
 1. Ephemeral pods within Kubernetes (*Testing*)
 1. External Virtual Machines (*Production*)
@@ -278,7 +278,7 @@ deployed as a managed service.
 
 Ondat doesn't require a high performance etcd cluster, as the throughput
 of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity [best practices](/docs/operations/etcd/_index#iops-requirements) to ensure that etcd
+of IOPS capacity [best practices](/docs/operations/etcd/) to ensure that etcd
 operates normally.
 
 Depending on the level of redundancy you feel comfortable with you can install
@@ -459,7 +459,7 @@ using standard package management commands and systemd manifests.
     8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
     ```
 
-    > Read the [etcd operations](/docs/operations/etcd/_index)
+    > Read the [etcd operations](/docs/operations/etcd/)
     > page for our etcd recommendations.
 
 ### Installation - Ansible

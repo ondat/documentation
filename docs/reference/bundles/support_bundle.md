@@ -69,7 +69,7 @@ kube-system as a Pod with the label `run=cli`. The tool will exec into this pod
 to get information from the Ondat API. If the Ondat CLI Pod does not
 match this criteria, you can either pull the YAML file and change the selector
 in the file, or add the label to the Pod. You can run the cli container
-following these [instructions](/docs/reference/cli/_index#run-cli-as-a-container).
+following these [instructions](/docs/reference/cli/).
 
 ### Data collected in the bundle
 
