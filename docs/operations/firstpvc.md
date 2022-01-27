@@ -161,4 +161,4 @@ be used to persist data written by a Pod.
     on a new node, the helloworld file would still be avaliable.
 
     **If you wish to see more use cases with actual applications please see our
-    [Use Cases](/docs/usecases/_index) documentation.**
+    [Use Cases](/docs/usecases/) documentation.**

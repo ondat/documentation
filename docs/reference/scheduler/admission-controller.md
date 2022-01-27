@@ -5,7 +5,7 @@ linkTitle: Admission Controller
 
 Ondat implements a `MutatingAdmissionWebhook` [Admission
 Controller](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks)
-to ensure that Pods using Ondat Volumes use the [storageos-scheduler](/docs/reference/scheduler/_index). An admission controller intercepts
+to ensure that Pods using Ondat Volumes use the [storageos-scheduler](/docs/reference/scheduler/). An admission controller intercepts
 requests to the Kubernetes API server prior to persistence of the object, but
 after the request is authenticated and authorized.
 

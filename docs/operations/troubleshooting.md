@@ -9,7 +9,7 @@ orchestrators or common misconfigurations.
 
 ## Tools
 
-To be able to troubleshoot issues the [Ondat CLI](/docs/reference/cli/_index) is required.
+To be able to troubleshoot issues the [Ondat CLI](/docs/reference/cli/) is required.
 
 ## Pod in pending because of mount error
 
