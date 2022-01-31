@@ -48,7 +48,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
 The Ondat Cluster Operator is installed along the required CRDs.
 
-## Authentication
+## Authentication (OperatorHub)
 
 1. Create a Secret in the `openshift-operators` project and select the YAML option to create a secret containing the `username` and an
    `password` key. The username and password defined in the secret will be
@@ -115,11 +115,9 @@ The Ondat Cluster Operator is installed along the required CRDs.
 
 6.  Verify that the StorageOS Cluster resource status is __Running__.
 
-
-    > It can take up to a minute to report the Ondat Pods ready
+    > It can take up to a minute to report the Ondat Pods ready.
 
 7.  Check the StorageOS Pods in the `kube-system` project
-
 
     > A Status of 3/3 in the __Ready__ column for the Daemonset Pods indicates that Ondat is
     > bootstrapped successfully.
@@ -130,55 +128,46 @@ The Ondat Cluster Operator is installed along the required CRDs.
 
 > ⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 > Openshift cluster to be registered to the Marketplace Portal, including the
-> roll out of the PullSecret in your cluster. Failure to do so will result in a
+> roll out of the `PullSecret` in your cluster. Failure to do so will result in a
 > image pull authentication failure with the Red Hat registry.
 
-1. Select the `OperatorHub` from the Catalog sub menu and search for Ondat.
+1. Select the `OperatorHub` from the Catalog sub menu and search for StorageOS.
 
-    ![install-0](/images/docs/openshift4/marketplace/1.png)
 
    > 💡 Choose the RedHat Marketplace option.
 
-1. Select Ondat and click purchase. Note that Openshift needs to be
+2. Select StorageOS and click __Purchase__. Note that Openshift needs to be
    registered with the Red Hat Marketplace portal.
 
-    ![install-1](/images/docs/openshift4/marketplace/2.png)
 
-1. Select the most suitable install option.
+3. Select the relevant install option.
 
-    ![install-2](/images/docs/openshift4/marketplace/3.png)
 
     > 💡 Project Edition is suitable for production workloads, Developer Edition
     > for personal experimentation and evaluation.
 
-1. Specify the product configuration to fit your needs.
+4. Specify the product configuration to fit your needs.
 
-    ![install-3](/images/docs/openshift4/marketplace/4.png)
 
-1. Navigate to your software within Red Hat Marketplace and install the
-   Ondat software as specified in the image.
+5. Navigate to your software within Red Hat Marketplace and install the
+   StorageOS software as specified in the image.
 
-    ![install-4](/images/docs/openshift4/marketplace/5.png)
 
-1. Install the Operator. Set the update approval strategy to Automatic to
-   ensure that you always have the latest version of Ondat installed.
+6. Install the Operator. Set the update approval strategy to __Automatic__ to
+   ensure that you always have the latest version of StorageOS installed.
 
-    ![install-5](/images/docs/openshift4/marketplace/6.png)
 
-1. The Ondat Cluster Operator is installed into your specified cluster.
+The Ondat Cluster Operator is installed into your specified cluster.
 
-    ![install-6](/images/docs/openshift4/marketplace/7.png)
+## Authentication (Red Hat Marketplace)
 
-1. Create a Secret in the `openshift-operators` project
 
-    ![install-7](/images/docs/openshift4/storageos-v2/070-create-secret.png)
-
-1. Use the YAML options to create a secret containing the `username` and an
+1.  Create a Secret in the `openshift-operators` project and select the YAML option to create a secret containing the `username` and an
    `password` key. The username and password defined in the secret will be
    used to authenticate when using the Ondat CLI and GUI. Take note of
    which project you created the secret in.
 
-    Input the Secret as YAML for simplicity.
+    Input the secret as YAML for simplicity.
 
     ```yaml
     apiVersion: v1
@@ -192,26 +181,18 @@ The Ondat Cluster Operator is installed along the required CRDs.
       username: c3RvcmFnZW9z
       password: c3RvcmFnZW9z
     ```
-    ![install-8](/images/docs/openshift4/storageos-v2/080-create-secret-yaml.png)
 
-2. Go to Ondat in your "Installed Operators"
-
-    ![install-9](/images/docs/openshift4/marketplace/8.png)
-
-    > 💡 Verify that the Ondat Cluster Operator is installed
-
-3. Go to the "Ondat Cluster" section
-
-    ![install-10](/images/docs/openshift4/storageos-v2/100-operator-details.png)
+2.  Navigate to StorageOS on your __Installed Operators__ tab.
 
 
-4. Create the Ondat Cluster
+    > 💡 Verify that the StorageOS Cluster Operator is installed.
 
-    ![install-11](/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png)
+3.  Open to the __StorageOS Cluster__ tab and click __Create StorageOSCluster__.
 
-    > 💡 An Ondat Cluster is defined using a Custom Resource Definition
 
-5. Create the Custom Resource
+    > 💡 A StorageOSCluster is defined using a Custom Resource(CR) Definition.
+
+4.  Create the CR Definition:
 
    The Ondat cluster resource describes the Ondat cluster that will be
    created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
@@ -245,19 +226,14 @@ The Ondat Cluster Operator is installed along the required CRDs.
      #       - "true"
    ```
 
-    ![install-12](/images/docs/openshift4/storageos-v2/120-create-cr-from-yaml.png)
 
-6. Verify that the Ondat Cluster Resource enters a running state.
+5.  Verify that the StorageOS Cluster status is __Running__.
 
-    ![install-13](/images/docs/openshift4/storageos-v2/130-cr-created.png)
+    > 💡 It can take up to a minute to report the Ondat Pods ready.
 
-    > 💡 It can take up to a minute to report the Ondat Pods ready
+6.  Check the StorageOS Pods in the `kube-system` project.
 
-7. Check the Ondat Pods in the `kube-system` project
-
-    ![install-14](/images/docs/openshift4/storageos-v2/140-storageos-pods.png)
-
-    > 💡 A Status of 3/3 for the Daemonset Pods indicates that Ondat is
+    > 💡 A Status of 3/3 in the __Ready__ column for the Daemonset Pods indicates that Ondat is
     > bootstrapped successfully.
 
 ## License cluster
