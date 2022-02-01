@@ -1,5 +1,5 @@
 ---
-title: "Storagelasses"
+title: "StorageClasses"
 linkTitle: StorageClasses
 ---
 
