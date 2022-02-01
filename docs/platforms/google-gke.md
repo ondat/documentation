@@ -3,12 +3,13 @@ title: "Google GKE"
 linkTitle: Google GKE
 ---
 
-StorageOS is fully compatible with GKE when using the Ubunutu images. To
+StorageOS is fully compatible with GKE when using the Ubuntu images. To
 install StorageOS on Google GKE, please follow our Kubernetes [installation instructions](/docs/install/kubernetes) page.
 
 For StorageOS to work normally it is __required to use the Ubuntu images__ for
-the Google GKE node pools. The default container image does not fulfil the system
-requirements because of the lack of the TCMU kernel modules.
+the Google GKE node pools. The default Google Container OS for GKE image does 
+not fulfil the system requirements because of the lack of the `target_core_file` 
+kernel module.
 
 For more details about the OS Distributions check the [System Configuration](/docs/prerequisites/systemconfiguration) page.
 
