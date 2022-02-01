@@ -33,17 +33,18 @@ errors.
 
     ```bash
     $ kubectl get storageoscluster --all-namespaces # Find the namespace where the Custom Resource runs
-    $ kubectl -n $NS delete storageoscluster --all  # Usually to be found in storageos-operator
+    $ kubectl -n $NS delete storageoscluster --all  # $NS is the namespace found via the above command
     ```
 2. Wait until the Ondat resources are gone
 
     ```bash
-    $ kubectl -n storageos get pod # NS: Namespace where Ondat Daemonset is running, usually 'storageos'
+    $ kubectl -n storageos get pod 
     ```
 ## Uninstalling the Ondat Operator
 
-> ⚠️ **Delete the Cluster Operator once the Ondat Pods are terminated**
-**The procedure is finished. Ondat is now uninstalled.**
+Delete the Cluster Operator once the Ondat Pods are terminated. 
+
+The procedure is finished. Ondat is now uninstalled.
 
 ## Removing Ondat contents and metadata (unrecoverable)
 
