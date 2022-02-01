@@ -13,19 +13,25 @@ We require the following modules to be loaded:
 
 * `target_core_mod`
 * `tcm_loop`
-* `target_core_file`
 * `configfs`
 * `target_core_user`
 * `uio`
 
-> ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO)
-> cannot be run concurrently with Ondat. Doing so may result in corruption
-> of data. On startup, Ondat will detect if other applications are using
-> TCMU and fall back to FUSE. However if Ondat is started first there is no
-> mechanism for Ondat to fallback to FUSE if another application begins to
-> use TCMU. TCMU can be disabled using the
-> [DISABLE_TCMU](/docs/reference/cluster-operator/configuration)
-> StorageOSCluster spec parameter.
+> ⚠️ The kernel module `target_core_user` is required 
+> for Ondat to function in [TCMU](http://linux-iscsi.org/wiki/LIO) 
+> mode - without it, Ondat will fall back to using `target_core_file` for 
+> [FUSE](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) mode. 
+
+> ⚠️ Other applications utilising TCMU cannot be run 
+> concurrently with Ondat. Doing so may result in corruption
+> of data. If TCMU is detected as in use on startup, Ondat
+> will fall back to FUSE mode as above.
+
+> ⚠️ If Ondat is started first there is no mechanism for Ondat to fallback 
+> to FUSE if another application begins to use TCMU. TCMU can be disabled 
+> using the [DISABLE_TCMU](/docs/reference/cluster-operator/configuration)
+> StorageOSCluster spec parameter, in which case Ondat will fall back to FUSE
+> mode as above.
 
 Depending on the distribution, the modules are shipped as part of the
 base kernel package or as part of a kernel extras package which needs to be
