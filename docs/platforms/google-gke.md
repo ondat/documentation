@@ -3,7 +3,7 @@ title: "Google GKE"
 linkTitle: Google GKE
 ---
 
-StorageOS is fully compatible with GKE when using the Ubunutu images. To
+StorageOS is fully compatible with GKE when using the Ubuntu images. To
 install StorageOS on Google GKE, please follow our Kubernetes [installation instructions](/docs/install/kubernetes) page.
 
 For StorageOS to work normally it is __required to use the Ubuntu images__ for
