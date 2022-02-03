@@ -15,6 +15,8 @@ weight: 1
 
 > 💡 Ondat supports the five most recent Kubernetes releases, at minimum.
 
+> Ondat also has an official Helm chart, see [the charts repository](https://github.com/ondat/charts/tree/main/charts/ondat-operator) for instructions.
+
 &nbsp;
 
 ## Install ondat on kubernetes 1.22
