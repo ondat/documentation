@@ -2,7 +2,7 @@
 linkTitle: Using Rolling Upgrades Feature 
 ---
 
-# Enabling Rolling Upgrades 
+# Enabling Orchestrator's Rolling Upgrades 
 
 To prevent your persistent storage volumes from becoming unhealthy during orchestrator update you need to enable rolling upgrades. Note, that if your volume doesn't have any replicas the rolling upgrades will be disabled by default. 
 

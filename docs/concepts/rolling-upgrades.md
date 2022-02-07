@@ -4,9 +4,9 @@ linkTitle: "Rolling Upgrades to Orchestrator"
 
 # Upgrade Guard 
 
-You can use the rolling upgrade feature to upgrade an orchestrator (for example, Kubernetes or OpenShift) without causing service downtime/cluster failure. For example, OpenShift provides a one-click upgrade but that feature doesn't take into consideration Stateful workloads. 
+You can use the rolling upgrade feature to upgrade an orchestrator (for example, Kubernetes or OpenShift) without causing service downtime/cluster failure. For example, OpenShift provides a one-click upgrade but that feature doesn't take into consideration Stateful workloads. By doing rolling upgrades without waiting for the replicas to sync you can cause major issues on the affected volumes. 
 
-We have developed a separate component called the Upgrade guard. This component blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
+We have developed a separate component called the upgrade guard. This component blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
 To use the rolling upgrade feature, you need to enable both the Node manager and the Upgrade Guard components (this is set on the `storageoscluster` CR).
 
 The upgrade guard will detect if a volume is unhealthy (for example, one that doesn't have enough synced replicas), at which point one or more node manager pods will become unavailable. Ondat uses the PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. 
@@ -20,4 +20,4 @@ The upgrade guard container will log when it’s available to upgrade, it will a
 
 # Node Manager
 
-The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container. Guard pod solves the main issue of the node manager: deploys a pod next to all `StorageOS` daemonset and acts as an upgrade guard by monitoring local node state. 
+The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container. Upgrade guard solves the main issue of the node manager: deploys a pod next to all `StorageOS` daemonset and monitors local node state. 
