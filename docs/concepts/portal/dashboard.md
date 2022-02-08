@@ -4,7 +4,7 @@ linkTitle: "Dashboard Page Reference"
 ---
 
 
-The Dashboard gives you an unified and summarised view of the application you have deployed. If there are any persistent volumes in error this will be indicated on the dashboard as a red side line next to the application name and will also give you the number of affected volumes.
+The __Dashboard__ gives you an unified and summarised view of the application you have deployed. If there are any persistent volumes in error this will be indicated on the dashboard as a red side line next to the application name and will also give you the number of affected volumes.
 
 Your deployed application can be one of the following types:
 * __Replica__ - ensures that one or more pods are running at any given time, according to configuration. Usually, `ReplicaSets` are managed by Deployments.
