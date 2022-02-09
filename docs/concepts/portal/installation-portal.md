@@ -3,27 +3,6 @@ title: "Ondat Portal Installation Guide"
 linkTitle: "Ondat Portal Installation Guide"
 ---
 
-
-# (Optional) Setting Up a Local Cluster 
-
-The following guide will take you through the process of setting up a cluster on your machine. If you are using an Apple M1 machine you need to run kind inside an amd64 VM hosted on a Cloud Service of your choice. Local emulation will not work on a machine using Apple M1. 
-
-## Prerequisites
-
-* You have set up your cluster using the following config file <cloud_init.yml>
-
-* You have installed [multipass](https://multipass.run)
-  
-## Procedure
-
-1. Open the directory where you have saved <cloud-init.yml>.
-2. Create the `multipass` VM 
-`multipass launch --name devk8s --mem 6G --cpus 2 --disk 30G --cloud-init ./k8s-cloud-init.yml -vvvv`
-3. Log into the VM  
-`multipass shell devk8s`
-4. Create a local cluster using kind. You can find the latest `---image` tags on [Docker Hub](https://hub.docker.com/r/storageos/kind-node/tags)
-`kind create cluster --image storageos/kind-node:v1.22.3 --name portal-dev`
-
 # Creating Credentials for Your Cluster
 
 1. Open [Ondat Portal](https://portal.ondat.io/dashboard).
