@@ -160,11 +160,11 @@ We have the following limits for all of our components:
          name: api-manager
          resources:
            limits:
-             cpu: 100m
-             memory: 100Mi
+             cpu: 250m
+             memory: 200Mi
            requests:
-             cpu: 5m
-             memory: 50Mi
+             cpu: 10m
+             memory: 100Mi
 ```
 
 ```yaml
