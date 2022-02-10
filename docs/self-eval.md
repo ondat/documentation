@@ -3,183 +3,35 @@ title: Self Evaluation Guide
 linkTitle: Self Evaluation Guide
 weight: 900
 description: >
-  Step-by-step guide to installing and evaluating Ondat
+  Guide to self-evaluate Ondat as a secure, high-available, and performant data management platform.
 ---
 
-Our self-evaluation guide is a step by step recipe for installing and testing
-Ondat. This guide is divided into three sections:
+Following the [Ondat deployment on a Kubernetes cluster](install), this comprehensive set of How-Tos help to evaluate key funtionalities like:
 
-* __Installation__ - install Ondat with a single command
-* __Feature Testing__ - short walkthrough of some of our features
-* __Benchmarking__ - a recipe to benchmark Ondat on your infrastructure
+* __Availability__ - how to embrace failures
+* __Encryption__ - how to secure data
+* __Benchmarking__ - how and what to mesure 
 
-> 💡 For more comprehensive documentation including installation advice for complex
-> setups, operational guides, and use-cases, please see our main [documentation site](https://docs.ondat.io).
+## Feedback - Sharing is caring!  
+Should you have a question, join us on [our public Slack channel](https://slack.ondat.io).  
+Should you spot a *pearl*, open an issue or contribute by creating a Pull Request to address it on [our public documentation repository](https://github.com/ondat/documentation).  
 
-## Support for Self Evaluations
+## Prerequisites
+* Ondat deployed on a production-grade kubernetes cluster
+* root access to the nodes
 
-Should you have questions or require support, there are several ways to get in
-touch with us. The fastest way to get in touch is to [join our public Slack channel](https://slack.storageos.com). You can also get in touch via email to
-[info@storageos.com](mailto:support@storageos.com).
-
-## Installation
-
-In this document we detail a simple installation suitable for evaluation
-purposes. The etcd we install uses a 3 node cluster with local storage, and
-as such is not suitable for production workloads. However, for evaluation
-purposes it should be sufficient. For production deployments, please see our
-main [documentation pages](prerequisites/etcd.md).
-
-A standard Ondat installation uses the Ondat operator, which performs
-most platform-specific configuration for you. The Ondat operator has been
-certified by [Red Hat](https://storageos.com/red-hat/) and is [open source](https://github.com/storageos/operator).
-
-The basic installation steps are:
-
-* Check prerequisites
-* Prepare Etcd StorageClass
-* Install kubectl-storageos plugin
-* Install Ondat
-
-### Prerequisites
-
-While we do not require custom kernel modules or additional userspace tooling,
-Ondat does have a few basic prerequisites that are met by default by most
-modern distributions:
-
-* At least 1 CPU core, 2GB RAM free.
-* A Kubernetes release within the four most recent versions.
-* TCP ports 5701-5710 and TCP & UDP 5711 open between all nodes in the cluster.
-* A 64bit supported operating system - Ondat can run without additional
-  packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
-  linux-image-extra for Ubuntu.
-* Mainline kernel modules `target_core_mod`, `tcp_loop`, `target_core_file`,
-  `target_core_user`, `configfs`, and `ui`. These are present by default on
-  most modern linux distributions, and can be installed with standard package
-  managers. See our [system configuration](prerequisites/systemconfiguration) page for instructions.
-
-### Install the storageos kubectl plugin
-
-> 💡 Run the following command where `kubectl` is installed and with the context
-> set for your Kubernetes cluster
+## Preparing the environment 
+The overall YAML defintions are available on [our public use-case repository](https://github.com/ondat/use-cases) within the folder ```self-evaluation```.  Browse it, fork it, or just clone it:
 
 ```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
+git clone https://github.com/ondat/use-cases.git
 ```
 
-> 💡 You can find binaries for different architectures and systems in [kubectl plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-### Prepare Etcd StorageClass
-
-The following procedure deploys a local-path StorageClass for the Ondat Etcd.
-
-> ⚠️  Note that this Etcd __is suitable for evaluation purposes only__. Do not use this cluster for production workloads.
-
-```
-kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
-```
-
-> ⚠️ The `local-path` StorageClass does not guarantee data safety or availability.
-> Therefore the Ondat cluster cannot operate normally if the Etcd cluster
-> becomes unavailable. For a production Etcd install check the 
-> [Etcd prerequisites page](prerequisites/etcd.md).
-
-### Install Ondat
-
-```bash
-kubectl storageos install  \
-    --include-etcd \
-    --etcd-namespace storageos \
-    --etcd-storage-class local-path \
-    --admin-username storageos \
-    --admin-password storageos
-```
-
-### Verify Ondat installation
-
-Ondat installs all its components in the `storageos` namespace.
-
-```bash
-kubectl -n storageos get pod -w
-```
-
-```
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
-storageos-node-4njd4                     3/3     Running   0          55s
-storageos-node-5qnl7                     3/3     Running   0          56s
-storageos-node-7xc4s                     3/3     Running   0          52s
-storageos-node-bkzkx                     3/3     Running   0          58s
-storageos-node-gwp52                     3/3     Running   0          62s
-storageos-node-zqkk7                     3/3     Running   0          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
-```
-
-> 💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete
+### Provisioning ReadWriteOnce Example
 
 
-### Deploy the Ondat CLI as a container
 
-```
-kubectl -n storageos create -f-<<END
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: storageos-cli
-  labels:
-    app: storageos
-    run: cli
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: storageos-cli
-      run: cli
-  template:
-    metadata:
-      labels:
-        app: storageos-cli
-        run: cli
-    spec:
-      containers:
-      - command:
-        - /bin/sh
-        - -c
-        - "while true; do sleep 3600; done"
-        env:
-        - name: STORAGEOS_ENDPOINTS
-          value: http://storageos:5705
-        - name: STORAGEOS_USERNAME
-          value: storageos
-        - name: STORAGEOS_PASSWORD
-          value: storageos
-        image: storageos/cli:v2.5.0
-        name: cli
-END
-```
-
-> 💡 You can get the ClusterId required on the next step using the CLI pod
-
-```
-POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
-kubectl -n storageos exec $POD -- storageos get licence
-```
-
-### License cluster
-
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-> personal license is free, and supports up to 1TiB of provisioned storage.
-
-To obtain a license, follow the instructions on our [licensing operations](operations/licensing.md) page.
-
+### Provisioning ReadWriteMany Example
 
 ## Provision an Ondat Volume
 
