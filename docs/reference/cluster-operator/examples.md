@@ -154,80 +154,63 @@ spec:
   #   memory: "4Gi"
 ```
 
-Limiting Ondat can cause malfunction for IO to Ondat volumes, therefore
-we do not currently recommend applying upper limits to resources for Ondat
-pods.
-
 We have the following limits for all of our components:
 
 ```yaml
-name: provisioner
-         securityContext:
-           privileged: true
+         name: api-manager
          resources:
            limits:
              cpu: 100m
              memory: 100Mi
            requests:
              cpu: 5m
-             memory: 30Mi
-```
-```yaml
-name: attacher
-         resources:
-           limits:
-             cpu: 50m
-             memory: 100Mi
-           requests:
-             cpu: 1m
-             memory: 30Mi
-```
-
-```yaml
- name: resizer
-         resources:
-           limits:
-             cpu: 50m
-             memory: 100Mi
-           requests:
-             cpu: 1m
-             memory: 30Mi
-```
-
-```yaml
-name: config
-           mountPath: /scheduler
-         resources:
-           limits:
-             cpu: 100m
-             memory: 200Mi
-           requests:
-             cpu: 10m
-             memory: 50Mi
-```
-```yaml
-name: storageos-scheduler
-         resources:
-           limits:
-             cpu: 100m
-             memory: 200Mi
-           requests:
-             cpu: 10m
              memory: 50Mi
 ```
 
 ```yaml
-resources:
-           limits:
+        name: provisioner
+        securityContext:
+        privileged: true
+        resources:
+          limits:
              cpu: 100m
-             memory: 200Mi
-           requests:
+             memory: 100Mi
+          requests:
              cpu: 5m
-             memory: 80Mi
+             memory: 30Mi
+```
+```yaml
+        name: attacher
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 1m
+            memory: 30Mi
 ```
 
+```yaml
+        name: resizer
+        resources:
+          limits:
+             cpu: 50m
+             memory: 100Mi
+          requests:
+             cpu: 1m
+             memory: 30Mi
+```
 
-
+```yaml
+        name: storageos-scheduler
+        resources:
+           limits:
+             cpu: 100m
+             memory: 200Mi
+        requests:
+             cpu: 10m
+             memory: 50Mi
+```
 
 ## Specifying custom Tolerations
 
