@@ -27,7 +27,8 @@ Portal Manager:
 
 Kubectl Plugin: 
 
-- We have added a `--dry-run` flag into install command, so you can view the installation manifests written locally to `./storageos-dry-run/`. We have added capability for conducting an airgapped installation. The new options can also be used outside of an airgapped cluster.
+- We have added a `--dry-run` flag into install command, so you can view the installation manifests written locally to `./storageos-dry-run/`. 
+- We have added capability for conducting an airgapped installation. The new options can also be used outside of an airgapped cluster.
 
 Operator: 
 
