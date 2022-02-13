@@ -3,6 +3,8 @@ title: "Airgapped installation"
 weight: 50
 ---
 
+> The following page is for Advanced users. The full procedure is estimated to
+> take ~60 minutes to completion.
 
 Clusters without access to the internet require to specifiy explicitly
 resources that otherwise are automated during the installation.
@@ -76,6 +78,8 @@ kubectl delete pod operator-manifests
 
 Once you have the `ondat-operator.yaml` you must edit the file to amend the
 container image URL for the private registry one. 
+
+> Edit the variables `REGISTRY_IMG_OPERATOR` and `REGISTRY_IMG_PROXY`
 ```
 # Change operator image for your registry url reference
 
@@ -100,6 +104,8 @@ section that needs to be populated with the images from the configMap seen on st
 The file for the `ondat-cluster.yaml` should have the Secret called
 `storageos-api` and the StorageOSCluster definition.
 
+
+> Edit the variable `REGISTRY`
 
 ```yaml
 # Set the registry URL
@@ -187,6 +193,8 @@ kubectl delete pod etcd-operator-manifests
 Once you have the `ondat-operator.yaml` you must edit the file to amend the
 container image URL for the private registry one. 
 
+> Edit the variables `REGISTRY_IMG_ETCD_OPERATOR` and `REGISTRY_IMG_ETCD_PROXY`
+
 ```
 # Change the 2 images on the etcd-operator.yaml for your registry URL
 ETCD_OPERATOR_VERSION=develop
@@ -208,6 +216,8 @@ reqistry url as an argument to the etcd operator.
 Add the flag `-
 --etcd-repository=$REGISTRY/quay.io/coreos/etcd`  in
 the args of the `manager` container defined in `etcd-operator.yaml`
+
+> Edit the variabled $REGISTRY
 
 ```
 REGISTRY=my-registry-url
@@ -313,6 +323,8 @@ failure.
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 ```
 
+> Edit the variable `ETCD_STORAGECLASS`
+
 ```bash
 ETCD_STORAGECLASS=my-storage-class
 # Edit the StorageClass for etcd
@@ -320,6 +332,7 @@ sed -i -e "s/storageClassName: local-path/storageClassName: $ETCD_STORAGECLASS/g
 ```
 
 
+> Edit the variable `ETCD_STORAGECLASS`
 ```
 # Install (the kubectl-storageos plugin installs Etcd and Ondat)
 ETCD_STORAGECLASS=my-storage-class
@@ -339,6 +352,7 @@ kubectl storageos install \
 
 ### Option 2: With external etcd
 
+> Edit the variable `ETCD_URL`
 ```
 # Set etcd url
 # You can define multiple etcd urls separated by commas
