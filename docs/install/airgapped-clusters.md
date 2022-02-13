@@ -19,15 +19,32 @@ defined in the StorageOSCluster definition that define the images for each
 component of the cluster and, if apply, the images to run Etcd as Pods using
 the Etcd operator deployed by Ondaat. 
 
-- Ondat operator: `storageos/operator:v2.5.0`
-- Get the image list from the
-  [storageos-related-images configMap](https://github.com/storageos/operator/blob/main/bundle/manifests/storageos-related-images_v1_configmap.yaml)
-and select the branch for the version release of Ondat to be installed.
+- Ondat operator: `storageos/operator:v2.5.0` and `quay.io/brancz/kube-rbac-proxy:v0.10.0`
+- Pull the images from list set in the [storageos-related-images
+  configMap](https://github.com/storageos/operator/blob/main/bundle/manifests/storageos-related-images_v1_configmap.yaml)
+and select the branch for the release version.
+  For instance for the branch `release-v2.5.0`::
+  ```bash
+  # Images to pull
+  curl -s https://raw.githubusercontent.com/storageos/operator/release-v2.5.0/bundle/manifests/storageos-related-images_v1_configmap.yaml \
+	| cut -d: -f2- \
+	| grep ":v"
+  ```
+  In addition, pull the image `k8s.gcr.io/kube-scheduler:v1.21.5` with the tag
+  matching your Kubernetes version. In this case k8s version `v1.21.5`.
+
 - If you are installing Etcd in Kubernetes, then pull 
 	- quay.io/coreos/etcd:v3.5.0
 	- storageos/etcd-cluster-operator-controller:develop
 	- storageos/etcd-cluster-operator-proxy:develop
 
+> This page will follow the reference to the pulled images with the format
+> `<url-of-registry>/<fqdn-of-public-image>:<tag>`, even though it is common to
+> remove the qualified domain name from the image url in private registries
+> leaving the URI of the image as `<user/image>:<tag>`. Set the URL for the
+> images following the name pattern that suits your best practices.  i.e the
+> image `quay.io/k8scsi/csi-attacher:v3.1.0` is tranformed to
+> `registry-service.registry.svc:5000/quay.io/k8scsi/csi-attacher:v3.1.0`
 
 ## 2. Cluster operator yaml
 
@@ -38,7 +55,9 @@ following container prints them on stdout.
 Run locally:
 ```
 ONDAT_VERSION=v2.5.0
-docker run --rm storageos/ondat-operator-manifests:$ONDAT_VERSION > ondat-operator.yaml
+docker run   \
+	--rm \
+	storageos/operator-manifests:$ONDAT_VERSION > ondat-operator.yaml
 ```
 
 Or run in a k8s cluster:
@@ -61,8 +80,14 @@ container image URL for the private registry one.
 # Change operator image for your registry url reference
 
 ONDAT_VERSION=v2.5.0
-REGISTRY_IMG=my-registry-url/storageos/operator:$ONDAT_VERSION
-sed -i -e "s#image: storageos/operator:$ONDAT_VERSION#image: $REGISTRY_IMG#g" operator-manifests.yaml
+REGISTRY_IMG_OPERATOR=my-registry-url/storageos/operator:$ONDAT_VERSION
+sed -i -e "s#image: storageos/operator:$ONDAT_VERSION#image: $REGISTRY_IMG_OPERATOR#g" ondat-operator.yaml
+
+REGISTRY_IMG_PROXY=my-registry-url/quay.io/brancz/kube-rbac-proxy:v0.10.0
+sed -i -e "s#image: quay.io/brancz/kube-rbac-proxy:v0.10.0#image: $REGISTRY_IMG_PROXY#g" ondat-operator.yaml
+
+# Check the change
+grep -C2 "image:" ondat-operator.yaml
 ```
 
 ## 3. Define StorageOSCluster CR
@@ -77,6 +102,10 @@ The file for the `ondat-cluster.yaml` should have the Secret called
 
 
 ```yaml
+# Set the registry URL
+REGISTRY=my-registry-url
+
+cat <<END > ondat-cluster.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -101,15 +130,15 @@ spec:
   k8sDistro: "upstream"
   storageClassName: storageos
   images:
-    nodeContainer: "storageos/node:v2.5.0
-    apiManagerContainer: storageos/api-manager:v1.2.2
-    initContainer: storageos/init:v2.1.0
-    csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
-    csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
-    csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
-    csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
-    csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-    kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
+    nodeContainer: $REGISTRY/storageos/node:v2.5.0
+    apiManagerContainer: $REGISTRY/storageos/api-manager:v1.2.2
+    initContainer: $REGISTRY/storageos/init:v2.1.0
+    csiNodeDriverRegistrarContainer: $REGISTRY/quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
+    csiExternalProvisionerContainer: $REGISTRY/storageos/csi-provisioner:v2.1.1-patched
+    csiExternalAttacherContainer: $REGISTRY/quay.io/k8scsi/csi-attacher:v3.1.0
+    csiExternalResizerContainer: $REGISTRY/quay.io/k8scsi/csi-resizer:v1.1.0
+    csiLivenessProbeContainer: $REGISTRY/quay.io/k8scsi/livenessprobe:v2.2.0
+    kubeSchedulerContainer: $REGISTRY/k8s.gcr.io/kube-scheduler:v1.21.5
   kvBackend:
     address: "storageos-etcd-client.storageos:2379"
 #  nodeSelectorTerms:
@@ -118,6 +147,7 @@ spec:
 #        operator: In
 #        values:
 #        - "true"
+END
 ```
 
 > ⚠️  The `kubeSchedulerContainer` version depends on the Kubernetes version your
@@ -135,7 +165,9 @@ following container prints them on stdout.
 Run locally:
 ```
 ETCD_OPERATOR_VERSION=develop
-docker run etcd-operator-manifests --rm storageos/operator-manifests:$ETCD_OPERATOR_VERSION > etcd-operator.yaml
+docker run   \
+	--rm \
+	storageos/etcd-cluster-operator-manifests:$ETCD_OPERATOR_VERSION > etcd-operator.yaml
 ```
 
 Or run in a k8s cluster:
@@ -146,7 +178,7 @@ ETCD_OPERATOR_VERSION=develop
 kubectl run etcd-operator-manifests --image storageos/etcd-cluster-operator-manifests:develop
 
 # Get the yaml
-kubectl logs etcd-operator-manifests > etcd--operator.yaml
+kubectl logs etcd-operator-manifests > etcd-operator.yaml
 
 # Clean
 kubectl delete pod etcd-operator-manifests
@@ -160,14 +192,40 @@ container image URL for the private registry one.
 ETCD_OPERATOR_VERSION=develop
 
 # Etcd operator controller image
-REGISTRY_IMG_ETCD_OPERATOR=my-registry-url/storageos/etcd-operator:$ETCD_OPERATOR_VERSION
+REGISTRY_IMG_ETCD_OPERATOR=my-registry-url/storageos/etcd-cluster-operator-controller:$ETCD_OPERATOR_VERSION
 sed -i -e "s#image: storageos/etcd-cluster-operator-controller:$ETCD_OPERATOR_VERSION#image: $REGISTRY_IMG_ETCD_OPERATOR#g" etcd-operator.yaml
 
-REGISTRY_IMG_ETCD_PROXY=my-registry-url/storageos/etcd-proxy:$ETCD_OPERATOR_VERSION
+REGISTRY_IMG_ETCD_PROXY=my-registry-url/storageos/etcd-cluster-operator-proxy:$ETCD_OPERATOR_VERSION
 sed -i -e "s#image: storageos/etcd-cluster-operator-proxy:$ETCD_OPERATOR_VERSION#image: $REGISTRY_IMG_ETCD_PROXY#g" etcd-operator.yaml
 
 # check the images are set correctly
 grep -C2 "image:" etcd-operator.yaml
+```
+
+Once the images are set on the `etcd-operator.yaml` it is required to add the
+reqistry url as an argument to the etcd operator.
+
+Add the flag `-
+--etcd-repository=$REGISTRY/quay.io/coreos/etcd`  in
+the args of the `manager` container defined in `etcd-operator.yaml`
+
+```
+REGISTRY=my-registry-url
+
+# Old 
+      - args:
+        - --enable-leader-election
+        - --proxy-url=storageos-proxy.storageos-etcd.svc
+        command:
+        - /manager
+
+# New
+      - args:
+        - --enable-leader-election
+        - --proxy-url=storageos-proxy.storageos-etcd.svc
+        - --etcd-repository=$REGISTRY/quay.io/coreos/etcd # Edit this line with your registry url
+        command:
+        - /manager
 ```
 
 Create the Etcd cluster definition, `etcd-cluster.yaml`.
@@ -237,15 +295,15 @@ Once all the yamls are ready, the Ondat cluster can be bootstrapped.
 ### Option 1: With etcd in Kubernetes
 
 The etcd cluster in Kubernetes requires an StorageClass. If you are running on
-a cloud provider, you can use existing StorageClasses for it, i.e gp3 (AWS) or
-standard (GCE). Or you can create the local-path StorageClass. It is
+a cloud provider, you can use existing StorageClasses for it, i.e `gp3` (AWS) or
+`standard` (GCE). Or you can create the `local-path` StorageClass. It is
 recommended to give etcd a backend disk that can sustain at least 800 IOPS. It
 is best to use provisioned IOPS when possible, otherwise make sure the size of
 the disk is big enough to fulfil the IOPS requirement when performance depends
 on IOPS per GB.  For instance, AWS would require a burstable EBS bigger than
 256G to fulfil the IOPS requirement.  
 
-⚠️  The `local-path` StorageClass is only recommended for non production
+⚠️  The `local-path` StorageClass is only recommended for __non production__
 clusters as the data of the etcd peers is susceptible of being lost on node
 failure.
 
@@ -263,7 +321,8 @@ sed -i -e "s/storageClassName: local-path/storageClassName: $ETCD_STORAGECLASS/g
 
 
 ```
-# Install (plugin installs Etcd and Ondat)
+# Install (the kubectl-storageos plugin installs Etcd and Ondat)
+ETCD_STORAGECLASS=my-storage-class
 ONDAT_VERSION=v2.5.0
 kubectl storageos install \
 	--include-etcd \
@@ -290,6 +349,7 @@ ETCD_URL=http://etcd-url-or-ips:2379
 ONDAT_VERSION=v2.5.0
 kubectl storageos install \
 	--etcd-endpoints $ETCD_URL \
+        --skip-etcd-endpoints-validation \
 	--stos-operator-yaml ondat-operator.yaml \
 	--stos-cluster-yaml ondat-cluster.yaml \
 	--stos-cluster-namespace storageos \
