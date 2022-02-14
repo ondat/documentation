@@ -1,6 +1,7 @@
 ---
 title: "Ondat Portal Installation Guide"
 linkTitle: "Ondat Portal Installation Guide"
+weight: 10
 ---
 
 # Creating Credentials for Your Cluster
