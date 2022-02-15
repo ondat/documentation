@@ -11,7 +11,7 @@ The __Applications__ tab displays all of your applications. For a detailed expla
 | Column        |      Description                               |  Possible Values                                                    |
 |:--------------|:-----------------------------------------------|:--------------------------------------------------------------------|
 | __App Name__  | The name of the app                            | `String` (can contain special characters)                           |
-| __Kind__      | Indicates .....                                | __Replica__ <br />  __StatefulSet__ <br /> __Deployment__           |
+| __Kind__      | Indicates the kind of application.                              | __Replica__ <br />  __StatefulSet__ <br /> __Deployment__           |
 | __Pods__      | The number of pods for your application        | `Integer`                                                           |
 | __Pod Status__| Indicates the number of pods that are ready/syncing or with unknown/failed status| __Ready__ <br /> __Syncing__ <br /> __Unknown__ <br /> __Failed__   |
 | __PV Amount__ | Indicates the amount of PVs taken up by the app| `Integer`                                                           |
