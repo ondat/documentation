@@ -72,15 +72,18 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 * an Ondat team member will review your PR contribution and merge it 
 
 ## How to render locally the docs
-* Install hugo 0.91.0 (on mac ```brew install hugo```)
+* Install hugo __extended__ from the [hugo release
+  page](https://github.com/gohugoio/hugo/releases) for instance the `hugo_extended_0.92.1_macOS-ARM64.tar.gz`
 * Clone the documentation-backend: ```git clone https://github.com/ondat/documentation-backend.git```
 * Create symbolic links for the content into the backend directory:
 ```
-ln -sf /Users/rovandep/dev/oss/documentation/docs /Users/rovandep/dev/oss/documentation-backend/hugo-backend/content/docs
-ln -sf /Users/rovandep/dev/oss/documentation/sh /Users/rovandep/dev/oss/documentation-backend/hugo-backend/static/sh
-ln -sf /Users/rovandep/dev/oss/documentation/yaml /Users/rovandep/dev/oss/documentation-backend/hugo-backend/static/yaml
-ln -sf /Users/rovandep/dev/oss/documentation/images/docs /Users/rovandep/dev/oss/documentation-backend/hugo-backend/static/images/docs
-ln -sf /Users/rovandep/dev/oss/documentation/images/generic /Users/rovandep/dev/oss/documentation-backend/hugo-backend/static/images/generic
+PATH_TO_DOCS_SOURCE=/path/to/the/source/of/docs 
+PATH_TO_DOCS_BACKEND=/path/to/the/backend/repo
+rsync -az $PATH_TO_DOCS_SOURCE/docs/ $PATH_TO_DOCS_BACKEND/hugo-backend/content/docs
+rsync -az $PATH_TO_DOCS_SOURCE/sh/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/sh
+rsync -az $PATH_TO_DOCS_SOURCE/yaml/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/yaml
+rsync -az $PATH_TO_DOCS_SOURCE/images/docs/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/images/docs
+rsync -az $PATH_TO_DOCS_SOURCE/images/generic/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/images/generic
 ``` 
 * Go in documentation-backend/hugo-backend and run ```hugo server -D --config config/latest.toml```
 * Open a browser to http://127.0.0.1:1313 
