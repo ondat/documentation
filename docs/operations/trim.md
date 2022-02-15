@@ -19,6 +19,7 @@ device.
 
 The example below shows the effect of `fstrim` on an Ondat volume mounted on
 `/mnt`.
+
 ```
 # A Ondat volume with some data written to it.
 $ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk '!/^total/ {total = total + $1}END{print total}'
@@ -131,6 +132,7 @@ mountOptions:
 You can also edit an existing PersistentVolume to add `discard` to
 `.spec.mountOptions`, this ensures that the next time the volume is mounted it
 will use `-o discard`.
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -141,5 +143,3 @@ spec:
   - discard
   volumeMode: Filesystem
 ```
-
-

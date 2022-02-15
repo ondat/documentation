@@ -73,6 +73,7 @@ Global Flags:
 ```
 
 ## delete user
+
 ```bash
 $ storageos delete user --help
 
@@ -105,6 +106,7 @@ Global Flags:
 ```
 
 ## delete policy-group
+
 ```bash
 $ storageos delete policy-group --help
 
@@ -138,6 +140,7 @@ Global Flags:
 ```
 
 ## delete node
+
 ```bash
 $ storageos delete node --help
 
@@ -170,6 +173,7 @@ Global Flags:
 ```
 
 ## delete namespace
+
 ```bash
 $ storageos delete namespace --help
 

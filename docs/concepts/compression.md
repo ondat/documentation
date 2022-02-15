@@ -27,7 +27,5 @@ uncompressible blocks. Ondat's patented on-disk format is used to tell
 whether individual blocks are compressed without overhead. As such volume
 compression can be dynamically enabled/disabled even while a volume is in use.
 
-When compression and [encryption](/docs/concepts/encryption) are both enabled
+When compression and [encryption](/docs/reference/encryption) are both enabled
 for a volume, blocks are compressed then encrypted.
-
-

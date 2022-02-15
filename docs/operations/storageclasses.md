@@ -83,10 +83,9 @@ StorageClass have the same labels.
 You can also choose to add the label in the PVC definition rather than the
 StorageClass. The PVC definition takes precedence over the StorageClass.
 
-
 ### Topology Aware Storage Class
 
-StorageClass that enables [Topology Aware Placement](/docs/reference/tap) 
+StorageClass that enables [Topology Aware Placement](/docs/reference/tap)
 and replication with [soft mode](/docs/operations/failure-modes):
 
 ```yaml
@@ -104,7 +103,6 @@ parameters:
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 ```
-
 
 ### Encrypted volumes Storage Class
 

@@ -68,4 +68,3 @@ For ease of use the example uses the CoreOS etcd operator and the CoreOS guide
 The example uses the CoreOS etcd operator and follows the [CoreOS guide for
 Cluster
 TLS](https://github.com/coreos/etcd-operator/blob/master/doc/user/cluster_tls.md).
-

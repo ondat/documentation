@@ -18,7 +18,6 @@ Ondat automatically enables the use of a custom scheduler for any Pod
 using Ondat Volumes. Checkout the [Admission Controller reference](/docs/reference/scheduler/admission-controller) for more
 information.
 
-
 ## Storageos Kubernetes Scheduler
 
 Ondat achieves Pod locality by implementing a Kubernetes scheduler
@@ -67,7 +66,6 @@ binding to the default Kubernetes scheduler.
 
 ```
 
-
 ## Scheduling Rules
 
 The Ondat scheduler filters nodes ensuring that the remaining subset
@@ -75,4 +73,3 @@ fulfill the following prerequisites:
 
 - The node is running Ondat
 - The node is healthy
-

@@ -5,7 +5,7 @@ linkTitle: Prometheus
 
 ![prometheuslogo](/images/docs/explore/prom.png)
 
-Prometheus is a popular application used for event monitoring and alerting in 
+Prometheus is a popular application used for event monitoring and alerting in
 Kubernetes.
 
 Before you start, ensure you have Ondat installed and ready on a Kubernetes
@@ -19,11 +19,13 @@ creating a Prometheus StatefulSet and using Ondat to provide persistent
 storage.
 
 1. You can find the latest files in the Ondat use cases repository
+
    ```bash
    git clone https://github.com/storageos/use-cases.git storageos-usecases
    ```
 
    Prometheus Custom Resource definition
+
    ```yaml
     apiVersion: monitoring.coreos.com/v1
     kind: Prometheus
@@ -46,6 +48,7 @@ storage.
             requests:
               storage: 1Gi
     ```
+
    This excerpt is from the Prometheus Custom Resource definition. This file
    contains the VolumeClaimTemplate that will dynamically provision storage,
    using the Ondat storage class. Dynamic provisioning occurs due to the
@@ -57,8 +60,8 @@ storage.
    and create a Prometheus resource.
 
    ```bash
-   $ cd storageos-usecases/prometheus
-   $ ./install-prometheus.sh
+   cd storageos-usecases/prometheus
+   ./install-prometheus.sh
    ```
 
 1. Confirm Prometheus is up and running.
@@ -70,6 +73,7 @@ storage.
    ```
 
 1. You can see the created PVC using.
+
     ```bash
     $ kubectl get pvc
     NAME                                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS           AGE
@@ -86,6 +90,7 @@ storage.
    storageos cluster was setup using ETCD as pods. For more information about
    service monitors, have a look at the upstream
    [documentation](https://coreos.com/operators/prometheus/docs/latest/user-guides/getting-started.html).
+
     ```bash
     $ kubectl get servicemonitor                       
     NAME             AGE
@@ -94,9 +99,11 @@ storage.
 
 1. The Prometheus web ui can be accessed by port-forwarding the Prometheus pods
    port to localhost.
+
    ```bash
-   $ kubectl port-forward prometheus-prometheus-storageos-0 9090
+   kubectl port-forward prometheus-prometheus-storageos-0 9090
    ```
+
    Then launch a web browser and go to `localhost:9090` to access the
    Prometheus web ui. You can confirm that the storageos-etcd target is
    configured there.

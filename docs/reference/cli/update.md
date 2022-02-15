@@ -29,7 +29,6 @@ Global Flags:
       --username string         set the Ondat account username to authenticate as (default "storageos")
 ```
 
-
 ## Update volume description
 
 ```bash
@@ -60,6 +59,7 @@ $ storageos update volume labels my-volume-name --delete app=my-app --upsert tie
 $ storageos update volume labels my-volume-name --upsert tier=production --namespace my-namespace-name
 $ storageos update volume labels my-volume-name --delete app=my-app --namespace my-namespace-name
 ```
+
 ## Update volume replicas
 
 ```bash

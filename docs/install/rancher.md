@@ -12,7 +12,6 @@ methods:
 
 > ⚠️ Before proceeding, ensure that you have followed our [prerequisites](/docs/prerequisites/).
 
-
 > ⚠️ On Rancher, pay particular attention to
 > the OS version and image used - some platforms require extra mainline kernel
 > modules to be enabled.
@@ -20,12 +19,12 @@ methods:
 ## Catalog Install
 
 Ondat is a Certified application in the [Rancher
-Catalog](https://rancher.com/docs/rancher/v2.x/en/catalog/). You can install
+Catalog](https://rancher.com/docs/rancher/v2.0-v2.4/en/helm-charts/). You can install
 Ondat using the Rancher application install.
 
 Before completing the steps below, you will need an etcd cluster. For
-evaluation use our simple [test](/docs/prerequisites/etcd#testing) recipe. 
-For production installations, follow our [production](/docs/prerequisites/etcd#production) recipe. 
+evaluation use our simple [test](/docs/prerequisites/etcd#testing) recipe.
+For production installations, follow our [production](/docs/prerequisites/etcd#production) recipe.
 Make a note of the etcd endpoint URL in either case.
 
 1. Select the `System` project of your cluster
@@ -55,7 +54,6 @@ Make a note of the etcd endpoint URL in either case.
     For further customization, you can opt to set the option to 'Install
     Ondat Cluster' to false and install a custom CR. See [below](/docs/install/rancher#advancedcustomization) for this.
 
-
     ![install-4](/images/docs/rancher-ui-v2/rancher-4.png)
 
 5. Launch the Ondat cluster
@@ -77,9 +75,10 @@ Make a note of the etcd endpoint URL in either case.
     be advisable):
 
       ```bash
-      $ kubectl port-forward -n storageos svc/storageos 5705
+      kubectl port-forward -n storageos svc/storageos 5705
       ```
-    Now follow the instructions on our [licensing operations](/docs/operations/licensing) 
+
+    Now follow the instructions on our [licensing operations](/docs/operations/licensing)
     page to obtain and apply a license.
 
     Installation of Ondat is now complete.
@@ -99,7 +98,7 @@ created.
 * **Container Images** : By default images are pulled from DockerHub, you can
 * specify the image URLs
 when using private registries.
-* **Install Ondat cluster** 
+* **Install Ondat cluster**
 : Controls the automatic deployment of Ondat after installing the Cluster
 Operator. If set to `false`, the Operator will be created, but a Custom Resource will
 not be applied to the cluster. Launch the operator and proceed to the section
@@ -175,6 +174,7 @@ now create a Custom Resource that describes the Ondat cluster.
             values:
             - "true"
     ```
+
     > 💡 Additional `spec` parameters are available on the [Cluster Operator
     > configuration](/docs/reference/cluster-operator/configuration) page.
 
@@ -241,7 +241,6 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 > personal license is free, and supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
-
 
 ## First Ondat volume
 

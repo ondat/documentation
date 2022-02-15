@@ -9,7 +9,7 @@ description: >
 
 # Prerequisites
 
-## Minimum requirements:
+## Minimum requirements
 
 One machine with the following:
 
@@ -21,7 +21,7 @@ One machine with the following:
 1. [Etcd cluster](/docs/prerequisites/etcd) for Ondat
 1. A mechanism for [device presentation](/docs/prerequisites/systemconfiguration).
 
-## Recommended:
+## Recommended
 
 1. At least three nodes for replication and high availability.
 1. Kubernetes 1.18 to 1.22

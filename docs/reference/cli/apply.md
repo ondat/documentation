@@ -4,6 +4,7 @@ linkTitle: Apply
 ---
 
 ## Apply changes to resources
+
 ```bash
 $ storageos apply --help
 Make changes to existing resources
@@ -32,8 +33,8 @@ Global Flags:
 Use "storageos apply [command] --help" for more information about a command.
 ```
 
-
 ## Apply License
+
 ```bash
 $ storageos apply licence --help
 

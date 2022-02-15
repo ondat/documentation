@@ -17,15 +17,16 @@ The files create a stateful set that can be used *AFTER* an Ondat cluster
 has been created. [See our guide on how to install Ondat on Kubernetes for more
 information](/docs/install/kubernetes).
 
-
 ## Clone Repository
 
 In order to deploy the examples, clone this repository and use kubectl to create the
 Kubernetes objects.
+
 ```bash
-$ git clone https://github.com/storageos/use-cases.git storageos-usecases
-$ cd storageos-usecases/backup
+git clone https://github.com/storageos/use-cases.git storageos-usecases
+cd storageos-usecases/backup
 ```
+
 > 💡 Before deploying the backup-example stateful set we recommend looking
 > through the examples to understand how the different containers are
 > configured
@@ -41,6 +42,7 @@ $ cd storageos-usecases/backup
     statefulset.apps/backup-example created
     pod/busybox created
     ```
+
 1. Check that a backup-example pod is running
 
     ```bash
@@ -57,6 +59,7 @@ $ cd storageos-usecases/backup
     ```
 
 1. Check that the service exists
+
     ```bash
     $ kubectl get svc backup-example-nginx
     NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
@@ -66,6 +69,7 @@ $ cd storageos-usecases/backup
 1. Use wget to access the files served by Nginx. Nginx is sharing files from
    the same volume that the `main` application container is writing to. The
    connection to the Nginx container is made via the backup-example service.
+
     ```bash
     $ kubectl exec -it busybox -- /bin/wget -q -O- http://backup-example-nginx
         <html>
@@ -155,7 +159,7 @@ date.txt was synchronized to the rsync container.
 1. Deploy the sftp example
 
     ```bash
-    $ kubectl create -f sftp/
+    kubectl create -f sftp/
     ```
 
 1. Exec into the `main` container and write some data to a file
@@ -166,6 +170,7 @@ date.txt was synchronized to the rsync container.
     ```
 
 1. Check that the service exists
+
     ```bash
     $ kubectl get svc backup-example-sftp
     NAME                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
@@ -207,13 +212,12 @@ restrict logins to the SSH key edit the sftp-config secret so it contains no
 password (user::uid:guid).
 
 1. Connect to the sftp pod and connect through the service to the SFTP container
-running inside the backup-example pod. 
+running inside the backup-example pod.
 
-    ```bash 
+    ```bash
     $ kubectl exec -it sftp -- bash
     root@sftp:/# sftp -i /home/alex/.ssh/id_rsa alex@backup-example-sftp
     Connected to backup-example-sftp.
     sftp> ls
     date.txt    lost+found
     ```
-

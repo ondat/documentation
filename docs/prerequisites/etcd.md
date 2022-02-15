@@ -180,6 +180,7 @@ follows:
     ```
 
     Wait for the Etcd Operator Pod to start
+
     ```bash
     kubectl -n $NAMESPACE get pod -lapp=etcd-operator
     ```
@@ -267,7 +268,6 @@ __The etcd-operator doesn't support a full stop of the cluster. Stopping the
 etcd cluster causes the loss of all the etcd keystore and make Ondat
 unable to perform metadata changes.__
 
-
 ## Production - Etcd on External Virtual Machines
 
 For production installations, Ondat strongly recommends running etcd
@@ -290,9 +290,9 @@ directory is modified. The ansible playbook below will default the etcd
 installation directory to `/var/lib/storageos-etcd`.__
 
 You can choose between two installation options.
+
 - [Manual Installation](#installation---manual)
 - [Ansible Installation](#installation---ansible)
-
 
 ### Installation - Manual
 
@@ -309,6 +309,7 @@ using standard package management commands and systemd manifests.
     export CLIENT_PORT="2379"
     export PEERS_PORT="2380"
     ```
+
     > ⚠️ __If targeting Kubernetes Master nodes, you must change
     > `CLIENT_PORT`, `PEERS_PORT`__
 
@@ -338,7 +339,7 @@ using standard package management commands and systemd manifests.
 
 1. Create the systemd environment file
 
-    On all nodes that will run etcd create a systemd environemnt file
+    On all nodes that will run etcd create a systemd environment file
     `/etc/etcd.conf` which has the IPs of all the nodes. The `NODE_IP` will
     need to change to correspond to the node IP where the environment file
     resides. `NODE1_IP`, `NODE2_IP` and `NODE3_IP` will remain the same across
@@ -442,9 +443,9 @@ using standard package management commands and systemd manifests.
 1. Reload and start the etc3 systemd service
 
     ```bash
-    $ systemctl daemon-reload
-    $ systemctl enable etcd3.service
-    $ systemctl start  etcd3.service
+    systemctl daemon-reload
+    systemctl enable etcd3.service
+    systemctl start  etcd3.service
     ```
 
 1. Installation Verification
@@ -469,14 +470,15 @@ tool such as ansible is recommended. Ondat provides an ansible playbook to
 help you deploy etcd on standalone virtual machines.
 
 1. Clone Ondat deployment repository
+
     ```bash
     git clone https://github.com/storageos/deploy.git
     cd k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd
     ```
+
 1. Edit the inventory file
     > 💡 The inventory file targets the nodes that will run etcd. The file
     > `hosts` is an example of such an inventory file.
-
 
     ```bash
     $ cat hosts
@@ -533,6 +535,7 @@ help you deploy etcd on standalone virtual machines.
     > Ansible by: `ansible-playbook create_ca.yaml`.
 
 1. Install
+
     ```bash
     ansible-playbook -i hosts install.yaml
     ```
@@ -569,7 +572,7 @@ having a network partition between them will result in quorum lost.
 
 Kubernetes external services use a DNS name to reference external endpoints,
 making them easy to reference from inside the cluster.  You can use the
-example from the [helper github repository](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc)
+example from the [helper GitHub repository](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc)
 to deploy the external Service. Using an external service can make monitoring
 of etcd from Prometheus easier.
 

@@ -5,7 +5,7 @@ weight: 1
 ---
 
 > ⚠️ Make sure the
-> [prerequisites for Ondat](/docs/prerequisites/_index) are
+> [prerequisites for Ondat](/docs/prerequisites) are
 > satisfied before proceeding.
 
 > ⚠️ Make sure to add a Ondat licence after installing.
@@ -76,7 +76,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 > personal license is free, and supports up to 1TiB of provisioned storage.
 
-To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
+To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
 ## Install Ondat on Kubernetes 1.21
 
@@ -135,7 +135,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 > personal license is free, and supports up to 1TiB of provisioned storage.
 
-To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
+To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
 ## Install Ondat on Kubernetes 1.20
 
@@ -194,7 +194,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 > personal license is free, and supports up to 1TiB of provisioned storage.
 
-To obtain a license, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
+To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
 ## Install Ondat on Kubernetes 1.19
 
@@ -255,7 +255,6 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
-
 ## Install Ondat on Kubernetes 1.18
 
 ### Install the storageos kubectl plugin
@@ -315,12 +314,11 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
-
 ## Airgapped clusters
 
 Airgapped clusters can install Ondat by defining the container images uploaded
 on private registries using the Custom Resource definition of the
-StorageOSCluster. Check the kubectl plugin reference for the 
+StorageOSCluster. Check the kubectl plugin reference for the
 [declarative installation](/docs/reference/kubectl-plugin#declarative-installation).
 
 ## First Ondat volume

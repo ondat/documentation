@@ -15,10 +15,13 @@ information](/docs/install/kubernetes).
 ## Deploying MS SQL on Kubernetes
 
 1. You can find the latest files in the Ondat use cases repository
+
    ```bash
    git clone https://github.com/storageos/use-cases.git storageos-usecases
    ```
+
    StatefulSet defintion
+
    ```yaml
    kind: StatefulSet
    metadata:
@@ -50,6 +53,7 @@ information](/docs/install/kubernetes).
           requests:
             storage: 5Gi
    ```
+
    This excerpt is from the StatefulSet definition. This file contains the
    VolumeClaim template that will dynamically provision storage, using the
    Ondat storage class. Dynamic provisioning occurs as a volumeMount has
@@ -72,6 +76,7 @@ information](/docs/install/kubernetes).
 
 1. Connect to the MS SQL client pod and connect to the MS SQL server through the
    service
+
    ```bash
     $ kubectl exec -it mssql-0 -- /opt/mssql-tools/bin/sqlcmd -S mssql-0.mssql -U SA -P 'Password15'
     1> USE master;

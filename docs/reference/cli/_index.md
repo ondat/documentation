@@ -3,7 +3,7 @@ title: "Command Line Interface"
 linkTitle: CLI
 ---
 
-The `storageos` command line interface (CLI) is used to manage cluster-wide
+The `storageos` command-line interface (CLI) is used to manage cluster-wide
 configuration.
 
 It is highly recommended to install the CLI, since it can be used to generate a
@@ -36,6 +36,7 @@ export STORAGEOS_USERNAME=storageos
 export STORAGEOS_PASSWORD=storageos
 export STORAGEOS_ENDPOINTS=10.1.5.249:5705
 ```
+
 ### Run the CLI as a deployment in your cluster
 
 This is a preferred installation method, since our support bundle generation
@@ -172,4 +173,4 @@ that are passed to `--output` are 'json', 'yaml' or 'text'.
 | `update`      | `volume`                                                            | Make changes to existing resources      |
 | `version`     |                                                                     | Show CLI version.                       |
 
-[Source is available on Github](https://github.com/storageos/go-cli).
+[Source is available on GitHub](https://github.com/storageos/go-cli).

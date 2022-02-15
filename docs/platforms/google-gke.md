@@ -19,4 +19,3 @@ Linux image distribution used fulfils the [System Configuration](/docs/prerequis
 
 Once a Kubernetes cluster is provisioned, StorageOS can be installed following
 the [instructions](/docs/install/kubernetes) page.
-

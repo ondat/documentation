@@ -5,6 +5,7 @@ weight: 200
 ---
 
 ## Port list
+
 Ondat daemons listen on specific ports, which we require to be accessible
 between all nodes in the cluster:
 
@@ -22,11 +23,13 @@ between all nodes in the cluster:
 > outgoing traffic should to other nodes be enabled.
 
 ## Firewalls and VPS providers
+
 Some VPS providers (such as Digital Ocean) ship default firewall rulesets which
 must be updated to allow Ondat to run. Some example rules are shown below -
 modify to taste.
 
 ### UFW
+
 For distributions using UFW, such as RHEL and derivatives:
 
 ```bash
@@ -37,6 +40,7 @@ ufw allow 25705:25960/tcp
 ```
 
 ### Firewalld
+
 For distributions that enable firewalld to control iptables such as some installations of OpenShift.
 
 ```bash
@@ -47,6 +51,7 @@ firewall-cmd --reload
 ```
 
 ### Iptables
+
 For those using plain iptables:
 
 ```bash
@@ -63,4 +68,3 @@ iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment 'Permit outbound traffic' -
 ```
 
 > ⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.
-

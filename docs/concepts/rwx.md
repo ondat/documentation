@@ -15,11 +15,11 @@ implementation, this is NFS.
 
 ## Architecture
 
-For each RWX Volume, the following components are involved: 
+For each RWX Volume, the following components are involved:
 
 **Ondat ReadWriteOnly (RWO) Volume**
 
-Ondat provisions a standard [Volume](/docs/concepts/volumes) that provides 
+Ondat provisions a standard [Volume](/docs/concepts/volumes) that provides
 a block device for the file system of the NFS server. This
 means that every RWX Volume has its own RWO Volume. This allows RWX Volumes to
 leverage the synchronous replication and automatic failover functionality of
@@ -56,7 +56,7 @@ The sequence in which a RWX PVC is provisioned and used is as follows:
    Kubernetes).
 4. When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
    on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
-   RWO Ondat Volume as its back end disk.
+   RWO Ondat Volume as its backend disk.
 5. The Ondat API Manager publishes the host IP and port for the NFS service
    endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
    server export endpoint.
@@ -78,5 +78,5 @@ application Node (where the user's Pod is running) automatically reconnects.
 - A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
   Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
   namespace.
-- Ondat RWX Volumes support volume resize. Refer to the [resize](/docs/operations/resize") 
+- Ondat RWX Volumes support volume resize. Refer to the [resize](/docs/operations/resize)
 documentation for more details.

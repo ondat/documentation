@@ -18,14 +18,14 @@ bare metal, in virtual machines or on cloud providers.
 ![Ondat cluster components](/images/docs/concepts/storageos-cluster.png)
 
 Read about [the cloud native storage principles behind
-Ondat](https://storageos.com/storageos-cloud-native-storage).
+Ondat](https://www.ondat.io/platform/platform-overview).
 
 ### Ondat on Kubernetes
 
 Ondat is architected as a series of containers that fulfil separate,
 discrete functions.
 
-Links where appropriate have been given to our open-source GitHub repo.
+Links where appropriate have been given to our open-source GitHub repository.
 
 * [Ondat Cluster Operator](https://github.com/storageos/operator)
 
@@ -50,7 +50,7 @@ and caching.
 Responsible for scheduling applications on the same node as an application's
 volumes. Ondat uses a custom Kubernetes scheduler to handle pod placement,
 ensuring that volumes are deployed on the same nodes as the relevant workloads
-as often as possible. 
+as often as possible.
 
 * [CSI helper](https://github.com/storageos/external-provisioner)
 
@@ -67,7 +67,7 @@ Kubernetes Operator and is also able to communicate with the Ondat control
 plane API. This application handles typical operator tasks like labelling or
 removing nodes from Ondat when removed from the Kubernetes. It is
 continually  monitoring the state of the cluster and moving it towards the
-desired state when necessary. 
+desired state when necessary.
 
 Ondat is deployed by the Ondat Cluster Operator. In Kubernetes, the
 Ondat Controlplane and Dataplane are deployed in a single pod managed by a

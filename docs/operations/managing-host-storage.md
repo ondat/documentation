@@ -44,6 +44,7 @@ Ondat will use the new available space to create new data files.
     device `/dev/xvdf` to expand Ondat available space.
 
     List available block devices in the host.
+
     ```
     root@node0:~# lsblk
     NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -53,6 +54,7 @@ Ondat will use the new available space to create new data files.
     ```
 
     Check Ondat cluster's available capacity.
+
     ```
     $ storageos get node -ojson | jq -r '.[] | { name: .name, capacity: .capacity.total  }'
     "node0"
@@ -64,6 +66,7 @@ Ondat will use the new available space to create new data files.
     ```
 
 1. Format device
+
     ```
     root@node0:/var/lib/storageos/data# mkfs -t ext4 /dev/xvdf
     mke2fs 1.42.12 (29-Aug-2014)
@@ -80,6 +83,7 @@ Ondat will use the new available space to create new data files.
     ```
 
 1. Mount filesystem
+
     ```
     root@node0:~# mkdir -p /var/lib/storageos/data/dev2
     root@node0:~# mount /dev/xvdf /var/lib/storageos/data/dev2
@@ -103,7 +107,6 @@ Ondat will use the new available space to create new data files.
 
 > 💡 Persist the mount at boot by adding the mount endpoint to `/etc/fstab`
 
-
 ## Option 2: Expand Existing Devices Backed by LVM
 
 This option enables operators to take advantage of LVM to manage disks.
@@ -114,8 +117,8 @@ This option enables operators to take advantage of LVM to manage disks.
     using a volumegroup named `storageos` and logical volume called `data`. There
     is a second physical disk `/dev/xvdg` unused.
 
-
     List available block devices in the host.
+
     ```
     root@node2:~# lsblk
     NAME             MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -127,6 +130,7 @@ This option enables operators to take advantage of LVM to manage disks.
     ```
 
     Check Ondat cluster's available capacity.
+
     ```
     $ storageos get node -ojson | jq -r '.[] | { name: .name, capacity: .capacity.total  }'
     "node0"
@@ -145,6 +149,7 @@ This option enables operators to take advantage of LVM to manage disks.
     ```
 
     The volume group `storageos` must have 2 physical volumes (#PV)
+
     ```
     root@node2:~# vgs
       VG        #PV #LV #SN Attr   VSize   VFree
@@ -175,6 +180,7 @@ This option enables operators to take advantage of LVM to manage disks.
 1. Check new available space
 
     The mounted file system to `/var/lib/storageos` has increased its size.
+
     ```
     root@node2:~# df -h /dev/mapper/storageos-data
     Filesystem                  Size  Used Avail Use% Mounted on
@@ -182,6 +188,7 @@ This option enables operators to take advantage of LVM to manage disks.
     ```
 
     Ondat available storage has increased too.
+
     ```
     $ storageos get node -ojson | jq -r '.[] | { name: .name, capacity: .capacity.total  }'
     "node0"

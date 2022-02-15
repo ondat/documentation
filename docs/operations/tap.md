@@ -24,9 +24,9 @@ enable Topology-Aware Placement on a PVC, set it to the `soft` Failure Mode.
     > `topology.kubernetes.io/zone` is used by default.
 
     ```
-    $ kubectl label node worker-1 custom-region=1 
-    $ kubectl label node worker-2 custom-region=2
-    $ kubectl label node worker-3 custom-region=3
+    kubectl label node worker-1 custom-region=1 
+    kubectl label node worker-2 custom-region=2
+    kubectl label node worker-3 custom-region=3
     ```
 
 1. Create a new PVC with no replicas.
@@ -53,8 +53,9 @@ enable Topology-Aware Placement on a PVC, set it to the `soft` Failure Mode.
    this via the CLI for convenience.
 
     ```
-    $ kubectl label pvc pvc-tap storageos.com/replicas=3
+    kubectl label pvc pvc-tap storageos.com/replicas=3
     ```
+
     > 💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
     > replicas).
 
@@ -67,7 +68,7 @@ between the zones we just set.
 Get the volume name:
 
 ```
-$ kubectl get pvc pvc-tap-test-owide
+kubectl get pvc pvc-tap-test-owide
 ```
 
 You will get the following:
@@ -75,10 +76,11 @@ You will get the following:
 ```
 pvc-tap-test   Bound    pvc-49404512-7905-42a3-be94-a56854796bdd /docs.
 ```
+
 Now, you can look up that volume with the CLI:
 
 ```
-$ storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
+storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
 ```
 
 ```

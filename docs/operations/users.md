@@ -8,7 +8,7 @@ Ondat [namespaces](/docs/operations/namespaces) using
 [policies](/docs/operations/policies).
 
 >💡 Users are created with access to the default namespace. This access is
->only revoked when a policy is created for the user or their group. 
+>only revoked when a policy is created for the user or their group.
 
 ## Managing users
 
@@ -19,9 +19,8 @@ Alternatively users can also be managed using the CLI.
 To create a user with the CLI, run:
 
 ```bash
-$ storageos user create jim
+storageos user create jim
 ```
 
 The above command will create a user named jim. The command will also prompt
 you to enter a password for the newly created user.
-

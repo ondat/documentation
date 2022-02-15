@@ -16,10 +16,13 @@ information](/docs/install/kubernetes).
 ## Deploying Nginx on Kubernetes
 
 1. You can find the latest files in the Ondat use cases repostiory
+
    ```bash
    git clone https://github.com/storageos/use-cases.git storageos-usecases
    ```
+
    StatefulSet definition
+
    ```yaml
    apiVersion: apps/v1
    kind: StatefulSet
@@ -54,6 +57,7 @@ information](/docs/install/kubernetes).
                requests:
                  storage: 5Gi
    ```
+
    This excerpt is from the StatefulSet definition. This file contains the
    VolumeClaim template that will dynamically provision storage, using the
    Ondat storage class. Dynamic provisioning occurs as a volumeMount has
@@ -74,7 +78,7 @@ information](/docs/install/kubernetes).
    nginx-0     1/1      Running    0          1m
    ```
 
-1. Connect to the nginx pod and write a file to /usr/share/nginx/html that
+1. Connect to the nginx pod and write a file to `/usr/share/nginx/html` that
    Nginx
    will serve.
 
@@ -85,6 +89,7 @@ information](/docs/install/kubernetes).
 
 1. Connect to the Busybox pod and connect to the Nginx server through the
    service and retrieve the directory index from Nginx.
+
     ```bash
     $ kubectl exec -it busybox -- /bin/sh
     / # wget -q -O- nginx
@@ -99,6 +104,7 @@ information](/docs/install/kubernetes).
     ```
 
 1. Retrieve and display the contents of the greetings.txt file
+
     ```bash
     / # wget -q -O- nginx/greetings.txt
     Hello world!

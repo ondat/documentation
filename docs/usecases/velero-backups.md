@@ -9,6 +9,7 @@ linkTitle: Velero Backups
 recovery, and migrate Kubernetes cluster resources and persistent volumes.
 
 Velero consists of the following components:
+
 1. A Velero Server in the cluster
 1. A CLI client
 1. A restic daemonset in the cluster
@@ -43,6 +44,7 @@ Here are the prerequisites for running Velero in your Kubernetes cluster:
 1. Kubernetes cluster version 1.18 to 1.22 with DNS
 1. Kubectl installed
 1. Velero cli installed https://Velero.io/docs/main/basic-install/
+
 > 💡 Velero can also be installed from a helm chart
 
 ## Install MinIO with an Ondat volume
@@ -50,7 +52,7 @@ Here are the prerequisites for running Velero in your Kubernetes cluster:
 1. First, make sure to clone the Ondat use cases repository and navigate to
 the Velero directory:
 
-    ```bash 
+    ```bash
     git clone https://github.com/storageos/use-cases.git 
     cd use-cases/Velero
     ```
@@ -87,7 +89,7 @@ use the helm chart. To install it using the Velero cli, just run this command:
 > 💡 The AWS plugin is being used because MinIO implements the S3 API. This is
 > required even if you're not using AWS.
 
-```bash 
+```bash
 velero install                                                                                   \
 --provider aws                                                                                   \
 --plugins velero/velero-plugin-for-aws:v1.0.0                                                    \
@@ -116,6 +118,7 @@ time="2020-08-25T15:33:09Z" level=info msg="Starting controller" controller=down
 time="2020-08-25T15:33:09Z" level=info msg="Starting controller" controller=gc-controller logSource="pkg/controller/generic_controller.go:76"
 time="2020-08-25T15:33:09Z" level=info msg="Starting controller" controller=serverstatusrequest logSource="pkg/controller/generic_controller.go:76"
 ```
+
 ## Quiesce
 
 Before moving on to the MySQL use case, it is important to talk about quiescence.
@@ -134,13 +137,13 @@ For the our use case, we'll use Velero with a real world application, MySQL.
 
 1. First deploy MySQL, based on the MySQL use case:
 
-    ```bash 
+    ```bash
     kubectl apply -f ./mysql 
     ```
 
     Notice that the Statefulset also includes 5 annotations:
 
-    ```yaml 
+    ```yaml
     annotations:
         backup.velero.io/backup-volumes: data
         pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/var/lib/mysql"]'
@@ -152,7 +155,7 @@ For the our use case, we'll use Velero with a real world application, MySQL.
     The first annotation specifies which volume to backup using restic. The other
     annotations are used to perform an fsfreeze on the volume mount point using pre
     and post backup hooks, for more details about Velero pre/post backup hooks
-    please see their documentation [here](https://Velero.io/docs/main/hooks/).
+    please see their documentation [here](https://velero.io/docs/main/restore-hooks/#docs) and [here](https://velero.io/docs/main/backup-hooks/#docs).
 
     We have to specify to use the `fsfreeze` ubuntu container since the MySQL
     container doesn't support fsfreeze
@@ -173,7 +176,7 @@ For the our use case, we'll use Velero with a real world application, MySQL.
 
 1. Wait for the pod to spin up:
 
-    ```bash 
+    ```bash
     $ kubectl get pods -n mysql
     NAME      READY   STATUS    RESTARTS   AGE
     client    1/1     Running   0          24m
@@ -182,7 +185,7 @@ For the our use case, we'll use Velero with a real world application, MySQL.
 
 1. Exec into the MySQL pod and populate it with data using the commands below.
 
-    ```bash 
+    ```bash
     $ kubectl exec mysql-0 -n mysql -ti -c mysql -- mysql
     mysql> create database shop;
     mysql> use shop;
@@ -200,32 +203,31 @@ For the our use case, we'll use Velero with a real world application, MySQL.
 
 1. Create the Velero backup:
 
-    ```bash 
+    ```bash
     velero backup create mysql-backup --include-namespaces mysql --wait
     ```
 
 1. Confirm that all the Kubernetes objects are there and the restic backups
 completed successfully:
 
-    ```bash 
+    ```bash
     velero backup describe mysql-backup --details
     ```
 
 1. After the backup is finished, delete the StatefulSet and PVC.
 
-
     > ⚠️ It's important to make sure that the StatefulSet is deleted because the
     > restore would be unable to complete if a StatefulSet pod is recreated during
     > the restore process.
 
-    ```bash 
+    ```bash
     kubectl delete statefulset mysql -n mysql
     kubectl delete pvc data-mysql-0 -n mysql
     ```
 
 1. Make sure that the pod is fully terminated:
 
-    ```bash 
+    ```bash
     $ kubectl get pods -n mysql
     NAME     READY   STATUS    RESTARTS   AGE
     client   1/1     Running   0          25m

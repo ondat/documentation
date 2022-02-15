@@ -13,7 +13,6 @@ place.
 Note, that Ondat only supports increasing volume size. For more
 information on how the resize works, see our [Resize Concepts](/docs/concepts/volumes#volume-resize) page.
 
-
 ### Resizing a Volume
 
 In order to resize a PVC the storage request field must be updated.
@@ -37,7 +36,7 @@ performing the operation, scale down any pods using the volume. This will
 ensure that it is not in use.
 
 In order to edit a PVC you can use `kubectl edit` or `kubectl apply` to make
-changes. 
+changes.
 
 > ⚠️ Resizing a volume without updating the PVC directly will NOT result in
 > the PVC being updated. The methods below are included for completeness. In

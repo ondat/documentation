@@ -104,6 +104,7 @@ Global Flags:
 ```
 
 ## get license
+
 ```bash
 $ storageos get license --help
 
@@ -206,6 +207,7 @@ Global Flags:
       --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
       --username string         set the Ondat account username to authenticate as (default "storageos")
 ```
+
 ## get policy-group
 
 ```bash

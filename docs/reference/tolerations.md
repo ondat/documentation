@@ -19,7 +19,6 @@ Kubernetes while others are automatically added by the Ondat operator.
 For more information about tolerations please see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 
-
 ```yaml
 tolerations:
 # The unreachable and not-ready tolerations are added by Kubernetes to daemonsets automatically
@@ -51,4 +50,3 @@ tolerations:
 To add custom tolerations to the Ondat daemonset [configure them in the
 StorageOSCluster
 resource](/docs/reference/cluster-operator/examples#specifying-custom-tolerations).
-
