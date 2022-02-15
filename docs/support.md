@@ -6,7 +6,7 @@ description: >
   How to ask for Ondat support.
 ---
 
-When you need support, please raise a ticket via our [Help Desk
+When you need support, raise a ticket via our [Help Desk
 portal](https://support.storageos.com). It is important to select the priority
 of your ticket in accordance with the severity:
 
@@ -21,13 +21,13 @@ definitions of our support severity levels on our
 
 Responses to tickets will be cc'd via email.
 
-For personal support and general enquiries, please join our [public Slack channel](https://slack.storageos.com).
+For personal support and general enquiries, join our [public Slack channel](https://slack.storageos.com).
 
 ## Information to include in tickets
 
 To help us provide effective support, we request that you provide as much
 information as possible when contacting us. The list below is a suggested
-starting point. Additionally, please include anything specific, such as log
+starting point. Additionally, include anything specific, such as log
 entries, that may help us debug your issue.
 
 ### Platform
@@ -67,7 +67,7 @@ during support cases.
 
 The information in the bundle is used only for support purposes, and will be
 removed once it is no longer needed. If the information is sensitive and can't
-be given to Ondat, please make sure that the support engineers have as
+be given to Ondat, make sure that the support engineers have as
 much information about your environment as possible.
 
 Refer to the [Support Bundle](reference/bundles/support_bundle.md) documentation page for details

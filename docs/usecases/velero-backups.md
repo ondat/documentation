@@ -151,8 +151,8 @@ For the our use case, we'll use Velero with a real world application, MySQL.
 
     The first annotation specifies which volume to backup using restic. The other
     annotations are used to perform an fsfreeze on the volume mount point using pre
-    and post backup hooks, for more details about Velero pre/post backup hooks
-    please see their documentation [here](https://Velero.io/docs/main/hooks/).
+    and post backup hooks, for more details about Velero pre/post backup hooks,
+    see their documentation [here](https://Velero.io/docs/main/hooks/).
 
     We have to specify to use the `fsfreeze` ubuntu container since the MySQL
     container doesn't support fsfreeze

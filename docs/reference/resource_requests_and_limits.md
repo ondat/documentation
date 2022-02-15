@@ -26,7 +26,7 @@ class](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption
 when the DaemonSet is installed in the 'storageos' namespace. That avoids the
 DaemonSet Pods of being evicted.
 
-For more information about managing resources for containers please see the
+For more information about managing resources for containers see the
 [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 

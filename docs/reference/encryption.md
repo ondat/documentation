@@ -10,7 +10,7 @@ default with mTLS. Data-at-rest is the data stored in your volumes as [blob file
 is optional and can be enabled by adding a label to your volume definitions
 before they're provisioned.
 
-For information on how to enable encryption on your volumes, please see our
+For information on how to enable encryption on your volumes, see our
 [Encryption Operations](/docs/operations/encryption) page.
 
 ## How volumes are encrypted

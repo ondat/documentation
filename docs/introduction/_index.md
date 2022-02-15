@@ -24,7 +24,7 @@ on the left.
 **Concepts** - Architectural and deep technical information.
 
 **Prerequisites** - We require certain prerequisites to be met for the product to function
-correctly. Please read these carefully and ensure they are implemented.
+correctly. Do make sure to read these carefully and ensure that they are implemented.
 
 **Platforms** - Due to differences in the various orchestrators that Ondat can run under,
 we list install guides and other platform specific operations here.

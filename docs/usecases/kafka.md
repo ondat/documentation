@@ -31,7 +31,7 @@ information](/docs/install/kubernetes).
 exist and be accessible within the Kubernetes cluster as `zookeeper`, see how
 to run Zookeeper with Ondat
 [here](/docs/usecases/zookeeper)
-- Ondat is assumed to have been installed; please check for the latest
+- Ondat is assumed to have been installed; check for the latest
 available version [here](/docs/reference/release_notes)
 - Kafka pods require 1536 MB of memory for successful scheduling
 

@@ -17,10 +17,10 @@ The current and maximum number of AIO requests is visible in the virtual
 files `/proc/sys/fs/aio-nr` and `/proc/sys/fs/aio-max-nr`.
 
 The default context limit has been set at 2^16 or 65536. This figure may vary
-so please check your `/proc/sys/fs/aio-max-nr`
+so do check your `/proc/sys/fs/aio-max-nr`
 
 When `aio-nr` reaches `aio-max-nr` the `io_setup` syscall will fail with
-EAGAIN. For more information please see the Linux kernel docs
+EAGAIN. For more information see the Linux kernel docs
 [here.](https://www.kernel.org/doc/Documentation/sysctl/fs.txt)
 
 ## Why is this relevant?

@@ -6,7 +6,7 @@ set -euo pipefail
 # Kubernetes cluster
 # 
 # This script is based on the installation instructions in our self-evaluation
-# guide: https://docs.storageos.com/docs/self-eval. Please see that guide for
+# guide: https://docs.storageos.com/docs/self-eval. See that guide for
 # more information.
 # 
 # Expectations:
@@ -313,6 +313,6 @@ echo -e "${GREEN}Don't forget to license your cluster - see https://docs.storage
 echo
 echo -e "${GREEN}This cluster has been set up with an etcd based on ephemeral${NC}"
 echo -e "${GREEN}storage. It is suitable for evaluation purposes only - for${NC}"
-echo -e "${GREEN}production usage please see our etcd installation nodes at${NC}"
+echo -e "${GREEN}production usage, see our etcd installation nodes at${NC}"
 echo -e "${GREEN}https://docs.storageos.com/docs/prerequisites/etcd/${NC}"
 

@@ -178,4 +178,4 @@ by Prometheus on port 9108
 This is enabled by default, and should work with the default Prometheus install
 via Helm. If you're using the Prometheus service monitors, you can monitor
 this installation by creating a monitor for the `es-exporter` service. For an
-example of how this is done to monitor Ondat, please see [prometheus-setup](/docs/operations/monitoring/prometheus-setup).
+example of how this is done to monitor Ondat, see [prometheus-setup](/docs/operations/monitoring/prometheus-setup).

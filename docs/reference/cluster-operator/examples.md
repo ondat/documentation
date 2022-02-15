@@ -179,6 +179,6 @@ all Ondat components; the Ondat daemonset, CSI helper and scheduler.
 
 In the above example a toleration `key1=value1:EffectToTolerate` would be
 tolerated and `key2` would be tolerated regardless of the value and effect. For
-more information about tolerations please see the [Kubernetes
+more information about tolerations, see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 

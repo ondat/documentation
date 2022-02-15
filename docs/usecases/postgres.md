@@ -13,7 +13,7 @@ ranging from small, single-node use cases to large Internet-facing clusters
 with many concurrent users.
 
 Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. If you need to setup Ondat on Kubernetes then please see our guide
+cluster. If you need to setup Ondat on Kubernetes then see our guide
 to [installing Ondat on Kubernetes](/docs/install/kubernetes).
 
 ## Deploying PostgreSQL on Kubernetes

@@ -27,7 +27,7 @@ information](/docs/install/kubernetes).
 
 ### Pre-requisites
 
-- Ondat is assumed to have been installed; please check for the latest
+- Ondat is assumed to have been installed; check for the latest
 available version [here](/docs/reference/release_notes).
 
 ### Helm

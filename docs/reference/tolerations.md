@@ -16,7 +16,7 @@ restarted.
 As Ondat runs as a daemonset some Kubernetes tolerations are added by
 Kubernetes while others are automatically added by the Ondat operator.
 
-For more information about tolerations please see the [Kubernetes
+For more information about tolerations, see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
 
 
