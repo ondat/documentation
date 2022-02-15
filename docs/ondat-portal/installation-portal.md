@@ -16,6 +16,7 @@ weight: 10
 # Installing Ondat on Your Cluster Using the Ondat Portal Manager
 
 Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:
+
 ```bash
 kubectl storageos install 
         --include-etcd=true 

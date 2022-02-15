@@ -96,7 +96,7 @@ rsync -az $PATH_TO_DOCS_SOURCE/sh/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/sh
 rsync -az $PATH_TO_DOCS_SOURCE/yaml/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/yaml
 rsync -az $PATH_TO_DOCS_SOURCE/images/docs/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/images/docs
 rsync -az $PATH_TO_DOCS_SOURCE/images/generic/ $PATH_TO_DOCS_BACKEND/hugo-backend/static/images/generic
-``` 
+```
 
 * Go in documentation-backend/hugo-backend and run ```hugo server -D --config config/latest.toml```
 * Open a browser to http://127.0.0.1:1313

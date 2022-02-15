@@ -12,8 +12,8 @@ This guide will walk through and demonstrate how to install Ondat onto a [Micros
 * You have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](https://docs.ondat.io/docs/prerequisites/) page for more information.
 
 * The following CLI utilities are installed on your local machine and are available in your `$PATH`:
- - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) 
- - [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/) 
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/)
 
 * You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
@@ -36,7 +36,7 @@ kubectl storageos preflight
 ```bash
 export STORAGEOS_USERNAME="admin"
 export STORAGEOS_PASSWORD="password"
-``` 
+```
 
 2. Run the following  `kubectl-storageos` plugin command to install Ondat.
 
