@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure Kubernetes Service (AKS)"
-linkTitle: "Microsoft Azure Kubernetes Service (AKS)"
+title: "Azure Kubernetes Service (AKS)"
+linkTitle: "Azure Kubernetes Service (AKS)"
 ---
 
 ## Overview
