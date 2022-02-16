@@ -12,7 +12,7 @@ description: >
 
 * Follow our installation guides for
   [Kubernetes](/docs/install/kubernetes),
-  [OpenShift](/docs/install/openshift) or 
+  [OpenShift](/docs/install/openshift) or
   [Rancher](/docs/install/rancher).
 
 * Dive into our Use Case documentation for Workloads deployed in

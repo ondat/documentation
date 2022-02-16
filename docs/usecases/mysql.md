@@ -10,16 +10,18 @@ web-based applications including WordPress.
 
 Before you start, ensure you have Ondat installed and ready on a Kubernetes
 cluster. [See our guide on how to install Ondat on Kubernetes for more
-information](install/kubernetes).
+information](/docs/install/kubernetes).
 
 ## Deploying MySQL on Kubernetes
 
 1. You can find the latest files in the Ondat use cases repository
+
    ```bash
    git clone https://github.com/storageos/use-cases.git storageos-usecases
    ```
 
    StatefulSet defintion
+
    ```yaml
    apiversion: apps/v1
    kind: statefulset
@@ -55,6 +57,7 @@ information](install/kubernetes).
           requests:
             storage: 5gi
    ```
+
    This excerpt is from the StatefulSet definition. This file contains the
    VolumeClaim template that will dynamically provision storage, using the
    Ondat storage class. Dynamic provisioning occurs as a volumeMount has
@@ -77,6 +80,7 @@ information](install/kubernetes).
 
 1. Connect to the MySQL client pod and connect to the MySQL server through the
    service
+
    ```bash
    $ kubectl exec client -- mysql -h mysql-0.mysql -e "show databases;"
    Database

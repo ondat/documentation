@@ -36,6 +36,7 @@ Use "storageos create [command] --help" for more information about a command.
 ```
 
 ## create volume
+
 ```bash
 $ storageos create volume --help
 
@@ -77,6 +78,7 @@ Global Flags:
 ```
 
 ## create user
+
 ```bash
 $ storageos create user --help
 
@@ -111,6 +113,7 @@ Global Flags:
 ```
 
 ## create namespace
+
 ```bash
 $ storageos create namespace --help
 
@@ -142,6 +145,7 @@ Global Flags:
 ```
 
 ## create policy-group
+
 ```bash
 $ storageos create policy-group --help
 

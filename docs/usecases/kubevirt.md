@@ -33,7 +33,7 @@ information](/docs/install/kubernetes).
 
 Please ensure you have met the Kubevirt prerequisites, please see the [
 Kubevirt installation instructions
-](https://kubevirt.io/user-guide/docs/latest/administration/intro.html) for
+](https://kubevirt.io/user-guide/operations/installation/) for
 more information.
 
 As part of this installation it is assumed that you are running a Kubernetes
@@ -51,10 +51,11 @@ enabled.
    kubectl to create the Kubernetes objects.
 
    ```bash
-   $ git clone https://github.com/storageos/use-cases.git storageos-usecases
-   $ cd storageos-usecases/kubevirt
-   $ kubectl create -f ./kubevirt-install
+   git clone https://github.com/storageos/use-cases.git storageos-usecases
+   cd storageos-usecases/kubevirt
+   kubectl create -f ./kubevirt-install
    ```
+
 1. Check that the Kubevirt pods are running.
 
    ```bash
@@ -74,7 +75,7 @@ enabled.
 1. Once Kubevirt is running install CDI.
 
    ```bash
-   $ kubectl create -f ./cdi
+   kubectl create -f ./cdi
    ```
 
 1. Check that the CDI pods are running correctly.
@@ -96,7 +97,7 @@ enabled.
    `VirtualMachineInstance` (VMI) will boot from onto the PVC.
 
    ```bash
-   $ kubectl create -f ./vm-cirros.yaml
+   kubectl create -f ./vm-cirros.yaml
    ```
 
 1. Check that the `VMI` is running. Note that the
@@ -149,12 +150,13 @@ attempting to clone the volume.
 1. Once the PVC's existence is confirmed then create a new DataVolume that uses the cirros PVC as its source.
 
    ```bash
-   $ kubectl create -f ./cloned.yaml
+   kubectl create -f ./cloned.yaml
    ```
 
 1. Watch as the CDI pods are created.
+
    ```bash
-   $ kubectl get pods -w
+   kubectl get pods -w
    ```
 
    You'll see that a `cdi-upload-cloned-datavolume` pod is created and then a

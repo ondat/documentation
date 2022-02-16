@@ -16,13 +16,15 @@ The [CLI](/docs/reference/cli/) can generate
 the bundle.
 
 ```bash
-$ storageos get diagnostics
+storageos get diagnostics
 ```
+
 > 💡 The file generated is in the form of `diagnostics-${TIME_STAMP}.gz`
 
 ### GUI
 
 Or you can use the [StoregeOS GUI](/docs/reference/gui).
+
 1. Go to section "Cluster"
 1. Press the button "DOWNLOAD DIAGNOSTICS".
 
@@ -34,6 +36,7 @@ is also gathered. The information is used to have a clear view of the cluster
 where Ondat is running.
 
 The bundle incorporates for each node:
+
 - Ondat Daemonset Pod logs
 - lshw
 - dmesg (kernel logs)

@@ -10,6 +10,7 @@ will automatically be mirrored in Ondat, likewise with Namespaces.
 1. Here is an Ondat node, running on Kubernetes node worker1. An Ondat
    node is any machine that is running the Ondat daemonset pod. The node is
    visible below in kubectl.
+
     ```
     $ kubectl describe -n storageos pod storageos-daemonset-6q4g8
     Name:                 storageos-daemonset-6q4g8
@@ -33,7 +34,9 @@ will automatically be mirrored in Ondat, likewise with Namespaces.
     IP:                   192.168.152.238
     ...
     ```
+
     The nodes in your cluster can be seen with `storageos get nodes`.
+
     ```
     $ storageos get nodes
     NAME          HEALTH  AGE        LABELS                              
@@ -62,13 +65,15 @@ will automatically be mirrored in Ondat, likewise with Namespaces.
     ...
     ```
 
-2.  Delete the node.
+2. Delete the node.
+
     ```
-    $ kubectl delete node worker1
+    kubectl delete node worker1
     ```
 
 3. Verify that the node has been deleted with `kubectl get nodes` or
    `storageos get nodes`. The node has now disappeared from Ondat.
+
     ```
     $ storageos get nodes
     NAME          HEALTH  AGE        LABELS                              

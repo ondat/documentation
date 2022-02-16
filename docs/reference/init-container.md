@@ -35,17 +35,17 @@ failure to Kubernetes, showing the status of the Pod as `Init:Err`.
 
 To view the output of all `storageos-init` containers the following command can
 be used:
+
 ```bash
 kubectl -n storageos logs -l app=storageos,kind=daemonset -c storageos-init
 ```
 
-For more details, check the 
+For more details, check the
 [Ondat init container project](https://github.com/storageos/init).
-
 
 ## Scripts executed
 
 The `storageos-init` container executes the following scripts.
 
 - [enable-lio](https://github.com/storageos/init/tree/master/scripts/01-lio)
-- [dbupgrade](https://github.com/storageos/init/tree/master/scripts/10-dbupgrade-v1v2)
+- [set-limits](https://github.com/storageos/init/blob/master/scripts/02-limits)

@@ -20,7 +20,7 @@ is required.
 
 Before you start, ensure you have Ondat installed and ready on a Kubernetes
 cluster. [See our guide on how to install Ondat on Kubernetes for more
-information](/docs/install/kubernetes.md).
+information](/docs/install/kubernetes).
 
 ## Deploying Cassandra on Kubernetes
 
@@ -85,6 +85,7 @@ information](/docs/install/kubernetes.md).
 
 1. Connect to the Cassandra client pod and connect to the Cassandra server through the
    service
+
    ```bash
    $ kubectl exec -it cassandra-0 -- cqlsh cassandra-0.cassandra
    Connected to K8Demo at cassandra-0.cassandra:9042.

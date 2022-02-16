@@ -39,7 +39,7 @@ your etcd cluster, but it's a lot more tolerant of transient failure conditions
 that are often found in cloud environments, or clusters under heavy load.
 
 We spent some time describing and testing our internal state machine using the
-[TLA+](https://en.wikipedia.org/wiki/TLA%2B) formal verification language. This
+[TLA+](https://en.wikipedia.org/wiki/TLA+) formal verification language. This
 allows us to have a much higher degree of confidence that our algorithms will
 behave correctly, particularly under hard-to-test edge cases and failure
 conditions.

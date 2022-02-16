@@ -31,12 +31,12 @@ page.
 1. Back up etcd
 
     ```
-    $ export ETCDCTL_API=3
+    export ETCDCTL_API=3
 
-    $ # Set all your endpoints
-    $ export endpoints="192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379"
+    # Set all your endpoints
+    export endpoints="192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379"
 
-    $ etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
+    etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
     ```
 
 1. Verify etcd health
@@ -113,6 +113,7 @@ page.
     ```
 
     The resulting changes would appear as follows:
+
     ```
     ...
 
@@ -132,7 +133,7 @@ page.
     > 💡 Note the reference to NODE4 at the end of the `--initial-cluster`
     > variable
 
-    __Make sure etcd is not started on the new member NODE4__
+    **Make sure etcd is not started on the new member NODE4**
 
 1. Add etcd member as a `learner`
 
@@ -158,8 +159,8 @@ page.
     ETCD_INITIAL_CLUSTER_STATE="existing"
    ```
 
-
 1. Check the etcd members
+
     ```
     $ export endpoints="192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379"
 
@@ -175,7 +176,6 @@ page.
     ```
 
     > 💡 Note that the learner is not started yet
-
 
 1. Start etcd on the new node (NODE4)
 
@@ -232,7 +232,6 @@ page.
     > RAFT TERM and RAFT INDEX of the learner node match the rest of the
     > cluster.
 
-
 1. Remove the node that needs to be evicted (NODE1)
 
     > 💡 Before promoting the learner to a full member, it is best to remove the
@@ -251,7 +250,6 @@ page.
     $ etcdctl member remove $NODE1_MEMBER_ID
     Member e22cdd20a03e5e73 removed from cluster b4f4ed717ea44b8d
     ```
-
 
 1. Promote the learner to a member
 
@@ -300,7 +298,7 @@ page.
     > 💡 Remove the reference to NODE1 and add the IP for NODE4
 
    ```bash
-   $ kubectl edit -n storageos-etcd endpoints/storageos-etcd
+   kubectl edit -n storageos-etcd endpoints/storageos-etcd
    ```
 
 1. Make amendments in the SystemD configuration files removing any reference to

@@ -28,7 +28,7 @@ In this document we detail a simple installation suitable for evaluation
 purposes. The etcd we install uses a 3 node cluster with local storage, and
 as such is not suitable for production workloads. However, for evaluation
 purposes it should be sufficient. For production deployments, please see our
-main [documentation pages](prerequisites/etcd.md).
+main [documentation pages](/docs/prerequisites/etcd).
 
 A standard Ondat installation uses the Ondat operator, which performs
 most platform-specific configuration for you. The Ondat operator has been
@@ -56,7 +56,7 @@ modern distributions:
 * Mainline kernel modules `target_core_mod`, `tcp_loop`, `target_core_file`,
   `target_core_user`, `configfs`, and `ui`. These are present by default on
   most modern linux distributions, and can be installed with standard package
-  managers. See our [system configuration](prerequisites/systemconfiguration) page for instructions.
+  managers. See our [system configuration](/docs/prerequisites/systemconfiguration) page for instructions.
 
 ### Install the storageos kubectl plugin
 
@@ -86,8 +86,8 @@ kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisione
 
 > ⚠️ The `local-path` StorageClass does not guarantee data safety or availability.
 > Therefore the Ondat cluster cannot operate normally if the Etcd cluster
-> becomes unavailable. For a production Etcd install check the 
-> [Etcd prerequisites page](prerequisites/etcd.md).
+> becomes unavailable. For a production Etcd install check the
+> [Etcd prerequisites page](/docs/prerequisites/etcd).
 
 ### Install Ondat
 
@@ -124,7 +124,6 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 ```
 
 > 💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete
-
 
 ### Deploy the Ondat CLI as a container
 
@@ -178,8 +177,7 @@ kubectl -n storageos exec $POD -- storageos get licence
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 > personal license is free, and supports up to 1TiB of provisioned storage.
 
-To obtain a license, follow the instructions on our [licensing operations](operations/licensing.md) page.
-
+To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
 ## Provision an Ondat Volume
 
@@ -325,7 +323,7 @@ volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn't already contain a replica of the same volume.
 
-> 💡 See our [replication documentation](concepts/replication) for more
+> 💡 See our [replication documentation](/docs/concepts/replication) for more
 > information on volume replication.
 
 1. To test volume replication create the following PersistentVolumeClaim
@@ -358,7 +356,6 @@ placed on a node that doesn't already contain a replica of the same volume.
     POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
     kubectl -n storageos exec $POD -- storageos get volumes
     ```
-
 
 1. Create a pod that uses the PVC
 
@@ -444,6 +441,7 @@ placed on a node that doesn't already contain a replica of the same volume.
     > `Hello World!` should be printed to the console.
 
 &nbsp;
+
 ## Benchmarking
 
 Benchmarking storage is a complex topic. Considering the many books and papers
@@ -502,9 +500,9 @@ results easily comparable across platforms.
 FIO has a number of parameters that can be adjusted to simulate a variety of
 workloads and configurations. Parameters that are particularly important are:
 
-* **Block Size** - the size of the IO units performed.
-* **Queue Depth** - the amount of concurrent IOs in flight
-* **IO Pattern** - access can be random across the disk, or sequentially. IO
+* __Block Size__ - the size of the IO units performed.
+* __Queue Depth__ - the amount of concurrent IOs in flight
+* __IO Pattern__ - access can be random across the disk, or sequentially. IO
     subsystems typically perform better with sequential IO, because of the
     effect of read ahead caches, and other factors
 
@@ -512,15 +510,15 @@ For this self-evaluation we will run a set of tests based on the excellent
 [DBench](https://github.com/leeliu/dbench), which distills the numerous FIO
 options into a series of well-crafted scenarios:
 
-* **Random Read/Write IOPS and BW** - these tests measure the IOPS ceiling
+* __Random Read/Write IOPS and BW__ - these tests measure the IOPS ceiling
   (with a 4k block size) and bandwidth ceiling (with a 128K block size) of the
   volume using a random IO pattern and high queue depth
-* **Average Latency** - these tests measure the IO latency of the volume under
+* __Average Latency__ - these tests measure the IO latency of the volume under
   favourable conditions using a random access pattern, low queue depth and low
   block size
-* **Sequential Read/Write** - these tests measure the sequential read/write
+* __Sequential Read/Write__ - these tests measure the sequential read/write
   throughput of the volume with a high queue depth and high block size
-* **Mixed Random Read/Write IOPS** - these tests measure the performance of the
+* __Mixed Random Read/Write IOPS__ - these tests measure the performance of the
     volume under a 60/40 read/write workload using a random access pattern and
     low blocksize
 
@@ -606,6 +604,7 @@ benchmark a Postgres database backed by an Ondat volume.
     ```
 
 &nbsp;
+
 ## Conclusion
 
 After completing these steps you will have benchmark scores for Ondat.

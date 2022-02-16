@@ -75,7 +75,7 @@ If you choose to recover by expanding your capacity, you have two main options:
 1. Add new storage devices at `/var/lib/storageos/data/dev[0-9]+` as described
    [here](/docs/operations/managing-host-storage#option-1-mount-additional-devices).
 2. Expand the underlying filesystem that Ondat is using as described
-   [here](/docs/operations/managing-host-storage"#option-2-expand-existing-devices-backed-by-lvm).
+   [here](/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm).
 
 After expanding capacity remember to restart the Ondat daemonset pod.
 

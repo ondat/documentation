@@ -10,7 +10,7 @@ Ondat uses the `etcd` distributed key-value store to store essential cluster
 metadata and manage distributed configuration state. For production environments
 and testing of production workloads, __we recommend deploying an external etcd
 cluster.__ For more details about, and an example of, how to run etcd, see the
-[External etcd Operations](/docs/operations/external-etcd) page.
+[External etcd Operations](/docs/operations/etcd) page.
 
 It is highly recommended to use external etcd for __cloud environments__ and
 place the etcd cluster on stable nodes. Placing the etcd on nodes that are
@@ -32,7 +32,7 @@ We recommend creating a separate filesystem for Ondat to mitigate the risk
 of filling the root filesystem on nodes. This has to be done for each node in
 the cluster.
 
-Follow the [managing host storage](operations/managing-host-storage.md) best practices page for more
+Follow the [managing host storage](/docs/operations/managing-host-storage) best practices page for more
 details.
 
 ## Resource reservations
@@ -74,7 +74,7 @@ replicas, at least 4 storage nodes, 3 replicas, 5 nodes, etc.
 Minimum number of storage nodes = 1 (primary) + N (replicas) + 1
 
 For more information, see the section on
-[replication](concepts/replication.md#number-of-nodes).
+[replication](/docs/concepts/replication#number-of-nodes).
 
 ## Ondat API username/password
 
@@ -131,7 +131,7 @@ volume replicas are being used.
 
 ## Port blocking
 
-Ondat exposes ports to operate. It is recommended that the [ports](prerequisites/firewalls.md) are not accessible from outside
+Ondat exposes ports to operate. It is recommended that the [ports](/docs/prerequisites/firewalls) are not accessible from outside
 the scope of your cluster.
 
 ## Ondat in Docker EE

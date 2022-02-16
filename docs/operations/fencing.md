@@ -90,7 +90,6 @@ for fencing.
 
 The following example shows how the Ondat API manager fences a Pod.
 
-
 1. Ensure the `storageos.com/fenced` label is present
 
     ```
@@ -106,6 +105,7 @@ The following example shows how the Ondat API manager fences a Pod.
     > 💡 Note that the mysql-0 pod has the `storageos.com/fenced=true` label.
 
 1. Stop node hosting the `mysql-0` pod
+
     ```
     root@worker1:~# shutdown -h now
     ```
@@ -137,7 +137,6 @@ The following example shows how the Ondat API manager fences a Pod.
     > 💡 The Ondat API Manager detects all the pods that are on the failed
     > node, and selects only the ones that meet the fencing criteria as
     > described above. In this case only `mysql-0` is selected for fencing.
-
 
 1. Check the pod's new node
 

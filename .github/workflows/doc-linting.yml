@@ -1,0 +1,34 @@
+name: Lint and check documentation
+on: [push]
+permissions:
+  contents: read
+  statuses: write
+jobs:
+  lint:
+    name: Lint docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: .
+          VALIDATE_JSCPD: false
+          VALIDATE_OPENAPI: false
+          FILTER_REGEX_EXCLUDE: "^.*yaml/.*"
+          KUBERNETES_KUBEVAL_OPTIONS: "--ignore-missing-schemas"
+  links:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check links
+        uses: gaurav-nelson/github-action-markdown-link-check@8f0156cc69c9f6dfaad8aae63f93a7a604b95b5f
+        with:
+          config-file: '.linkcheck.config'

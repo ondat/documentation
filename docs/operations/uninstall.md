@@ -22,7 +22,7 @@ errors.
     Delete any Persistent Volume Claims that are using Ondat.
 
     ```bash
-    $ kubectl -n $NS delete pvc $PVC
+    kubectl -n $NS delete pvc $PVC
     ```
 
     > ⚠️ **This will delete data held by Ondat and won't be recoverable.**
@@ -32,17 +32,19 @@ errors.
 1. Delete Ondat Cluster
 
     ```bash
-    $ kubectl get storageoscluster --all-namespaces # Find the namespace where the Custom Resource runs
-    $ kubectl -n $NS delete storageoscluster --all  # $NS is the namespace found via the above command
+    kubectl get storageoscluster --all-namespaces # Find the namespace where the Custom Resource runs
+    kubectl -n $NS delete storageoscluster --all  # $NS is the namespace found via the above command
     ```
+
 2. Wait until the Ondat resources are gone
 
     ```bash
-    $ kubectl -n storageos get pod 
+    kubectl -n storageos get pod 
     ```
+
 ## Uninstalling the Ondat Operator
 
-Delete the Cluster Operator once the Ondat Pods are terminated. 
+Delete the Cluster Operator once the Ondat Pods are terminated.
 
 The procedure is finished. Ondat is now uninstalled.
 
@@ -63,21 +65,21 @@ proceed as follows:
     1. (Option 1) Login in to the hosts and execute the following commands
 
         ```bash
-        $ sudo rm -rf /var/lib/storageos
-        $ sudo umount /var/lib/kubelet/plugins_registry/storageos
+        sudo rm -rf /var/lib/storageos
+        sudo umount /var/lib/kubelet/plugins_registry/storageos
         ```
 
     1. (Option 2) Execute the following command to deploy a DaemonSet that removes the
        Ondat data directory.
 
-        > ⚠️ ** This step is irreversible and once the data is removed it cannot
+        > ⚠️ **This step is irreversible and once the data is removed it cannot
         > be recovered.**
 
         > Run the following command where `kubectl` is installed and with the
         > context set for your Kubernetes cluster.
 
         ```bash
-        $ curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh | bash
+        curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh | bash
         ```
 
 2. Flush Etcd Data
@@ -85,8 +87,8 @@ proceed as follows:
     > ⚠️ **This will remove any keys written by Ondat.**
 
     ```bash
-    $ export ETCDCTL_API=3
-    $ etcdctl --endpoints=http://$ETCD_IP:2379 del --prefix "storageos"
+    export ETCDCTL_API=3
+    etcdctl --endpoints=http://$ETCD_IP:2379 del --prefix "storageos"
     ```
 
     If running Etcd with mTLS, you can set the certificates location with the

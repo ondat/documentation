@@ -19,7 +19,7 @@ the Ondat node labels on sync.
 
 | Feature        | Label                         | Values                               | Description                    |
 | :------------- | :---------------------------- | :----------------------------------- | :----------------------------- |
-| Compute only   | `storageos.com/computeonly`   | true / false                         | Specifies whether a node should be `computeonly` where it only acts as a client and does not host volume data locally, otherwise the node is hyperconverged (the default), where the node can operate in both client and server modes. | 
+| Compute only   | `storageos.com/computeonly`   | true / false                         | Specifies whether a node should be `computeonly` where it only acts as a client and does not host volume data locally, otherwise the node is hyperconverged (the default), where the node can operate in both client and server modes. |
 
 You can set the compute-only label on the Kubernetes node and the label will be
 synced to the Ondat node (labels take an eventual consistency reconciliation
@@ -29,13 +29,12 @@ time of up to a minute (or less)).
 kubectl label node $NODE storageos.com/computeonly=true
 ```
 
-
 ## Ondat Volume labels
 
 Volumes do not have any feature labels present by default.
 
->  ⚠️ The encryption, caching and compression labels can only apply
->  at provisioning time, they can't be changed during execution.
+> ⚠️ The encryption, caching and compression labels can only apply
+> at provisioning time, they can't be changed during execution.
 
 | Feature             | Label                               | Values                                  | Description                                                                                                                                  |
 | :------------------ | :---------------------------------- | :-----------------------------------    | :------------------------------------------------------------------------------------------------------------------------------------------- |

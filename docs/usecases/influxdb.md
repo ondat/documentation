@@ -14,6 +14,7 @@ Before you start, ensure you have Ondat installed and ready on a Kubernetes clus
 ## Deploying InfluxDB on Kubernetes
 
 1. You can find the latest files in the Ondat use cases repository
+
    ```bash
    git clone https://github.com/storageos/use-cases.git storageos-usecases
    cd storageos-usecases
@@ -50,6 +51,7 @@ Before you start, ensure you have Ondat installed and ready on a Kubernetes clus
            requests:
              storage: 20Gi
    ```
+
    This excerpt is from the StatefulSet definition. This file contains the
    VolumeClaimTemplate that will dynamically provision storage, using the
    Ondat storage class. Dynamic provisioning occurs as a volumeMount has
@@ -133,9 +135,9 @@ In this example of how to perform backups of an InfluxDB database on a
 Kubernetes cluster, we write the output backup file
 to an Amazon Web Services (AWS) S3 bucket. Other approaches, such as backing
 up to internal servers or other Ondat volumes, are possible. For this
-example to run successfully, Base64-encoded AWS credentials and an S3 bucket
+example to run successfully, base64-encoded AWS credentials and an S3 bucket
 name should be inserted into the data field of the
-`backup/50-secret-config.yaml` file. 
+`backup/50-secret-config.yaml` file.
 
 ```bash
 $ echo -n '<your-aws-access-key-id>' | base64

@@ -46,6 +46,7 @@ spec:
 ```
 
 When using Pods the annotation is set on the `metadata.annotations` field.
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -59,7 +60,7 @@ metadata:
 ## Explicit SchedulerName
 
 > 💡 It is not necessary to explicitly set the SchedulerName as the [Admission
-> Controller](admission-controller.md)
+> Controller](/docs/reference/scheduler/admission-controller)
 > automatically populates the PodSpec field. Set the SchedulerName in your
 > manifests, manually, only if you disable or can't execute the Ondat
 > Admission Controller.

@@ -30,7 +30,7 @@ information](/docs/install/kubernetes).
 ### Prerequisites
 
 Some OS tuning is required, which is done automatically when using our example
-from the [use cases](https//github.com/storageos/use-cases.git) repository.
+from the [use cases](https://github.com/storageos/use-cases) repository.
 
 Elasticsearch requires `vm.max_map_count` to be increased to a minimum of
 `262144`, which is a system wide setting. One way to achieve this is to
@@ -46,7 +46,6 @@ choice.
 ### Deployment of the application
 
 #### StatefulSet defintion
-
 
 ```yaml
 ---
@@ -91,10 +90,9 @@ provision the necessary storage, using the Ondat storage class.
 Dynamic provisioning occurs as a volumeMount has been declared with the same
 name as a VolumeClaimTemplate.
 
-
 ## Installation
-#### Clone the use cases repo
 
+#### Clone the use cases repository
 
 You can find the latest files in the Ondat use cases repostiory
 in `/elasticsearch/`
@@ -105,7 +103,6 @@ cd storageos-usecases
 ```
 
 1. Create the kubernetes objects
-
 
     This will install an ES cluster with 3 master, 3 data and 3 coordinator
     nodes. Combined they will require ~ 14 GiB of available memory in your
@@ -120,7 +117,6 @@ cd storageos-usecases
    (when installed via Helm) will be using.
 
 1. Confirm Elasticsearch is up and running
-
 
    ```bash
    kubectl get pods -l component=elasticsearch
@@ -148,27 +144,25 @@ cd storageos-usecases
 
    and then access it via [http://localhost:9200](http://localhost:9200)
 
-
 ## Kibana (optional)
-
 
 One of the most popular uses of ES is to use it for log aggregation and
 indexing, Kibana helps us visualize the data in these indices and can be
 easily used when installed via its Helm chart
 
 1. Install the helm chart.
+
    ```bash
    helm install stable/kibana
    ```
 
 1. Once installed, use a port-foward to Kibana instead of directly to ES
-   
+
    ```bash
    kubectl port-forward --namespace default $(kubectl get pods --namespace default -l "app=kibana" -o jsonpath="{.items[0].metadata.name}") 5601
    ```
-   
-   and then access it via [http://localhost:5601](http://localhost:5601)
 
+   and then access it via [http://localhost:5601](http://localhost:5601)
 
 ## Monitoring (optional)
 
@@ -177,5 +171,4 @@ by Prometheus on port 9108
 (see [77-es-exporter.yaml](https://github.com/storageos/use-cases/blob/master/elasticsearch/77-es-exporter.yaml)).
 This is enabled by default, and should work with the default Prometheus install
 via Helm. If you're using the Prometheus service monitors, you can monitor
-this installation by creating a monitor for the `es-exporter` service. For an
-example of how this is done to monitor Ondat, please see [prometheus-setup](/docs/operations/monitoring/prometheus-setup).
+this installation by creating a monitor for the `es-exporter` service.

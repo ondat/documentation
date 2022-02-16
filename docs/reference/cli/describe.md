@@ -37,7 +37,9 @@ Global Flags:
 
 Use "storageos describe [command] --help" for more information about a command.
 ```
+
 ## describe cluster
+
 ```bash
 $ storageos describe cluster --help
 
@@ -71,6 +73,7 @@ Global Flags:
 ```
 
 ## describe license
+
 ```bash
 $ storageos describe license --help
 
@@ -104,6 +107,7 @@ Global Flags:
 ```
 
 ## describe namespace
+
 ```bash
 $ storageos describe namespace --help
 
@@ -139,6 +143,7 @@ Global Flags:
 ```
 
 ## describe node
+
 ```bash
 $ storageos describe node --help
 
@@ -173,6 +178,7 @@ Global Flags:
 ```
 
 ## describe policy-group
+
 ```bash
 $ storageos describe user --help
 
@@ -207,6 +213,7 @@ Global Flags:
 ```
 
 ## describe user
+
 ```bash
 $ storageos describe user --help
 
@@ -242,7 +249,9 @@ Global Flags:
       --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
       --username string         set the Ondat account username to authenticate as (default "storageos")
 ```
+
 ## describe volume
+
 ```bash
 $ storageos describe volume --help
 

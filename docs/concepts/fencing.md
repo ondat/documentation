@@ -52,7 +52,7 @@ capability to enable fast failover of workloads when a node goes offline.
 
 For more information on the rationale behind the design of StatefulSets please
 see the Kubernetes design proposal for [Pod
-Safety](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/pod-safety).
+Safety](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md).
 
 ## Ondat Fencing Controller
 

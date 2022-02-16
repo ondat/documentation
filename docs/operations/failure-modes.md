@@ -27,13 +27,12 @@ spec:
       storage: 5Gi
 ```
 
-
 ## Failure Modes
 
 Ondat failure modes offer different guarantees with regards to a volume's
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to `Hard`. Volume failure modes can be dynamically
-updated at run time.
+updated at runtime.
 
 ### Hard
 
@@ -127,6 +126,3 @@ the cost of reliability. The minimum node count here is 1 as the loss of all
 replicas will be tolerated.
 
 Minimum number of storage nodes = 1 (primary)
-
-
-

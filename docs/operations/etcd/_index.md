@@ -8,7 +8,7 @@ for a step by step installation of etcd.
 
 ## Best practices
 
-Ondat uses etcd as a service, whether it is deployed following the 
+Ondat uses etcd as a service, whether it is deployed following the
 [step by step](/docs/prerequisites/etcd) instructions or as a custom
 installation. It is expected that the user maintains the availability and
 integrity of the etcd cluster.
@@ -53,7 +53,7 @@ traffic as a production cluster with 100 nodes. Adding [monitoring](/docs/operat
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.
 
-### Etcd advertise urls
+### Etcd advertise URLs
 
 The etcd startup parameters `advertise-client-urls` and
 `initial-advertise-peer-urls` specify the addresses etcd clients or other etcd
