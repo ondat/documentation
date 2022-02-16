@@ -19,7 +19,7 @@ weight: 1
 
 &nbsp;
 
-## Install ondat on kubernetes 1.22
+## Install Ondat on Kubernetes 1.22
 
 ### Install the storageos kubectl plugin
 
