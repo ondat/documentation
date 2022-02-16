@@ -39,12 +39,14 @@ the required downtime as much as possible.
     STOS_NAMESPACE=$(kubectl get storageoscluster -A -o=jsonpath='{.items[0].metadata.namespace}')
     kubectl get storageoscluster -n $STOS_NAMESPACE $STOS_NAME -oyaml >> /tmp/storageos-config.yaml
     ```
+
     This file will include the manifest of 2 Kubernetes objects, the
     authentication Secret object and the StorageOS CR object.
 
     Edit StorageOSCluster object in the `/tmp/storageos-config.yaml` file by
     removing all images in the image section and modify the `storageos/node`
     image to:
+
     ```
     images:
         nodeContainer: "storageos/node:< param latest_node_version >"
@@ -53,6 +55,7 @@ the required downtime as much as possible.
 1. Scale all stateful applications that use Ondat volumes to 0.
 
 1. Using the plugin, run the following command:
+
     ```
     kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints "<ETCD-IP1>:2379,<ETCD-IP2>:2379,<ETCD-IP3>:2379"
     ```
@@ -69,9 +72,11 @@ the required downtime as much as possible.
     > Kubernetes manifests can be found in `~/.kube/storageos/`.
 
 1. Wait for all the Ondat pods to enter the `RUNNING` state
+
     ```bash
     kubectl get pods -l app=storageos -A -w
     ```
+
 1. Scale your stateful applications back up.
 
 Congratulations, you now have the latest version of Ondat.

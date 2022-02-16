@@ -38,4 +38,3 @@ regardless whether of whether the volume has replication enabled.
 Once the licence limit is reached, new volumes are not able to provision unless
 provisioned capacity is released, i.e deleting volumes. That behaviour is not
 tied to the capacity of the backend disks on your nodes.
-

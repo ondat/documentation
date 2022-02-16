@@ -19,4 +19,3 @@ description: >
 
 - Kubernetes 1.18 to 1.22
 - OpenShift 4.0+
-

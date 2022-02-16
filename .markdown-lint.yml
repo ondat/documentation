@@ -1,0 +1,15 @@
+MD001: false # allow headers to increment >1 level
+MD013: false # allow line length >80 chars
+MD022: false # allow headings without surrounding blank lines
+MD024: false # allow multiple, same-name headers
+MD025: false # allow multiple top-level headings 
+MD028: false # allow blank lines within block quotes
+MD029: false # allow incremental list prefix (as opposed to 1., 1., 1., etc)
+MD032: false # allow lists inline, without blank lines
+MD033: false # allow inline html 
+MD034: false # allow bare urls
+MD036: false # allow emphasis as headings
+MD038: false # allow spaces within code span ``
+MD039: false # allow spaces inside link blocks
+MD040: false # allow non-specified language code blocks
+MD050: false # allow inconsistent 'strong' style (eg. bold via asterisk and underlines) 

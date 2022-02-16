@@ -1,0 +1,16 @@
+{
+    "rules": {
+        "terminology": true,
+    },
+    "filters": {
+        "allowlist": {
+            "allow": [
+                "node",
+                "Node",
+                "website",
+                "builtin",
+                "IOs"
+            ]
+        }
+    }
+}

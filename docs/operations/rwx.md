@@ -34,6 +34,7 @@ spec:
     requests:
       storage: 5Gi
 ```
+
 A Deployment of 3 Pods, each of which consume this PVC:
 
 ```yaml
@@ -96,7 +97,8 @@ NAME                                        TYPE        CLUSTER-IP    EXTERNAL-I
 kubernetes                                  ClusterIP   10.96.0.1     <none>        443/TCP    120m
 pvc-59f7a152-8342-415c-a6ca-1cbb463410ab    ClusterIP   10.107.10.0   <none>        2049/TCP   1m
 ```
-Features of the NFS volume can also be examined in the Ondat UI. 
+
+Features of the NFS volume can also be examined in the Ondat UI.
 Under `Volumes`, the `Attachment` column shows an `nfs` tag. The
 `Volume Details` section provides information about the NFS Volume, such
 as the service endpoint and the node on which the underlying Volume is

@@ -12,6 +12,7 @@ Availability Zone. However, the key label used to segment failure domains can
 be defined by the user per node. Also, TAP is an opt in feature per volume.
 
 ## Benefits of enabling the Topology-Aware Placement (TAP) feature
+
 Deploying a stateful application on a clusters with multiple nodes without TAP
 enabled can result in suboptimal placement for high availability. Not enabling
 TAP can cause following problems:
@@ -23,9 +24,10 @@ TAP can cause following problems:
 ![tap](/images/docs/concepts/tap.png)
 
 ## Enabling Topology-Aware Placement
+
 Topology-Aware Placement can be enabled by applying the label
 `storageos.com/topology-aware=true` to a PVC or as a parameter of its
-StorageClass. 
+StorageClass.
 
 ## Topology Domains
 
@@ -35,8 +37,8 @@ in failure domains is `topology.kubernetes.io/zone`. However, you can define
 your own topology key by setting the key string in the label
 `storageos.com/topology-key`.
 
-To enable TAP on your volumes, follow the 
-[TAP operations](/docs/operations/tap.md) page.
+To enable TAP on your volumes, follow the
+[TAP operations](/docs/operations/tap) page.
 
 ## Behaviour
 
@@ -49,21 +51,20 @@ are in the same failure domain).
 The best effort placement allows the system to place replicas on the same
 failure domains when a full domain has failed catastrophically. Hence, the
 system self heals as fast as possible without waiting for the nodes on the
-failed domain to recover. 
+failed domain to recover.
 
 It is the user's responsibility to rebalance the data when the failed domain
 has recovered its availability. That can be achieved by recreating the replicas
 of a volume. Future versions of Ondat will facilitate the procedure by allowing
 a volume drain.
 
-
 ## Failure Modes
 
 Failure modes are a complimentary feature of the Topology-Aware Placement
 functionality. Failure modes allow you to define how many replicas of a volume
 can become unavailable before the volume is marked as read-only. For more
-information , see the 
-[failure mode concepts page](/docs/concepts/replication.md#failure-modes).
+information , see the
+[failure mode concepts page](/docs/concepts/replication#failure-modes).
 
 For example, assuming that your cluster has three topology zones, A, B and C,
 and your deployment has a master and two replicas, Ondat will attempt to

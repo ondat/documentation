@@ -9,7 +9,7 @@ PostgreSQL or "Postgres" is an open source object-relational database management
 system (ORDBMS).
 
 Postgres is deployed across a wide variety of platforms with a mix of workloads
-ranging from small, single-node use cases to large Internet-facing clusters
+ranging from small, single-node use cases to large internet-facing clusters
 with many concurrent users.
 
 Before you start, ensure you have Ondat installed and ready on a Kubernetes
@@ -19,11 +19,14 @@ to [installing Ondat on Kubernetes](/docs/install/kubernetes).
 ## Deploying PostgreSQL on Kubernetes
 
 1. You can find the latest files in the Ondat use cases repository
+
     ```bash
     git clone https://github.com/storageos/use-cases.git storageos-usecases
 
     ```
+
     PersistentVolumeClaim and Pod definition excerpts
+
     ```yaml
     kind: PersistentVolumeClaim
     metadata:
@@ -50,6 +53,7 @@ to [installing Ondat on Kubernetes](/docs/install/kubernetes).
       persistentVolumeClaim:
         claimName: pg-data
     ```
+
     This excerpt is from the PersistentVolumeClaim and Pod definition. The pod
     definition references the pg-data VolumeClaim so storage is dynamically
     provision storage, using the Ondat storage class. Dynamic provisioning
@@ -90,6 +94,7 @@ to [installing Ondat on Kubernetes](/docs/install/kubernetes).
              |          |           |         |       | testuser=CTc/postgres
    (4 rows)
    ```
+
    The password for the primary user is password. You can see this is set in
    the ConfigMap file.
 

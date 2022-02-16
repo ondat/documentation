@@ -24,7 +24,6 @@ Before you start, ensure you have Ondat installed and ready on a Kubernetes
 cluster. [See our guide on how to install Ondat on Kubernetes for more
 information](/docs/install/kubernetes).
 
-
 ## Prerequisites
 
 - Apache Zookeeper is required by Kafka to function; we assume it to already
@@ -41,10 +40,9 @@ To simplify the deployment of kafka, we've used this
 [Kafka helm chart (incubator)](https://github.com/helm/charts/tree/master/incubator/kafka)
 (version `0.13.8`, app version `5.0.1`) and rendered it into the
 example deployment files you can find in our GitHub
-[repo](https://github.com/storageos/use-cases/tree/master/kafka).
+[repository](https://github.com/storageos/use-cases/tree/master/kafka).
 
-
-#### Clone the use cases repo
+#### Clone the use cases repository
 
 You can find the latest files in the Ondat use cases repository
 in `/kafka/`
@@ -107,8 +105,8 @@ spec:
   Dynamic provisioning occurs as a volumeMount has been declared with the same
   name as a VolumeClaimTemplate.
 
-
 1. Create the kubernetes objects
+
    ```bash
    kubectl apply -f ./kafka/
     ```

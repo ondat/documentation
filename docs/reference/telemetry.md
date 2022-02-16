@@ -27,6 +27,7 @@ reports to sentry.io over tcp/443. Ondat respects environment variables that
 uses.
 
 An exhaustive list of information included in the crash report is below:
+
 * Ondat version
 * Crash description string
 * Anonymized Cluster ID
@@ -36,12 +37,13 @@ An exhaustive list of information included in the crash report is below:
 
 Ondat will perform a "latest version check" using a DNS query in order to
 inform administrators that a new version is available. Ondat will also send
-anonymized node ids, cluster id and Ondat version information to Ondat
+anonymized node ids, cluster ID and Ondat version information to Ondat
 using a DNS query. The information that we send in the query is encoded as well
 as being anonymized. This query allows us to inform Cluster admins when
 Ondat upgrades are available in the Ondat GUI and in the logs.
 
 The DNS query includes:
+
 * Anonymized Ondat Cluster ID
 * Anonymized Ondat node ID
 * Ondat version number
@@ -54,6 +56,7 @@ popular platforms. The once per day data is encrypted and sent to an Ondat
 telemetry server so it is never processed outside of Ondat assets.
 
 An exhaustive list of information included in the once per day report is below:
+
 * api_call_metrics
 * cluster_disable_crash_reporting
 * cluster_disable_version_check
@@ -103,12 +106,13 @@ An exhaustive list of information included in the once per day report is below:
 * volume_replica_trigger_rejoin
 * volume_size_bytes
 
-
 ## Disable Telemetry
+
 It is possible to disable telemetry using the GUI, CLI, API, environment
 variables or the Ondat Cluster Spec.
 
 #### Ondat Cluster Spec
+
 Disable telemetry explicitly through the configurable [spec parameters](
 /docs/reference/cluster-operator/configuration) of the
 StorageOSCluster custom resource.

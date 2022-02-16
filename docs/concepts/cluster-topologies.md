@@ -10,9 +10,10 @@ changed at execution time.
 
 Ondat performs file I/O over the network, which is how we ensure that your
 data is always available throughout your cluster. This also affords the user
-certain possibilities for organising your cluster, as we suggest below. 
+certain possibilities for organising your cluster, as we suggest below.
 
 ## Hyperconverged Model
+
 In this topology all nodes can store data and present data. This gives maximum
 flexibility to the Ondat and Kubernetes schedulers, and maximum choice for
 pod placement. No matter how you deploy your workloads they will be able to
@@ -25,6 +26,7 @@ performance without extra effort.
 ![Hyperconverged Model](/images/docs/concepts/hyperconverged.png)
 
 ## Centralised Storage Model
+
 In this cluster topology volume data is placed on a particular subset of nodes,
 while the remaining nodes in your cluster are set to `computeonly`, allowing
 access to data hosted on other nodes, while consuming no storage themselves.
@@ -40,7 +42,8 @@ central data store not impacted by rapid and repeated cluster scaling.
 ![Centralised Model](/images/docs/concepts/centralised.png)
 
 ## High Performance Mode
-In this mode we co-locate pods with the volumes they are using in order to take
+
+In this mode we colocate pods with the volumes they are using in order to take
 advantage of the performance gains from running on the same node, while
 retaining the utility of orchestrators for managing app lifecycle.
 

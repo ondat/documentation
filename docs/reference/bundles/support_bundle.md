@@ -17,12 +17,11 @@ The support bundle is generated with the Ondat kubectl plugin, which can be
 installed as follows:
 
 ```bash
-$ curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/storageos-support-bundle-install.sh | bash
+curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/storageos-support-bundle-install.sh | bash
 ```
 
 If you prefer to run the installation commands individually, we provide them
 here:
-
 
 ```bash
 # Create a temporary directory in which to store the plugin binaries
@@ -60,6 +59,7 @@ STORAGEOS_NS=my-namespace
 curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml | sed "s/kube-system/$STORAGEOS_NS/g" > /tmp/storageos-kubectl-config.yaml
 kubectl storageos bundle /tmp/storageos-kubectl-config.yaml
 ```
+
 **Please note** that if you have a custom selector for your worker nodes you
 should update the bundle-configuration.yaml under
 `spec.collectors.run.nodeselector` to reflect this.

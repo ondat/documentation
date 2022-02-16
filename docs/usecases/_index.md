@@ -43,9 +43,10 @@ Ondat volumes so the necessary pod uniqueness guarantees are maintained.
 ### StatefulSet Manifests
 
 The Ondat specific part of the Kubernetes manifests for these examples lies
-in the VolumeClaimTemplate that's part of the statefulset definition. 
+in the VolumeClaimTemplate that's part of the statefulset definition.
 
-VolumeClaimTemplate 
+VolumeClaimTemplate
+
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
@@ -87,6 +88,7 @@ spec:
           storage: 5Gi
 
 ```
+
 In the StatefulSet definition above the container has a volume mount
 defined called baz. The definition for this volume is found in the
 VolumeClaimTemplate where the fast storageClass will be used to dynamically

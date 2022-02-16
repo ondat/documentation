@@ -45,6 +45,7 @@ To ensure deterministic performance, individual Ondat volumes must fit on a sing
 node.
 
 ## Minimum Volume Size
+
 The minimum volume size Ondat supports is 1GB.
 
 ## TRIM
@@ -69,7 +70,7 @@ controlplane will then attach the volume to the node that holds the master
 deployment and resize the underlying block device and then run resize2fs to
 expand the filesystem.
 
-For a walk through of how to resize a volume, see the [Volume Resize](/docs/operations/resize) operations page.
+For a walkthrough of how to resize a volume, see the [Volume Resize](/docs/operations/resize) operations page.
 
 ## Volume Encryption
 

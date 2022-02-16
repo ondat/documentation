@@ -31,7 +31,6 @@ unique, strong password.
 
 > You can define a base64 value by `echo -n "mystring" | base64`.
 
-
 Create a `cluster-config.yaml` according to your needs from the examples below.
 
 ```bash
@@ -46,7 +45,7 @@ default), irrespective of what NameSpace the CR is defined in.
 # Examples
 
 > You can checkout all the parameters configurable in the
-> [configuration](configuration.md)
+> [configuration](/docs/reference/cluster-operator/configuration)
 > page.
 
 All examples must reference the `storageos-api` Secret.
@@ -83,7 +82,7 @@ secret with the Etcd client certificate, client key and CA.
 
 ## Installing to a subset of nodes
 
-In this case we select nodes that are workers. To make sure that Ondat doesn't start in Master nodes. 
+In this case we select nodes that are workers. To make sure that Ondat doesn't start in Master nodes.
 
 You can see the labels in the nodes by `kubectl get node --show-labels`.
 
@@ -103,10 +102,8 @@ spec:
 
 > Different provisioners and Kubernetes distributions use node labels
 > differently to specify master vs workers. Node Taints are not enough to
-> make sure Ondat doesn't start in a node. The
-> [JOIN](https://docs.storageos.com/docs/reference/clusterdiscovery)
-> variable is defined by the operator by selecting all the nodes that match the
-> `nodeSelectorTerms`.
+> make sure Ondat doesn't start in a node. The `JOIN` variable is defined
+> by the operator by selecting all the nodes that match the `nodeSelectorTerms`.
 
 ## Enabling CSI
 
@@ -181,4 +178,3 @@ In the above example a toleration `key1=value1:EffectToTolerate` would be
 tolerated and `key2` would be tolerated regardless of the value and effect. For
 more information about tolerations, see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
-

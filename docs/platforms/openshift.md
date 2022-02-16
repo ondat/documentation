@@ -8,7 +8,7 @@ Ondat V2 supports Openshift v4.
 Red Hat OpenShift and Ondat communicate with each other to perform actions such as
 creation, deletion and mounting of volumes through CSI. The CSI container
 running in the Ondat Daemonset creates a Linux socket that allows the
-communication between Red Hat OpenShift and Ondat. 
+communication between Red Hat OpenShift and Ondat.
 
 ## Installation
 

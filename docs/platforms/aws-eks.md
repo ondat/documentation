@@ -3,7 +3,7 @@ title: "Amazon EKS"
 linkTitle: AWS EKS
 ---
 
-Ondat is fully compatible with Amazon EKS. To install Ondat on EKS, 
+Ondat is fully compatible with Amazon EKS. To install Ondat on EKS,
 follow our Kubernetes [installation instructions](/docs/install/kubernetes) page.
 
 An Amazon EKS deployment of Kubernetes uses Amazon Linux by default with an optimized

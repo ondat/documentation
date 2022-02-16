@@ -54,14 +54,14 @@ The Node Delete Controller syncs deletions from your Kubernetes cluster to
 Ondat.
 
 This controller dynamically removes nodes from your Ondat cluster, being
-triggered when the Kubernetes node is removed. 
+triggered when the Kubernetes node is removed.
 
 Whenever a node delete event occurs the Node Delete Controller will trigger if
 the node has the Ondat CSI driver annotation.
 
 If the node holds an Ondat Volume without a replica then it cannot be
 deleted by this controller. The Volume must be deleted first and then the node.
-This is to prevent data loss by accidental deletion of a master volume. 
+This is to prevent data loss by accidental deletion of a master volume.
 
 A periodic garbage collection runs every hour (this is configurable via
 `-node-delete-gc-interval` flag for the [API Manager](https://github.com/storageos/api-manager).

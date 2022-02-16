@@ -65,7 +65,7 @@ Backups are therefore imperative in case the Kubernetes Etcd is lost.
 lost.**
 
 Secrets in Kubernetes are not encrypted by default, they are stored in the
-Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
+Kubernetes Etcd in simple base64 encoding. As Ondat encryption keys are
 stored as Kubernetes Secrets, this means that anyone with access to a
 Kubernetes Etcd installation can read encryption keys and decrypt volumes,
 unless the cluster has an external secrets store.

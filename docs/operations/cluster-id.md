@@ -10,7 +10,6 @@ Ondat Licence is specific for a ClusterID.
 
 You can obtain the ClusterID using either the CLI or GUI.
 
-
 ### GUI
 
 You will need access to the Ondat GUI on port 5705 of any of your nodes.
@@ -19,7 +18,7 @@ following kubectl incantation (this will block, so a second terminal window may
 be advisable):
 
   ```bash
-  $ kubectl port-forward -n storageos svc/storageos 5705
+  kubectl port-forward -n storageos svc/storageos 5705
   ```
 
 As an alternative, an Ingress controller may be preferred.
@@ -28,9 +27,7 @@ Once you have obtained access to the GUI, login using whatever credentials you
 used to create the cluster and go to the "Licence" section on the left
 navigation menu.
 
-
 ![Licence page](/images/docs/operations/licensing/licence-page.png)
-
 
 ### CLI
 

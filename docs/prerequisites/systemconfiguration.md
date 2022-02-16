@@ -34,6 +34,7 @@ installed.
 ## Distribution Specifics
 
 The following distributions are supported by default:
+
 * RHEL 7.5
 * CentOS 7
 * Debian 9
@@ -52,7 +53,7 @@ Ubuntu 16.04/18.04 requires the installation of additional packages.
 
 Ubuntu 16.04:
 
-```bash 
+```bash
 sudo apt -y update
 sudo apt -y install linux-image-extra-$(uname -r)
 ```
@@ -82,6 +83,7 @@ sudo shutdown -r now
 ```
 
 ## Automatic Configuration
+
 Once required kernel modules are installed on the system, for convenience we
 provide a container which will ensure the appropriate modules are loaded and
 ready for use at runtime. On Docker installations, you will need to run the
@@ -100,6 +102,7 @@ docker run --name enable_lio                  \
 ```
 
 ## Manual Configuration
+
 For those wishing to manage their own kernel configuration, rather than using
 the init container, perform the following steps:
 

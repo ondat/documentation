@@ -62,7 +62,7 @@ Ondat Topology-Aware Placement is a feature that enforces placement of data
 across failure domains to guarantee high availability.
 
 TAP uses default labels on nodes to define failure domains. For instance, an
-Availability Zone. For more detail on TAP, check the 
+Availability Zone. For more detail on TAP, check the
 [reference page](/docs/reference/tap).
 
 ## Failure Modes
@@ -70,7 +70,7 @@ Availability Zone. For more detail on TAP, check the
 Ondat failure modes offer different guarantees with regards to a volume's
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to `Hard`. Volume failure modes can be dynamically
-updated at run time.
+updated at runtime.
 
 ### Hard
 
@@ -165,4 +165,4 @@ replicas will be tolerated.
 
 Minimum number of storage nodes = 1 (primary)
 
-For details about how to use the labels on the VolumesCheck, see the [failure modes operations](/docs/operations/failure-modes") page.
+For details about how to use the labels on the VolumesCheck, see the [failure modes operations](/docs/operations/failure-modes) page.

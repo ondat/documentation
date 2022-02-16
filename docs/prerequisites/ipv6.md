@@ -5,6 +5,7 @@ weight: 200
 ---
 
 ## Availability of IPv6 Address Family
+
 Certain Ondat components need to be able to listen on a standard
 dual-stack socket of type AF_INET6. The IPv6 address family must be supported
 on the server so that this socket can be allocated. Ondat does not require

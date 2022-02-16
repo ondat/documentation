@@ -6,7 +6,7 @@ linkTitle: Nodes
 An Ondat node is any machine (virtual or physical) that is running the
 Ondat daemonset pod. A node must be running a daemonset pod in order to
 consume and/or present storage.
-    
+
 Nodes can be run in several modes.
 
 ## Hyperconverged Mode
@@ -24,6 +24,7 @@ Ondat implements an extension of a Kubernetes Scheduler object that
 influences the placement of Pods on the same nodes as their data.
 
 ## Compute-only Mode
+
 Alternatively, a node can run in `computeonly` mode, which means no storage is
 consumed on the node itself and the node only presents volumes hosted by
 other nodes. Volumes presented to applications running on compute only nodes
@@ -37,6 +38,7 @@ A node can be marked as compute only at any point in time by adding the label
 `storageos.com/computeonly=true`, following the [labels reference](/docs/reference/labels).
 
 ## Storage Mode
+
 Finally, nodes can be set to storage mode. Nodes set to storage mode don't
 present data locally - instead all data is accessed through the network. This
 topology is enforced by tainting the relevant nodes to ensure that application

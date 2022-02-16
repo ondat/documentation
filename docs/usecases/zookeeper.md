@@ -36,11 +36,11 @@ To simplify the deployment of Zookeeper, we've used this [Zookeeper helm chart
 (incubator)](https://github.com/helm/charts/tree/master/incubator/zookeeper)
 (version `1.2.2`, app version `3.4.10`) and rendered it into the example
 deployment files you can find in our GitHub
-[repo](https://github.com/storageos/use-cases/tree/master/zookeeper).
+[repository](https://github.com/storageos/use-cases/tree/master/zookeeper).
 
 ### Deployment
 
-#### Clone the use cases repo
+#### Clone the use cases repository
 
 You can find the latest files in the Ondat use cases repository in
 `/zookeeper/`

@@ -66,7 +66,7 @@ example: login: storageos / password: storageos) when using the
 
 Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
-this IP can be set with the address parameter as such: 
+this IP can be set with the address parameter as such:
 
 ```shell
 kubectl port-forward -n storageos svc/storageos 5705 --address 10.20.20.20
@@ -123,10 +123,9 @@ END
 ```
 
 > ⚠️ Be sure to edit the environment variables appropriately for your target cluster, eg. the
-> username/password for the administrative user. 
+> username/password for the administrative user.
 
 Once the pod is launched, you can retrieve it's unique identifier:
-
 
 ```shell
 POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
@@ -153,14 +152,14 @@ Nodes:        3
   Unhealthy:  0
 ```
 
-The UUID in the `ID` field is unique to your cluster and is the only information 
+The UUID in the `ID` field is unique to your cluster and is the only information
 you need in order to obtain your first license.
 
 ## Ondat - Obtaining a Personal Licence
 
 A personal license is aimed at individuals looking to try Ondat themselves before
-running it any business-critical situation. We're happy to provide guidance and 
-best-effort support with the Ondat community through our [slack channel](https://storageos.slack.com/) 
+running it any business-critical situation. We're happy to provide guidance and
+best-effort support with the Ondat community through our [slack channel](https://storageos.slack.com/)
 or directly by email via info@ondat.io.
 
 To enable self-service for licenses, we provide a simple API. To request a license with curl, run:
@@ -186,18 +185,19 @@ curl -XPOST --data '{
 > ⚠️ Be sure to change the details to reflect your own!
 
 Do note that:
+
 - `clusterID` must be correct for your cluster, or the license won't apply!
 - `company` and `companySize` are totally optional, feel free to omit them
 - `country` can be a country in ISO 3166 format or the English name of the country
 - `email` will be validated and must be available and non-disposable
 
-> 💡 If you receive an `Internal Service Error`, double-check that all the information you've 
+> 💡 If you receive an `Internal Service Error`, double-check that all the information you've
 submitted fits the above requirements!
 
 Now check your inbox! You will have received an automatically generated email with a link to
 your license file. If you don't see it, be sure to give it a few minutes and check your spam folder!
 
-The **Download license** button on the email will work as many times as you'd like to retrieve the license - 
+The __Download license__ button on the email will work as many times as you'd like to retrieve the license -
 to renew, just submit another new license request!
 
 Note that the resulting file is not the license itself - the license is wrapped in JSON, so you must use
@@ -250,12 +250,14 @@ kvl6vWW7YIS9r655S25jMMU7brrGDQVdjvU7tSA74BrnzDFHu7/poopIuFqcxZc/NLrKp/akkvyZI5Ex
 NaalLsK/96bJov6tpbg96g==
 ```
 
-## Ondat GUI - Applying a Licence via the Ondat GUI 
+## Ondat GUI - Applying a Licence via the Ondat GUI
+
 To apply a licence:
-1.  Browse the __Licence__ page of the Ondat GUI
-1.  Click the __Upgrade__ button, for the specific licence level you purchased
-1.  Paste the licence key into the pop-up window
-1.  To apply the license click __Upgrade__
+
+1. Browse the __Licence__ page of the Ondat GUI
+1. Click the __Upgrade__ button, for the specific licence level you purchased
+1. Paste the licence key into the pop-up window
+1. To apply the license click __Upgrade__
 
 > ⚠️ It is crucial to paste all the licence text into the pop-up and not
 > just the signature. Keep in mind that the encoding of the file must not
@@ -265,7 +267,7 @@ To apply a licence:
 
 ## Ondat CLI - Applying a licence via the CLI
 
-The following command will apply the licence key stored in `/path/to/storageos-licence.dat`, 
+The following command will apply the licence key stored in `/path/to/storageos-licence.dat`,
 assuming that you have the CLI running as described in the sections above:
 
 ```shell
@@ -296,4 +298,3 @@ visible when they are relevant to your individual license.
 
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
-

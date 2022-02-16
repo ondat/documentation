@@ -10,7 +10,7 @@ Ondat persistent volume being mounted on `/var/jenkins_home`. Deploying
 Jenkins using Ondat offers multiple benefits. Firstly Jenkins can spin up
 multiple build pods at once to allow concurrent builds of different projects.
 Secondly Jenkins configuration is on a PersistentVolume so even if the Jenkins
-pod is rescheduled the configuration will persist. 
+pod is rescheduled the configuration will persist.
 
 Using Ondat [volume replicas](/docs/concepts/replication) allows for
 failure of nodes holding the PersistentVolume without interrupting Jenkins.
@@ -26,9 +26,9 @@ cluster. [See our guide on how to install Ondat on Kubernetes for more informati
    repository.
 
    ```bash
-   $ git clone https://github.com/storageos/use-cases.git storageos-usecases
-   $ cd storageos-usecases
-   $ kubectl create -f ./jenkins
+   git clone https://github.com/storageos/use-cases.git storageos-usecases
+   cd storageos-usecases
+   kubectl create -f ./jenkins
    ```
 
 1. Confirm that Jenkins is up and running
@@ -48,8 +48,9 @@ cluster. [See our guide on how to install Ondat on Kubernetes for more informati
    `10-service.yaml` commented out.
 
    To port-foward the Jenkins service use the following command.
+
    ```bash
-   $ kubectl port-foward svc/jenkins 8080
+   kubectl port-foward svc/jenkins 8080
    ```
 
    To login to the Jenkins UI use the credentials specified in
@@ -68,6 +69,7 @@ cluster. [See our guide on how to install Ondat on Kubernetes for more informati
    #!/bin/bash
    sleep 1000
    ```
+
    Save the project and select Schedule a build of your project. You can watch for
    the appearance of a build pod using `kubectl get pods -l jenkins=agent -w`.
    Once the pod is created you should see the Build Executor status in the Jenkins

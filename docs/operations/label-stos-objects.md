@@ -7,6 +7,7 @@ For more information regarding the Ondat Label Sync feature, see our
 [Kubernetes Object Sync reference page.](/docs/reference/kubernetes-object-sync)
 
 ## Label Syncing
+
 The Ondat API Manager handles cases where information from objects in your
 Kubernetes Cluster needs to be synced to your Ondat cluster.
 
@@ -16,7 +17,7 @@ The below guide shows how to apply a label to your PVCs, and how these labels
 sync through to your Ondat Volumes. This operation is used often - for
 example it is used here to add replicas to an Ondat Volume.
 
-1. Create a PVC, following the instructions [here](/docs/operations/firstpvc). 
+1. Create a PVC, following the instructions [here](/docs/operations/firstpvc).
 When you create a PVC, Ondat
 automatically provisions an Ondat volume for it. An example PVC and
 Ondat volume can be seen below. Note the labels `app=mysql` and `env=prod`
@@ -54,16 +55,17 @@ Volume.
        storageos.com/replicas: "0"
    ...
    ```
-    
+
 1. Now, apply a label to the PVC.
-    
+
     ```
-    $ kubectl label pvc data-mysql-0 storageos.com/replicas=3
+    kubectl label pvc data-mysql-0 storageos.com/replicas=3
     ```
 
 2. By using the Ondat CLI, you can verify that the label applied has
    been synced through to our Ondat volume and the replicas are all
    present.
+
     ```
     $ storageos describe volume pvc-2e6339f0-96f9-4098-a388-149fd0daa14f -oyaml
     id: 286fd3a6-c8f8-480a-b5e1-d16896db0c72
@@ -113,7 +115,7 @@ Volume.
     updatedAt: 2021-05-06T16:47:26Z
     version: Mzg
     ```
-    
+
 ## Label Syncing on Nodes
 
 Some Ondat functionality is set by labeling nodes - for example setting a
@@ -121,6 +123,7 @@ node to "compute-only" mode, as demonstrated here.
 
 1. Note labels on the node that will be labeled and on the Ondat node corresponding to that
    Kubernetes node.
+
     ```
     $ kubectl describe node worker1 
     Name:               worker1
@@ -172,12 +175,14 @@ node to "compute-only" mode, as demonstrated here.
     ```
 
 2. Now, apply the label to the node.
+
     ```
-    $ kubectl label node worker1 storageos.com/computeonly=true
+    kubectl label node worker1 storageos.com/computeonly=true
     ```
 
 3. The label has synced to the node and it has been set to `compute-only`
    mode.
+
     ```
     $ storageos describe node worker1
     ID                                      52a98f1a-4d33-41e6-891a-6931052c4ba3    
@@ -197,4 +202,3 @@ node to "compute-only" mode, as demonstrated here.
                         node-role.kubernetes.io/worker=true,    
                         storageos.com/computeonly=true
     ```
-

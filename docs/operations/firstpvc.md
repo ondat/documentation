@@ -97,25 +97,29 @@ be used to persist data written by a Pod.
     Ondat to add a replica for the volume that is created. For the sake
     of keeping this example simple an unreplicated volume will be used.
 
-1.  Move into the examples folder and create a PVC using the PVC definition above.
+1. Move into the examples folder and create a PVC using the PVC definition above.
 
     ```bash
-    $ # from storageos-usecases/00-basic
-    $ kubectl create -f ./pvc-basic.yaml
+    # from storageos-usecases/00-basic
+    kubectl create -f ./pvc-basic.yaml
      ```
+
     You can view the PVC that you have created with the command below
+
     ```bash
     $ kubectl get pvc
     NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
     pvc-1        Bound    pvc-f8ffa027-e821-11e8-bc0b-0ac77ccc61fa   5Gi        RWO            storageos       1m
     ```
+
 1. Create a pod that mounts the PVC created in step 2.
 
     ```bash
-    $ kubectl create -f ./pod.yaml
+    kubectl create -f ./pod.yaml
     ```
 
     The command above creates a Pod that uses the PVC that was created in step 1.
+
     ```yaml
     apiVersion: v1
     kind: Pod
@@ -142,6 +146,7 @@ be used to persist data written by a Pod.
     example.
 
 1. Confirm that the pod is up and running
+
     ```bash
     $ kubectl get pods
     NAME      READY   STATUS    RESTARTS   AGE
@@ -149,6 +154,7 @@ be used to persist data written by a Pod.
     ```
 
 1. Execute a shell inside the container and write some contents to a file
+
     ```bash
     $ kubectl exec -it d1 -- bash
     root@d1:/# echo "Hello World!" > /mnt/helloworld

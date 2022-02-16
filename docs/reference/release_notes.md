@@ -11,7 +11,7 @@ installation instructions please see our
 [Install](/docs/reference/cluster-operator/install) page.
 
 The latest CLI release is `2.5.0`, available from
-[Github](https://github.com/storageos/go-cli/releases).
+[GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
@@ -38,7 +38,6 @@ Dataplane:
   issue that prevented the tool from running whilst the Dataplane was running.
   This has been fixed.
 
-
 ### New
 
 Dataplane:
@@ -59,7 +58,7 @@ Control Plane:
   that enforces placement of data across failure domains to guarantee high
   availability.
 - Track logs from control plane to data plane with extra details.
-- The CLI tool can now display the availability zone of each of the volume's
+- The command-line tool can now display the availability zone of each of the volume's
   deployments.
 
 Kubernetes:
@@ -70,7 +69,6 @@ Kubernetes:
   status now reflects cluster deployment status. Users can now change log-level
   port to new operator and we have given users increased flexibility for users
   to configure StorageOS images.
-
 
 ## 2.4.4 - Released 2021-09-08
 
@@ -84,7 +82,6 @@ Kubernetes:
   erroneously restarted while we are trying to shutdown.
 - k8s: Leader election requires ability to patch events.
 - k8s: Node label sync could fail to apply updated label.
-
 
 ## v2.4.2 - Released 2021-07-15
 
@@ -104,6 +101,7 @@ Kubernetes:
 ### New
 
 - Cluster-wide log level configuration via Custom Resource.
+
 ### Fixed
 
 - controlplane: Improve error message during failed `--label` argument parsing.
@@ -119,12 +117,13 @@ Kubernetes:
 ## v2.4.0 - Released 2021-05-27
 
 This release adds production-grade [encryption at rest ](/docs/reference/encryption) for Ondat volumes, as well as:
-* [Fencing](/docs/concepts/fencing)
-* [TRIM](/docs/operations/trim)
-* [Failure modes](/docs/concepts/replication#failure-modes)
-* [Kubernetes object sync](/docs/reference/kubernetes-object-sync)
+- [Fencing](/docs/concepts/fencing)
+- [TRIM](/docs/operations/trim)
+- [Failure modes](/docs/concepts/replication#failure-modes)
+- [Kubernetes object sync](/docs/reference/kubernetes-object-sync)
 
 Note: v2.4.0 _requires_ Kubernetes 1.17 or newer.
+
 ### New
 
 - Volume encryption-at-rest.
@@ -212,7 +211,7 @@ Note: v2.4.0 _requires_ Kubernetes 1.17 or newer.
   msgs.
 - controlplane/store/etcd: Decorate lock logs with associated ID fields.
 - controlplane/ui: Warn user that updating labels action will be reverted.
-- controlplane/vendor: Bump service repo.
+- controlplane/vendor: Bump service repository.
 - controlplane/volume: Encryption support in kubernetes.
 
 - dataplane/fs: Don't return from PresentationCreate RPC until the device is
@@ -256,13 +255,13 @@ Note: v2.4.0 _requires_ Kubernetes 1.17 or newer.
 - k8s/api-manager: Encrypt only provisioned PVCs.
 - k8s/api-manager: Fix tracing example.
 - k8s/api-manager: Introduce StorageClass to PVC annotation mutator.
-- k8s/api-manager: Log api reason.
+- k8s/api-manager: Log API reason.
 - k8s/api-manager: Migrate namespace delete to operator toolkit.
 - k8s/api-manager: Migrate node delete to operator toolkit.
 - k8s/api-manager: Migrate to kubebuilder v3.
 - k8s/api-manager: Node label sync.
 - k8s/api-manager: Node label update must include current reserved labels.
-- k8s/api-manager: Pass context to api consistently.
+- k8s/api-manager: Pass context to API consistently.
 - k8s/api-manager: Rename leader election config map.
 - k8s/api-manager: RFC 3339 and flags to configure level & format.
 - k8s/api-manager: Run shared volume controller with manager.
@@ -331,7 +330,7 @@ Note: v2.4.0 _requires_ Kubernetes 1.17 or newer.
 
 ### Fixed
 
-- api-manager: Reset api after token refresh error.
+- api-manager: Reset API after token refresh error.
 - operator: Set scheduler when PVCs use default StorageClass.
 - operator: Update base container image.
 - controlplane/volumerpc: "Got unknown replica state 0" discards results.
@@ -369,7 +368,7 @@ technology preview in v1.
 - Adds support for `ReadWriteMany` shared volumes.  See
   [ReadWriteMany](/docs/concepts/rwx).
 - Adds `api-manager` deployment to support shared volumes.  See [the api
-  manager](https://github.com/storageos/api-manager) Github repository for more
+  manager](https://github.com/storageos/api-manager) GitHub repository for more
   information.
 - Kubernetes 1.19 support.
 
@@ -442,7 +441,7 @@ improvements across the board. Of particular note:
 - I/O for large block sizes (128K) has improved by up to 353%
 
 We are extremely proud of our performance and we love to talk about it. Have a
-look at the [Benchmarking](/docs/self-eval#Benchmarking) section of the 
+look at the [Benchmarking](/docs/self-eval#Benchmarking) section of the
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our [slack
 channel](https://storageos.slack.com).
@@ -513,7 +512,7 @@ channel](https://storageos.slack.com).
 
 - csi: Volume expansion now supported in offline mode. To expand a volume, stop
   any workloads accessing the volume, then edit the PVC to increase the
-  capacity. For more information, see our [Volume Resize](operations/resize) operations page and the [`CSI Volume
+  capacity. For more information, see our [Volume Resize](/docs/operations/resize) operations page and the [`CSI Volume
   Expansion`](https://kubernetes-csi.github.io/docs/volume-expansion.html)
   page.
 - api: Volume configuration including replica count can now be updated while
@@ -603,4 +602,3 @@ channel](https://storageos.slack.com).
 
 Initial release of version 2.x. See [Ondat v2.0 Release
 Blog](https://storageos.com/storageos-2-0-release-blog) for details.
-

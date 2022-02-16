@@ -36,7 +36,6 @@ kubectl storageos install
 
 Ondat uses a Kubernetes Secret to define the first admin user. You can define its credentials when installing.
 
-
 ```bash
 kubectl storageos install \
     --admin-username "myuser" \
@@ -49,6 +48,7 @@ The Ondat kubectl plugin allows to define the StorageOSCluster Custom
 Resource declaratively, as a yaml.
 
 1. Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR
+
     ```bash
     ---
     # Secret
@@ -99,6 +99,7 @@ Resource declaratively, as a yaml.
     ```
 
 1. Install cluster
+
     ```bash
     kubectl storageos install --stos-cluster-yaml StorageOSCluster.yaml --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
     ```
