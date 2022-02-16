@@ -51,7 +51,7 @@ be viewed and edited by obtaining the `bundle-configuration.yaml` file, which
 is publicly available.
 
 Ondat is usually installed in the kube-system namespace. If you have
-installed Ondat in a different namespace please replace the namespace in
+installed Ondat in a different namespace make sure to replace the namespace in
 the storage bundle config as below.
 
 ```bash

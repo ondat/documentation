@@ -26,8 +26,8 @@ are some of the features that are available under the personal licence.
 
 ## Commercial Licence
 
-For more information on our commercial offerings, including support, please
-contact getstarted@ondat.io.
+For more information on our commercial offerings, including support, contact
+getstarted@ondat.io.
 
 ## Capacity limits
 

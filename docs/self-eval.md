@@ -14,7 +14,7 @@ Ondat. This guide is divided into three sections:
 * __Benchmarking__ - a recipe to benchmark Ondat on your infrastructure
 
 > 💡 For more comprehensive documentation including installation advice for complex
-> setups, operational guides, and use-cases, please see our main [documentation site](https://docs.ondat.io).
+> setups, operational guides, and use-cases, see our main [documentation site](https://docs.ondat.io).
 
 ## Support for Self Evaluations
 
@@ -27,7 +27,7 @@ touch with us. The fastest way to get in touch is to [join our public Slack chan
 In this document we detail a simple installation suitable for evaluation
 purposes. The etcd we install uses a 3 node cluster with local storage, and
 as such is not suitable for production workloads. However, for evaluation
-purposes it should be sufficient. For production deployments, please see our
+purposes it should be sufficient. For production deployments, see our
 main [documentation pages](/docs/prerequisites/etcd).
 
 A standard Ondat installation uses the Ondat operator, which performs
@@ -608,7 +608,7 @@ benchmark a Postgres database backed by an Ondat volume.
 ## Conclusion
 
 After completing these steps you will have benchmark scores for Ondat.
-> 💡 Please keep in mind that benchmarks are only part of the story and that there
+> 💡 Do keep in mind that benchmarks are only part of the story and that there
 > is no replacement for testing actual production or production like workloads.
 
 Ondat invites you to provide feedback on your self-evaluation to the [slack channel](https://storageos.slack.com) or by directly emailing us at <info@ondat.io>.

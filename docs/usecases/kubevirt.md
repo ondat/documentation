@@ -31,7 +31,7 @@ information](/docs/install/kubernetes).
 
 ## Prerequisites
 
-Please ensure you have met the Kubevirt prerequisites, please see the [
+Ensure you have met the Kubevirt prerequisites, see the [
 Kubevirt installation instructions
 ](https://kubevirt.io/user-guide/operations/installation/) for
 more information.

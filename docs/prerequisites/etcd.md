@@ -5,7 +5,7 @@ weight: 600
 ---
 
 Ondat requires an etcd cluster in order to function. For more information
-on why etcd is required please see our [etcd concepts](/docs/concepts/etcd) page.
+on why etcd is required, see our [etcd concepts](/docs/concepts/etcd) page.
 
 We do not support using the Kubernetes etcd for Ondat installations.
 
