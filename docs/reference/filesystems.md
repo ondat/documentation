@@ -9,7 +9,7 @@ Ondat will automatically use `/var/lib/storageos` on each host as a base
 directory for storing [configuration and blob files](/docs/concepts/volumes#blob-files).
 Supported host filesystem types
 are `ext4` and `xfs`. If you require a specific filesystem, [contact
-Ondat](/docs/support/contactus).
+Ondat](/docs/support).
 
 ## Persistent Volume Filesystems
 
