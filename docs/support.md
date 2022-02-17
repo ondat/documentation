@@ -31,18 +31,21 @@ starting point. Additionally, include anything specific, such as log
 entries, that may help us debug your issue.
 
 ### Platform
+
 * Cloud provider/Bare metal
 * OS distribution and version
 * Kernel version
 * docker version and installation procedure (distro packages or docker install)
 
 ### Ondat
+
 * Version of Ondat
 * `storageos get nodes`
 * `storageos get volumes`
 * `storageos describe volume VOL_ID` # in case of issues with a specific volume
 
 ### Orchestrator related (Kubernetes, OpenShift, etc)
+
 * Version and installation method
 * Managed or self managed?
 * `kubectl -n storageos get pod`
@@ -52,6 +55,7 @@ entries, that may help us debug your issue.
 * Specific for your namespaces: `kubectl describe pod POD_NAME`
 
 ### Environment Changes
+
 * Details of any recent changes to your environment such as planned
   maintenance, node reboots, network failures, etcd outage, etc.. This can
   help speed up ticket triage and resolution considerably

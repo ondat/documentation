@@ -6,14 +6,14 @@
 This repository contains the Ondat Markdown documentation content published [here](https://docs.ondat.io).  
 The documentation is readeable directly out of this repository without the need of CMS rendering.
 
-The `main` branch is the *latest* version of the documentation being pushed to https://docs.ondat.io.
+The `main` branch is the *latest* version of the documentation being pushed to <https://docs.ondat.io>.
 
 # Contribute
 
 Feel free to contribute! We love feedback and interaction with the Community ;)  
 
 The below how to assume a general knowledge on how to use Git and GitHub or similar service.  
-If you are new to Git and GitHub, the following learning path will help you: https://lab.github.com/githubtraining/introduction-to-github
+If you are new to Git and GitHub, the following learning path will help you: <https://lab.github.com/githubtraining/introduction-to-github>
 
 ## How to
 
@@ -100,4 +100,4 @@ rsync -az $PATH_TO_DOCS_SOURCE/images/generic/ $PATH_TO_DOCS_BACKEND/hugo-backen
 ```
 
 * Go in documentation-backend/hugo-backend and run ```hugo server -D --config config/latest.toml```
-* Open a browser to http://127.0.0.1:1313
+* Open a browser to <http://127.0.0.1:1313>
