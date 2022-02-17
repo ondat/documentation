@@ -23,6 +23,4 @@ jobs:
     - name: Run textlint in fix mode
       run: find . -type f -iname \*.md -exec textlint --fix {} \;
     - name: Commit any changes to the branch
-      run: git commit -am 'Autofix linter errors' && git push --set-upstream origin $BRANCH_NAME
-      variables:
-        BRANCH_NAME: ${{ github.head_ref }}
+      run: git commit -am 'Autofix linter errors' && git push --set-upstream origin ${{ github.head_ref }}
