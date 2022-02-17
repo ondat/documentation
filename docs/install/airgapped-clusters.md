@@ -6,58 +6,62 @@ weight: 50
 > The following page is for Advanced users. The full procedure is estimated to
 > take ~60 minutes to complete.
 
-Clusters without access to the internet require you to explicitly specify the 
-resources to be installed. To install Ondat on an airgapped cluster, you need to do the following:
+Clusters without access to the internet require you to explicitly specify the
+resources to be installed. To install Ondat on an airgapped cluster, you need
+to do the following:
 
 - Pull OCI images to private Docker registries.
 - Retrieve and amend YAML for the Ondat cluster-operator and CRDs.
 - Define the StorageOSCluster CustomResource YAML.
 - (If applicable) Retrieve and amend YAML for Etcd operator and Etcd CustomResource.
 
-## Step 1. Pulling images into a private registry:
+## Step 1. Pulling images into a private registry
 
 There are the following sets of images to pull:
-* the Ondat operator image
-* the images in the StorageOSCluster definition that define the images for each component of the cluster 
-* (if applicable) the images to run Etcd as Pods using the Etcd operator deployed by Ondat
+
+- the Ondat operator image
+- the images in the StorageOSCluster definition that define the images for each
+  component of the cluster
+- (if applicable) the images to run Etcd as Pods using the Etcd operator
+  deployed by Ondat
 
 1. Install the Ondat operator: `storageos/operator:v2.5.0` and `quay.io/brancz/kube-rbac-proxy:v0.10.0`
 1. Pull the images from the list defined in the [storageos-related-images
   configMap](https://github.com/storageos/operator/blob/main/bundle/manifests/storageos-related-images_v1_configmap.yaml)
 and select the branch for the release version.
 
-	For instance for the branch `release-v2.5.0`:
+    For instance for the branch `release-v2.5.0`:
 
-	```bash
-	# Images to pull
-	curl -s https://raw.githubusercontent.com/storageos/operator/release-v2.5.0/bundle/manifests/storageos-related-images_v1_configmap.yaml \
-	| cut -d: -f2- \
-	| grep ":v"
-	```
+    ```bash
+    # Images to pull
+    curl -s https://raw.githubusercontent.com/storageos/operator/release-v2.5.0/bundle/manifests/storageos-related-images_v1_configmap.yaml \
+    | cut -d: -f2- \
+    | grep ":v"
+    ```
 
 1. Pull the image `k8s.gcr.io/kube-scheduler:v1.21.5` with the tag
   matching your Kubernetes version. In this case k8s version `v1.21.5`.
 
-1. If you are installing Etcd in Kubernetes, then pull 
-	- quay.io/coreos/etcd:v3.5.0
-	- storageos/etcd-cluster-operator-controller:develop
-	- storageos/etcd-cluster-operator-proxy:develop
+1. If you are installing Etcd in Kubernetes, then pull
+    - quay.io/coreos/etcd:v3.5.0
+    - storageos/etcd-cluster-operator-controller:develop
+    - storageos/etcd-cluster-operator-proxy:develop
 
 > 💡 This page will follow the reference to the pulled images with the format
 > `<url-of-registry>/<fqdn-of-public-image>:<tag>`, even though it is common to
 > remove the qualified domain name from the image url in private registries
 > leaving the URI of the image as `<user/image>:<tag>`. Set the URL for the
-> images following the name pattern that suits your best practices. For example, the
-> image `quay.io/k8scsi/csi-attacher:v3.1.0` is tranformed to
+> images following the name pattern that suits your best practices. For
+> example, the image `quay.io/k8scsi/csi-attacher:v3.1.0` is tranformed to
 > `registry-service.registry.svc:5000/quay.io/k8scsi/csi-attacher:v3.1.0`
 
 ## Step 2. Retrieving the Cluster operator YAML
 
-1. The Ondat operator YAMLs are generated for every release of the product. It is
-best to retrieve the YAML from the machine-generated pipeline. To do so, run locally the
-following container that prints them on stdout.
+1. The Ondat operator YAMLs are generated for every release of the product. It
+is best to retrieve the YAML from the machine-generated pipeline. To do so, run
+locally the following container that prints them on stdout.
 
-    ```
+    ```bash
     ONDAT_VERSION=v2.5.0
     docker run   \
         --rm \
@@ -65,11 +69,12 @@ following container that prints them on stdout.
     ```
 
     Or run in a k8s cluster:
-    ```
+
+    ```bash
     ONDAT_VERSION=v2.5.0
 
     # Once the image is pulled into your registry you can run
-    kubectl run ondat-operator-manifests --image storageos/operator-manifests:$ONDAT_VERSION 
+    kubectl run ondat-operator-manifests --image storageos/operator-manifests:$ONDAT_VERSION
 
     # Get the yaml
     kubectl logs ondat-operator-manifests > ondat-operator.yaml
@@ -79,10 +84,11 @@ following container that prints them on stdout.
     ```
 
 1. Once you have the `ondat-operator.yaml` you must edit the file to amend the
-container image URL for the private registry one. 
+container image URL for the private registry one.
 
     Edit the variables `REGISTRY_IMG_OPERATOR` and `REGISTRY_IMG_PROXY`
-    ```
+
+    ```bash
     # Change operator image for your registry url reference
 
     ONDAT_VERSION=v2.5.0
@@ -102,7 +108,7 @@ The StorageOSCluster definition depends on your cluster. For all available
 options, check the [operator
 reference](docs/reference/cluster-operator/configuration). For airgapped
 clusters, it is important to note that `spec.images` section needs to be
-populated with the images from the configMap from Step 1. 
+populated with the images from the configMap from Step 1.
 
 The file for the `ondat-cluster.yaml` should have the Secret called
 `storageos-api` and the StorageOSCluster definition.
@@ -159,16 +165,17 @@ END
 ```
 
 > ⚠️  The `kubeSchedulerContainer` version depends on the Kubernetes version your
-> cluster is running. In this example v1.21.5. Adjust the tag accordingly. 
+> cluster is running. In this example v1.21.5. Adjust the tag accordingly.
 
 If you are using an external Etcd, skip Step 4.
 
 ## Step 4. (If Etcd in Kubernetes) Retrieving and amending the YAML for Etcd operator and Etcd CR
 
 1. The YAMLs for Etcd are generated for every release of the product. It is
-best to retrieve the YAML from the machine generated pipeline. To do so, run the following container that prints them on stdout.
+best to retrieve the YAML from the machine generated pipeline. To do so, run
+the following container that prints them on stdout.
 
-    ```
+    ```bash
     ETCD_OPERATOR_VERSION=develop
     docker run   \
         --rm \
@@ -176,7 +183,8 @@ best to retrieve the YAML from the machine generated pipeline. To do so, run the
     ```
 
     Or run in a k8s cluster:
-    ```
+
+    ```bash
     ETCD_OPERATOR_VERSION=develop
 
     # Once the image is pulled into your registry you can run
@@ -190,11 +198,11 @@ best to retrieve the YAML from the machine generated pipeline. To do so, run the
     ```
 
 1. Once you have the `ondat-operator.yaml` you must edit the file to amend the
-container image URL for the private registry one. 
+container image URL for the private registry one.
 
     Edit the variables `REGISTRY_IMG_ETCD_OPERATOR` and `REGISTRY_IMG_ETCD_PROXY`
 
-    ```
+    ```bash
     # Change the 2 images on the etcd-operator.yaml for your registry URL
     ETCD_OPERATOR_VERSION=develop
     REGISTRY_IMG_ETCD_OPERATOR=my-registry-url/storageos/etcd-cluster-operator-controller:$ETCD_OPERATOR_VERSION
@@ -219,10 +227,10 @@ reqistry URL as an argument to the Etcd operator.
 
     Edit the variable `$REGISTRY`
 
-    ```
+    ```bash
     REGISTRY=my-registry-url
 
-    # Old 
+    # Old
           - args:
             - --enable-leader-election
             - --proxy-url=storageos-proxy.storageos-etcd.svc
@@ -298,21 +306,20 @@ reqistry URL as an argument to the Etcd operator.
         storageOSEtcdSecretName: storageos-etcd-secret
     ```
 
-
 ## Step 5. Installing the cluster
 
-Once all the YAMLs are ready, the Ondat cluster can be bootstrapped. 
+Once all the YAMLs are ready, the Ondat cluster can be bootstrapped.
 
 ### Option 1: With Etcd in Kubernetes
 
-The etcd cluster in Kubernetes requires a StorageClass. If you are running on
-a cloud provider, you can use existing StorageClasses for it, for example `gp3` (AWS) or
-`standard` (GCE). Or you can create the `local-path` StorageClass. It's
-recommended to give Etcd a backend disk that can sustain at least 800 IOPS. It's best 
-to use provisioned IOPS when possible, otherwise make sure the size of
-the disk is big enough to fulfil the IOPS requirement when performance depends
-on IOPS per GB.  For example, AWS would require a burstable EBS bigger than
-256G to fulfil the IOPS requirement.  
+The etcd cluster in Kubernetes requires a StorageClass. If you are running on a
+cloud provider, you can use existing StorageClasses for it, for example `gp3`
+(AWS) or `standard` (GCE). Or you can create the `local-path` StorageClass.
+It's recommended to give Etcd a backend disk that can sustain at least 800
+IOPS. It's best to use provisioned IOPS when possible, otherwise make sure the
+size of the disk is big enough to fulfil the IOPS requirement when performance
+depends on IOPS per GB.  For example, AWS would require a burstable EBS bigger
+than 256G to fulfil the IOPS requirement.
 
 1. Create StorageClass (if you don't have one available)
 
@@ -334,10 +341,9 @@ on IOPS per GB.  For example, AWS would require a burstable EBS bigger than
     sed -i -e "s/storageClassName: local-path/storageClassName: $ETCD_STORAGECLASS/g" etcd-cluster.yaml
     ```
 
-
 1. Edit the variable `ETCD_STORAGECLASS`
 
-    ```
+    ```bash
     # Install (the kubectl-storageos plugin installs Etcd and Ondat)
     ETCD_STORAGECLASS=my-storage-class
     ONDAT_VERSION=v2.5.0
@@ -358,11 +364,11 @@ on IOPS per GB.  For example, AWS would require a burstable EBS bigger than
 
 1. Edit the variable `ETCD_URL`
 
-    ```
+    ```bash
     # Set etcd url
     # You can define multiple etcd urls separated by commas
     # http://peer1:2379,http://peer2:2379,http://peer3:2379
-    ETCD_URL=http://etcd-url-or-ips:2379 
+    ETCD_URL=http://etcd-url-or-ips:2379
 
     # Install
     ONDAT_VERSION=v2.5.0
