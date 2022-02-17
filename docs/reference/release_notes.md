@@ -624,3 +624,4 @@ channel](https://storageos.slack.com).
 
 Initial release of version 2.x. See [Ondat v2.0 Release
 Blog](https://storageos.com/storageos-2-0-release-blog) for details.
+
