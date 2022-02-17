@@ -12,7 +12,7 @@ The `main` branch is the *latest* version of the documentation being pushed to h
 
 Feel free to contribute! We love feedback and interaction with the Community ;)  
 
-The below how to assume a general knowledge on how to use Git and GitHub or similar service.  
+The 'How to' section below assumes a general knowledge on how to use Git and GitHub or similar service.  
 If you are new to Git and GitHub, the following learning path will help you: https://lab.github.com/githubtraining/introduction-to-github
 
 ## How to
