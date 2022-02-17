@@ -30,6 +30,13 @@ jobs:
     - name: Run textlint in fix mode
       run: find . -type f -iname \*.md -exec textlint --fix {} \;
     - name: Commit any changes to the branch
-      run: git diff-index --quiet HEAD || (git commit -am 'Autofix linter errors' && git push --set-upstream origin "$TARGET_BRANCH")
+      run: |-
+        git update-index -q --refresh
+        if git diff-index --exit-code --ignore-submodules --quiet HEAD; then
+          echo "No changes made!"
+        else
+          git commit -am 'Autofix linter errors'
+          git push --set-upstream origin "$TARGET_BRANCH"
+        fi
       env:
         TARGET_BRANCH: ${{ github.head_ref }}
