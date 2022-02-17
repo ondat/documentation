@@ -6,7 +6,7 @@
 This repository contains the Ondat Markdown documentation content published [here](https://docs.ondat.io).  
 The documentation is readeable directly out of this repository without the need of CMS rendering.
 
-The `main` branch is the *latest* version of the documentation being pushed to https://docs.ondat.io.
+The `main` branch is the *latest* version of the documentation being pushed to <https://docs.ondat.io>.
 
 # Contribute
 
