@@ -1,5 +1,10 @@
 name: Autofix any basic linting errors
-on: [pull_request]
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 permissions:
   contents: write
 jobs:
