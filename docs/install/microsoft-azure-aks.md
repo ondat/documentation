@@ -66,4 +66,4 @@ kubectl get storageclasses | grep "storageos"
 
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.
 
-To obtain a licence, follow the instructions on our [licensing operations](/docs//operations/licensing) page.
+To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
