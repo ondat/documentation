@@ -106,9 +106,9 @@ container image URL for the private registry one.
 
 The StorageOSCluster definition depends on your cluster. For all available
 options, check the [operator
-reference](docs/reference/cluster-operator/configuration). For airgapped
-clusters, it is important to note that `spec.images` section needs to be
-populated with the images from the configMap from Step 1.
+reference](https://docs.ondat.io/docs/reference/cluster-operator/configuration).
+For airgapped clusters, it is important to note that `spec.images` section
+needs to be populated with the images from the configMap from Step 1.
 
 The file for the `ondat-cluster.yaml` should have the Secret called
 `storageos-api` and the StorageOSCluster definition.
