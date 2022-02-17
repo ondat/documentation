@@ -100,4 +100,4 @@ rsync -az $PATH_TO_DOCS_SOURCE/images/generic/ $PATH_TO_DOCS_BACKEND/hugo-backen
 ```
 
 * Go in documentation-backend/hugo-backend and run ```hugo server -D --config config/latest.toml```
-* Open a browser to http://127.0.0.1:1313
+* Open a browser to <http://127.0.0.1:1313>
