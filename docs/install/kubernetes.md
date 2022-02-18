@@ -38,12 +38,16 @@ curl -sSLo kubectl-storageos.tar.gz \
 ### Smoke test
 
 ```
-kubectl storage preflight
+kubectl storageos preflight
 ```
 
-> 💡 This command will check that the core requirements are met for
+> 💡 This command will check that some of the core requirements are met for
 > an Ondat deployment. It checks for CPU/memory, Kubernetes version
-> and a valid container runtime. Refer to [prerequisites](/docs/prerequisites) for more.
+> and a valid container runtime. 
+
+> ⚠️ There are some requirements that the preflight checks are unable to
+> test for - refer to [prerequisites](/docs/prerequisites) for a full list
+> and be sure to verify that your infrastructure meets them.
 
 ### Option A: Install Ondat (embedded etcd, for development and testing)
 
