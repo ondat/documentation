@@ -46,7 +46,7 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd 
+> do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
 ### Option B: Install Ondat (bring-your-own etcd)
@@ -119,7 +119,7 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd 
+> do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
 ### Option B: Install Ondat (bring-your-own etcd)
@@ -192,7 +192,7 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd 
+> do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
 ### Option B: Install Ondat (bring-your-own etcd)
@@ -265,7 +265,7 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd 
+> do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
 ### Option B: Install Ondat (bring-your-own etcd)
@@ -338,7 +338,7 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd 
+> do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
 ### Option B: Install Ondat (bring-your-own etcd)
