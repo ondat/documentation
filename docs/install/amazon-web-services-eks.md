@@ -17,9 +17,9 @@ This guide will demonstrate how to install Ondat onto a [Elastic Kubernetes Serv
 
 * You have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-* Your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For the kernel module `tcm_loop`, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's userdata as in the example below.
+* Your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For the kernel module `tcm_loop`, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data as in the example below.
 
-In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node - note that by default, Ondat will store data locally in the node's filesystem under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode) - in a production infrastructure, we would likely create multiple EBS Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to userdata. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
+In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node - note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode). In a production infrastructure, we would likely create multiple EBS Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
 
 ```yaml
 ---
@@ -53,7 +53,7 @@ managedNodeGroups:
 ```
 
 > ⚠️ With the above configuration, volumes will be deleted when the nodes they
-> are attached to are terminated. Be sure to keep snapshots, eg. via
+> are attached to are terminated. Be sure to keep snapshots, for example using
 > [Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/)
 
 ## Procedure
