@@ -4,7 +4,7 @@ linkTitle: "Kubernetes"
 weight: 1
 ---
 
-> ⚠️ Make sure the
+> ⚠️ Make sure that the
 > [prerequisites for Ondat](/docs/prerequisites) are
 > satisfied before proceeding.
 
@@ -19,7 +19,7 @@ weight: 1
 
 &nbsp;
 
-## Install Ondat on Kubernetes 1.22
+## Install Ondat on Kubernetes
 
 ### Install the storageos kubectl plugin
 
@@ -35,7 +35,17 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Option A: Install Ondat (embedded etcd)
+### Smoke test
+
+```
+kubectl storage preflight
+```
+
+> 💡 This command will check that the core requirements are met for
+> an Ondat deployment. It checks for CPU/memory, Kubernetes version
+> and a valid container runtime. Refer to [prerequisites](/docs/prerequisites) for more.
+
+### Option A: Install Ondat (embedded etcd, for development and testing)
 
 ```bash
 kubectl storageos install \
@@ -49,299 +59,12 @@ kubectl storageos install \
 > do note that we currently recommend having an out-of-cluster etcd
 > in production for maximum performance and stability.
 
-### Option B: Install Ondat (bring-your-own etcd)
-
-```bash
-kubectl storageos install \
-    --etcd-endpoints 'storageos-etcd-client.storageos-etcd:2379' \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
-
-> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
-> request the endpoints.
-
-### Verify Ondat installation
-
-Ondat installs all its components in the `storageos` namespace.
-
-```bash
-$ kubectl -n storageos get pod -w
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
-storageos-node-4njd4                     3/3     Running   0          55s
-storageos-node-5qnl7                     3/3     Running   0          56s
-storageos-node-7xc4s                     3/3     Running   0          52s
-storageos-node-bkzkx                     3/3     Running   0          58s
-storageos-node-gwp52                     3/3     Running   0          62s
-storageos-node-zqkk7                     3/3     Running   0          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
-```
-
-> Wait until all the pods are ready. It usually takes ~60 seconds to complete
-
-### License cluster
-
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-> personal license is free, and supports up to 1TiB of provisioned storage.
-
-To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
-
-## Install Ondat on Kubernetes 1.21
-
-### Install the storageos kubectl plugin
-
-```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
-
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-### Option A: Install Ondat (embedded etcd)
-
-```bash
-kubectl storageos install \
-    --include-etcd \
-    --etcd-tls-enabled \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd
-> in production for maximum performance and stability.
-
-### Option B: Install Ondat (bring-your-own etcd)
-
-```bash
-kubectl storageos install \
-    --etcd-endpoints 'storageos-etcd-client.storageos-etcd:2379' \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
-
-> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
-> request the endpoints.
-
-### Verify Ondat installation
-
-Ondat installs all its components in the `storageos` namespace.
-
-```bash
-$ kubectl -n storageos get pod -w
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
-storageos-node-4njd4                     3/3     Running   0          55s
-storageos-node-5qnl7                     3/3     Running   0          56s
-storageos-node-7xc4s                     3/3     Running   0          52s
-storageos-node-bkzkx                     3/3     Running   0          58s
-storageos-node-gwp52                     3/3     Running   0          62s
-storageos-node-zqkk7                     3/3     Running   0          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
-```
-
-> Wait until all the pods are ready. It usually takes ~60 seconds to complete
-
-### License cluster
-
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-> personal license is free, and supports up to 1TiB of provisioned storage.
-
-To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
-
-## Install Ondat on Kubernetes 1.20
-
-### Install the storageos kubectl plugin
-
-```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
-
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-### Option A: Install Ondat (embedded etcd)
-
-```bash
-kubectl storageos install \
-    --include-etcd \
-    --etcd-tls-enabled \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd
-> in production for maximum performance and stability.
-
-### Option B: Install Ondat (bring-your-own etcd)
-
-```bash
-kubectl storageos install \
-    --etcd-endpoints 'storageos-etcd-client.storageos-etcd:2379' \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
-
-> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
-> request the endpoints.
-
-### Verify Ondat installation
-
-Ondat installs all its components in the `storageos` namespace.
-
-```bash
-$ kubectl -n storageos get pod -w
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
-storageos-node-4njd4                     3/3     Running   0          55s
-storageos-node-5qnl7                     3/3     Running   0          56s
-storageos-node-7xc4s                     3/3     Running   0          52s
-storageos-node-bkzkx                     3/3     Running   0          58s
-storageos-node-gwp52                     3/3     Running   0          62s
-storageos-node-zqkk7                     3/3     Running   0          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
-```
-
-> Wait until all the pods are ready. It usually takes ~60 seconds to complete
-
-### License cluster
-
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-> personal license is free, and supports up to 1TiB of provisioned storage.
-
-To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
-
-## Install Ondat on Kubernetes 1.19
-
-### Install the storageos kubectl plugin
-
-```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
-
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-### Option A: Install Ondat (embedded etcd)
-
-```bash
-kubectl storageos install \
-    --include-etcd \
-    --etcd-tls-enabled \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd
-> in production for maximum performance and stability.
-
-### Option B: Install Ondat (bring-your-own etcd)
-
-```bash
-kubectl storageos install \
-    --etcd-endpoints 'storageos-etcd-client.storageos-etcd:2379' \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
-
-> 💡 If the etcd endpoints are not defined, the plugin will prompt you and
-> request the endpoints.
-
-### Verify Ondat installation
-
-Ondat installs all its components in the `storageos` namespace.
-
-```bash
-$ kubectl -n storageos get pod -w
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
-storageos-node-4njd4                     3/3     Running   0          55s
-storageos-node-5qnl7                     3/3     Running   0          56s
-storageos-node-7xc4s                     3/3     Running   0          52s
-storageos-node-bkzkx                     3/3     Running   0          58s
-storageos-node-gwp52                     3/3     Running   0          62s
-storageos-node-zqkk7                     3/3     Running   0          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
-```
-
-> Wait until all the pods are ready. It usually takes ~60 seconds to complete
-
-### License cluster
-
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-> personal license is free, and supports up to 1TiB of provisioned storage.
-
-To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
-
-## Install Ondat on Kubernetes 1.18
-
-### Install the storageos kubectl plugin
-
-```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
-
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-### Option A: Install Ondat (embedded etcd)
-
-```bash
-kubectl storageos install \
-    --include-etcd \
-    --etcd-tls-enabled \
-    --admin-username "myuser" \
-    --admin-password "my-password"
-```
-
-> 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd
-> in production for maximum performance and stability.
-
-### Option B: Install Ondat (bring-your-own etcd)
+> ⚠️ This requires a default `StorageClass` in the Kubernetes cluster.
+> If the default isn't set, you may need to set up the [local-path](https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml)
+> `StorageClass`. Note that this stores all data locally on the individual
+> nodes and is not recommended for production installations.
+
+### Option B: Install Ondat (bring-your-own etcd, for production)
 
 ```bash
 kubectl storageos install \
