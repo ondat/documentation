@@ -15,7 +15,7 @@ weight: 1
 
 > 💡 Ondat supports the five most recent Kubernetes releases, at minimum.
 
-> Ondat also has an official Helm chart, see [the charts repository](https://github.com/ondat/charts/tree/main/charts/ondat-operator) for instructions.
+> 💡 Ondat also has an official Helm chart, see [the charts repository](https://github.com/ondat/charts/tree/main/charts/ondat-operator) for instructions.
 
 &nbsp;
 
@@ -35,7 +35,21 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Install Ondat
+### Option A: Install Ondat (embedded etcd)
+
+```bash
+kubectl storageos install \
+    --include-etcd \
+    --etcd-tls-enabled \
+    --admin-username "myuser" \
+    --admin-password "my-password"
+```
+
+> 💡 This is the easiest way to get up and running with Ondat, though
+> do note that we currently recommend having an out-of-cluster etcd
+> in production for maximum performance and stability.
+
+### Option B: Install Ondat (bring-your-own etcd)
 
 ```bash
 kubectl storageos install \
@@ -94,7 +108,21 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Install Ondat
+### Option A: Install Ondat (embedded etcd)
+
+```bash
+kubectl storageos install \
+    --include-etcd \
+    --etcd-tls-enabled \
+    --admin-username "myuser" \
+    --admin-password "my-password"
+```
+
+> 💡 This is the easiest way to get up and running with Ondat, though
+> do note that we currently recommend having an out-of-cluster etcd
+> in production for maximum performance and stability.
+
+### Option B: Install Ondat (bring-your-own etcd)
 
 ```bash
 kubectl storageos install \
@@ -153,7 +181,21 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Install Ondat
+### Option A: Install Ondat (embedded etcd)
+
+```bash
+kubectl storageos install \
+    --include-etcd \
+    --etcd-tls-enabled \
+    --admin-username "myuser" \
+    --admin-password "my-password"
+```
+
+> 💡 This is the easiest way to get up and running with Ondat, though
+> do note that we currently recommend having an out-of-cluster etcd
+> in production for maximum performance and stability.
+
+### Option B: Install Ondat (bring-your-own etcd)
 
 ```bash
 kubectl storageos install \
@@ -212,7 +254,21 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Install Ondat
+### Option A: Install Ondat (embedded etcd)
+
+```bash
+kubectl storageos install \
+    --include-etcd \
+    --etcd-tls-enabled \
+    --admin-username "myuser" \
+    --admin-password "my-password"
+```
+
+> 💡 This is the easiest way to get up and running with Ondat, though
+> do note that we currently recommend having an out-of-cluster etcd
+> in production for maximum performance and stability.
+
+### Option B: Install Ondat (bring-your-own etcd)
 
 ```bash
 kubectl storageos install \
@@ -271,7 +327,21 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Install Ondat
+### Option A: Install Ondat (embedded etcd)
+
+```bash
+kubectl storageos install \
+    --include-etcd \
+    --etcd-tls-enabled \
+    --admin-username "myuser" \
+    --admin-password "my-password"
+```
+
+> 💡 This is the easiest way to get up and running with Ondat, though
+> do note that we currently recommend having an out-of-cluster etcd
+> in production for maximum performance and stability.
+
+### Option B: Install Ondat (bring-your-own etcd)
 
 ```bash
 kubectl storageos install \
