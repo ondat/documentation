@@ -43,7 +43,7 @@ kubectl storageos preflight
 
 > 💡 This command will check that some of the core requirements are met for
 > an Ondat deployment. It checks for CPU/memory, Kubernetes version
-> and a valid container runtime. 
+> and a valid container runtime.
 
 > ⚠️ There are some requirements that the preflight checks are unable to
 > test for - refer to [prerequisites](/docs/prerequisites) for a full list
