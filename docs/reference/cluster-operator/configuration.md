@@ -31,7 +31,7 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `images.initContainer`                      | Ondat init container image                                                                 | `storageos/init:2.1.0`
 | `images.kubeSchedulerContainer`             | Kube scheduler container image                                                                 | Default dependent on Scheduler version
 | `images.nfsContainer`                       | Ondat nfs container image                                                                  | `storageos/nfs:1.0.0`
-| `images.nodeContainer`                      | Ondat node container image                                                                 | `storageos/node:v2.5.0`
+| `images.nodeContainer`                      | Ondat node container image                                                                 | `storageos/node:v2.6.0`
 | `ingress.annotations`                       | Annotations of the ingress used by the cluster                                                 |
 | `ingress.enable`                            | Enable ingress for the cluster                                                                 | `false`
 | `ingress.hostname`                          | Hostname to be used in cluster ingress                                                         | `storageos.local`

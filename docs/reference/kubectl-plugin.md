@@ -76,14 +76,14 @@ Resource declaratively, as a yaml.
       storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
       images:
         nodeContainer: "storageos/node:< param latest_node_version >"
-        apiManagerContainer: storageos/api-manager:v2.5.0-sync
+        apiManagerContainer: storageos/api-manager:v1.2.2
         initContainer: storageos/init:v2.1.0
         csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
         csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
         csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
         csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
         csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-        kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.20.5
+        kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
       kvBackend:
         address: "storageos-etcd-client.storageos-etcd:2379"
       resources:
