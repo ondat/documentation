@@ -37,6 +37,10 @@ Operator:
 Kubernetes:
 
 - Ondat supports Kubernetes v 1.2.3
+
+Components
+ 
+- We have added a new component called upgrade guard that once enabled allows you to do rolling upgrades to the orchestrator without any downtime. This component is disabled by default and we do not recommend using the feature for production workloads as it is a technical preview feature. 
   
 ## 2.5 - Released 2021-12-06
 
