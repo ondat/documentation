@@ -92,10 +92,8 @@ The installation process may take a few minutes.
 Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
 ```bash
-kubectl get all \
-   --namespace=storageos && kubectl \ 
-get all \
-  --namespace=storageos-etcd &&
+kubectl get all --namespace=storageos
+kubectl get all --namespace=storageos-etcd
 kubectl get storageclasses | grep "storageos"
 ```
 
