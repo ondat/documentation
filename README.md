@@ -85,7 +85,7 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 ## How to render locally the docs
 
 * Install hugo __extended__ from the [hugo release
-  page](https://github.com/gohugoio/hugo/releases) for instance the `hugo_extended_0.92.1_macOS-ARM64.tar.gz`
+  page](https://github.com/gohugoio/hugo/releases), for instance the `hugo_extended_0.92.1_macOS-ARM64.tar.gz`
 * Clone the documentation-backend: ```git clone https://github.com/ondat/documentation-backend.git```
 * Create symbolic links for the content into the backend directory:
 
