@@ -82,7 +82,7 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 * Create a Pull Request and document your contribution and
 * an Ondat team member will review your PR contribution and merge it
 
-## How to render locally the docs
+## How to render the docs locally
 
 * Install hugo __extended__ from the [hugo release
   page](https://github.com/gohugoio/hugo/releases), for instance the `hugo_extended_0.92.1_macOS-ARM64.tar.gz`
