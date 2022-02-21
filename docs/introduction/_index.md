@@ -12,9 +12,9 @@ description: >
 
 So you run workloads, either in-house developed or using Consumer Off The Shelf (COTS) platforms. You also recognise that operationally, you want to run them on Kubernetes as my “cloud operating system” of choice. This gives you freedom to deploy and operate your workloads anywhere Kubernetes runs based on business criteria such as cost, locality, compliance needs and risk appetite.
 
-You have been running stateless workloads in such a way for years, now your developers/suppliers have decided to move the application state (database/message queue/ flat files/ key value store…) into your Kubernetes clusters as well. They are proposing to do this to reduce operational toil as they can leverage “Operators” to deliver domain specific knowledge in the running of these components. 
+You have been running stateless workloads in such a way for years, now your developers/suppliers have decided to move the application state (database/message queue/ flat files/ key-value store…) into your Kubernetes clusters as well. They are proposing to do this to reduce operational toil as they can leverage “Operators” to deliver domain specific knowledge in the running of these components.
 
-State now matters in your Kubernetes cluster, but hang on, how do we deliver the same operational paradigm that we are used to for these stateful workloads? 
+State now matters in your Kubernetes cluster, but hang on, how do we deliver the same operational paradigm that we are used to for these stateful workloads?
 
 The answer is Ondat.
 
