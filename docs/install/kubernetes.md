@@ -8,12 +8,12 @@ weight: 1
 > [prerequisites for Ondat](/docs/prerequisites) are
 > satisfied before proceeding.
 
-> ⚠️ Make sure to add a Ondat licence after installing.
+> ⚠️ Make sure to add an Ondat licence after installing.
 
-> 💡 Any Kubernetes managed service such as EKS, AKS, GKE, DO or DockerEE
+> 💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO
 > platform can use the following Kubernetes guide to install Ondat.
 
-> 💡 Ondat supports the five most recent Kubernetes releases, at minimum.
+> 💡 Ondat supports at least the five most recent Kubernetes releases.
 
 > 💡 Ondat also has an official Helm chart, see [the charts repository](https://github.com/ondat/charts/tree/main/charts/ondat-operator) for instructions.
 
@@ -60,8 +60,8 @@ kubectl storageos install \
 ```
 
 > 💡 This is the easiest way to get up and running with Ondat, though
-> do note that we currently recommend having an out-of-cluster etcd
-> in production for maximum performance and stability.
+> do note that we recommend having an out-of-cluster etcd
+> in production for best possible performance and stability.
 
 > ⚠️ This requires a default `StorageClass` in the Kubernetes cluster.
 > If the default isn't set, you may need to set up the [local-path](https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml)
@@ -77,7 +77,7 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379
+> 💡 Define the etcd endpoints as a comma delimited list, e.g. `10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379`
 
 > 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
