@@ -179,6 +179,7 @@ We have the following limits for all of our components:
              cpu: 5m
              memory: 30Mi
 ```
+
 ```yaml
         name: attacher
         resources:
