@@ -116,7 +116,8 @@ Kubernetes:
 
 ## v2.4.0 - Released 2021-05-27
 
-This release adds production-grade [encryption at rest ](/docs/reference/encryption) for Ondat volumes, as well as:
+This release adds production-grade [encryption at rest](/docs/reference/encryption) for Ondat volumes, as well as:
+
 - [Fencing](/docs/concepts/fencing)
 - [TRIM](/docs/operations/trim)
 - [Failure modes](/docs/concepts/replication#failure-modes)

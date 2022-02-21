@@ -10,7 +10,7 @@ Fundamentally, Ondat uses the storage attached to the nodes in the
 Ondat cluster to create and present virtual volumes into containers. Space
 on the host is consumed from the mount point `/var/lib/storageos/data`, so it
 is therefore recommended that disk devices are used exclusively for Ondat,
-as described in [Managing Host Storage ](/docs/operations/managing-host-storage)
+as described in [Managing Host Storage](/docs/operations/managing-host-storage)
 
 Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.
