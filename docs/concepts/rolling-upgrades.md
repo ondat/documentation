@@ -9,7 +9,7 @@ You can use the rolling upgrade feature to upgrade an orchestrator (for example,
 We have developed a separate component called the upgrade guard. This component blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
 To use the rolling upgrade feature, you need to enable both the Node manager and the Upgrade Guard components (this is set on the `storageoscluster` CR).
 
-The upgrade guard will detect if a volume is unhealthy (for example, one that doesn't have enough synced replicas), at which point one or more node manager pods will become unavailable. Ondat uses the PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. 
+The upgrade guard will detect if a volume is unhealthy (for example, one that doesn't have enough synced replicas), at which point one or more node manager pods will become unavailable. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. 
 
 If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The `api-managercomponent` will be able to dynamically set the PDB value if it can determine the health of the volume. If the `api-managercomponent` knows that a volume will not be ready, it can increase the PDB `maxUnavailable` value, allowing the upgrade to continue.
 
