@@ -1,9 +1,5 @@
 name: Lint and check documentation
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
+on: [push]
 permissions:
   contents: write
   statuses: write
@@ -14,8 +10,6 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
     - uses: actions/setup-node@v2
       with:
         node-version: '16'
@@ -36,10 +30,8 @@ jobs:
           echo "No changes made!"
         else
           git commit -am 'Autofix linter errors'
-          git push --set-upstream origin "$TARGET_BRANCH"
+          git push
         fi
-      env:
-        TARGET_BRANCH: ${{ github.head_ref }}
   lint:
     needs: [autofix]
     name: Lint docs
