@@ -34,8 +34,8 @@ kubectl storageos preflight
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance.
 
 ```bash
-export STORAGEOS_USERNAME="admin"
-export STORAGEOS_PASSWORD="password"
+export STORAGEOS_USERNAME="storageos"
+export STORAGEOS_PASSWORD="storageos"
 ```
 
 2. Run the following  `kubectl-storageos` plugin command to install Ondat.
