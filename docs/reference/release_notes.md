@@ -11,7 +11,7 @@ installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
 The latest CLI release is `2.6.0`, available from
-[Github](https://github.com/storageos/go-cli/releases).
+[GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
@@ -25,12 +25,12 @@ Portal Manager:
 
 - Initial release of the Portal Manager, which supports the connection to Ondat SaaS Platform.
 
-Kubectl Plugin: 
+Kubectl Plugin:
 
-- We have added a `--dry-run` flag into install command, so you can view the installation manifests written locally to `./storageos-dry-run/`. 
+- We have added a `--dry-run` flag into install command, so you can view the installation manifests written locally to `./storageos-dry-run/`.
 - We have added capability for conducting an airgapped installation. The new options can also be used outside of an airgapped cluster.
 
-Operator: 
+Operator:
 
 - We have defined the resource requests and resource limits for the Ondat components (csi-attacher, csi-provisioner, csi-resizer, api-manager, cluster-operator and ondat-scheduler).
 
@@ -624,4 +624,3 @@ channel](https://storageos.slack.com).
 
 Initial release of version 2.x. See [Ondat v2.0 Release
 Blog](https://storageos.com/storageos-2-0-release-blog) for details.
-
