@@ -81,7 +81,6 @@ eksctl create cluster --config-file=cluster.yaml
 > are attached to are terminated. Be sure to keep snapshots, for example by using
 > [Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/)
 
-
 ## Procedure
 
 First, provision your `kubeconfig` for `kubectl` and test that you can connect to Kubernetes:
@@ -106,6 +105,7 @@ kubectl storageos preflight
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. Set the `StorageClass` for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest `gp3` for a good balance of performance and resilience or `io2` where top performance is essential.
 
 The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
+
 ```bash
 kubectl create -f - <<EOF
 kind: StorageClass
@@ -124,13 +124,11 @@ EOF
 
 > 💡 This `StorageClass` requires the AWS EBS EKS addon we specified in the `eksctl` cluster configuration above
 
-
 ```bash
 export STORAGEOS_USERNAME="storageos"
 export STORAGEOS_PASSWORD="storageos"
 export ETCD_STORAGECLASS="gp3"
 ```
-
 
 2. Run the following  `kubectl-storageos` plugin command to install Ondat.
 
