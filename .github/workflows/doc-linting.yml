@@ -1,5 +1,9 @@
 name: Lint and check documentation
-on: [ workflow_dispatch, push, pull_request ] 
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
 permissions:
   contents: write
   statuses: write
