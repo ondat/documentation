@@ -1,0 +1,33 @@
+name: Fix any basic errors
+on: [push]
+permissions:
+  contents: write
+jobs:
+  autofix:
+    name: Autofix any basic errors
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install markdownlint
+      run: npm install -g markdownlint && npm install -g markdownlint-cli2
+    - name: Install textlint and terminology rules
+      run: npm install -g textlint && npm install -g textlint-filter-rule-allowlist && npm install -g textlint-rule-terminology
+    - name: Setup Git
+      run: git config user.name "Github Actions" && git config user.email "noreply@github.com"
+    - name: Run markdownlint in fix mode
+      run: find . -type f -iname \*.md -exec markdownlint-cli2-fix {} \;
+    - name: Run textlint in fix mode
+      run: find . -type f -iname \*.md -exec textlint --fix {} \;
+    - name: Commit any changes to the branch
+      run: |-
+        git update-index -q --refresh
+        if git diff-index --exit-code --ignore-submodules --quiet HEAD; then
+          echo "No changes made!"
+        else
+          git commit -am 'Autofix linter errors'
+          git push
+        fi
