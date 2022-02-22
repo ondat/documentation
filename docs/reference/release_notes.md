@@ -36,7 +36,7 @@ Operator:
 
 Kubernetes:
 
-- Ondat supports Kubernetes v 1.2.3
+- Ondat supports Kubernetes v 1.23
 
 Components
  
