@@ -75,7 +75,7 @@ Resource declaratively, as a yaml.
       k8sDistro: "upstream"
       storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
       images:
-        nodeContainer: "storageos/node:< param latest_node_version >"
+        nodeContainer: "storageos/node:v2.6.0"
         apiManagerContainer: storageos/api-manager:v1.2.2
         initContainer: storageos/init:v2.1.0
         csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
