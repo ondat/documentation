@@ -14,6 +14,8 @@ This guide will demonstrate how to install Ondat onto a [Elastic Kubernetes Serv
 * The following CLI utilities are installed on your local machine and are available in your `$PATH`:
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [kubectl-storageos](/docs/reference/kubectl-plugin/)
+* [aws](https://aws.amazon.com/cli/)
+* [eksctl](https://eksctl.io/)
 
 * You have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
