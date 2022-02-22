@@ -15,7 +15,7 @@ One machine with the following:
 
 1. Minimum two core with 4GB RAM.
 1. Linux with a 64-bit architecture.
-1. Kubernetes 1.23
+1. Kubernetes 1.19 - 1.23
 1. Container Runtime Engine: CRI-O, Containerd or Docker 1.10+ with [mount propagation](/docs/prerequisites/mountpropagation) enabled.
 1. The necessary ports should be open. See the [ports and firewall settings](/docs/prerequisites/firewalls).
 1. [Etcd cluster](/docs/prerequisites/etcd) for Ondat
