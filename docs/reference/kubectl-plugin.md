@@ -109,7 +109,7 @@ Resource declaratively, as a YAML. You can do this using one of the following op
 kubectl storageos install
     --dry-run
     --username storageos
-    --password c3RvcmFnZW9z
+    --password storageos
     --include-etcd ... 
 ```
   > Note, that when `--dry-run` is set for an install command, no installation takes place. Instead, the installation manifests that would have been installed under normal > circumstances are written locally to `./storageos-dry-run/`.
