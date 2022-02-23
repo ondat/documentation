@@ -112,6 +112,6 @@ kubectl storageos install
     --password storageos
     --include-etcd ... 
 ```
-  > Note, that when `--dry-run` is set for an install command, no installation takes place. Instead, the installation manifests that would have been installed under normal > circumstances are written locally to `./storageos-dry-run/`.
+  > Note, that when `--dry-run` is set for an install command, no installation takes place. Instead, the installation manifests that would have been installed under normal circumstances are written locally to `./storageos-dry-run/`.
 
 That generates YAML files that can be used in a GitOps pipeline (your installation is fully-declarative). At the end, the CI/CD tool runs `kubectl create -f ./path/to/yamls`.
