@@ -4,7 +4,7 @@ on:
 ## Triggers the workflow on push of a tag with the format of vX.Y.Z, i.e a release cut
   push:
     tags:
-    - v[0-9].[0-9]+.[0-9]+
+    - v[0-9].[0-9]+
 env:
   working_directory: .
   
