@@ -108,7 +108,7 @@ Resource declaratively, as a YAML. You can do this using one of the following op
 ```bash
 kubectl storageos install
     --dry-run
-    --username c3RvcmFnZW9z
+    --username storageos
     --password c3RvcmFnZW9z
     --include-etcd ... 
 ```
