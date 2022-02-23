@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+name: Documentation setup on Product release
+on:
+## Triggers the workflow on push of a tag with the format of vX.Y.Z, i.e a release cut
+  push:
+    tags:
+    - v[0-9].[0-9]+.[0-9]+
+env:
+  working_directory: .
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: feed content to backend
+        working-directory: ${{ env.working_directory }}
+        env:
+          GIT_USERNAME: arau
+          GIT_EMAIL: arau@users.noreply.github.com
+          GIT_URL: github.com/ondat/documentation-backend.git
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
+          TAG_NAME: ${GITHUB_REF_NAME}
+        shell: /bin/bash -e {0}
+        run: |
+          echo "--> Creating a tempory working directory"
+          mkdir -p tmp
+          cd tmp
+          echo "--> Cloning to get main branch from documentation repo"
+          git clone --branch main https://github.com/ondat/documentation.git doc
+          echo "--> Cloning to get main branch from backend repo"          
+          git clone --branch main https://github.com/ondat/documentation-backend.git backend
+          echo "--> Cloning to get gh-pages as a destination for rendered pages"
+          git clone --branch gh-pages https://github.com/ondat/documentation-backend.git gh-pages
+          echo "--> Getting latest known working hugo binary with current framework"
+          echo "--> Prepare the directory for the HTML under the $tag directory"
+          mkdir -p gh-pages/${{ env.TAG_NAME }}
+          cd backend/hugo-backend
+          wget https://github.com/gohugoio/hugo/releases/download/v0.91.0/hugo_extended_0.91.0_Linux-64bit.tar.gz
+          tar xvzf hugo_extended_0.91.0_Linux-64bit.tar.gz
+          echo "--> Rendering markdown to html based on config/latest.toml file"
+          npm install -g npm@8.3.0
+          npm install postcss-cli
+          npm install autoprefixer
+          ./hugo -D --config config/latest.toml
+          echo "--> Copying latest tagged version of the HTML to gh-pages"
+          cp -R sites/latest/* ../../gh-pages/${{ env.TAG_NAME }}/
+          ls -R ../../gh-pages/
+          # echo "--> Adding, committing, and pushing the latest build to gh-pages"
+          # cd ../../gh-pages/
+          # touch .nojekyll
+          # git config --global user.name "${{ env.GIT_USERNAME }}"
+          # git config --global user.email "${{ env.GIT_EMAIL }}"
+          # git remote set-url origin https://x-access-token:${{ env.GITHUB_TOKEN }}@${{ env.GIT_URL }}           
+          # git add --all .
+          # git commit -m "GitHub Actions Push on `date +"%Y-%m-%d %H:%M"`"
+          # git push 
+          # echo "--> Time to clean up"
+          # cd ../..
+          # rm -rf tmp
