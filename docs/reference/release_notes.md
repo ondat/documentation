@@ -23,24 +23,32 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 Portal Manager:
 
-- Initial release of the Portal Manager, which supports the connection to Ondat SaaS Platform.
+- Initial release of the Portal Manager, which supports the connection to Ondat
+  SaaS Platform.
 
 Kubectl Plugin:
 
-- We have added a `--dry-run` flag into install command, so you can view the installation manifests written locally to `./storageos-dry-run/`.
-- We have added capability for conducting an airgapped installation. The new options can also be used outside of an airgapped cluster.
+- We have added a `--dry-run` flag into install command, so you can view the
+  installation manifests written locally to `./storageos-dry-run/`.
+- We have added capability for conducting an airgapped installation. The new
+  options can also be used outside of an airgapped cluster.
 
 Operator:
 
-- We have defined the resource requests and resource limits for the Ondat components (csi-attacher, csi-provisioner, csi-resizer, api-manager, cluster-operator and ondat-scheduler).
+- We have defined the resource requests and resource limits for the Ondat
+  components (csi-attacher, csi-provisioner, csi-resizer, api-manager,
+  cluster-operator and ondat-scheduler).
 
 Kubernetes:
 
-- Ondat supports Kubernetes v 1.23
+- Ondat supports Kubernetes v1.23
 
 Components
 
-- We have added a new component called upgrade guard that once enabled allows you to do rolling upgrades to the orchestrator without any downtime. This component is disabled by default and we do not recommend using the feature for production workloads as it is a technical preview feature.
+- We have added a new component called upgrade guard that once enabled allows
+  you to do rolling upgrades to the orchestrator without any downtime. This
+  component is disabled by default and we do not recommend using the feature
+  for production workloads as it is a technical preview feature.
   
 ## 2.5 - Released 2021-12-06
 
