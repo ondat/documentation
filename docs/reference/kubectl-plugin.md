@@ -46,6 +46,7 @@ kubectl storageos install \
 
 The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
 Resource declaratively, as a YAML. You can do this using one of the following options:
+
 * Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR:
 
     ```bash
@@ -105,7 +106,7 @@ Resource declaratively, as a YAML. You can do this using one of the following op
     --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
     ```
 
-* Create a YAML to describe the cluster's resources using a [Helm chart](https://github.com/storageos/charts/pull/129) or use the `kubectl plugin` with the `dry-run` flags enabled: 
+* Create a YAML to describe the cluster's resources using a [Helm chart](https://github.com/storageos/charts/pull/129) or use the `kubectl plugin` with the `dry-run` flags enabled:
 
 ```bash
 kubectl storageos install
