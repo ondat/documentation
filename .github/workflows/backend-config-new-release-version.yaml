@@ -1,0 +1,68 @@
+# This is a basic workflow to help you get started with Actions
+name: Config - Product release config
+on:
+  # To be executed on human trigger
+  workflow_dispatch:
+    inputs:
+      old_version:
+        description: 'The previous latest version of the product that the
+        backend docs are serving as the root URL of the docs. In the form of
+        vX.Y'
+        required: true
+        type: string
+      new_version: 
+        description: 'The latest version of the product to be released that
+        will be used to serve the root URL of the docs. In the form of vX.Y'
+        required: true
+        type: string
+env:
+  working_directory: .
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add new release version to hugo config
+        working-directory: ${{ env.working_directory }}
+        env:
+          GIT_USERNAME: arau
+          GIT_EMAIL: arau@users.noreply.github.com
+          GIT_URL: github.com/ondat/documentation-backend.git
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
+        shell: /bin/bash -e {0}
+        run: |
+          echo "--> Creating a tempory working directory"
+          mkdir -p tmp
+          cd tmp
+          echo "--> Cloning to get main branch from backend repo"
+          git clone --branch main https://github.com/ondat/documentation-backend.git backend
+          cd backend/hugo-backend
+          echo "--> Copying latest tagged version of the HTML to gh-pages"
+
+          ## Amend hugo config file
+          echo "Amending hugo config file - releases menu"
+          fragment=$(cat <<'END'
+          url = '${{ github.event.old_version }}'
+          [[params.versions]]
+              version = '${{ github.event.inputs.new_version }}'
+              url = '/'
+          END
+          )
+
+          perl -i  -pe "s#url = '/'#$fragment#" config/latest.toml
+
+          echo "Checking the contents of the config file"
+          cat config/latest.toml
+
+          # echo "--> Adding, committing, and pushing the config changes to main"
+          # git config --global user.name "${{ env.GIT_USERNAME }}"
+          # git config --global user.email "${{ env.GIT_EMAIL }}"
+          # git remote set-url origin https://x-access-token:${{ env.GITHUB_TOKEN }}@${{ env.GIT_URL }}
+          # git add --all .
+          # git commit -m "GitHub Actions Push on `date +"%Y-%m-%d %H:%M"`"
+          # git push
+          echo "--> Time to clean up"
+          cd ../../../
+          echo "--> ls am I in tmp?"
+          ls -lh .
+          #rm -rf tmp
