@@ -39,7 +39,7 @@ jobs:
           ## Amend hugo config file
           echo "Amending hugo config file - releases menu"
           fragment=$(cat <<'END'
-          url = '${{ github.event.inputs.old_version }}'
+          url = '/${{ github.event.inputs.old_version }}'
           [[params.versions]]
               version = '${{ github.event.inputs.new_version }}'
               url = '/'
