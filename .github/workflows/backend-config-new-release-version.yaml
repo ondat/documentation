@@ -34,10 +34,9 @@ jobs:
           echo "--> Cloning to get main branch from backend repo"
           git clone --branch main https://github.com/ondat/documentation-backend.git backend
           cd backend/hugo-backend
-          echo "--> Copying latest tagged version of the HTML to gh-pages"
 
           ## Amend hugo config file
-          echo "Amending hugo config file - releases menu"
+          echo "--> Amending hugo config file - releases menu"
           fragment=$(cat <<'END'
           url = '/${{ github.event.inputs.old_version }}'
           [[params.versions]]
@@ -48,18 +47,16 @@ jobs:
 
           perl -i  -pe "s#url = '/'#$fragment#" config/latest.toml
 
-          echo "Checking the contents of the config file"
+          echo "--> Checking the contents of the config file"
           cat config/latest.toml
 
-          # echo "--> Adding, committing, and pushing the config changes to main"
-          # git config --global user.name "${{ env.GIT_USERNAME }}"
-          # git config --global user.email "${{ env.GIT_EMAIL }}"
-          # git remote set-url origin https://x-access-token:${{ env.GITHUB_TOKEN }}@${{ env.GIT_URL }}
-          # git add --all .
-          # git commit -m "GitHub Actions Push on `date +"%Y-%m-%d %H:%M"`"
-          # git push
+          echo "--> Adding, committing, and pushing the config changes to main"
+          git config --global user.name "${{ env.GIT_USERNAME }}"
+          git config --global user.email "${{ env.GIT_EMAIL }}"
+          git remote set-url origin https://x-access-token:${{ env.GITHUB_TOKEN }}@${{ env.GIT_URL }}
+          git add --all .
+          git commit -m "GitHub Actions - Config change for new release - `date +"%Y-%m-%d %H:%M"`"
+          git push
           echo "--> Time to clean up"
           cd ../../../
-          echo "--> ls am I in tmp?"
-          ls -lh .
-          #rm -rf tmp
+          rm -rf tmp
