@@ -44,10 +44,9 @@ kubectl storageos install \
 
 ### Declarative installation
 
-The Ondat kubectl plugin allows to define the StorageOSCluster Custom
-Resource declaratively, as a yaml.
-
-1. Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR
+The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
+Resource declaratively, as a YAML. You can do this using one of the following options:
+* Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR:
 
     ```bash
     ---
@@ -98,8 +97,24 @@ Resource declaratively, as a yaml.
     #        - "true"
     ```
 
-1. Install cluster
+   and install a cluster
 
     ```bash
-    kubectl storageos install --stos-cluster-yaml StorageOSCluster.yaml --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
+   kubectl storageos install \
+    --stos-cluster-yaml StorageOSCluster.yaml \
+    --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
     ```
+
+* Create a YAML to describe the cluster's resources using a [Helm chart](https://github.com/storageos/charts/pull/129) or use the `kubectl plugin` with the `dry-run` flags enabled: 
+
+```bash
+kubectl storageos install
+    --dry-run
+    --username storageos
+    --password storageos
+    --include-etcd ... 
+```
+
+  > Note, that when `--dry-run` is set for an install command, no installation takes place. Instead, the installation manifests that would have been installed under normal circumstances are written locally to `./storageos-dry-run/`.
+
+That generates YAML files that can be used in a GitOps pipeline (your installation is fully-declarative). At the end, the CI/CD tool runs `kubectl create -f ./path/to/yamls`.
