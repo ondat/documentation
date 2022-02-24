@@ -14,7 +14,7 @@ the required downtime as much as possible.
 > init container logs to ensure your environments PID limits are set correctly.
 
 > ⚠️ To reduce downtime, it is recommended to `docker pull` the new
-> Ondat container image `storageos/node:< param latest_node_version >`
+> Ondat container image `storageos/node:v2.6.0`
 > on the nodes beforehand so that the cluster spins up faster!
 
 1. Make sure you keep a backup of all the Ondat yaml files. You can also backup
@@ -49,7 +49,7 @@ the required downtime as much as possible.
 
     ```
     images:
-        nodeContainer: "storageos/node:< param latest_node_version >"
+        nodeContainer: "storageos/node:v2.6.0"
     ```
 
 1. Scale all stateful applications that use Ondat volumes to 0.

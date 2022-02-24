@@ -159,7 +159,7 @@ now create a Custom Resource that describes the Ondat cluster.
       k8sDistro: "rancher"
       storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
       images:
-        nodeContainer: "storageos/node:< param latest_node_version >" # Ondat version
+        nodeContainer: "storageos/node:v2.6.0" # Ondat version
       kvBackend:
         address: 'storageos-etcd-client.etcd:2379' # Example address, change for your etcd endpoint
       # address: '10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379' # You can set ETCD server ips

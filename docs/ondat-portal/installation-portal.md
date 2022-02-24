@@ -4,6 +4,8 @@ linkTitle: "Ondat Portal Installation Guide"
 weight: 10
 ---
 
+> ⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.
+
 # Creating Credentials for Your Cluster
 
 1. Open [Ondat Portal](https://portal.ondat.io/dashboard).

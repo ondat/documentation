@@ -6,17 +6,50 @@ linkTitle: Release notes
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.5.0`. For
-installation instructions please see our
+The latest tagged release is `2.6.0`. For
+installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.5.0`, available from
+The latest CLI release is `2.6.0`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
-To upgrade from version 1.x to 2.x, please contact [support](/docs/support) for assistance.
+To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
+## 2.6.0 - Released 2022-02-14
+
+### New
+
+Portal Manager:
+
+- Initial release of the Portal Manager, which supports the connection to Ondat
+  SaaS Platform.
+
+Kubectl Plugin:
+
+- We have added a `--dry-run` flag into install command, so you can view the
+  installation manifests written locally to `./storageos-dry-run/`.
+- We have added capability for conducting an airgapped installation. The new
+  options can also be used outside of an airgapped cluster.
+
+Operator:
+
+- We have defined the resource requests and resource limits for the Ondat
+  components (csi-attacher, csi-provisioner, csi-resizer, api-manager,
+  cluster-operator and ondat-scheduler).
+
+Kubernetes:
+
+- Ondat supports Kubernetes v1.23
+
+Components
+
+- We have added a new component called upgrade guard that once enabled allows
+  you to do rolling upgrades to the orchestrator without any downtime. This
+  component is disabled by default and we do not recommend using the feature
+  for production workloads as it is a technical preview feature.
+  
 ## 2.5 - Released 2021-12-06
 
 ### Fixed

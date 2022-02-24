@@ -44,10 +44,10 @@ kubectl storageos install \
 
 ### Declarative installation
 
-The Ondat kubectl plugin allows to define the StorageOSCluster Custom
-Resource declaratively, as a yaml.
+The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
+Resource declaratively, as a YAML. You can do this using one of the following options:
 
-1. Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR
+* Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR:
 
     ```bash
     ---
@@ -75,15 +75,15 @@ Resource declaratively, as a yaml.
       k8sDistro: "upstream"
       storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
       images:
-        nodeContainer: "storageos/node:< param latest_node_version >"
-        apiManagerContainer: storageos/api-manager:v2.5.0-sync
+        nodeContainer: "storageos/node:v2.6.0"
+        apiManagerContainer: storageos/api-manager:v1.2.2
         initContainer: storageos/init:v2.1.0
         csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
         csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
         csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
         csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
         csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-        kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.20.5
+        kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
       kvBackend:
         address: "storageos-etcd-client.storageos-etcd:2379"
       resources:
@@ -98,8 +98,31 @@ Resource declaratively, as a yaml.
     #        - "true"
     ```
 
-1. Install cluster
+   and install a cluster
 
     ```bash
-    kubectl storageos install --stos-cluster-yaml StorageOSCluster.yaml --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
+    kubectl storageos install \
+    --stos-cluster-yaml StorageOSCluster.yaml \
+    --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
     ```
+
+* Create a YAML to describe the cluster's resources using a [Helm
+chart](https://github.com/storageos/charts/pull/129) or use the `kubectl
+plugin` with the `dry-run` flags enabled:
+
+    ```bash
+    kubectl storageos install
+        --dry-run
+        --username storageos
+        --password storageos
+        --include-etcd ...
+    ```
+
+  > Note, that when `--dry-run` is set for an install command, no installation
+  > takes place. Instead, the installation manifests that would have been
+  > installed under normal circumstances are written locally to
+  > `./storageos-dry-run/`.
+
+That generates YAML files that can be used in a GitOps pipeline (your
+installation is fully-declarative). At the end, the CI/CD tool runs `kubectl
+create -f ./path/to/yamls`.
