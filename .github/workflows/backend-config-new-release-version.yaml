@@ -4,22 +4,19 @@ on:
   # To be executed on human trigger
   workflow_dispatch:
     inputs:
-      old_version:
-        description: 'The previous latest version of the product that the
-        backend docs are serving as the root URL of the docs. In the form of
-        vX.Y'
+      new_version: 
+        description: 'NEW_VERSION (vX.Y)'
         required: true
         type: string
-      new_version: 
-        description: 'The latest version of the product to be released that
-        will be used to serve the root URL of the docs. In the form of vX.Y'
+      old_version:
+        description: 'OLD_VERSION (vZ.W)'
         required: true
         type: string
 env:
   working_directory: .
   
 jobs:
-  build:
+  amend_config:
     runs-on: ubuntu-latest
     steps:
       - name: Add new release version to hugo config
@@ -42,7 +39,7 @@ jobs:
           ## Amend hugo config file
           echo "Amending hugo config file - releases menu"
           fragment=$(cat <<'END'
-          url = '${{ github.event.old_version }}'
+          url = '${{ github.event.inputs.old_version }}'
           [[params.versions]]
               version = '${{ github.event.inputs.new_version }}'
               url = '/'
