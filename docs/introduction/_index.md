@@ -19,7 +19,7 @@ hybrid/multi-cloud environments.
 Our documentation is arranged into sections, accessible from the navigation bar
 on the left.
 
-**Introduction** - Quickstart and support information.
+**Introduction** - Self-evaluation guide to serve as a quickstart and support information.
 
 **Concepts** - Architectural and deep technical information.
 
