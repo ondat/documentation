@@ -43,7 +43,7 @@ jobs:
           npm install -g npm@8.3.0
           npm install postcss-cli
           npm install autoprefixer
-          ./hugo -D --config config/latest.toml
+          ./hugo --baseURL "https://docs.ondat.io/${{ env.TAG_NAME }}/" -D --config config/latest.toml
           echo "--> Copying latest tagged version of the HTML to gh-pages"
           cp -R sites/latest/* ../../gh-pages/${{ env.TAG_NAME }}/
           echo "--> Adding, committing, and pushing the latest build to gh-pages"
