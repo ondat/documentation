@@ -13,7 +13,7 @@ the required downtime as much as possible.
 > v2.3](/docs/prerequisites/pidlimits) and that you check the
 > init container logs to ensure your environments PID limits are set correctly.
 
-> ⚠️ To reduce downtime, it is recommended to `docker pull` the new
+> ⚠️ To reduce downtime, it is recommended to pull the new
 > Ondat container image `storageos/node:v2.6.0`
 > on the nodes beforehand so that the cluster spins up faster!
 
