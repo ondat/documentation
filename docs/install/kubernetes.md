@@ -77,7 +77,7 @@ kubectl storageos install \
     --admin-password "my-password"
 ```
 
-> 💡 Define the etcd endpoints as a comma delimited list, e.g. `10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379`
+> 💡 You can also define the etcd endpoints as a comma delimited list, e.g. `10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379`
 
 > 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
