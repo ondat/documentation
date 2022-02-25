@@ -86,20 +86,8 @@ sudo shutdown -r now
 
 Once required kernel modules are installed on the system, for convenience we
 provide a container which will ensure the appropriate modules are loaded and
-ready for use at runtime. On Docker installations, you will need to run the
-init container prior to starting Ondat. Our installation guides for
-Kubernetes and OpenShift include this step.
-
-```bash
-# Load the required kernel modules. The Kubernetes and OpenShift installations include this step.
-docker run --name enable_lio                  \
-           --privileged                       \
-           --rm                               \
-           --cap-add=SYS_ADMIN                \
-           -v /lib/modules:/lib/modules       \
-           -v /sys:/sys:rshared               \
-           storageos/init:0.2
-```
+ready for use at runtime. You will need to run the init container prior to starting Ondat.  
+Our installation guides for Kubernetes and OpenShift include this step.
 
 ## Manual Configuration
 

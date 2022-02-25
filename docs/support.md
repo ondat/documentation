@@ -35,7 +35,6 @@ entries, that may help us debug your issue.
 * Cloud provider/Bare metal
 * OS distribution and version
 * Kernel version
-* docker version and installation procedure (distro packages or docker install)
 
 ### Ondat
 
