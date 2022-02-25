@@ -8,7 +8,7 @@ weight: 1
 > [prerequisites for Ondat](/docs/prerequisites) are
 > satisfied before proceeding.
 
-> ⚠️ Make sure to add an Ondat licence after installing.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
 > 💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO
 > platform can use the following Kubernetes guide to install Ondat.
