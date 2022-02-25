@@ -37,7 +37,7 @@ There are two main reasons this issue may arise:
 
 (Option 1) Misconfiguration of the DeviceDir/SharedDir
 
-Some Kubernetes distributions such as Rancher, DockerEE or some installations
+Some Kubernetes distributions such as Rancher, or some installations
 of OpenShift deploy the Kubelet as a container, because of this, the device
 files that Ondat creates to mount into the containers need to be visible to
 the kubelet. Ondat can be configured to share the device directory.
@@ -240,7 +240,7 @@ StorageClass expects it or that is has been deployed with a different name.
 ### Solution
 
 Deploy Ondat following the [installation procedures](
-/docs/introduction/self-eval). If you are using the manifests
+/docs/introduction/self-eval/). If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.
