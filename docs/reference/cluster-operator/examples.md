@@ -154,9 +154,64 @@ spec:
   #   memory: "4Gi"
 ```
 
-Limiting Ondat can cause malfunction for IO to Ondat volumes, therefore
-we do not currently recommend applying upper limits to resources for Ondat
-pods.
+We have the following limits for all of our components:
+
+```yaml
+         name: api-manager
+         resources:
+           limits:
+             cpu: 250m
+             memory: 200Mi
+           requests:
+             cpu: 10m
+             memory: 100Mi
+```
+
+```yaml
+        name: provisioner
+        securityContext:
+        privileged: true
+        resources:
+          limits:
+             cpu: 100m
+             memory: 100Mi
+          requests:
+             cpu: 5m
+             memory: 30Mi
+```
+
+```yaml
+        name: attacher
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 1m
+            memory: 30Mi
+```
+
+```yaml
+        name: resizer
+        resources:
+          limits:
+             cpu: 50m
+             memory: 100Mi
+          requests:
+             cpu: 1m
+             memory: 30Mi
+```
+
+```yaml
+        name: storageos-scheduler
+        resources:
+           limits:
+             cpu: 100m
+             memory: 200Mi
+        requests:
+             cpu: 10m
+             memory: 50Mi
+```
 
 ## Specifying custom Tolerations
 
@@ -176,5 +231,5 @@ all Ondat components; the Ondat daemonset, CSI helper and scheduler.
 
 In the above example a toleration `key1=value1:EffectToTolerate` would be
 tolerated and `key2` would be tolerated regardless of the value and effect. For
-more information about tolerations, see the [Kubernetes
+more information about tolerations see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).
