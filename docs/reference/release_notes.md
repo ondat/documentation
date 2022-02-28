@@ -475,7 +475,7 @@ improvements across the board. Of particular note:
 - I/O for large block sizes (128K) has improved by up to 353%
 
 We are extremely proud of our performance and we love to talk about it. Have a
-look at the [Benchmarking](/docs/self-eval#Benchmarking) section of the
+look at the [Benchmarking](/docs/introduction/self-eval#Benchmarking) section of the
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our [slack
 channel](https://storageos.slack.com).
