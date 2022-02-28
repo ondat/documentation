@@ -62,7 +62,7 @@ kubectl port-forward -n storageos svc/storageos 5705
 The Ondat GUI can then be accessed from `http://localhost:5705` using the default
 `storageos-api` secret defined during the installation as credentials (for
 example: login: storageos / password: storageos) when using the
-[self-evaluation guide](/docs/self-eval/).
+[self-evaluation guide](/docs/introduction/self-eval/).
 
 Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
