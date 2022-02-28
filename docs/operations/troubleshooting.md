@@ -240,7 +240,7 @@ StorageClass expects it or that is has been deployed with a different name.
 ### Solution
 
 Deploy Ondat following the [installation procedures](
-/docs/self-eval/). If you are using the manifests
+/docs/introduction/self-eval/). If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.
