@@ -17,7 +17,6 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `csi.enableProvisionCreds`                  | Enable CSI provision credentials                                                               | `false`
 | `debug`                                     | Enable debug mode for all the cluster nodes                                                    | `false`
 | `disableFencing`                            | Disable Pod fencing                                                                            | `false`
-| `disableScheduler`                          | Disable Ondat scheduler                                                                    | `false`
 | `disableTCMU`                               | Disable TCMU to allow co-existence with other TCMU users. Disabling TCMU degrades performance  | `false`
 | `disableTelemetry`                          | Disable telemetry reports                                                                      | `false`
 | `forceTCMU`                                 | Forces TCMU to be enabled or causes Ondat to abort startup                                 | `false`
