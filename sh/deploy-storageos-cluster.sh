@@ -6,8 +6,8 @@ set -euo pipefail
 # Kubernetes cluster
 # 
 # This script is based on the installation instructions in our self-evaluation
-# guide: https://docs.storageos.com/docs/self-eval. See that guide for
-# more information.
+# guide: https://docs.storageos.com/docs/introduction/self-eval. See that guide 
+# for more information.
 # 
 # Expectations:
 # - Kubernetes cluster with a minium of 3
