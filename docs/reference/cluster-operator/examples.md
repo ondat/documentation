@@ -71,7 +71,6 @@ If using Etcd with mTLS, it is required to create the secret with the TLS
 material on the same namspace as the StorageOSCluster resource. Reference its
 name with the following parameter.
 
-
 ```yaml
 spec:
   # External mTLS secured etcd cluster specific properties
