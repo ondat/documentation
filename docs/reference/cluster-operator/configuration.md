@@ -16,9 +16,7 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `csi.enableNodePublishCreds`                | Enable CSI node publish credentials                                                            | `false`
 | `csi.enableProvisionCreds`                  | Enable CSI provision credentials                                                               | `false`
 | `debug`                                     | Enable debug mode for all the cluster nodes                                                    | `false`
-| `disableTCMU`                               | Disable TCMU to allow co-existence with other TCMU users. Disabling TCMU degrades performance  | `false`
 | `disableTelemetry`                          | Disable telemetry reports                                                                      | `false`
-| `forceTCMU`                                 | Forces TCMU to be enabled or causes Ondat to abort startup                                 | `false`
 | `images.apiManagerContainer`                | Ondat API Manager container image                                                          | `storageos/api-manager:v1.0.0`
 | `images.csiClusterDriverRegistrarContainer` | CSI Cluster Driver Registrar Container image                                                   | `quay.io/k8scsi/csi-cluster-driver-registrar:v1.0.1`
 | `images.csiExternalAttacherContainer`       | CSI External Attacher Container image                                                          | `quay.io/k8scsi/csi-attacher:v1.0.1`
