@@ -67,14 +67,15 @@ spec:
   # address: '10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379' # You can specify individual IPs of the etcd servers
 ```
 
-If using Etcd with mTLS, you need to specify the secret that hold the
-certificates with the following parameters:
+If using Etcd with mTLS, it is required to create the secret with the TLS
+material on the same namspace as the StorageOSCluster resource. Reference its
+name with the following parameter.
+
 
 ```yaml
 spec:
   # External mTLS secured etcd cluster specific properties
   tlsEtcdSecretRefName: "storageos-etcd-secret" # Secret containing etcd client certificates
-  tlsEtcdSecretRefNamespace: "storageos"        # Make sure that the etcd secret is in the same NS as the Ondat cluster
 ```
 
 Follow the [etcd operations](/docs/operations/etcd/storageos-secret-info) page to setup the
@@ -104,36 +105,6 @@ spec:
 > differently to specify master vs workers. Node Taints are not enough to
 > make sure Ondat doesn't start in a node. The `JOIN` variable is defined
 > by the operator by selecting all the nodes that match the `nodeSelectorTerms`.
-
-## Enabling CSI
-
-```yaml
-spec:
-  csi:
-    enable: true
-    deploymentStrategy: deployment
-    enableProvisionCreds: true
-    enableControllerPublishCreds: true
-    enableNodePublishCreds: true
-    enableControllerExpandCreds: true
-```
-
-The credentials must be defined in the `storageos-api` Secret
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: "storageos-api"
-  labels:
-    app: "storageos"
-type: "kubernetes.io/storageos"
-data:
-  # echo -n '<secret>' | base64
-  username: c3RvcmFnZW9z
-  password: c3RvcmFnZW9z
-
-```
 
 ## Specifying a shared directory for use with kubelet as a container
 
