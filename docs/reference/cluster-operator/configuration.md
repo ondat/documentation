@@ -28,10 +28,6 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `images.kubeSchedulerContainer`             | Kube scheduler container image                                                                 | Default dependent on Scheduler version
 | `images.nfsContainer`                       | Ondat nfs container image                                                                  | `storageos/nfs:1.0.0`
 | `images.nodeContainer`                      | Ondat node container image                                                                 | `storageos/node:v2.6.0`
-| `ingress.annotations`                       | Annotations of the ingress used by the cluster                                                 |
-| `ingress.enable`                            | Enable ingress for the cluster                                                                 | `false`
-| `ingress.hostname`                          | Hostname to be used in cluster ingress                                                         | `storageos.local`
-| `ingress.tls`                               | Enable TLS for the ingress                                                                     | `false`
 | `k8sDistro`                                 | The name of the Kubernetes distribution is use, e.g. `rancher` or `eks`                        |
 | `kvBackend.address`                         | Comma-separated list of addresses of external key-value store. (`1.2.3.4:2379,2.3.4.5:2379`)   |
 | `kvBackend.backend` (v2 deprecated)         | Name of the key-value store to use. Set to `etcd` for external key-value store.                | `embedded`
