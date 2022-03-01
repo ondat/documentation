@@ -46,5 +46,4 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `sharedDir`                                 | Path to be shared with kubelet container when deployed as a pod                                | `/var/lib/kubelet/plugins/kubernetes.io~storageos`
 | `storageClassName`                          | The name of the default StorageClass created for Ondat volumes                             | `storageos`
 | `tlsEtcdSecretRefName`                      | Secret containing etcd client certificates                                                     |
-| `tlsEtcdSecretRefNamespace`                 | Namespace of the tlsEtcdSecretRefName                                                          |
 | `tolerations`                               | Set pod tolerations for storageos pod placement                                                |
