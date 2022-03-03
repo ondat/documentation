@@ -68,7 +68,7 @@ spec:
 ```
 
 If using Etcd with mTLS, it is required to create the secret with the TLS
-material on the same namspace as the StorageOSCluster resource. Reference its
+material on the same namespace as the StorageOSCluster resource. Reference it's
 name with the following parameter.
 
 ```yaml
