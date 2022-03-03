@@ -33,7 +33,7 @@ The following table lists the configurable spec parameters of the StorageOSClust
 | `kvBackend.backend` (v2 deprecated)         | Name of the key-value store to use. Set to `etcd` for external key-value store.                | `embedded`
 | `nodeSelectorTerms`                         | Set node selector for storageos pod placement                                                  |
 | `resources`                                 | Set resource requirements for the containers                                                   |
-| `secretRefName`                             | Reference name of storageos secret                                                             |
+| `secretRefName`                             | Reference name of storageos secret within the namespace                                                            |
 | `service.annotations`                       | Annotations of the Service used by the cluster                                                 |
 | `service.externalPort`                      | External port of the Service used by the cluster                                               | `5705`
 | `service.internalPort`                      | Internal port of the Service used by the cluster                                               | `5705`
