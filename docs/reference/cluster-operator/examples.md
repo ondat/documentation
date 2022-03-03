@@ -74,7 +74,7 @@ name with the following parameter:
 ```yaml
 spec:
   # External mTLS secured etcd cluster specific properties
-  tlsEtcdSecretRefName: "storageos-etcd-secret" # Secret containing etcd client certificates
+  tlsEtcdSecretRefName: "storageos-etcd-secret" # Secret containing etcd client certificates, within the StorageOSCluster CR namespace
 ```
 
 Follow the [etcd operations](/docs/operations/etcd/storageos-secret-info) page to setup the
