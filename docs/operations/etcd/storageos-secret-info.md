@@ -45,7 +45,7 @@ spec:
     nodeContainer: "storageos/node:v2.6.0""
   namespace: "storageos"
   # External mTLS secured etcd cluster specific properties
-  tlsEtcdSecretRefName: "etcd-client-tls"                                   # Secret containing etcd client certificates on the
+  tlsEtcdSecretRefName: "etcd-client-tls"                                   # Secret containing etcd client certificates in the same
                                                                             # namespace of the StorageOSCluster resource
   kvBackend:
     address: "https://storageos-etcd-cluster-client.storagos-etcd.svc:2379" # Etcd client service address.
