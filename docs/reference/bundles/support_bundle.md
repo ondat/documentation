@@ -56,7 +56,7 @@ the storage bundle config as below.
 
 ```bash
 STORAGEOS_NS=my-namespace
-curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml | sed "s/kube-system/$STORAGEOS_NS/g" > /tmp/storageos-kubectl-config.yaml
+curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml | sed "s/namespace: storageos/namespace: $STORAGEOS_NS/g" > /tmp/storageos-kubectl-config.yaml
 kubectl storageos bundle /tmp/storageos-kubectl-config.yaml
 ```
 
