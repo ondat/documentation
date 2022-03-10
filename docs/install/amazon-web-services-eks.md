@@ -1,11 +1,11 @@
 ---
-title: "Amazon Web Services Elastic Kubernetes Service (AWS EKS)"
-linkTitle: "Amazon Web Services Elastic Kubernetes Service (AWS EKS)"
+title: "Amazon Elastic Kubernetes Service (EKS)"
+linkTitle: "Amazon Elastic Kubernetes Service (EKS)"
 ---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Elastic Kubernetes Service](https://aws.amazon.com/eks/) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
+This guide will demonstrate how to install Ondat onto an [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
 
 ## Prerequisites
 
