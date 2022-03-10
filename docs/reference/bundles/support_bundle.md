@@ -56,7 +56,7 @@ the storage bundle config as below.
 
 ```bash
 STORAGEOS_NS=my-namespace
-curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml | sed "s/kube-system/$STORAGEOS_NS/g" > /tmp/storageos-kubectl-config.yaml
+curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml | sed "s/namespace: storageos/namespace: $STORAGEOS_NS/g" > /tmp/storageos-kubectl-config.yaml
 kubectl storageos bundle /tmp/storageos-kubectl-config.yaml
 ```
 
@@ -64,12 +64,12 @@ kubectl storageos bundle /tmp/storageos-kubectl-config.yaml
 should update the bundle-configuration.yaml under
 `spec.collectors.run.nodeselector` to reflect this.
 
-Note also that the bundle tool expects there to be an Ondat CLI running in
-kube-system as a Pod with the label `run=cli`. The tool will exec into this pod
-to get information from the Ondat API. If the Ondat CLI Pod does not
-match this criteria, you can either pull the YAML file and change the selector
-in the file, or add the label to the Pod. You can run the cli container
-following these [instructions](/docs/reference/cli/).
+**Note** also that the bundle tool expects there to be an Ondat CLI running in the
+namespace storageos as a Pod with the name `name=storageos-cli`.
+The tool will exec into this pod to get information from the Ondat API.
+If the Ondat CLI Pod does not match this criteria, you can either
+pull the YAML file and change the selector in the file, or add the label to the Pod.
+You can run the cli container following these [instructions](/docs/reference/cli/).
 
 ### Data collected in the bundle
 

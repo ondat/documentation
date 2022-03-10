@@ -50,7 +50,7 @@ your cli container.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cli
+  name: storageos-cli
   namespace: storageos
   labels:
     app: storageos-cli
