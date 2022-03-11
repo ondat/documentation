@@ -13,6 +13,7 @@ This guide will demonstrate how to install Ondat onto a [Microsoft Azure Kuberne
 > ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
 
 > ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
+
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [kubectl-storageos](/docs/reference/kubectl-plugin/)
 
