@@ -12,8 +12,8 @@ This guide will walk you through installing Ondat onto an [Anthos cluster](https
 
 > ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](https://docs.ondat.io/docs/prerequisites/) page for more information.
 
-> ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`: 
-> 
+> ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
+>
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/)
 
