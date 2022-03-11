@@ -371,7 +371,7 @@ than 256G to fulfil the IOPS requirement.
     ETCD_URL=http://etcd-url-or-ips:2379
 
     # Install
-    ONDAT_VERSION=v2.5.0
+    ONDAT_VERSION=v2.6.0
     kubectl storageos install \
         --etcd-endpoints $ETCD_URL \
             --skip-etcd-endpoints-validation \
