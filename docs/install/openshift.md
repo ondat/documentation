@@ -1,8 +1,14 @@
 ---
 title: "OpenShift"
 linkTitle: "OpenShift"
-weight: 20
+weight: 1
 ---
+
+## Overview
+
+This guide will demonstrate how to install Ondat onto an [Openshift](/docs/platforms/openshift) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
+
+## Prerequisites
 
 > ⚠️ Make sure the
 > [prerequisites for Ondat](/docs/prerequisites/) are
@@ -12,14 +18,16 @@ weight: 20
 > ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
 > opened for the worker nodes' security group.
 
-> ⚠️ Make sure to add a Ondat licence after installing.
+> ⚠️ Make sure to add a [Ondat licence](/docs/operations/licensing/) after installing.
 
 > 💡 For OpenShift upgrades, refer to the
 > [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 
-## OperatorHub
+## Procedure 
+### Option A: Via Operatorhub
+#### Step 1: Operatorhub
 
 1. Select the `OperatorHub` from the Catalog sub menu and search for StorageOS
 
@@ -41,7 +49,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
 The Ondat Cluster Operator is installed along the required CRDs.
 
-## Authentication (OperatorHub)
+#### Step 2: Authentication
 
 1. Create a Secret in the `openshift-operators` project and select the YAML option to create a secret containing the `username` and an
    `password` key. The username and password defined in the secret will be
@@ -114,7 +122,8 @@ The Ondat Cluster Operator is installed along the required CRDs.
     > A Status of 3/3 in the __Ready__ column for the Daemonset Pods indicates that Ondat is
     > bootstrapped successfully.
 
-## Red Hat Marketplace
+### Option B: Via Red Hat Marketplace
+#### Step 1: Red Hat Markerplace
 
 > ⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 > Openshift cluster to be registered to the Marketplace Portal, including the
@@ -143,7 +152,7 @@ The Ondat Cluster Operator is installed along the required CRDs.
 
 The Ondat Cluster Operator is installed into your specified cluster.
 
-## Authentication (Red Hat Marketplace)
+#### Step 2: Authentication
 
 1. Create a Secret in the `openshift-operators` project and select the YAML option to create a secret containing the `username` and an
    `password` key. The username and password defined in the secret will be
