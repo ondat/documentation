@@ -25,8 +25,10 @@ This guide will demonstrate how to install Ondat onto an [Openshift](/docs/platf
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 
-## Procedure 
+## Procedure
+
 ### Option A: Via Operatorhub
+
 #### Step 1: Operatorhub
 
 1. Select the `OperatorHub` from the Catalog sub menu and search for StorageOS
@@ -123,6 +125,7 @@ The Ondat Cluster Operator is installed along the required CRDs.
     > bootstrapped successfully.
 
 ### Option B: Via Red Hat Marketplace
+
 #### Step 1: Red Hat Markerplace
 
 > ⚠️ The installation of Ondat using the Red Hat Marketplace requires the
