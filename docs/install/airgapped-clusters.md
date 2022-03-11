@@ -144,7 +144,7 @@ spec:
   k8sDistro: "upstream"
   storageClassName: storageos
   images:
-    nodeContainer: $REGISTRY/storageos/node:v2.5.0
+    nodeContainer: $REGISTRY/storageos/node:v2.6.0
     apiManagerContainer: $REGISTRY/storageos/api-manager:v1.2.2
     initContainer: $REGISTRY/storageos/init:v2.1.0
     csiNodeDriverRegistrarContainer: $REGISTRY/quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
