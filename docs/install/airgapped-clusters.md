@@ -62,7 +62,7 @@ is best to retrieve the YAML from the machine-generated pipeline. To do so, run
 locally the following container that prints them on stdout.
 
     ```bash
-    ONDAT_VERSION=v2.5.0
+    ONDAT_VERSION=v2.6.0
     docker run   \
         --rm \
         storageos/operator-manifests:$ONDAT_VERSION > ondat-operator.yaml
