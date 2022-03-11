@@ -12,7 +12,7 @@ The kubectl plugin accepts both declarative and imperative modes.
 
 ```
 curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
     && tar -xf kubectl-storageos.tar.gz \
     && chmod +x kubectl-storageos \
     && sudo mv kubectl-storageos /usr/local/bin/ \
