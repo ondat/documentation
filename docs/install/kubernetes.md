@@ -3,6 +3,11 @@ title: "Kubernetes"
 linkTitle: "Kubernetes"
 weight: 1
 ---
+## Overview
+
+This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
+
+## Prerequisites
 
 > ⚠️ Make sure that the
 > [prerequisites for Ondat](/docs/prerequisites) are
