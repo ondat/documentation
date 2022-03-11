@@ -346,7 +346,7 @@ than 256G to fulfil the IOPS requirement.
     ```bash
     # Install (the kubectl-storageos plugin installs Etcd and Ondat)
     ETCD_STORAGECLASS=my-storage-class
-    ONDAT_VERSION=v2.5.0
+    ONDAT_VERSION=v2.6.0
     kubectl storageos install \
         --include-etcd \
         --etcd-storage-class $ETCD_STORAGECLASS \
