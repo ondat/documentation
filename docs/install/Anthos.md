@@ -20,7 +20,6 @@ This guide will walk you through installing Ondat onto an [Anthos cluster](https
 
 > ⚠️ Make sure your Anthos clusters use [ubuntu_containerd](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.
 
-
 ## Procedure
 
 ### Step 1 - Conducting Preflight Checks
