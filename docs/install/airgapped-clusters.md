@@ -34,7 +34,7 @@ and select the branch for the release version.
 
     ```bash
     # Images to pull
-    curl -s https://raw.githubusercontent.com/storageos/operator/release-v2.5.0/bundle/manifests/storageos-related-images_v1_configmap.yaml \
+    curl -s https://raw.githubusercontent.com/storageos/operator/release-v2.6.0/bundle/manifests/storageos-related-images_v1_configmap.yaml \
     | cut -d: -f2- \
     | grep ":v"
     ```
