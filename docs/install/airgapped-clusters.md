@@ -25,7 +25,7 @@ There are the following sets of images to pull:
 - (if applicable) the images to run Etcd as Pods using the Etcd operator
   deployed by Ondat
 
-1. Install the Ondat operator: `storageos/operator:v2.5.0` and `quay.io/brancz/kube-rbac-proxy:v0.10.0`
+1. Install the Ondat operator: `storageos/operator:v2.6.0` and `quay.io/brancz/kube-rbac-proxy:v0.10.0`
 1. Pull the images from the list defined in the [storageos-related-images
   configMap](https://github.com/storageos/operator/blob/main/bundle/manifests/storageos-related-images_v1_configmap.yaml)
 and select the branch for the release version.
