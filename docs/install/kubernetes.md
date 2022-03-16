@@ -3,6 +3,11 @@ title: "Kubernetes"
 linkTitle: "Kubernetes"
 weight: 1
 ---
+## Overview
+
+This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
+
+## Prerequisites
 
 > ⚠️ Make sure that the
 > [prerequisites for Ondat](/docs/prerequisites) are
@@ -19,9 +24,9 @@ weight: 1
 
 &nbsp;
 
-## Install Ondat on Kubernetes
+## Procedure
 
-### Install the storageos kubectl plugin
+### Step 1: Install the storageos kubectl plugin
 
 ```
 curl -sSLo kubectl-storageos.tar.gz \
@@ -35,7 +40,7 @@ curl -sSLo kubectl-storageos.tar.gz \
 > 💡 You can find binaries for different architectures and systems in [kubectl
 > plugin](https://github.com/storageos/kubectl-storageos/releases).
 
-### Smoke test
+### Step 2: Smoke test
 
 ```
 kubectl storageos preflight
@@ -49,7 +54,7 @@ kubectl storageos preflight
 > test for - refer to [prerequisites](/docs/prerequisites) for a full list
 > and be sure to verify that your infrastructure meets them.
 
-### Option A: Install Ondat (embedded etcd, for development and testing)
+### Step 3 - Option A: Install Ondat (embedded etcd, for development and testing)
 
 ```bash
 kubectl storageos install \
@@ -68,7 +73,7 @@ kubectl storageos install \
 > `StorageClass`. Note that this stores all data locally on the individual
 > nodes and is not recommended for production installations.
 
-### Option B: Install Ondat (bring-your-own etcd, for production)
+### Step 3 - Option B: Install Ondat (bring-your-own etcd, for production)
 
 ```bash
 kubectl storageos install \
@@ -82,7 +87,7 @@ kubectl storageos install \
 > 💡 If the etcd endpoints are not defined, the plugin will prompt you and
 > request the endpoints.
 
-### Verify Ondat installation
+### Step 4 - Verify Ondat installation
 
 Ondat installs all its components in the `storageos` namespace.
 
@@ -104,7 +109,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 
 > Wait until all the pods are ready. It usually takes ~60 seconds to complete
 
-### License cluster
+### Step 5 - License cluster
 
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 > personal license is free, and supports up to 1TiB of provisioned storage.
