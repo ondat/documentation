@@ -1,6 +1,7 @@
 ---
 title: "Azure Kubernetes Service (AKS)"
 linkTitle: "Azure Kubernetes Service (AKS)"
+weight: 1
 ---
 
 ## Overview
@@ -9,15 +10,18 @@ This guide will demonstrate how to install Ondat onto a [Microsoft Azure Kuberne
 
 ## Prerequisites
 
-* You have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
+> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
 
-* The following CLI utilities are installed on your local machine and are available in your `$PATH`:
+> ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
+
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [kubectl-storageos](/docs/reference/kubectl-plugin/)
 
-* You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-* Your AKS clusters use [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat.
+> ⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+
+> ⚠️ Make sure your AKS clusters use [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat.
 
 ## Procedure
 
