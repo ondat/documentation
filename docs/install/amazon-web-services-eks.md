@@ -1,6 +1,7 @@
 ---
 title: "Amazon Elastic Kubernetes Service (EKS)"
 linkTitle: "Amazon Elastic Kubernetes Service (EKS)"
+weight: 1
 ---
 
 ## Overview
@@ -9,19 +10,22 @@ This guide will demonstrate how to install Ondat onto an [Amazon Elastic Kuberne
 
 ## Prerequisites
 
-* You have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
+> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
 
-* The following CLI utilities are installed on your local machine and are available in your `$PATH`:
+> ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
+
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [kubectl-storageos](/docs/reference/kubectl-plugin/)
 * [aws](https://aws.amazon.com/cli/)
 * [eksctl](https://eksctl.io/), at least version `>=0.83.0`
 
-* You have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-* Your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data as in the example below.
+> ⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-To find the latest Ubuntu for EKS AMI, search your region for the image:
+> ⚠️ Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data as in the example below.
+
+>To find the latest Ubuntu for EKS AMI, search your region for the image:
 
 ```bash
 export AWS_REGION="eu-west-2" # Insert your preferred region here
@@ -32,7 +36,7 @@ aws ec2 describe-images \
 --region "$AWS_REGION"
 ```
 
-In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node. Note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode). In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
+>In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node. Note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode). In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
 
 ```yaml
 # cluster.yaml
