@@ -1,7 +1,7 @@
 ---
 title: "Anthos"
 linkTitle: "Anthos"
-weight: 20
+weight: 1
 ---
 
 ## Overview
@@ -10,16 +10,18 @@ This guide will walk you through installing Ondat onto an [Anthos cluster](https
 
 ## Prerequisites
 
-* You have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](https://docs.ondat.io/docs/prerequisites/) page for more information.
+> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](https://docs.ondat.io/docs/prerequisites/) page for more information.
 
-* The following CLI utilities are installed on your local machine and are available in your `$PATH`:
+> ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
 >
->* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
->* [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/)
 
-* You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-* Your Anthos clusters use [ubuntu_containerd](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.
+> ⚠️ Make sure you have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+
+> ⚠️ Make sure your Anthos clusters use [ubuntu_containerd](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.
 
 ## Procedure
 
