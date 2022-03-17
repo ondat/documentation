@@ -23,9 +23,9 @@ This guide will demonstrate how to install Ondat onto an [Amazon Elastic Kuberne
 
 > ⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-> ⚠️ Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data as in the example below.
+> ⚠️ Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data, as in the example below.
 
->To find the latest Ubuntu for EKS AMI, search your region for the image:
+> To find the latest Ubuntu for EKS AMI, search your region for the image:
 
 ```bash
 export AWS_REGION="eu-west-2" # Insert your preferred region here
@@ -36,7 +36,7 @@ aws ec2 describe-images \
 --region "$AWS_REGION"
 ```
 
->In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node. Note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode). In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
+> In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node. Note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode). In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
 
 ```yaml
 # cluster.yaml
@@ -100,7 +100,7 @@ If you receive the message `No resources found` or see nodes marked as `NotReady
 
 ### Step 1 - Conducting Preflight Checks
 
-Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.
+- Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.
 
 ```bash
 kubectl storageos preflight
@@ -108,9 +108,9 @@ kubectl storageos preflight
 
 ### Step 2 - Installing Ondat
 
-1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. Set the `StorageClass` for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest `gp3` for a good balance of performance and resilience or `io2` where top performance is essential.
-
-The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
+1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. 
+2. Set the `StorageClass` for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest `gp3` for a good balance of performance and resilience, or `io2` where top performance is essential.
+> 💡 The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
 
 ```bash
 kubectl create -f - <<EOF
@@ -142,16 +142,16 @@ export ETCD_STORAGECLASS="gp3"
 kubectl storageos install \
   --include-etcd \
   --etcd-tls-enabled \
-  --etcd-storage-class "$ETCD_STORAGECLASS" \
+  --etcd-storage-class="$ETCD_STORAGECLASS" \
   --admin-username="$STORAGEOS_USERNAME" \
   --admin-password="$STORAGEOS_PASSWORD"
 ```
 
-The installation process may take a few minutes.
+- The installation process may take a few minutes.
 
 ### Step 3 - Verifying Ondat Installation
 
-Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+- Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
 ```bash
 kubectl get all --namespace=storageos
