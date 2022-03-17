@@ -27,7 +27,7 @@ This guide will demonstrate how to install Ondat onto a [DigitalOcean Managed Ku
 
 ### Step 1 - Conducting Preflight Checks
 
- - Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
+- Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
 
 ```bash
 kubectl storageos preflight
