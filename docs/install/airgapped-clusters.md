@@ -191,9 +191,9 @@ than 256G to fulfil the IOPS requirement.
 
     Edit the file `storageos-operator.yaml` and change:
     - Find the `ConfigMap` called `storageos-related-images` and change the
-      URLs of the images adding your registry url prefix.
+      URLs of the images adding your registry URL prefix.
     - Find the `Deployment` called `storageos-operator` and change the `images`
-      of the 2 containers on it adding your registry url prefix. They are the
+      of the 2 containers on it adding your registry URL prefix. They are the
       containers `manager` and `kube-rbac-proxy`.
 
 1. (Optional) Amend the file `storageos-cluster.yaml`
