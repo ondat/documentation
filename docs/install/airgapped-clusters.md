@@ -204,7 +204,8 @@ than 256G to fulfil the IOPS requirement.
 
 ## Step 4. Pulling images into a private registry
 
-The images set on the previous steps need to be added to your registry.
+The images set on the previous steps need to be added to your registry. You can
+find them with:
 
 ```bash
 grep -E  "RELATED|image:" *.yaml
