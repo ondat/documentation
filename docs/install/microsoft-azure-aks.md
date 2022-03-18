@@ -27,7 +27,7 @@ This guide will demonstrate how to install Ondat onto a [Microsoft Azure Kuberne
 
 ### Step 1 - Conducting Preflight Checks
 
-- Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
+* Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
 
 ```bash
 kubectl storageos preflight
@@ -52,11 +52,11 @@ kubectl storageos install \
   --admin-password="$STORAGEOS_PASSWORD"
 ```
 
-- The installation process may take a few minutes.
+* The installation process may take a few minutes.
 
 ### Step 3 - Verifying Ondat Installation
 
-- Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+* Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
 ```bash
 kubectl get all --namespace=storageos

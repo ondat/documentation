@@ -100,7 +100,7 @@ If you receive the message `No resources found` or see nodes marked as `NotReady
 
 ### Step 1 - Conducting Preflight Checks
 
-- Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.
+* Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.
 
 ```bash
 kubectl storageos preflight
@@ -108,8 +108,9 @@ kubectl storageos preflight
 
 ### Step 2 - Installing Ondat
 
-1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. 
+1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance.
 2. Set the `StorageClass` for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest `gp3` for a good balance of performance and resilience, or `io2` where top performance is essential.
+
 > 💡 The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
 
 ```bash
@@ -147,11 +148,11 @@ kubectl storageos install \
   --admin-password="$STORAGEOS_PASSWORD"
 ```
 
-- The installation process may take a few minutes.
+* The installation process may take a few minutes.
 
 ### Step 3 - Verifying Ondat Installation
 
-- Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+* Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
 ```bash
 kubectl get all --namespace=storageos
