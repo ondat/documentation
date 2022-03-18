@@ -111,7 +111,8 @@ kubectl storageos preflight
 ### Step 2 - Installing Ondat
 
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance.
-2. Set the `StorageClass` for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest `gp3` for a good balance of performance and resilience, or `io2` where top performance is essential.
+2. Set the `StorageClass` for etcd to use.
+> 💡 This cannot be Ondat, as Ondat is dependent upon etcd. On AWS EKS, we suggest `gp3` for a good balance of performance and resilience, or `io2` where top performance is essential.
 
 > 💡 The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
 
