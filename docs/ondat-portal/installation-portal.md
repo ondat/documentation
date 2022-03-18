@@ -19,7 +19,7 @@ This guide will demonstrate how to install the [Ondat SaaS Platform](https://por
 ### Step 1: Creating Credentials for Your Cluster
 
 1. Open [Ondat Portal](https://portal.ondat.io/dashboard).
-2. Log into your account using your account's credentials.
+2. Log into your account using your credentials.
 3. On the left-hand side of the screen, open the __Cluster__ tab.
 4. On the top right-hand side of the screen, click __Add Cluster__.
 5. Enter a name for the cluster and choose the __Cluster Location__ using the dropdown
