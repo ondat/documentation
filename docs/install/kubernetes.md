@@ -69,7 +69,7 @@ kubectl storageos install \
 > in production for best possible performance and stability.
 
 > ⚠️ This requires a default `StorageClass` in the Kubernetes cluster.
-> If the default isn't set, you may need to set up the [local-path](https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml)
+> If the default isn't set, you may need to set up the [local-path](https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml)
 > `StorageClass`. Note that this stores all data locally on the individual
 > nodes and is not recommended for production installations.
 
