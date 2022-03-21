@@ -32,7 +32,7 @@ This guide will demonstrate how to install the [Ondat SaaS Platform](https://por
 1. Copy the first cli command displayed on the modal, __this will be the only time it will be visible__.
 2. Execute the cli command on your machine
 
-### Step 2b: Option B - Installing Ondat Portal Manager when Ondat Ondat has already been installed
+### Step 2b: Option B - Installing Ondat Portal Manager when Ondat has already been installed
 
 1. Copy the second cli command displayed on the modal, __this will be the only time it will be visible__.
 2. Execute the cli command on your machine
