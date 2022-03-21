@@ -64,7 +64,7 @@ than 256G to fulfil the IOPS requirement.
     # Not for production workloads
 
     # Pull yaml
-    curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+    curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 
     # Pull the following images into your registry
     grep "image:" local-path.yaml

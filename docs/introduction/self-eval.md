@@ -81,7 +81,7 @@ The following procedure deploys a local-path StorageClass for the Ondat Etcd.
 > ⚠️  Note that this Etcd __is suitable for evaluation purposes only__. Do not use this cluster for production workloads.
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 ```
 
 > ⚠️ The `local-path` StorageClass does not guarantee data safety or availability.
