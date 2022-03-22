@@ -45,7 +45,7 @@ jobs:
           npm install -g npm@8.3.0
           npm install postcss-cli
           npm install autoprefixer
-          ./hugo -D --config config/latest.toml
+          HUGO_ENV=production ./hugo -D --config config/latest.toml
           echo "--> Copying latest version to gh-pages"
           cp -R sites/latest/* ../../gh-pages/
           echo "--> Adding, committing, and pushing the latest build to gh-pages"
