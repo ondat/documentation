@@ -21,13 +21,13 @@ This guide will demonstrate how to install Ondat onto a [Microsoft Azure Kuberne
 
 > ⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-> ⚠️ Make sure your AKS clusters use [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat.
+> ⚠️ Make sure your AKS cluster uses [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat.
 
 ## Procedure
 
 ### Step 1 - Conducting Preflight Checks
 
-Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
+* Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
 
 ```bash
 kubectl storageos preflight
@@ -52,11 +52,11 @@ kubectl storageos install \
   --admin-password="$STORAGEOS_PASSWORD"
 ```
 
-The installation process may take a few minutes.
+* The installation process may take a few minutes.
 
 ### Step 3 - Verifying Ondat Installation
 
-Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+* Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
 ```bash
 kubectl get all --namespace=storageos

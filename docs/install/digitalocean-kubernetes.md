@@ -1,33 +1,33 @@
 ---
-title: "Google Anthos"
-linkTitle: "Google Anthos"
+title: "DigitalOcean Kubernetes (DOKS)"
+linkTitle: "DigitalOcean Kubernetes (DOKS)"
 weight: 1
 ---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Google Anthos](https://cloud.google.com/anthos) cluster using the [Ondat kubectl plugin](https://docs.ondat.io/docs/reference/kubectl-plugin/).
+This guide will demonstrate how to install Ondat onto a [DigitalOcean Managed Kubernetes (DOKS)](https://www.digitalocean.com/products/kubernetes) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
 
 ## Prerequisites
 
-> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](https://docs.ondat.io/docs/prerequisites/) page for more information.
+> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
 
 > ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your `$PATH`:
->
+
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* [kubectl-storageos](https://docs.ondat.io/docs/reference/kubectl-plugin/)
+* [kubectl-storageos](/docs/reference/kubectl-plugin/)
 
 > ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-> ⚠️ Make sure you have a running Google Anthos cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure you have a running DOKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-> ⚠️ Make sure your Google Anthos cluster use [`ubuntu_containerd`](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
+> ⚠️ Make sure your DOKS cluster version is greater than or equal to `v1.21.10` or `v1.22.7` as they will have the required kernel modules available for Ondat to run successfully.
 
 ## Procedure
 
 ### Step 1 - Conducting Preflight Checks
 
-* Run the following command to conduct preflight checks against the Google Anthos cluster to validate that Ondat prerequisites have been met before attempting an installation.
+* Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.
 
 ```bash
 kubectl storageos preflight
