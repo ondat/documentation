@@ -1,6 +1,7 @@
 ---
-title: "Release notes"
-linkTitle: Release notes
+title: "Release Notes"
+linkTitle: Release Notes
+weight: 150
 ---
 
 We recommend always using "tagged" versions of Ondat rather than "latest",
