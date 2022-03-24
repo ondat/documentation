@@ -7,7 +7,7 @@ description: >
 ---
 
 When you need support, raise a ticket via our [Help Desk
-portal](https://support.ondat.io/). 
+portal](https://support.ondat.io/).
 
 It is important to select the priority of your ticket in accordance with the severity. This helps us to route and prioritise your ticket accordingly.
 
