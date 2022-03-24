@@ -2,13 +2,13 @@
 linkTitle: Using Rolling Upgrades Feature 
 ---
 
-# Enabling Orchestrator's Rolling Upgrades 
+# Enabling Orchestrator's Rolling Upgrades
 
-To prevent your persistent storage volumes from becoming unhealthy during orchestrator update you need to enable rolling upgrades. Note, that if your volume doesn't have any replicas the rolling upgrades will be disabled by default. 
+To prevent your persistent storage volumes from becoming unhealthy during orchestrator update you need to enable rolling upgrades. Note, that if your volume doesn't have any replicas the rolling upgrades will be disabled by default.
 
 # Procedure
 
-Enable both node manager and the upgrade guard by adding the following to the StorageOSCluster spec: 
+Enable both node manager and the upgrade guard by adding the following to the StorageOSCluster spec:
 
 ```
  nodeManagerFeatures:
