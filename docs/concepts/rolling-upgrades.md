@@ -19,4 +19,9 @@ The upgrade guard container will log when it’s available to upgrade, it will a
 
 # Node Manager
 
-The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container. Upgrade guard solves the main issue of the node manager: deploys a pod next to all `StorageOS` daemonset and monitors local node state.
+The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container.
+
+
+Questions:
+* Do users care about these things?
+* Can we cut this down? Lots of ambiguity
