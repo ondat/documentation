@@ -17,5 +17,5 @@ description: >
 
 ## Orchestrators
 
-- Kubernetes 1.18 to 1.22
+- Kubernetes 1.19 to 1.23
 - OpenShift 4.0+
