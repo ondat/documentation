@@ -41,7 +41,7 @@ files into blobs which are then sent to MinIO.
 
 Here are the prerequisites for running Velero in your Kubernetes cluster:
 
-1. Kubernetes cluster version 1.18 to 1.22 with DNS
+1. Kubernetes cluster version 1.19 to 1.23 with DNS
 1. Kubectl installed
 1. Velero cli installed <https://Velero.io/docs/main/basic-install/>
 
