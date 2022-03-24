@@ -4,32 +4,21 @@ linkTitle: System Configuration
 weight: 100
 ---
 
-Ondat requires certain kernel modules to function. In particular it
-requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source
-implementation of the SCSI target, on all nodes that will execute Ondat
-(usually the workers).
+Ondat requires certain kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 
 We require the following modules to be loaded:
 
 * `target_core_mod`
 * `tcm_loop`
-* `target_core_file`
 * `configfs`
 * `target_core_user`
 * `uio`
 
-> ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO)
-> cannot be run concurrently with Ondat. Doing so may result in corruption
-> of data. On startup, Ondat will detect if other applications are using
-> TCMU and fall back to FUSE. However if Ondat is started first there is no
-> mechanism for Ondat to fallback to FUSE if another application begins to
-> use TCMU. TCMU can be disabled using the
-> [DISABLE_TCMU](/docs/reference/cluster-operator/configuration)
-> StorageOSCluster spec parameter.
+> ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO) cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.
 
-Depending on the distribution, the modules are shipped as part of the
-base kernel package or as part of a kernel extras package which needs to be
-installed.
+> ⚠️ TCMU can be disabled using the [DISABLE_TCMU](/docs/reference/cluster-operator/configuration) StorageOSCluster spec parameter.
+
+Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.
 
 ## Distribution Specifics
 
@@ -43,9 +32,7 @@ The following distributions are supported by default:
 
 Ubuntu 16.04/18.04 requires the installation of additional packages.
 
-> ⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
-> necessary linux-image-extra package - [see
-> below](/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels) for more information
+> ⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the necessary linux-image-extra package - [see below](/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels) for more information
 
 ## Ubuntu Package Installation
 
