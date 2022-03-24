@@ -7,17 +7,9 @@ description: >
 ---
 
 When you need support, raise a ticket via our [Help Desk
-portal](https://support.storageos.com). It is important to select the priority
-of your ticket in accordance with the severity:
+portal](https://support.ondat.io/). 
 
-* Severity 1 - Urgent
-* Severity 2 - High
-* Severity 3 - Medium
-* Severity 4 - Low
-
-This helps us route and prioritise the ticket accordingly. You can find
-definitions of our support severity levels on our
-[website](https://storageos.com/support).
+It is important to select the priority of your ticket in accordance with the severity. This helps us to route and prioritise your ticket accordingly.
 
 Responses to tickets will be cc'd via email.
 
@@ -25,10 +17,8 @@ For personal support and general enquiries, join our [public Slack channel](http
 
 ## Information to include in tickets
 
-To help us provide effective support, we request that you provide as much
-information as possible when contacting us. The list below is a suggested
-starting point. Additionally, include anything specific, such as log
-entries, that may help us debug your issue.
+To help us provide effective support, we request that you provide as much information as possible when contacting us. The list below is a suggested
+starting point. Additionally, include anything specific, such as log entries, that may help us debug your issue.
 
 ### Platform
 
@@ -61,17 +51,10 @@ entries, that may help us debug your issue.
 
 ### Ondat Support Bundle
 
-Ondat provides the ability to generate a support bundle that aggregates
-cluster information. See [Support Bundle](/docs/reference/bundles/support_bundle) for a list of what is
-included.
+Ondat provides the ability to generate a support bundle that aggregates cluster information. See [Support Bundle](/docs/reference/bundles/support_bundle) for a list of what is included.
 
-Ondat engineers might ask for a support bundle to be generated
-during support cases.
+Ondat engineers might ask for a support bundle to be generated during support cases.
 
-The information in the bundle is used only for support purposes, and will be
-removed once it is no longer needed. If the information is sensitive and can't
-be given to Ondat, make sure that the support engineers have as
-much information about your environment as possible.
+The information in the bundle is used only for support purposes, and will be removed once it is no longer needed. If the information is sensitive and can't be given to Ondat, make sure that the support engineers have as much information about your environment as possible.
 
-Refer to the [Support Bundle](/docs/reference/bundles/support_bundle) documentation page for details
-of how to generate a bundle.
+Refer to the [Support Bundle](/docs/reference/bundles/support_bundle) documentation page for details of how to generate a bundle.
