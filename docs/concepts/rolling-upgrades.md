@@ -2,26 +2,11 @@
 linkTitle: "Rolling Upgrades to Orchestrator"
 ---
 
-# Upgrade Guard
+# Overview
+You can use the rolling upgrade feature to upgrade an orchestrator of your choice without causing service downtime/cluster failure. This feature enables you to avoid significant service downtime during a rolling upgrade of the Orchestrator that Ondat is running on.
 
-You can use the rolling upgrade feature to upgrade an orchestrator (for example, Kubernetes or OpenShift) without causing service downtime/cluster failure. For example, OpenShift provides a one-click upgrade but that feature doesn't take into consideration Stateful workloads. By doing rolling upgrades without waiting for the replicas to sync you can cause major issues on the affected volumes.
+If the volume replicas containing data for your stateful workloads do not wait on successfully synchronizing in-between the node upgrades, this can potentially cause data inconsistency and loss. 
 
-We have developed a separate component called the upgrade guard. This component blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
-To use the rolling upgrade feature, you need to enable both the Node manager and the upgrade guard components (this is set on the `storageoscluster` CR).
+Ondat has developed a new solution to solve this problem for you. For example, Ondat would now be able to support the OpenShift one-click upgrade without any downtime on your side.
 
-The upgrade guard will detect if a volume is unhealthy (for example, one that doesn't have enough synced replicas), at which point one or more node manager pods will become unavailable. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time.
-
-If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The `api-managercomponent` will be able to dynamically set the PDB value if it can determine the health of the volume. If the `api-managercomponent` knows that a volume will not be ready, it can increase the PDB `maxUnavailable` value, allowing the upgrade to continue.
-
->note: There is some latency between a volume becoming unhealthy and the upgrade guard noticing (due to the polling nature of both the `api-managercomponent` volume sync Kubernetes readiness endpoints).
-The upgrade guard container is only monitoring volumes that host a deployment on its node (for example, it doesn’t care if a volume is unhealthy if the node it's running on hosts none of the volumes master and replicas)
-The upgrade guard container will log when it’s available to upgrade, it will also log the reason if upgrade is not possible.
-
-# Node Manager
-
-The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container.
-
-
-Questions:
-* Do users care about these things?
-* Can we cut this down? Lots of ambiguity
+To use the rolling upgrade feature, follow these steps [here](docs/operations/using-rolling-upgrades).
