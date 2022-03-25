@@ -12,7 +12,7 @@ Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster
 Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.
 
-![Ondat cluster components](/images/docs/concepts/ondat-cluster.png)
+![Ondat cluster components](/images/docs/concepts/ondat-deployment.png)
 
 Read about [the cloud native storage principles behind
 Ondat](https://www.ondat.io/platform/platform-overview).
