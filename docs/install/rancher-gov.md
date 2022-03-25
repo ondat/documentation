@@ -48,7 +48,6 @@ kubectl get storageclass
 
 > ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
 
-
 ### Step 2 - Conducting Preflight Checks
 
 * Run the following command to conduct preflight checks against the RKE2 cluster to validate that Ondat prerequisites have been met before attempting an installation.
