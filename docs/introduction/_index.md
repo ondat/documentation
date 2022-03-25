@@ -9,6 +9,7 @@ description: >
 ---
 
 ## What is Ondat
+![How Ondat fits in](/images/docs/concepts/ondat-layer.png)
 
 So you run workloads, either in-house developed or using Consumer Off The Shelf (COTS) platforms. You also recognise that operationally, you want to run them on Kubernetes as my “cloud operating system” of choice. This gives you freedom to deploy and operate your workloads anywhere Kubernetes runs based on business criteria such as cost, locality, compliance needs and risk appetite.
 
@@ -29,24 +30,3 @@ Replication of data at a Kubernetes Volume making sure that the data you need is
 Using Ondat, any storage on any node in your Kubernetes cluster can be delivered to the applications that need it anywhere in the cluster. Intelligent placement makes sure that your workload is always optimised, and by deploying the Ondat data mesh your Kubernetes platforms are responsive to your business applications with compute and storage able to grow independently as your workloads change.
 
 This is Ondat, a data mesh to deliver the reality of stateful workloads to any Kubernetes platform, delivering the next generation of stateful workloads to your customers.
-
-## Sections
-
-Our documentation is arranged into sections, accessible from the navigation bar
-on the left.
-
-**Introduction** - Self-evaluation guide to serve as a quickstart and support information.
-
-**Concepts** - Architectural and deep technical information.
-
-**Prerequisites** - We require certain prerequisites to be met for the product to function
-correctly. Do make sure to read these carefully and ensure that they are implemented.
-
-**Platforms** - Due to differences in the various orchestrators that Ondat can run under,
-we list install guides and other platform specific operations here.
-
-**Operations** - Platform agnostic operations.
-
-**Use Cases** - A set of examples to get up and running with Ondat quickly.
-
-**Reference** - Information on our GUI, CLI, and other important information.
