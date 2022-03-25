@@ -9,6 +9,7 @@ description: >
 ---
 
 ## What is Ondat
+
 ![How Ondat fits in](/images/docs/concepts/ondat-layer.png)
 
 So you run workloads, either in-house developed or using Consumer Off The Shelf (COTS) platforms. You also recognise that operationally, you want to run them on Kubernetes as my “cloud operating system” of choice. This gives you freedom to deploy and operate your workloads anywhere Kubernetes runs based on business criteria such as cost, locality, compliance needs and risk appetite.
