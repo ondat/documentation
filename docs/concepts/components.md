@@ -15,7 +15,7 @@ as described in [Managing Host Storage](/docs/operations/managing-host-storage)
 Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.
 
-![Ondat cluster components](/images/docs/concepts/storageos-cluster.png)
+![Ondat cluster components](/images/docs/concepts/ondat-deployment.png)
 
 Read about [the cloud native storage principles behind
 Ondat](https://www.ondat.io/platform/platform-overview).
