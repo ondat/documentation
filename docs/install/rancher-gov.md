@@ -21,7 +21,7 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 
 > ⚠️ Make sure you have a running RKE2 cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-> ⚠️ Make sure your RKE2 cluster uses a Linux distribution that is officially supported by RKE2 as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [RKE2 Operating System Requirements](https://docs.rke2.io/install/requirements/#operating-systems) documentation to ensure that you are using a supported Linux distribution.
+> ⚠️ Make sure your RKE2 cluster uses a Linux distribution that is officially supported by RKE2 as your node operating system and the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [RKE2 Operating System Requirements](https://docs.rke2.io/install/requirements/#operating-systems) documentation to ensure that you are using a supported Linux distribution.
 
 ## Procedure
 
