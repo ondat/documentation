@@ -20,7 +20,7 @@ To install Ondat on Red Hat OpenShift, follow our [installation instructions](/d
 
 ## Red Hat OpenShift Upgrades
 
-Red Hat OpenShift provides an upgrade operator that automates the process of orchestrator version changes. 
+Red Hat OpenShift provides an upgrade operator that automates the process of orchestrator version changes.
 
 > ⚠️ Use the [rolling upgrade feature](/docs/operations/using-rolling-upgrades) to protect your cluster from major incidents during an upgrade. Please contact Ondat support for further advice if required.
 

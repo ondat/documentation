@@ -4,13 +4,17 @@ linkTitle: Upgrade Ondat
 ---
 
 # Overview
+
 This document details procedures to upgrade Ondat.
 
 # Update an Ondat v2 cluster
 
 ## Overview
+
 This guide will dmoenstrate how to upgrade an Ondat v2 cluster.
+
 ## Prerequisites
+
 > ⚠️ Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
 
 > ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat v2.3](/docs/prerequisites/pidlimits) and that you check the init container logs to ensure your environments PID limits are set correctly.
@@ -19,11 +23,11 @@ This guide will dmoenstrate how to upgrade an Ondat v2 cluster.
 
 > ⚠️ If you are upgrading to 2.7.0, you will only be able to downgrade to 2.6.0 due to the mapping changes made in the Data Plane. For more details, please look at the [release notes](/docs/release-notes).
 
-
 ## Procedure
+
 ### Step 1 - Backup of all Ondat yaml files
 
-* Make sure you keep a backup of all the Ondat yaml files. 
+* Make sure you keep a backup of all the Ondat yaml files.
 * You can also backup the Statefulset yaml files to keep track of the replicas.
 
     ```bash
@@ -33,6 +37,7 @@ This guide will dmoenstrate how to upgrade an Ondat v2 cluster.
     ```
 
 ### Step 2 - Generate yaml file to upgrade cluster
+
 * Run the following command to generate the `storageos-config.yaml` file that is used to upgrade your cluster based on your current configuration
 
     ```bash
@@ -55,9 +60,11 @@ This guide will dmoenstrate how to upgrade an Ondat v2 cluster.
     ```
 
 ### Step 3 - Scale Ondat volumes to 0
+
 * Scale all stateful applications that use Ondat volumes to 0
 
 ### Step 4 - Run uninstall cluster command
+
 * Run the following command:
 
     ```
@@ -71,12 +78,13 @@ This guide will dmoenstrate how to upgrade an Ondat v2 cluster.
 > 💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in `~/.kube/storageos/`.
 
 ### Step 5 - Check for `RUNNING` states
+
 * Run the following command to check that all the Ondat pods have entered the `RUNNING` state
 
     ```bash
     kubectl get pods -l app=storageos -A -w
     ```
 
-### Step 6 - Scale your stateful applications back up.
+### Step 6 - Scale your stateful applications back up
 
 Congratulations, you now have the latest version of Ondat!

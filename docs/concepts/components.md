@@ -4,6 +4,7 @@ linkTitle: "Ondat Components"
 ---
 
 # Overview
+
 Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
 
 Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point `/var/lib/storageos/data`, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in [Managing Host Storage](/docs/operations/managing-host-storage)
@@ -84,6 +85,7 @@ collocated on the same node. Therefore, applications may be started or
 restarted on any node and access volumes transparently.
 
 ## Ondat Upgrade Guard
+
 The upgrade guard is a key component of the rolling upgrade feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
 
 The upgrade guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume's master and replicas become unready. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled
@@ -95,4 +97,5 @@ If the PDB is set to 1 and a Control Plane volume on a node is not ready for a l
 >⚠️ There is some latency between a volume becoming unhealthy and the upgrade guard noticing, due to the polling nature of both the `api-managercomponent` volume sync Kubernetes readiness endpoints)
 
 ## Ondat Node Manager
+
 The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the `StorageOS` node container and is a separate pod so that it can be restarted independently of the node container.
