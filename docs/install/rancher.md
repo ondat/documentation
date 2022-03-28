@@ -32,7 +32,7 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 #### Step 1 - Install Ondat Kubectl Plugin
 
 * Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your `$PATH`:
-	* [kubectl-storageos](/docs/reference/kubectl-plugin/)
+  * [kubectl-storageos](/docs/reference/kubectl-plugin/)
 
 #### Step 2 - Install Local Path Provisioner
 
@@ -102,19 +102,19 @@ kubectl get storageclasses | grep "storageos"
 #### Step 1 - Setup An `etcd` Cluster
 
 * Ensure that you have an `etcd` cluster deployed first before installing Ondat through the Helm chart located on Apps & Marketplace. There are two different methods listed below with instructions on how to deploy an `etcd` cluster;
-	1. [Embedded Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster) - deploy an `etcd` cluster operator into your RKE cluster, recommended for **non production** environments.
-	2. [External Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines) - deploy an `etcd` cluster in dedicated virtual machines, recommended for **production** environments.
+ 1. [Embedded Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster) - deploy an `etcd` cluster operator into your RKE cluster, recommended for **non production** environments.
+ 2. [External Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines) - deploy an `etcd` cluster in dedicated virtual machines, recommended for **production** environments.
 * Once you have an `etcd` cluster up and running, ensure that you note down the list of `etcd` endpoints as comma-separated values that will be used when configuring Ondat in **Step 3**.
-	* For example, `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
+  * For example, `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
 
 #### Step 2 - Locate Ondat Operator Helm Chart
 
 1. In the Rancher UI, under the RKE cluster where Ondat will be deployed - select the **Menu** button in the top-left corner of the page and then select **Apps & Marketplace**.
 2. Under **Apps & Marketplace**, a **Charts** page will be displayed where you can locate the [Ondat Operator Helm chart](https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator) by searching for "**Ondat**" in the search filter box.
 3. Once you have located the Ondat Operator Helm chart, select the chart. This will direct you to a page showing you more information about the Ondat Operator and how to install it.
-4. Select the **Install** button. 
+4. Select the **Install** button.
 
-#### Step 3 - Customising & Installing The Helm Chart 
+#### Step 3 - Customising & Installing The Helm Chart
 
 1. Upon selecting the **Install** button in the previous step, you will be directed to a page to configure the **Application Metadata**. Define the namespace and application name where Ondat will be deployed and click **Next**.
 
@@ -124,10 +124,10 @@ kubectl get storageclasses | grep "storageos"
 | Name      | ondat-operator | Application name for the deployment. |
 
 2. The next page will allow you to configure the Ondat Operator through Helm chart values. Under **Edit Options**, you are provided with 3 configurable sections called;
-	* **Questions**
-	* **Container Images**
-	* **StorageOS Cluster**
-3. Select the **StorageOS Cluster** section. This will show you a form with configurable parameters that have pre-defined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;
+ * **Questions**
+ * **Container Images**
+ * **StorageOS Cluster**
+3. Select the **StorageOS Cluster** section. This will show you a form with configurable parameters that have predefined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;
 
 | Parameter                   | Value | Description                                                                                                                                                                                      |
 | --------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -144,7 +144,7 @@ kubectl get storageclasses | grep "storageos"
 
 ```bash
 kubectl get all --namespace=storageos
-kubectl get all --namespace=storageos-etcd		# only if the etcd cluster was deployed inside the RKE cluster.
+kubectl get all --namespace=storageos-etcd  # only if the etcd cluster was deployed inside the RKE cluster.
 kubectl get storageclasses | grep "storageos"
 ```
 
