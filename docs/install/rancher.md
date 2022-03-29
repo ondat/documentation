@@ -102,8 +102,10 @@ kubectl get storageclasses | grep "storageos"
 #### Step 1 - Setup An `etcd` Cluster
 
 * Ensure that you have an `etcd` cluster deployed first before installing Ondat through the Helm chart located on Apps & Marketplace. There are two different methods listed below with instructions on how to deploy an `etcd` cluster;
+
  1. [Embedded Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster) - deploy an `etcd` cluster operator into your RKE cluster, recommended for **non production** environments.
  2. [External Deployment](https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines) - deploy an `etcd` cluster in dedicated virtual machines, recommended for **production** environments.
+
 * Once you have an `etcd` cluster up and running, ensure that you note down the list of `etcd` endpoints as comma-separated values that will be used when configuring Ondat in **Step 3**.
   * For example, `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
 
@@ -124,9 +126,11 @@ kubectl get storageclasses | grep "storageos"
 | Name      | `ondat-operator` | Application name for the deployment. |
 
 2. The next page will allow you to configure the Ondat Operator through Helm chart values. Under **Edit Options**, you are provided with 3 configurable sections called;
- * **Questions**
- * **Container Images**
- * **StorageOS Cluster**
+
+* **Questions**
+* **Container Images**
+* **StorageOS Cluster**
+
 3. Select the **StorageOS Cluster** section. This will show you a form with configurable parameters that have predefined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;
 
 | Parameter                   | Value | Description                                                                                                                                                                                      |
