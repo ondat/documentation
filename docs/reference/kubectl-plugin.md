@@ -7,7 +7,7 @@ weight: 1
 ## Overview
 
 * The Ondat kubectl plugin is a utility tool that accepts imperative and declarative modes which allows cluster administrators to seamlessly install, troubleshoot, upgrade or uninstall Ondat. The plugin can also be used to connect and manage Ondat clusters on the [Ondat SaaS Platform](https://docs.ondat.io/docs/ondat-portal/).
-	* The project repository is open source and can be located on [GitHub](https://github.com/storageos/kubectl-storageos).
+  * The project repository is open source and can be located on [GitHub](https://github.com/storageos/kubectl-storageos).
 
 ### Install The Ondat Kubectl Plugin
 
