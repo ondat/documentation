@@ -118,10 +118,10 @@ kubectl get storageclasses | grep "storageos"
 
 1. Upon selecting the **Install** button in the previous step, you will be directed to a page to configure the **Application Metadata**. Define the namespace and application name where Ondat will be deployed and click **Next**.
 
-| Parameter | Value          | Description                          |
-| --------- | -------------- | ------------------------------------ |
-| Namespace | storageos      | Namespace name for the deployment.   |
-| Name      | ondat-operator | Application name for the deployment. |
+| Parameter | Value            | Description                          |
+| --------- | ---------------- | ------------------------------------ |
+| Namespace | `storageos`      | Namespace name for the deployment.   |
+| Name      | `ondat-operator` | Application name for the deployment. |
 
 2. The next page will allow you to configure the Ondat Operator through Helm chart values. Under **Edit Options**, you are provided with 3 configurable sections called;
  * **Questions**
