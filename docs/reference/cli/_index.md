@@ -15,13 +15,13 @@ up resolution times for support issues.
 ```bash
 # linux/amd64
 curl -sSLo storageos \ 
-    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_linux_amd64 \
+    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_linux_amd64 \
     && chmod +x storageos \
     && sudo mv storageos /usr/local/bin/
 
 # MacOS
 curl -sSLo storageos \
-    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_darwin_amd64 \
+    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_darwin_amd64 \
     && chmod +x storageos \
     && sudo mv storageos /usr/local/bin/
 ```
@@ -69,7 +69,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.6.0
+      - image: storageos/cli:v2.7.0
         command:
           - "/bin/sh"
           - "-c"
@@ -95,7 +95,7 @@ into it to run commands.
 
 ```bash
 kubectl -n storageos run \
-    --image storageos/cli:v2.6.0
+    --image storageos/cli:v2.7.0
     --restart=Never                          \
     --env STORAGEOS_ENDPOINTS=storageos:5705 \
     --env STORAGEOS_USERNAME=storageos       \

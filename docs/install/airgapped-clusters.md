@@ -84,7 +84,7 @@ than 256G to fulfil the IOPS requirement.
     ```bash
     # Generate yamls
     ETCD_STORAGECLASS=my-storage-class
-    ONDAT_VERSION=v2.6.0
+    ONDAT_VERSION=v2.7.0
     K8S_VERSTION=v1.22.6
     USERNAME=storageos
     PASSWORD=storageos
@@ -166,7 +166,7 @@ than 256G to fulfil the IOPS requirement.
 
     # Generate yamls
     ETCD_STORAGECLASS=my-storage-class
-    ONDAT_VERSION=v2.6.0
+    ONDAT_VERSION=v2.7.0
     K8S_VERSTION=v1.22.6
     USERNAME=storageos
     PASSWORD=storageos
