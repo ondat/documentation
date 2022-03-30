@@ -23,22 +23,27 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 ### New
 
 k8s & Orchestrator Rolling Upgrade
+
 - Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher. Other platforms will be supported in future releases
 
 Operator
+
 - Skipped duplicated nodes by hostname during sync
 - Updated memory limit
 - Introduced topology spread constraint with `ScheduledAnyway`
 
 API Manager
+
 - Adds a feature so when a PVC is not found scheduling will not be blocked
 
 Control Plane
+
 - Set `Only_Numeric_Owners` to true on NFSv4 setting on Ganesha
 
 Data Plane
+
 - Removed support for FUSE. Ondat now only supports TCMU. `target_core_user` must now be used. Read [System Configuration](https://docs.ondat.io/docs/prerequisites/systemconfiguration/) for more information
-- Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed and we have added a single `supctl` tool that can be used to debug/program the DP from the command line
+- Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed and we have added a single `supctl` tool that can be used to debug/program the DP from the command-line
 - Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments.
   > ⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found [here](/docs/operations/...)
 
