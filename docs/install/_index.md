@@ -4,12 +4,10 @@ linkTitle: "Install"
 weight: 400
 description: >
   Ondat is platform agnostic, however, there are details on different
-  providers and Kubernetes distributions to take in consideration. Follow the
-  instructions to Install, Provision or Troubleshoot according to your
-  providers.
+  providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.
 ---
 
-## Kubernetes with Ondat
+# Kubernetes with Ondat
 
 Ondat integrates transparently with Kubernetes and different distributions
 such as OpenShift, Rancher, EKS, AKS, GKE, etc. The user can provide standard
@@ -23,7 +21,7 @@ creation, deletion or mounting of volumes. The CSI (Container Storage
 Interface) driver is the standard method of communication. Using CSI,
 Kubernetes and Ondat communicate over a Unix domain socket.
 
-## CSI (Container Storage Interface) Note
+# CSI (Container Storage Interface)
 
 CSI is the standard method of communication that enables storage drivers for
 Kubernetes to release on their own schedule. The CSI standard allows storage
@@ -41,9 +39,8 @@ the [CSI project](https://kubernetes-csi.github.io/docs/) page.
 CSI communication is fully supported by Ondat if the cluster is deployed
 with any [supported Linux Distribution](/docs/prerequisites/systemconfiguration#distribution-specifics).
 
-## Kubernetes Upgrades on Managed Services
+# Kubernetes Upgrades on Managed Services
 
-Managed services that support in place upgrades are fully supported. However,
-upgrading Kubernetes using green/blue deployments **is not supported**. This is
-because nodes are replaced rather than being upgraded. Any data stored on the
-nodes is lost when new nodes replace the previous ones.
+Managed services that support in place upgrades are fully supported. Upgrading Kubernetes using green/blue deployments requires you to turn on the rolling upgrade feature to protect your cluster from major issues.
+
+Follow the instruction [here](docs/operations/using-rolling-upgrades.md). Please contact Ondat support for further advice if required.

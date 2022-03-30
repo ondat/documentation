@@ -1,0 +1,44 @@
+---
+linkTitle: Platform Upgrade
+---
+
+# Overview
+
+This guide will demonstrate how to enable the orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps to prevent your persistent storage volumes from becoming unhealthy during an orchestrator update.
+
+# Prerequisites
+
+> ⚠️ Make sure you have met the requirements of [configuring a Pod Disruption Budget (PDB)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
+
+> ⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.
+
+> ⚠️ This feature supports the following platforms: AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher.
+
+> ⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.
+
+# Procedure
+
+## Step 1 - Enable Node Manager and Upgrade Guard
+
+* Add the following lines to the StorageOSCluster spec:
+
+```
+ nodeManagerFeatures:
+   upgradeGuard: "true"
+```
+
+* Alternatively, you can run the following command:
+
+  ```
+  kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
+  ```
+
+You will see new pods getting created, where one pod per node in a cluster called Node Manager.
+
+## Step 2 - Rolling upgrade ready
+
+Congratulations, you are now ready to start the rolling upgrade process of the orchestrator of your choice!
+
+> ⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.
+
+> ⚠️ EKS takes care on PDB for 50 mins, after this period upgrade would fail unless it was forced.
