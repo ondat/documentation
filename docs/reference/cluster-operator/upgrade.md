@@ -1,6 +1,6 @@
 ---
 title: "Cluster Operator upgrade"
-linkTitle: Contributing to the documentation
+linkTitle: Cluster Operator upgrade
 weight: 40
 ---
 
