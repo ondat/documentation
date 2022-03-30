@@ -11,7 +11,6 @@ This document details procedures to upgrade Ondat.
 
 ## Overview
 
-
 This guide will demonstrate how to upgrade an Ondat v2 cluster.
 
 ## Prerequisites
