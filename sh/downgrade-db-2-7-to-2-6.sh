@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+CLI_TOOL=kubectl
+#CLI_TOOL=oc
 NAMESPACE=kube-system
 DS_NAME=storageos-downgrade-database
 
@@ -10,7 +12,7 @@ echo "Downgrading Ondat dataplane database from v2.7.0+ to v2.6.0...."
 # In order to create a workload that is functionally both a DaemonSet and a
 # Job, the database downgrade is run as an init container.
 # So, when the pod enters running it has completed.
-kubectl -n $NAMESPACE create -f-<<END
+$CLI_TOOL -n $NAMESPACE create -f-<<END
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
@@ -62,14 +64,16 @@ END
 # containers have finished.
 # We also check that number is not 0 to avoid spurious results when starting.
 echo "DaemonSet $DS_NAME created, watching until complete"
+
+sleep 20
+
 deleted=false
 while ! $deleted; do
-  string_array=($(kubectl -n $NAMESPACE get ds $DS_NAME --no-headers))
-  desired=${string_array[1]}
-  ready=${string_array[3]}
+  ready=$($CLI_TOOL get ds $DS_NAME -n $NAMESPACE -o jsonpath='{.status.numberReady}')
+  desired=$($CLI_TOOL get ds $DS_NAME -n $NAMESPACE -o jsonpath='{.status.desiredNumberScheduled}')
   if [ "$desired" -eq "$ready" ] && [ "$desired" -ne 0 ]; then
     echo "DaemonSet completed, deleting"
-    kubectl -n $NAMESPACE delete ds $DS_NAME
+    $CLI_TOOL -n $NAMESPACE delete ds $DS_NAME
     deleted=true
   fi
 done
