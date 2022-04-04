@@ -27,8 +27,6 @@ k8s & Orchestrator Rolling Upgrade
 - Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher. Other platforms will be supported in future releases
 
 Operator
-
-- Skipped duplicated nodes by hostname during sync
 - Updated memory limit
 - Introduced topology spread constraint with `ScheduledAnyway`
 
@@ -43,8 +41,8 @@ Control Plane
 Data Plane
 
 - Removed support for FUSE. Ondat now only supports TCMU. `target_core_user` must now be used. Read [System Configuration](https://docs.ondat.io/docs/prerequisites/systemconfiguration/) for more information
-- Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed and we have added a single `supctl` tool that can be used to debug/program the DP from the command-line
-- Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments.
+- Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed
+- Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments
   > ⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found [here](/docs/operations/...)
 
 ### Fixed
@@ -52,12 +50,11 @@ Data Plane
 Operator
 
 - Fixed a bug that sometimes caused the operator to enter a deadlock state after Ondat cluster CR object deletion
-- Fixed a bug where the Ondat Operator v2.7.0 does not work with OpenShift 4.7
 
 Control Plane
 
-- Fixed an issue where Ondat was not able to unmount volumes, then occasionally causing volumes to become unhealthy
-- Fixed an issue that caused replicas to go into the “unknown” state during failover
+- Fixed an issue where Ondat was not able to unmount volumes in rare instances, then occasionally causing volumes to become unhealthy
+- Fixed an issue that caused replicas to go into the “unknown” state during failover in somne rare instances
 - Fixed an issue to now display output all dataplane logs even if they don't have the expected syntax
 - Fixed an issue so Ondat would speculatively configure the replica in the dataplane before we advertise ourselves to the master
 - Fix an issue where goroutines attempting to dial remote nodes could be blocked
