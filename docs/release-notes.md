@@ -27,6 +27,7 @@ k8s & Orchestrator Rolling Upgrade
 - Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher. Other platforms will be supported in future releases
 
 Operator
+
 - Updated memory limit
 - Introduced topology spread constraint with `ScheduledAnyway`
 
