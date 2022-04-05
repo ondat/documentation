@@ -36,13 +36,13 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 ## Step 2 - Run our downgrade script
 
 
-1. Pipe the script for your information by running the following command:
+1. Download the following script and edit it to match your cluster's specifications.
     ```
     curl -s https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
     ```
 1. Run the script below:
     ```
-    curl https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh | bash
+    ./downgrade-db-2-7-to-2-6.sh
     ```
 
 This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.
