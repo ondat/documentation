@@ -19,7 +19,7 @@ This guide will demonstrate how to upgrade an Ondat v2 cluster.
 
 > ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat v2.3](/docs/prerequisites/pidlimits) and that you check the init container logs to ensure your environments PID limits are set correctly.
 
-> 💡 To reduce downtime, pull the new Ondat container image `storageos/node:v2.6.0` on the nodes beforehand so that the cluster spins up faster!
+> 💡 To reduce downtime, pull the new Ondat container image `storageos/node:v2.7.0` on the nodes beforehand so that the cluster spins up faster!
 
 > ⚠️ If you are upgrading to 2.7.0, you will only be able to downgrade to 2.6.0 due to the mapping changes made in the Data Plane. For more details, please look at the [release notes](/docs/release-notes).
 
@@ -56,7 +56,7 @@ This guide will demonstrate how to upgrade an Ondat v2 cluster.
 
     ```
     images:
-        nodeContainer: "storageos/node:v2.6.0"
+        nodeContainer: "storageos/node:v2.7.0"
     ```
 
 ### Step 3 - Scale Ondat volumes to 0
