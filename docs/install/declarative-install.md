@@ -67,7 +67,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
     kubectl storageos preflight
     ```
 
-#### Step 4 - Generate Ondat YAML Kubernetes Manifests 
+#### Step 4 - Generate Ondat YAML Kubernetes Manifests
 
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. In addition, define and export a `KUBERNETES_VERSION` environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, `v1.23.5`.
 
@@ -76,9 +76,8 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
     export STORAGEOS_PASSWORD="storageos"
     export KUBERNETES_VERSION="v1.23.5"
     ```
- 
-1. Run the following  `kubectl-storageos` plugin command with the `--dry-run` flag to generate the Ondat YAML Kubernetes manifests in a directory, called `storageos-dry-run`.
 
+1. Run the following  `kubectl-storageos` plugin command with the `--dry-run` flag to generate the Ondat YAML Kubernetes manifests in a directory, called `storageos-dry-run`.
 
     ```bash
     kubectl storageos install \
@@ -102,7 +101,6 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 1. Run the following  `kubectl` command to install Ondat with the generated manifests in the `storageos-dry-run` directory. The manifests  can also be used in your [GitOps](https://www.weave.works/technologies/gitops/) workflow to deploy Ondat, enabling you to have a fully declarative approach towards managing your infrastructure deployments.
     > 💡 **Advanced Users** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource manifest, review the [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
-
 
     ```bash
     # Apply the Operators and CustomResourceDefinitions (CRDs) first.
@@ -164,22 +162,24 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 ##### Declarative (Recommended)
 
-1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml) configuration file and ensure that the following configurable parameters have been populated before beginning the installation. 
-    *  [`cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
+1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml) configuration file and ensure that the following configurable parameters have been populated before beginning the installation.
+    * [`cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
 
     ```yaml
         # Password to authenticate to the StorageOS API with. This must be at least
         # 8 characters long.
         password: # for example -> storageos
     ```
-    *  [`cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
+
+    * [`cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
 
     ```yaml
         # Key-Value store backend.
         kvBackend:
           address: # for example -> 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379
     ```
-1.  Once the parameters above have been defined, run the following  `helm install`  command to install Ondat using the Helm chart. Ensure that you use the `--values=` flag with your `custom-values.yaml` file.
+
+1. Once the parameters above have been defined, run the following  `helm install`  command to install Ondat using the Helm chart. Ensure that you use the `--values=` flag with your `custom-values.yaml` file.
 
     ```bash
     helm install ondat-operator ondat/ondat-operator \
@@ -208,6 +208,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
       --set cluster.admin.password="$STORAGEOS_PASSWORD" \
       --set cluster.kvBackend.address="$ETCD_ENDPOINTS"
     ```
+
 * The installation process may take a few minutes.
 
 #### Step 5 - Verifying Ondat Installation
