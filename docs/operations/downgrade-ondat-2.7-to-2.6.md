@@ -18,7 +18,9 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 # Prerequisites
 
 > ⚠️ Make sure all workloads using Ondat volumes are scaled down to zero. You can check that there are no PV's in the bound state to make sure this is the case.
+
 > ⚠️ Recommended: Make sure to create a backup of Ondat data, as well as for other K8S components.
+
 > ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl. The tool is idempotent so in the case of interruption it can be safely run multiple times.
 
 # Procedure
