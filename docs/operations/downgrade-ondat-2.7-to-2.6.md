@@ -21,7 +21,7 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 
 > ⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.
 
-> ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl. 
+> ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.
 
 > 💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.
 
@@ -35,12 +35,14 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 
 ## Step 2 - Run our downgrade script
 
-
 1. Pipe the script for your information by running the following command:
+
     ```
     curl -s https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
     ```
+
 1. Run the script below:
+
     ```
     curl https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh | bash
     ```
