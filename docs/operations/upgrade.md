@@ -5,10 +5,6 @@ linkTitle: Upgrade Ondat
 
 This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 
-Keep in mind that upgrading a cluster will require minor downtime of
-applications using Ondat volumes. However we will take steps to minimize
-the required downtime as much as possible.
-
 > ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat
 > v2.3](/docs/prerequisites/pidlimits) and that you check the
 > init container logs to ensure your environments PID limits are set correctly.
