@@ -17,11 +17,13 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 
 # Prerequisites
 
-> ⚠️ Make sure all workloads using Ondat volumes are scaled down to zero. You can check that there are no PV's in the bound state to make sure this is the case.
+> ⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.
 
-> ⚠️ Recommended: Make sure to create a backup of Ondat data, as well as for other K8S components.
+> ⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.
 
-> ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl. The tool is idempotent so in the case of interruption it can be safely run multiple times.
+> ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl. 
+
+> 💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.
 
 # Procedure
 
@@ -33,13 +35,17 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 
 ## Step 2 - Run our downgrade script
 
-Run the script below
 
-```
-curl https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh to have a look at the script & then curl https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh | bash
-```
+1. Pipe the script for your information by running the following command:
+    ```
+    curl -s https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
+    ```
+1. Run the script below:
+    ```
+    curl https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh | bash
+    ```
 
-This will create a DaemonSet to downgrade our internal data store on each of your nodes.
+This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.
 
 ## Step 3 - Install Ondat v2.6.0
 
