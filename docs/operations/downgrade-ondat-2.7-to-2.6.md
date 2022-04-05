@@ -35,8 +35,8 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 
 ## Step 2 - Run our downgrade script
 
-
 1. Download the following script and edit it to match your cluster's specifications.
+
     ```
     curl -s https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
     ```
