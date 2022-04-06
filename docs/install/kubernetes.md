@@ -94,7 +94,7 @@ This guide will demonstrate how to install Ondat onto a [Kubernetes](https://kub
     kubectl get storageclasses | grep "storageos"
     ```
 
-### Option A - Using An External `etcd` Deployment
+### Option B - Using An External `etcd` Deployment
 
 #### Step 1 - Setup An `etcd` Cluster
 
