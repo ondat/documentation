@@ -54,7 +54,7 @@ Invoke-WebRequest https://github.com/storageos/kubectl-storageos/releases/downlo
 
 ### Usage
 
-* Get more version of the plugin installed;
+* Get the version of the plugin installed;
 
 ```bash
 kubectl storageos version
