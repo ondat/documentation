@@ -104,7 +104,8 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
     ```bash
     # Apply the Operators and CustomResourceDefinitions (CRDs) first.
-    find . -name '*-operator.yaml' | xargs -I{} kubectl apply --filename {} 
+    find . -name '*-operator.yaml' | xargs -I{} kubectl apply --filename {}
+    
     # Apply the Custom Resources next.
     find . -name '*-cluster.yaml' | xargs -I{} kubectl apply --filename {}
     ```
@@ -140,7 +141,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 #### Step 3 - Configure Ondat's Helm Chart Repository
 
-1. Add the Ondat Helm chart repository, update the local Helm repository index and list the using the following `helm repo` commands.
+1. Add the Ondat Helm chart repository, update the local Helm repository index using the following `helm repo` commands.
 
     ```bash
     helm repo add ondat https://ondat.github.io/charts
@@ -156,13 +157,13 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 #### Step 4 - Customising & Installing Ondat's Operator Helm Chart
 
-* There are two ways to conduct an installation with Helm, **declaratively** by using custom `values.yaml` and (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
+* There are two ways to conduct an installation with Helm, **declaratively** by creating a custom `values.yaml` and (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
 
 > 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat Operator [README.md](https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
 
 ##### Declarative (Recommended)
 
-1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml) configuration file and ensure that the following configurable parameters have been populated before beginning the installation.
+1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml) configuration file, rename it to `custom-values.yaml`, then ensure that the following configurable parameters have been populated before beginning the installation.
     * [`cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
 
     ```yaml
