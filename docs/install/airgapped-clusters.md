@@ -253,7 +253,7 @@ find . -name '*-cluster.yaml'  | xargs -I{} kubectl create -f {}
     > The `storageos-node` damonset pods will restart until they can connect to
     > etcd
 
-## Step 6. Licese the cluster
+## Step 6. Licence the cluster
 
 A cluster can operate without a licence for 24h. Follow the
 [licensing](/docs/operations/licensing/) page to apply a licence to your cluster.
