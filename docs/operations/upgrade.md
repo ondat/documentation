@@ -3,9 +3,11 @@ title: "Upgrade Ondat"
 linkTitle: Upgrade Ondat
 ---
 # Overview
+
 This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 
 # Prerequisites
+
 > ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat v2.3](/docs/prerequisites/pidlimits) and that you check the init container logs to ensure your environments PID limits are set correctly.
 
 > 💡 Pull the new Ondat container image `storageos/node:v2.6.0` on the nodes beforehand so that the cluster spins up faster!
