@@ -44,6 +44,8 @@ export STORAGEOS_PASSWORD="storageos"
 
 2. Run the following  `kubectl-storageos` plugin command to install Ondat.
 
+> ⚠️ If you are installing Ondat and connecting to an *existing etcd cluster*, then you must include the `--skip-etcd-endpoints-validation` flag in the bash script below.
+
 ```bash
 kubectl storageos install \
   --include-etcd \
