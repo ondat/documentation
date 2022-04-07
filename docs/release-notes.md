@@ -18,13 +18,14 @@ The latest CLI release is `2.7.0`, available from
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
-## 2.7.0 - Released 2022-04-06
+## 2.7.0 - Released 2022-04-07
 
 ### New
 
 k8s & Orchestrator Rolling Upgrade
 
-- Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher. Other platforms will be supported in future releases
+- Tech Preview: Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher
+  > ⚠️ This is a tech preview, we only recommend using this feature on your test clusters
 
 Operator
 
@@ -44,7 +45,7 @@ Data Plane
 - Removed support for FUSE. Ondat now only supports TCMU. `target_core_user` must now be used. Read [System Configuration](https://docs.ondat.io/docs/prerequisites/systemconfiguration/) for more information
 - Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed
 - Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments
-  > ⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found [here](/docs/operations/...)
+  > ⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found [here](/docs/operations/downgrade-ondat-2.7-to-2.6)
 
 ### Fixed
 
