@@ -5,6 +5,7 @@ linkTitle: Platform Upgrade
 # Overview
 
 This guide will demonstrate how to enable the orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps to prevent your persistent storage volumes from becoming unhealthy during an orchestrator update.
+> ⚠️ This is a tech preview, we only recommend using this feature on your test clusters.
 
 # Prerequisites
 
