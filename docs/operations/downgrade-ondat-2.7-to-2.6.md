@@ -10,7 +10,8 @@ This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. Y
 
 As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.
 
-As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however please do raise a proactive case [here](/docs/support/) ahead of any upgrades and work with the customer success teams as part of any upgrade process.
+As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case [here](/docs/support/) and work with the customer success team as part of the downgrade process.
+
 For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.
 
 # Prerequisites
@@ -36,10 +37,10 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 1. Download the following script and edit it to match your cluster's specifications.
 
     ```
-    curl -s https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
+    curl -sO https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
     ```
 
-1. Run the script below:
+1. Run the script below, with your Kubernetes CLI tool's context set to target your cluster:
 
     ```
     ./downgrade-db-2-7-to-2-6.sh
