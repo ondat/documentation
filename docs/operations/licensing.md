@@ -41,7 +41,7 @@ You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.
 
   > NOTE: If you don't have a cluster connected to the portal you can generate a licence just by using the `clusterId`
 
-  > NOTE: To obtain your `clusterId`, follow the steps [here](docs/operations/cluster-id/)
+  > NOTE: To obtain your `clusterId`, follow the steps [here](/docs/operations/cluster-id/)
 
 1. Choose the type of license you want the cluster to use
 1. Click generate
@@ -117,7 +117,7 @@ Now that the `POD` variable is set, the pod is accessible via that variable for 
 
 ### Prerequisites
 
-> ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
+> ⚠️ You need to have Ondat CLI running - see [instructions](/docs/operations/licensing/#running-the-ondat-cli)
 
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
