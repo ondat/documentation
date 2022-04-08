@@ -12,17 +12,21 @@ You will need a license for Ondat if you want to make use of the full functional
 # Types of Licenses
 
 ## Free Trial
+
 You can use Ondat for free without any restrictions for 3 months.
 
 ## Free Forever
+
 You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes.
 
 ## Enterprise Premium
+
 You can obtain a tailor-made license suitable for your needs with premium features. For more information, contact hello@ondat.io or message us via Intercom.
 
 You can also book a demo with our customer success team [here](https://www.ondat.io/request-demo).
 
 # Obtaining a License
+
 ## Procedure
 
 ## Step 1 - Register on the Ondat SaaS Platform
@@ -51,8 +55,11 @@ You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.
 # Further Reading: Manage Your License in CLI
 
 ## Running the Ondat CLI
+
 ### Step 1 - Launch target Kubernetes Cluster
+
 1. In order to get the CLI running, you must launch it on the target Kubernetes cluster.
+
 > ⚠️ Be sure to edit the environment variables appropriately for your target cluster, eg. the username/password for the administrative user.
 
   ```shell
@@ -95,19 +102,21 @@ You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.
   ```
 
 ### Step 2 - Retrieve Unique Identifier
+
 Once the pod is launched, run the following script:
 
 ```shell
 POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
 ```
 
-Now that the `POD` variable is set, the pod is accessible via that variable for the rest of the lifetime of that terminal. 
+Now that the `POD` variable is set, the pod is accessible via that variable for the rest of the lifetime of that terminal.
 
 > Note: If you open a new terminal, you'll need to run this command again to rediscover the ID of the pod.
 
 ## Retrieving a cluster ID via the Ondat CLI
 
 ### Prerequisites
+
 > ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
 
 > 💡 For more information refer to the licence
@@ -116,11 +125,13 @@ Now that the `POD` variable is set, the pod is accessible via that variable for 
 ### Procedure
 
 1. Run the following command
+
     ```shell
     kubectl -n storageos exec $POD -- storageos get cluster
     ```
 
 1. You will see the following message:
+
     ```
     ID:           704dd165-9580-4da4-a554-0acb96d328cb
     Created at:   2022-01-10T13:58:00Z (2 weeks ago)
@@ -134,9 +145,10 @@ The UUID in the `ID` field is unique to your cluster and is the only information
 
 ## View your license details on the CLI
 
-A license contains a list of capabilities and capacities, the cluster ID, an expiry time, any extra features and a license type alongside a digital signature. 
+A license contains a list of capabilities and capacities, the cluster ID, an expiry time, any extra features and a license type alongside a digital signature.
 
 ### Prerequisites
+
 > ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
@@ -148,7 +160,9 @@ A license contains a list of capabilities and capacities, the cluster ID, an exp
     ```shell
     cat license.dat
     ```
+
 1. The following message will appear
+
     ```
     clusterCapacityGiB: 5120 
     clusterID: 164237eb-f88a-4bb8-a7cf-a23d468e07c0 
@@ -170,6 +184,7 @@ A license contains a list of capabilities and capacities, the cluster ID, an exp
 This information is only applicable if you have received a license file from our Customer Success team. Otherwise, you should receive and install your license via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
 ### Prerequisites
+
 > ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
 
 > ⚠️ Make sure POD variable is set as per the CLI instructions
@@ -179,22 +194,26 @@ This information is only applicable if you have received a license file from our
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
 
-
 ### Procedure
+
 #### Step 1 - Apply license key
+
 Run the following command to apply the licence key stored in `/path/to/storageos-licence.dat`
 
 ```shell
 cat /path/to/storageos-license.dat | kubectl -n storageos exec -it $POD -- storageos apply license --from-stdin
 ```
+
 #### Step 2 - Check for extra features
-Run the following command to check for extra featurs provided by your latest license: 
+
+Run the following command to check for extra featurs provided by your latest license:
 
 ```shell
 kubectl -n storageos exec $POD -- storageos get license
 ```
 
 You will see the message below:
+
 ```
 ClusterID:      033a4774-c18f-4d05-ba86-90b818957f34
 Expiration:     2024-01-01T23:59:59Z (2 years from now)
@@ -206,4 +225,3 @@ Customer name:  Sally Forth
 ```
 
 > 💡 Don't worry if you don't see all of these fields - some of them are only visible when they are relevant to your individual license.
-
