@@ -48,7 +48,7 @@ You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.
 1. Run the CLI command that you have copied on your machine
 1. Congratulations, you have successfully applied the license to your cluster!
 
-# Further Reading: manage your license in CLI
+# Further Reading: Manage Your License in CLI
 
 ## Running the Ondat CLI
 ### Step 1 - Launch target Kubernetes Cluster
