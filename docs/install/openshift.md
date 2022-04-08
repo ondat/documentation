@@ -230,8 +230,7 @@ The Ondat Cluster Operator is installed into your specified cluster.
 
 ## License cluster
 
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. For more information,
-> check the [reference licence page](/docs/reference/licence).
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1TiB of provisioned storage.
 
 To obtain a license, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
 
