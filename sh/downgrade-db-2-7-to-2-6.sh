@@ -69,6 +69,7 @@ sleep 20
 
 deleted=false
 while ! $deleted; do
+  sleep 2
   ready=$($CLI_TOOL get ds $DS_NAME -n $NAMESPACE -o jsonpath='{.status.numberReady}')
   desired=$($CLI_TOOL get ds $DS_NAME -n $NAMESPACE -o jsonpath='{.status.desiredNumberScheduled}')
   if [ "$desired" -eq "$ready" ] && [ "$desired" -ne 0 ]; then

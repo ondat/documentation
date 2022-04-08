@@ -7,16 +7,65 @@ weight: 150
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.6.0`. For
+The latest tagged release is `2.7.0`. For
 installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.6.0`, available from
+The latest CLI release is `2.7.0`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
+
+## 2.7.0 - Released 2022-04-07
+
+### New
+
+k8s & Orchestrator Rolling Upgrade
+
+- Tech Preview: Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher
+  > ⚠️ This is a tech preview, we only recommend using this feature on your test clusters
+
+Operator
+
+- Updated memory limit
+- Introduced topology spread constraint with `ScheduledAnyway`
+
+API Manager
+
+- Adds a feature so when a PVC is not found scheduling will not be blocked
+
+Control Plane
+
+- Set `Only_Numeric_Owners` to true on NFSv4 setting on Ganesha
+
+Data Plane
+
+- Removed support for FUSE. Ondat now only supports TCMU. `target_core_user` must now be used. Read [System Configuration](https://docs.ondat.io/docs/prerequisites/systemconfiguration/) for more information
+- Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old `ctl` tools have been removed
+- Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments
+  > ⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found [here](/docs/operations/downgrade-ondat-2.7-to-2.6)
+
+### Fixed
+
+Operator
+
+- Fixed a bug that sometimes caused the operator to enter a deadlock state after Ondat cluster CR object deletion
+
+Control Plane
+
+- Fixed an issue where Ondat was not able to unmount volumes in rare instances, then occasionally causing volumes to become unhealthy
+- Fixed an issue that caused replicas to go into the “unknown” state during failover in somne rare instances
+- Fixed an issue to now display output all dataplane logs even if they don't have the expected syntax
+- Fixed an issue so Ondat would speculatively configure the replica in the dataplane before we advertise ourselves to the master
+- Fix an issue where goroutines attempting to dial remote nodes could be blocked
+- Fix an issue so Ondat volume would remain mounted and online during temporary network issues when pod is on remote, master and replica
+
+Data Plane
+
+- Fix non-null terminated buffer which could lead to garbled logs
+- Fix client-server network to improve robustness
 
 ## 2.6.0 - Released 2022-02-14
 
