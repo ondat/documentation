@@ -149,7 +149,7 @@ A license contains a list of capabilities and capacities, the cluster ID, an exp
 
 ### Prerequisites
 
-> ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
+> ⚠️ You need to have Ondat CLI running - see [instructions](/docs/operations/licensing/#running-the-ondat-cli)
 > 💡 For more information refer to the licence
 [CLI command](/docs/reference/cli) reference documentation.
 
@@ -185,7 +185,7 @@ This information is only applicable if you have received a license file from our
 
 ### Prerequisites
 
-> ⚠️ You need to have Ondat CLI running - see [instructions](docs/operations/licensing/#running-the-ondat-cli)
+> ⚠️ You need to have Ondat CLI running - see [instructions](/docs/operations/licensing/#running-the-ondat-cli)
 
 > ⚠️ Make sure POD variable is set as per the CLI instructions
 
