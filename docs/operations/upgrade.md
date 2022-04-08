@@ -3,6 +3,7 @@ title: "Upgrade Ondat"
 linkTitle: Upgrade Ondat
 ---
 # Overview
+
 This document details procedures to upgrade Ondat.
 
 # Update an Ondat v2 cluster
@@ -16,7 +17,6 @@ This document details procedures to upgrade Ondat.
 > 💡 Speak with our support team [here](/docs/support/) so we can assist you with your upgrade.
 
 > ⚠️ If you are upgrading to 2.7.0, you will only be able to downgrade to 2.6.0 due to the mapping changes made in the Data Plane. For more details, please look at the [release notes](/docs/release-notes).
-
 
 ## Procedure
 
