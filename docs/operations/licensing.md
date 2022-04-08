@@ -13,7 +13,7 @@ You will need a license for Ondat if you want to make use of the full functional
 
 ## Free Trial
 
-You can use Ondat for free without any restrictions for 3 months.
+You can use Ondat for free without any restrictions for 1 month.
 
 ## Free Forever
 
