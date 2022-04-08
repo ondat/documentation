@@ -154,6 +154,6 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 
 ## Applying a Licence to the Cluster
 
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1TiB of provisioned storage.
 
 To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
