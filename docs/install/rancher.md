@@ -133,10 +133,10 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 
 1. Select the **StorageOS Cluster** section. This will show you a form with configurable parameters that have predefined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;
 
-    | Parameter                   | Value | Description                                                                                                                                                                                      |
-    | --------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | Password                    |       | Password of the StorageOS administrator account. Must be at least 8 characters long, for example > `storageos`                                                                                   |
-    | External `etcd` address(es) |       | List of `etcd` endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example > `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379` |
+    | Parameter                   | Value                 | Description                                                                                                                                                                                      |
+    | --------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | Password                    | `$STORAGEOS_PASSWORD` | Password of the StorageOS administrator account. Must be at least 8 characters long, for example > `storageos`                                                                                   |
+    | External `etcd` address(es) | `$ETCD_ENDPOINTS`     | List of `etcd` endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example > `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379` |
 
     > 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own `StorageOSCluster` custom resource manifest, review the Ondat Operator [README.md](https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
 
@@ -152,8 +152,8 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
     kubectl get storageclasses | grep "storageos"
     ```
 
-### Applying a Licence to the Cluster
+## Applying a Licence to the Cluster
 
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1TiB of provisioned storage.
 
 To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.

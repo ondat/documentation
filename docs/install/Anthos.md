@@ -44,6 +44,8 @@ export STORAGEOS_PASSWORD="storageos"
 
 2. Run the following  `kubectl-storageos` plugin command to install Ondat.
 
+> ⚠️ If you are installing Ondat and connecting to an *existing etcd cluster*, then you must include the `--skip-etcd-endpoints-validation` flag in the bash script below.
+
 ```bash
 kubectl storageos install \
   --include-etcd \
@@ -66,6 +68,6 @@ kubectl get storageclasses | grep "storageos"
 
 ### Step 4 - Applying a Licence to the Cluster
 
-> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.
 
 To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.

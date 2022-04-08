@@ -1,128 +1,97 @@
 ---
-title: "Kubectl plugin"
-linkTitle: Kubectl plugin
+title: "Ondat Kubectl Plugin"
+linkTitle: "Ondat Kubectl Plugin"
+weight: 1
 ---
 
-Ondat has implemented a kubectl plugin to facilitate operations when
-installing and interacting with Ondat clusters.
+## Overview
 
-The kubectl plugin accepts both declarative and imperative modes.
+* The Ondat kubectl plugin is a utility tool that accepts imperative and declarative modes which allows cluster administrators to seamlessly install, troubleshoot, upgrade or uninstall Ondat. The plugin can also be used to connect and manage Ondat clusters on the [Ondat SaaS Platform](https://docs.ondat.io/docs/ondat-portal/).
+  * The project repository is open source and can be located on [GitHub](https://github.com/storageos/kubectl-storageos).
 
-## Install the storageos kubectl plugin
+### Install The Ondat Kubectl Plugin
 
-```
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
-
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
-
-## Examples
-
-### Basic installation
-
-```
-kubectl storageos install
-```
-
-> 💡 The plugin will prompt you to get the url/s for etcd.
-
-### Installation with custom username/password
-
-Ondat uses a Kubernetes Secret to define the first admin user. You can define its credentials when installing.
+#### Linux
 
 ```bash
-kubectl storageos install \
-    --admin-username "myuser" \
-    --admin-password "my-password"
+curl --silent --show-error --location --output kubectl-storageos.tar.gz \
+  https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
+  && tar --extract --file kubectl-storageos.tar.gz kubectl-storageos \
+  && chmod +x kubectl-storageos \
+  && sudo mv kubectl-storageos /usr/local/bin/ \
+  && rm kubectl-storageos.tar.gz \
+  && echo "Plugin version installed:" \
+  && kubectl-storageos version
 ```
 
-### Declarative installation
+#### macOS (Darwin)
 
-The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
-Resource declaratively, as a YAML. You can do this using one of the following options:
+```bash
+curl --silent --show-error --location --output kubectl-storageos.tar.gz \
+  https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_darwin_amd64.tar.gz \
+  && tar --extract --verbose --file kubectl-storageos.tar.gz kubectl-storageos \
+  && chmod +x kubectl-storageos \
+  && sudo mv kubectl-storageos /usr/local/bin/ \
+  && rm kubectl-storageos.tar.gz \
+  && echo "Plugin version installed:" \
+  && kubectl-storageos version
+```
 
-* Create a file `StorageOSCluster.yaml` with the Secret and StorageOSCluster CR:
+#### Windows
 
-    ```bash
-    ---
-    # Secret
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: storageos-api
-      namespace: storageos
-      labels:
-        app: storageos
-    type: Opaque
-    data:
-      password: c3RvcmFnZW9z # echo -n <username> | base64
-      username: c3RvcmFnZW9z # echo -n <username> | base64
-    ---
-    # CR cluster definition
-    apiVersion: storageos.com/v1
-    kind: StorageOSCluster
-    metadata:
-      name: storageos-cluster
-      namespace: "storageos"
-    spec:
-      secretRefName: "storageos-api"
-      k8sDistro: "upstream"
-      storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
-      images:
-        nodeContainer: "storageos/node:v2.6.0"
-        apiManagerContainer: storageos/api-manager:v1.2.2
-        initContainer: storageos/init:v2.1.0
-        csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
-        csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
-        csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
-        csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
-        csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-        kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
-      kvBackend:
-        address: "storageos-etcd-client.storageos-etcd:2379"
-      resources:
-        requests:
-          memory: "1Gi"
-          cpu: 1
-    #  nodeSelectorTerms:
-    #    - matchExpressions:
-    #      - key: "node-role.kubernetes.io/worker" # Compute node label will vary according to your installation
-    #        operator: In
-    #        values:
-    #        - "true"
-    ```
+```bash
+# PowerShell
+Invoke-WebRequest https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_windows_amd64.tar.gz -OutFile kubectl-storageos.tar.gz `
+  ; tar -xf kubectl-storageos.tar.gz kubectl-storageos.exe `
+  ; Remove-Item kubectl-storageos.tar.gz `
+  ; Write-Host "Plugin version installed:" `
+  ; .\kubectl-storageos.exe version
+```
 
-   and install a cluster
+#### Others
 
-    ```bash
-    kubectl storageos install \
-    --stos-cluster-yaml StorageOSCluster.yaml \
-    --etcd-endpoints "storageos-etcd-client.storageos-etcd:2379"
-    ```
+* For more information on different binaries, supported architectures and checksum file verification, see the full page of [releases](https://github.com/storageos/kubectl-storageos/releases).
 
-* Create a YAML to describe the cluster's resources using a [Helm
-chart](https://github.com/storageos/charts/pull/129) or use the `kubectl
-plugin` with the `dry-run` flags enabled:
+### Usage
 
-    ```bash
-    kubectl storageos install
-        --dry-run
-        --username storageos
-        --password storageos
-        --include-etcd ...
-    ```
+* Get the version of the plugin installed;
 
-  > Note, that when `--dry-run` is set for an install command, no installation
-  > takes place. Instead, the installation manifests that would have been
-  > installed under normal circumstances are written locally to
-  > `./storageos-dry-run/`.
+```bash
+kubectl storageos version
+```
 
-That generates YAML files that can be used in a GitOps pipeline (your
-installation is fully-declarative). At the end, the CI/CD tool runs `kubectl
-create -f ./path/to/yamls`.
+* Get more information on the available commands in the plugin;
+
+```
+kubectl storageos help
+```
+
+```
+StorageOS kubectl plugin
+
+Usage:
+  kubectl-storageos [flags]
+  kubectl-storageos [command]
+
+Aliases:
+  kubectl-storageos, kubectl storageos
+
+Available Commands:
+  bundle           Generate a support bundle
+  completion       Generate completion script
+  disable-portal   Disable StorageOS Portal Manager
+  enable-portal    Enable StorageOS Portal Manager
+  help             Help about any command
+  install          Install StorageOS and (optionally) ETCD
+  install-portal   Install StorageOS Portal Manager
+  preflight        Test a k8s cluster for StorageOS pre-requisites
+  uninstall        Uninstall StorageOS and (optionally) ETCD
+  uninstall-portal Uninstall StorageOS Portal Manager
+  upgrade          Ugrade StorageOS
+  version          Show kubectl storageos version
+
+Flags:
+  -h, --help   help for kubectl-storageos
+
+Use "kubectl-storageos [command] --help" for more information about a command.
+```
