@@ -140,7 +140,7 @@ This guide will demonstrate how to install Ondat onto a [Kubernetes](https://kub
     kubectl get storageclasses | grep "storageos"
     ```
 
-### Applying a Licence to the Cluster
+## Applying a Licence to the Cluster
 
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.
 
