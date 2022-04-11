@@ -43,4 +43,4 @@ with any [supported Linux Distribution](/docs/prerequisites/systemconfiguration#
 
 Managed services that support in place upgrades are fully supported. Upgrading Kubernetes using green/blue deployments requires you to turn on the rolling upgrade feature to protect your cluster from major issues.
 
-Follow the instruction [here](docs/operations/using-rolling-upgrades.md). Please contact Ondat support for further advice if required.
+Follow the instruction [here](/docs/operations/using-rolling-upgrades.md). Please contact Ondat support for further advice if required.
