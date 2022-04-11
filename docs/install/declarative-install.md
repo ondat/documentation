@@ -157,7 +157,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 #### Step 4 - Customising & Installing Ondat's Operator Helm Chart
 
-* There are two ways to conduct an installation with Helm, **declaratively** by creating a custom `values.yaml` and (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
+* There are two ways to conduct an installation with Helm, **declaratively** by creating a custom `values.yaml` (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
 
 > 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat Operator [README.md](https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
 
@@ -172,7 +172,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
         password: # for example -> storageos
     ```
 
-    * [`cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62)
+    * [`cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L71-L72)
 
     ```yaml
         # Key-Value store backend.
