@@ -10,4 +10,4 @@ If the volumes containing the data for your stateful workloads do not wait to su
 
 We are developing a solution to this problem for you. It is currently a tech preview but now, for example, Ondat can support a Google Anthos one-click upgrade without any downtime.
 
-To use the rolling upgrade feature, follow the steps [here](docs/operations/using-rolling-upgrades).
+To use the rolling upgrade feature, follow the steps [here](/docs/operations/using-rolling-upgrades).
