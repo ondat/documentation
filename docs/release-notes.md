@@ -18,7 +18,7 @@ The latest CLI release is `2.7.0`, available from
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
-## 2.7.0 - Released 2022-04-07
+## 2.7.0 - Released 2022-04-11
 
 ### New
 
