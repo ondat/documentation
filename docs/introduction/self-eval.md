@@ -53,10 +53,7 @@ modern distributions:
 * A 64bit supported operating system - Ondat can run without additional
   packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
   linux-image-extra for Ubuntu.
-* Mainline kernel modules `target_core_mod`, `tcp_loop`, `target_core_file`,
-  `target_core_user`, `configfs`, and `ui`. These are present by default on
-  most modern linux distributions, and can be installed with standard package
-  managers. See our [system configuration](/docs/prerequisites/systemconfiguration) page for instructions.
+* Mainline kernel modules `target_core_mod`, `tcp_loop`, `target_core_user`, `configfs`, and `ui`. These are present by default on most modern linux distributions, and can be installed with standard package managers. See our [system configuration](/docs/prerequisites/systemconfiguration) page for instructions.
 
 ### Install the storageos kubectl plugin
 
@@ -160,7 +157,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.6.0
+        image: storageos/cli:v2.7.0
         name: cli
 END
 ```

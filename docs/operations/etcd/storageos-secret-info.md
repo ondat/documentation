@@ -42,7 +42,7 @@ spec:
   secretRefName: "storageos-api"
   storageClassName: "ondat" # The storage class created by the Ondat operator is configurable
   images:
-    nodeContainer: "storageos/node:v2.6.0""
+    nodeContainer: "storageos/node:v2.7.0""
   namespace: "storageos"
   # External mTLS secured etcd cluster specific properties
   tlsEtcdSecretRefName: "etcd-client-tls"                                   # Secret containing etcd client certificates in the same
