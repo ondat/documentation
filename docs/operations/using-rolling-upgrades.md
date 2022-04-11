@@ -4,8 +4,9 @@ linkTitle: Platform Upgrade
 
 # Overview
 
-This guide will demonstrate how to enable the orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps to prevent your persistent storage volumes from becoming unhealthy during an orchestrator update.
-> ⚠️ This is a tech preview, we only recommend using this feature on your test clusters.
+This guide will demonstrate how to enable protection for your orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+
+> ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
 
 # Prerequisites
 
@@ -13,7 +14,7 @@ This guide will demonstrate how to enable the orchestrator's rolling upgrades us
 
 > ⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.
 
-> ⚠️ This feature supports the following platforms: AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher.
+> ⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.
 
 > ⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.
 
@@ -38,7 +39,7 @@ You will see new pods getting created, where one pod per node in a cluster calle
 
 ## Step 2 - Rolling upgrade ready
 
-Congratulations, you are now ready to start the rolling upgrade process of the orchestrator of your choice!
+Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!
 
 > ⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.
 
