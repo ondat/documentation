@@ -76,8 +76,6 @@ managedNodeGroups:
       echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
       mkfs.ext4 /dev/nvme1n1
       mount /var/lib/storageos
-      sudo apt-get update
-      sudo apt-get install -y linux-modules-extra-$(uname -r)
       /etc/eks/bootstrap.sh ondat-cluster
 ```
 
