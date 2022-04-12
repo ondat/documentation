@@ -23,7 +23,7 @@ This guide will demonstrate how to install Ondat onto an [Amazon Elastic Kuberne
 
 > ⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-> ⚠️ Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding it to the node's user data, as in the example below.
+> ⚠️ Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel. For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding extra steps to the node's user data.
 
 > To find the latest Ubuntu for EKS AMI, search your region for the image:
 
@@ -76,8 +76,6 @@ managedNodeGroups:
       echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
       mkfs.ext4 /dev/nvme1n1
       mount /var/lib/storageos
-      sudo apt-get update
-      sudo apt-get install -y linux-modules-extra-$(uname -r)
       /etc/eks/bootstrap.sh ondat-cluster
 ```
 
