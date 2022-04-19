@@ -6,6 +6,8 @@ weight: 1
 
 ## Overview
 
+> 💡 This page has an example installation using [eksctl](https://eksctl.io/) to get started quickly and easily. For a declarative installation with [Amazon EKS Blueprints for Terraform](https://github.com/aws-ia/terraform-aws-eks-blueprints), refer to our [getting-started blueprint](https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started) for the Ondat EKS Blueprints addon.
+
 This guide will demonstrate how to install Ondat onto an [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
 
 ## Prerequisites
