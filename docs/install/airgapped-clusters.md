@@ -164,8 +164,8 @@ grep --extended-regexp "RELATED|image:" *.yaml
 ### Step 5 - Modify Deployment Manifests
 
  1. **`etcd-operator`** - Modify the `2-etcd-operator.yaml` manifest and apply the following changes.
-  1. Locate the `storageos-etcd-controller-manager`  `Deployment` YAML, navigate to `manager` container and locate the `args` section.
-  2. In this section, add a flag called `--etcd-repository=` where the value will be your `$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd`. For example;
+ 1. Locate the `storageos-etcd-controller-manager`  `Deployment` YAML, navigate to `manager` container and locate the `args` section.
+ 2. In this section, add a flag called `--etcd-repository=` where the value will be your `$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd`. For example;
 
 ```yaml
 # Before modification.
@@ -187,7 +187,7 @@ grep --extended-regexp "RELATED|image:" *.yaml
 ```
 
 2. **`etcd-cluster`** - Modify the `3-etcd-cluster.yaml` manifest and apply the following changes.
- 1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
+1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
 
  ```yaml
  # Before modification.
@@ -208,7 +208,7 @@ grep --extended-regexp "RELATED|image:" *.yaml
  ```
 
 3. **`storageos-operator`** - Modify the `0-storageos-operator.yaml` manifest and apply the following changes.
- 1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
+1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
 
  ```yaml
   # Before modification.
