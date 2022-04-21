@@ -6,7 +6,7 @@ weight: 1
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto clusters that don't have direct access to the Internet - i.e., [air-gapped](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
+This guide will demonstrate how to install Ondat onto clusters that don't have direct access to the internet - i.e., [air-gapped](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
 
 > 💡 This guide is recommended for **advanced users** who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.
 
@@ -84,7 +84,7 @@ Below is a quick summary of the procedure that will be covered in this guide;
     ```
 
 > ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
- 
+
 ##### Generate Manifests
 
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. In addition, define and export a `KUBERNETES_VERSION` environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, `v1.23.5`.
@@ -110,10 +110,10 @@ Below is a quick summary of the procedure that will be covered in this guide;
 
 1. To review the list of manifests generated in the newly created `storageos-dry-run` directory, run the following commands.
 
-	```bash
-	cd storageos-dry-run/
-	ls
-	```
+ ```bash
+ cd storageos-dry-run/
+ ls
+ ```
 
 #### Option B - Using An External `etcd` Deployment
 
@@ -121,7 +121,7 @@ Below is a quick summary of the procedure that will be covered in this guide;
 
 * Ensure that you have an  `etcd`  cluster deployed first before installing Ondat. For instructions on how to set up an external  `etcd`  cluster, review the  [`etcd`  documentation](https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines)  page.
 * Once you have an  `etcd`  cluster up and running, ensure that you note down the list of  `etcd`  endpoints as comma-separated values that will be used when configuring Ondat.
-    -   For example,  `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
+  * For example,  `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
 
 ##### Generate Manifests
 
@@ -148,24 +148,24 @@ Below is a quick summary of the procedure that will be covered in this guide;
 
 1. To review the list of manifests generated in the newly created `storageos-dry-run` directory, run the following commands.
 
-	```bash
-	cd storageos-dry-run/
-	ls
-	```
+ ```bash
+ cd storageos-dry-run/
+ ls
+ ```
 
 ### Step 4 - Push Ondat Images To Private Registry
 
- 1.  Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.
+ 1. Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.
 
 ```bash
 grep --extended-regexp "RELATED|image:" *.yaml
 ```
 
-### Step 5 - Modify Deployment Manifests 
+### Step 5 - Modify Deployment Manifests
 
- 1.  **`etcd-operator`** - Modify the `2-etcd-operator.yaml` manifest and apply the following changes.
-	 1. Locate the `storageos-etcd-controller-manager`  `Deployment` YAML, navigate to `manager` container and locate the `args` section.
-	 2.  In this section, add a flag called `--etcd-repository=` where the value will be your `$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd`. For example;
+ 1. **`etcd-operator`** - Modify the `2-etcd-operator.yaml` manifest and apply the following changes.
+  1. Locate the `storageos-etcd-controller-manager`  `Deployment` YAML, navigate to `manager` container and locate the `args` section.
+  2. In this section, add a flag called `--etcd-repository=` where the value will be your `$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd`. For example;
 
 ```yaml
 # Before modification.
@@ -187,89 +187,90 @@ grep --extended-regexp "RELATED|image:" *.yaml
 ```
 
 2. **`etcd-cluster`** - Modify the `3-etcd-cluster.yaml` manifest and apply the following changes.
-	1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
+ 1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
 
-	```yaml
-	# Before modification.
-	  storage:
-	    volumeClaimTemplate:
-	      resources:
-	        requests:
-	          storage: 1Gi
-	```
+ ```yaml
+ # Before modification.
+   storage:
+     volumeClaimTemplate:
+       resources:
+         requests:
+           storage: 1Gi
+ ```
 
-	```yaml
-	# After modification.
-	  storage:
-	    volumeClaimTemplate:
-	      resources:
-	        requests:
-	          storage: 256Gi
-	```
+ ```yaml
+ # After modification.
+   storage:
+     volumeClaimTemplate:
+       resources:
+         requests:
+           storage: 256Gi
+ ```
 
 3. **`storageos-operator`** - Modify the `0-storageos-operator.yaml` manifest and apply the following changes.
-	1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
+ 1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
 
-	```yaml
-	 # Before modification.
-	        name: manager
-	        image: storageos/operator:v2.7.0
+ ```yaml
+  # Before modification.
+         name: manager
+         image: storageos/operator:v2.7.0
 
-	        name: kube-rbac-proxy
-	        image: quay.io/brancz/kube-rbac-proxy:v0.10.0
-	```
+         name: kube-rbac-proxy
+         image: quay.io/brancz/kube-rbac-proxy:v0.10.0
+ ```
 
-	```yaml
-	# After modification.
-	        name: manager
-	        image: $PRIVATE_REGISTRY_URL/operator:v2.7.0
+ ```yaml
+ # After modification.
+         name: manager
+         image: $PRIVATE_REGISTRY_URL/operator:v2.7.0
 
-	        name: kube-rbac-proxy
-	        image: $PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0
-	```
+         name: kube-rbac-proxy
+         image: $PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0
+ ```
 
     2. Locate the `storageos-related-images` `ConfigMap` YAML, navigate to the environment variables that are prefixed with `RELATED_IMAGE_`. Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
 
-	```yaml
-	# Before modification.
-	kind: ConfigMap
-	data:
-	  RELATED_IMAGE_API_MANAGER: storageos/api-manager:v1.2.9
-	  RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: quay.io/k8scsi/csi-attacher:v3.1.0
-	  RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: storageos/csi-provisioner:v2.1.1-patched
-	  RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: quay.io/k8scsi/csi-resizer:v1.1.0
-	  RELATED_IMAGE_CSIV1_LIVENESS_PROBE: quay.io/k8scsi/livenessprobe:v2.2.0
-	  RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
-	  RELATED_IMAGE_NODE_MANAGER: storageos/node-manager:v0.0.6
-	  RELATED_IMAGE_PORTAL_MANAGER: storageos/portal-manager:v1.0.2
-	  RELATED_IMAGE_STORAGEOS_INIT: storageos/init:v2.1.2
-	  RELATED_IMAGE_STORAGEOS_NODE: storageos/node:v2.7.0
-	  RELATED_IMAGE_UPGRADE_GUARD: storageos/upgrade-guard:v0.0.4
-	```
+ ```yaml
+ # Before modification.
+ kind: ConfigMap
+ data:
+   RELATED_IMAGE_API_MANAGER: storageos/api-manager:v1.2.9
+   RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: quay.io/k8scsi/csi-attacher:v3.1.0
+   RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: storageos/csi-provisioner:v2.1.1-patched
+   RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: quay.io/k8scsi/csi-resizer:v1.1.0
+   RELATED_IMAGE_CSIV1_LIVENESS_PROBE: quay.io/k8scsi/livenessprobe:v2.2.0
+   RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
+   RELATED_IMAGE_NODE_MANAGER: storageos/node-manager:v0.0.6
+   RELATED_IMAGE_PORTAL_MANAGER: storageos/portal-manager:v1.0.2
+   RELATED_IMAGE_STORAGEOS_INIT: storageos/init:v2.1.2
+   RELATED_IMAGE_STORAGEOS_NODE: storageos/node:v2.7.0
+   RELATED_IMAGE_UPGRADE_GUARD: storageos/upgrade-guard:v0.0.4
+ ```
 
-	```yaml
-	# After modification.
-	kind: ConfigMap
-	data:
-	  RELATED_IMAGE_API_MANAGER: $PRIVATE_REGISTRY_URL/api-manager:v1.2.9
-	  RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: $PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0
-	  RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: $PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched
-	  RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: $PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0
-	  RELATED_IMAGE_CSIV1_LIVENESS_PROBE: $PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0
-	  RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: $PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0
-	  RELATED_IMAGE_NODE_MANAGER: $PRIVATE_REGISTRY_URL/node-manager:v0.0.6
-	  RELATED_IMAGE_PORTAL_MANAGER: $PRIVATE_REGISTRY_URL/portal-manager:v1.0.2
-	  RELATED_IMAGE_STORAGEOS_INIT: $PRIVATE_REGISTRY_URL/init:v2.1.2
-	  RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
-	  RELATED_IMAGE_UPGRADE_GUARD: $PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4
-	```
+ ```yaml
+ # After modification.
+ kind: ConfigMap
+ data:
+   RELATED_IMAGE_API_MANAGER: $PRIVATE_REGISTRY_URL/api-manager:v1.2.9
+   RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: $PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0
+   RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: $PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched
+   RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: $PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0
+   RELATED_IMAGE_CSIV1_LIVENESS_PROBE: $PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0
+   RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: $PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0
+   RELATED_IMAGE_NODE_MANAGER: $PRIVATE_REGISTRY_URL/node-manager:v0.0.6
+   RELATED_IMAGE_PORTAL_MANAGER: $PRIVATE_REGISTRY_URL/portal-manager:v1.0.2
+   RELATED_IMAGE_STORAGEOS_INIT: $PRIVATE_REGISTRY_URL/init:v2.1.2
+   RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
+   RELATED_IMAGE_UPGRADE_GUARD: $PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4
+ ```
+
     3. **`storageos-cluster`**
 
     > 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Cluster Operator Configuration](https://docs.ondat.io/docs/reference/cluster-operator/configuration) and [Cluster Operator Examples](https://docs.ondat.io/docs/reference/cluster-operator/examples) reference pages for more information.
 
 ### Step 6 - Installing Ondat
 
-1. Run the following  `kubectl` command to install Ondat with the generated manifests in the `storageos-dry-run` directory. 
+1. Run the following  `kubectl` command to install Ondat with the generated manifests in the `storageos-dry-run` directory.
 
     ```bash
     # Apply the Operators and CustomResourceDefinitions (CRDs) first.
