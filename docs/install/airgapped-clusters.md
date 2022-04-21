@@ -1,259 +1,298 @@
 ---
-title: "Airgapped installation"
-weight: 50
+title: "Air-Gap Install"
+linkTitle: "Air-Gap Install"
+weight: 1
 ---
 
-> The following page is for advanced users. The full procedure is estimated to
-> take ~60 minutes to complete.
+## Overview
 
-Clusters without access to the internet require you to explicitly specify the
-resources to be installed. For that reason the `storageos` kubectl plugin
-`--dry-run` flag generates all the yamls for your cluster. You can amend them
-with the images pulled to your private registry. To install Ondat on an
-airgapped cluster, you need
+This guide will demonstrate how to install Ondat onto clusters that don't have direct access to the Internet - i.e., [air-gapped](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
 
-- Install the `storageos` kubectl plugin
-- Generate yaml manifests and amend for your use case
-- Pull OCI images to private registries.
-- Install Ondat on your cluster
+> 💡 This guide is recommended for **advanced users** who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.
 
-There are the following sets of images to pull that will be shown along the
-following steps.
+Below is a quick summary of the procedure that will be covered in this guide;
 
-- the Ondat operator image
-- the images in the StorageOSCluster definition that define the images for each
-  component of the cluster
-- (if applicable) the images to run Etcd as Pods using the Etcd operator
-  deployed by Ondat
+1. Install the Ondat kubectl plugin.
+1. Generate the Ondat deployment manifests for your use case.
+1. Push Ondat container images to your private registry.
+1. Modify the Ondat deployment manifests.
+1. Install Ondat onto your air-gapped cluster.
 
-## Step 1. Install storageos kubectl plugin
+## Prerequisites
 
-```bash
-curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
-    && tar -xf kubectl-storageos.tar.gz \
-    && chmod +x kubectl-storageos \
-    && sudo mv kubectl-storageos /usr/local/bin/ \
-    && rm kubectl-storageos.tar.gz
-```
+> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
 
-> 💡 You can find binaries for different architectures and systems in [kubectl
-> plugin](https://github.com/storageos/kubectl-storageos/releases).
+> ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your `$PATH`:
 
-## Step 2. Generate yaml manifests
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
-### Option 1: With Etcd in Kubernetes
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-The etcd cluster in Kubernetes requires a StorageClass. If you are running on a
-cloud provider, you can use existing StorageClasses for it, for example `gp3`
-(AWS) or `standard` (GCE). Or you can create the `local-path` StorageClass.
-It's recommended to give Etcd a backend disk that can sustain at least 800
-IOPS. It's best to use provisioned IOPS when possible, otherwise make sure the
-size of the disk is big enough to fulfil the IOPS requirement when performance
-depends on IOPS per GB.  For example, AWS would require a burstable EBS bigger
-than 256G to fulfil the IOPS requirement.
+> ⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
-1. Create StorageClass (if you don't have one available)
+> ⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully.
 
-    > ⚠️  The `local-path` StorageClass is only recommended for __non production__
-    clusters as the data of the etcd peers is susceptible to being lost on node
-    failure.
+## Procedure
+
+### Step 1 - Install Ondat Kubectl Plugin
+
+* Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your `$PATH`:
+  * [kubectl-storageos](/docs/reference/kubectl-plugin/)
+
+### Step 2 - Conducting Preflight Checks
+
+* Run the following command to conduct preflight checks against the Kubernetes cluster to validate that Ondat prerequisites have been met before attempting an installation.
 
     ```bash
-    # Local-path StorageClass
-    # Not for production workloads
-
-    # Pull yaml
-    curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
-
-    # Pull the following images into your registry
-    grep "image:" local-path.yaml
-
-    # Add registry URL to the image
-    vi local-path.yaml
-    ...
-
-    # Create the storageclass
-    kubectl apply -f local-path.yaml
+    kubectl storageos preflight
     ```
 
-1. Generate yaml manifests
-    > The following command generates a directory called `storageos-dry-run`
-    > with the manifests.
+### Step 3 - Generate Ondat Deployment Manifests
+
+#### Option A - Using An Embedded `etcd` Deployment
+
+##### Install Local Path Provisioner
+
+1. By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a [Local Path Provisioner](https://github.com/rancher/local-path-provisioner) to provide local storage for Ondat's embedded `etcd` cluster operator deployment.
+    > 💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don’t want to use a Local Path Provisioner. If so, ensure that the  `ETCD_STORAGECLASS`  environment variable points to the correct value for your Kubernetes distribution’s default StorageClass name.
 
     ```bash
-    # Generate yamls
-    ETCD_STORAGECLASS=my-storage-class
-    ONDAT_VERSION=v2.7.0
-    K8S_VERSTION=v1.22.6
-    USERNAME=storageos
-    PASSWORD=storageos
+    # Download the Local Path Provisioner.
+    wget https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
+    
+    # Get the list of images and push them to your private registry.
+    grep "image:" local-path-storage.yaml
 
+    # Modify the manifest and add the private registry URL to pull the images.
+    vi local-path-storage.yaml
+
+    # Deploy the Local Path Provisioner.
+    kubectl apply --filename=local-path-storage.yaml
+    ```
+
+2. Define and export the `ETCD_STORAGECLASS` environment variable so that value is `local-path`, which is the default StorageClass name for the Local Path Provisioner.
+
+    ```bash
+    export ETCD_STORAGECLASS="local-path"
+    ```
+
+3. Verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  `RUNNING`  status, run the following  `kubectl`  commands.
+
+    ```bash
+    kubectl get pod --namespace=local-path-storage
+    kubectl get storageclass
+    ```
+
+> ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
+ 
+##### Generate Manifests
+
+1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. In addition, define and export a `KUBERNETES_VERSION` environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, `v1.23.5`.
+
+    ```bash
+    export STORAGEOS_USERNAME="storageos"
+    export STORAGEOS_PASSWORD="storageos"
+    export KUBERNETES_VERSION="v1.23.5"
+    ```
+
+1. Run the following  `kubectl-storageos` plugin command with the `--dry-run` flag to generate the Ondat deployment Kubernetes manifests in a directory, called `storageos-dry-run`.
+
+    ```bash
     kubectl storageos install \
-        --include-etcd \
-        --etcd-storage-class $ETCD_STORAGECLASS \
-        --skip-etcd-endpoints-validation \
-        --k8s-version $K8S_VERSION \
-        --admin-username "$USERNAME" \
-        --admin-password "$PASSWORD" \
-        --dry-run
+      --dry-run \
+      --include-etcd \
+      --etcd-tls-enabled \
+      --etcd-storage-class="$ETCD_STORAGECLASS" \
+      --k8s-version="$KUBERNETES_VERSION" \
+      --admin-username="$STORAGEOS_USERNAME" \
+      --admin-password="$STORAGEOS_PASSWORD"
     ```
 
-1. Amend the file `etcd-operator.yaml`
+1. To review the list of manifests generated in the newly created `storageos-dry-run` directory, run the following commands.
+
+	```bash
+	cd storageos-dry-run/
+	ls
+	```
+
+#### Option B - Using An External `etcd` Deployment
+
+##### Setup An  `etcd`  Cluster
+
+* Ensure that you have an  `etcd`  cluster deployed first before installing Ondat. For instructions on how to set up an external  `etcd`  cluster, review the  [`etcd`  documentation](https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines)  page.
+* Once you have an  `etcd`  cluster up and running, ensure that you note down the list of  `etcd`  endpoints as comma-separated values that will be used when configuring Ondat.
+    -   For example,  `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379`
+
+##### Generate Manifests
+
+1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance. In addition, define and export a `KUBERNETES_VERSION` environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, `v1.23.5`. Lastly, define and export a `ETCD_ENDPOINTS` environment variable, where the value will be a list of `etcd` endpoints as comma-separated values.
 
     ```bash
-    cd storageos-dry-run
-    vi etcd-operator.yaml
-    ...
+    export STORAGEOS_USERNAME="storageos"
+    export STORAGEOS_PASSWORD="storageos"
+    export KUBERNETES_VERSION="v1.23.5"
+    export ETCD_ENDPOINTS="203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379"
     ```
 
-    Edit the file `etcd-operator.yaml` and change:
-    - Find the 2 deployments `storageos-etcd-controller-manager` and
-      `storageos-etcd-proxy` and edit the images to set the registry url
-      prefix.
-    - Add the flag `--etcd-repository=$REGISTRY/quay.io/coreos/etcd`  in the
-      args of the `manager` container.
-
-        For example:
-
-        ```bash
-        REGISTRY=my-registry-url
-        # Old
-              - args:
-                - --enable-leader-election
-                - --proxy-url=storageos-proxy.storageos-etcd.svc
-                command:
-                - /manager
-
-        # New
-              - args:
-                - --enable-leader-election
-                - --proxy-url=storageos-proxy.storageos-etcd.svc
-                - --etcd-repository=$REGISTRY/quay.io/coreos/etcd # Edit this line with your registry url
-                command:
-                - /manager
-        ```
-
-1. Amend the file `etcd-cluster.yaml`
+1. Run the following  `kubectl-storageos` plugin command with the `--dry-run` flag to generate the Ondat deployment Kubernetes manifests in a directory, called `storageos-dry-run`.
 
     ```bash
-    vi etcd-cluster.yaml
-    ...
-        volumeClaimTemplate:
-          resources:
-            requests:
-              storage: 256Gi
-    ...
-    ```
-
-    Define the `storge` size of the Etcd volumes. The backend disk requires at
-    least 800 IOPS for etcd to work normally. If you are on a cloud provider
-    that enables IOPSxGB, it is recommended to use a big enough volume. For
-    instance, on AWS a 256GiB or a 50GiB GCE SSD persistent disk.
-
-### Option 2: With external Etcd
-
-1. Generate yaml manifests
-
-    > The following command generates a directory called `storageos-dry-run`
-    > with the manifests.
-
-    ```bash
-    # Set etcd url
-    # You can define multiple etcd urls separated by commas
-    # http://peer1:2379,http://peer2:2379,http://peer3:2379
-    ETCD_URL=http://etcd-url-or-ips:2379
-
-    # Generate yamls
-    ETCD_STORAGECLASS=my-storage-class
-    ONDAT_VERSION=v2.7.0
-    K8S_VERSTION=v1.22.6
-    USERNAME=storageos
-    PASSWORD=storageos
-
     kubectl storageos install \
-        --etcd-endpoints $ETCD_URL \
-        --skip-etcd-endpoints-validation \
-        --k8s-version $K8S_VERSION \
-        --admin-username "$USERNAME" \
-        --admin-password "$PASSWORD" \
-        --dry-run
+      --dry-run \
+      --skip-etcd-endpoints-validation \
+      --etcd-endpoints="$ETCD_ENDPOINTS" \
+      --k8s-version="$KUBERNETES_VERSION" \
+      --admin-username="$STORAGEOS_USERNAME" \
+      --admin-password="$STORAGEOS_PASSWORD"
     ```
 
-## Step 3. Amend manifests
+1. To review the list of manifests generated in the newly created `storageos-dry-run` directory, run the following commands.
 
-1. Amend the file `storageos-operator.yaml`
+	```bash
+	cd storageos-dry-run/
+	ls
+	```
 
-    ```bash
-    cd storageos-dry-run
-    vi storageos-operator.yaml
-    ```
+### Step 4 - Push Ondat Images To Private Registry
 
-    Edit the file `storageos-operator.yaml` and change:
-    - Find the `ConfigMap` called `storageos-related-images` and change the
-      URLs of the images adding your registry URL prefix.
-    - Find the `Deployment` called `storageos-operator` and change the `images`
-      of the 2 containers on it adding your registry URL prefix. They are the
-      containers `manager` and `kube-rbac-proxy`.
-
-1. (Optional) Amend the file `storageos-cluster.yaml`
-    The StorageOSCluster definition depends on your cluster. For all available
-    options, check the [operator
-    reference](/docs/reference/cluster-operator/configuration). You can add
-    options such as tolerations, nodeSelectors, etc.
-
-## Step 4. Pulling images into a private registry
-
-The images set on the previous steps need to be added to your registry. You can
-find them with:
+ 1.  Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.
 
 ```bash
-grep -E  "RELATED|image:" *.yaml
+grep --extended-regexp "RELATED|image:" *.yaml
 ```
 
-## Step 5. Install Ondat
+### Step 5 - Modify Deployment Manifests 
 
-```bash
-# Create the operators and CRDs first
-find . -name '*-operator.yaml'  | xargs -I{} kubectl create -f {}
+ 1.  **`etcd-operator`** - Modify the `2-etcd-operator.yaml` manifest and apply the following changes.
+	 1. Locate the `storageos-etcd-controller-manager`  `Deployment` YAML, navigate to `manager` container and locate the `args` section.
+	 2.  In this section, add a flag called `--etcd-repository=` where the value will be your `$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd`. For example;
 
-# Create the CustomResources
-find . -name '*-cluster.yaml'  | xargs -I{} kubectl create -f {}
+```yaml
+# Before modification.
+    spec:
+      containers:
+      - args:
+        - --enable-leader-election
+        - --proxy-url=storageos-proxy.storageos-etcd.svc
 ```
 
-## Verify the installation
+```yaml
+# After modification.
+    spec:
+      containers:
+      - args:
+        - --enable-leader-election
+        - --proxy-url=storageos-proxy.storageos-etcd.svc
+        - --etcd-repository=$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd  
+```
 
-1. Etcd
+2. **`etcd-cluster`** - Modify the `3-etcd-cluster.yaml` manifest and apply the following changes.
+	1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
+
+	```yaml
+	# Before modification.
+	  storage:
+	    volumeClaimTemplate:
+	      resources:
+	        requests:
+	          storage: 1Gi
+	```
+
+	```yaml
+	# After modification.
+	  storage:
+	    volumeClaimTemplate:
+	      resources:
+	        requests:
+	          storage: 256Gi
+	```
+
+3. **`storageos-operator`** - Modify the `0-storageos-operator.yaml` manifest and apply the following changes.
+	1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
+
+	```yaml
+	 # Before modification.
+	        name: manager
+	        image: storageos/operator:v2.7.0
+
+	        name: kube-rbac-proxy
+	        image: quay.io/brancz/kube-rbac-proxy:v0.10.0
+	```
+
+	```yaml
+	# After modification.
+	        name: manager
+	        image: $PRIVATE_REGISTRY_URL/operator:v2.7.0
+
+	        name: kube-rbac-proxy
+	        image: $PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0
+	```
+
+    2. Locate the `storageos-related-images` `ConfigMap` YAML, navigate to the environment variables that are prefixed with `RELATED_IMAGE_`. Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
+
+	```yaml
+	# Before modification.
+	kind: ConfigMap
+	data:
+	  RELATED_IMAGE_API_MANAGER: storageos/api-manager:v1.2.9
+	  RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: quay.io/k8scsi/csi-attacher:v3.1.0
+	  RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: storageos/csi-provisioner:v2.1.1-patched
+	  RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: quay.io/k8scsi/csi-resizer:v1.1.0
+	  RELATED_IMAGE_CSIV1_LIVENESS_PROBE: quay.io/k8scsi/livenessprobe:v2.2.0
+	  RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
+	  RELATED_IMAGE_NODE_MANAGER: storageos/node-manager:v0.0.6
+	  RELATED_IMAGE_PORTAL_MANAGER: storageos/portal-manager:v1.0.2
+	  RELATED_IMAGE_STORAGEOS_INIT: storageos/init:v2.1.2
+	  RELATED_IMAGE_STORAGEOS_NODE: storageos/node:v2.7.0
+	  RELATED_IMAGE_UPGRADE_GUARD: storageos/upgrade-guard:v0.0.4
+	```
+
+	```yaml
+	# After modification.
+	kind: ConfigMap
+	data:
+	  RELATED_IMAGE_API_MANAGER: $PRIVATE_REGISTRY_URL/api-manager:v1.2.9
+	  RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: $PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0
+	  RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: $PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched
+	  RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: $PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0
+	  RELATED_IMAGE_CSIV1_LIVENESS_PROBE: $PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0
+	  RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: $PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0
+	  RELATED_IMAGE_NODE_MANAGER: $PRIVATE_REGISTRY_URL/node-manager:v0.0.6
+	  RELATED_IMAGE_PORTAL_MANAGER: $PRIVATE_REGISTRY_URL/portal-manager:v1.0.2
+	  RELATED_IMAGE_STORAGEOS_INIT: $PRIVATE_REGISTRY_URL/init:v2.1.2
+	  RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
+	  RELATED_IMAGE_UPGRADE_GUARD: $PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4
+	```
+    3. **`storageos-cluster`**
+
+    > 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Cluster Operator Configuration](https://docs.ondat.io/docs/reference/cluster-operator/configuration) and [Cluster Operator Examples](https://docs.ondat.io/docs/reference/cluster-operator/examples) reference pages for more information.
+
+### Step 6 - Installing Ondat
+
+1. Run the following  `kubectl` command to install Ondat with the generated manifests in the `storageos-dry-run` directory. 
 
     ```bash
-    $ kubectl -n storageos-etcd get pod
-    NAME                                                READY   STATUS    RESTARTS   AGE
-    storageos-etcd-0-l4scc                              1/1     Running   0          2m19s
-    storageos-etcd-1-mzrv7                              1/1     Running   0          2m19s
-    storageos-etcd-2-bq596                              1/1     Running   0          2m19s
-    storageos-etcd-controller-manager-f89d9dc47-dlvgb   1/1     Running   0          2m34s
-    storageos-etcd-proxy-55479b544c-qm6nf               1/1     Running   0          2m34s
+    # Apply the Operators and CustomResourceDefinitions (CRDs) first.
+    find . -name '*-operator.yaml' | xargs -I{} kubectl apply --filename {}
+    
+    # Apply the Custom Resources next.
+    find . -name '*-cluster.yaml' | xargs -I{} kubectl apply --filename {}
     ```
 
-2. Ondat
+* The installation process may take a few minutes.
+
+### Step 7 - Verifying Ondat Installation
+
+* Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
 
     ```bash
-    $ kubectl -n storageos get pod
-    NAME                                     READY   STATUS    RESTARTS        AGE
-    storageos-api-manager-54df545cbf-fn9cq   1/1     Running   0               113s
-    storageos-api-manager-54df545cbf-vmc56   1/1     Running   1 (106s ago)    113s
-    storageos-csi-helper-65db657d7c-52rkj    3/3     Running   0               115s
-    storageos-node-v6tbg                     3/3     Running   2 (2m17s ago)   2m30s
-    storageos-node-wg9rq                     3/3     Running   2 (2m18s ago)   2m30s
-    storageos-node-zhhkz                     3/3     Running   2 (2m17s ago)   2m30s
-    storageos-operator-6fc687d97b-fjqhd      2/2     Running   0               2m55s
-    storageos-scheduler-7d66d44694-6n99d     1/1     Running   0               2m38s
+    kubectl get all --namespace=storageos
+    kubectl get all --namespace=storageos-etcd # only if the etcd cluster was deployed inside the Kubernetes cluster.
+    kubectl get storageclasses | grep "storageos"
     ```
 
-    > The `storageos-node` damonset pods will restart until they can connect to
-    > etcd
+### Step 8 - Applying a Licence to the Cluster
 
-## Step 6. Licence the cluster
+> ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.
 
-A cluster can operate without a licence for 24h. Follow the
-[licensing](/docs/operations/licensing/) page to apply a licence to your cluster.
+To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
