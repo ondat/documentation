@@ -1,10 +1,9 @@
 ---
-title: "ClusterID"
-linkTitle: ClusterID
+title: "Obtain a ClusterID"
+linkTitle: Obtain a ClusterID
 ---
 
-Every Ondat cluster has a unique ClusterID generated at bootstrap. A
-Ondat Licence is specific for a ClusterID.
+Every Ondat cluster has a unique ClusterID generated at bootstrap. An Ondat Licence is specific for a ClusterID.
 
 ## How to obtain the ClusterID
 
@@ -24,4 +23,4 @@ Created at:       2020-03-25T13:48:33Z (1 hour ago)
 Updated at:       2020-03-25T13:48:46Z (1 hour ago)
 ```
 
-Given the Cluster ID, the Ondat team can generate a licence.
+Given the Cluster ID, you can generate a license on the [SaaS Platform](https://portal.ondat.io/) following [this procedure](/docs/operations/licensing/#procedure).
