@@ -10,7 +10,7 @@ This guide will demonstrate how to install Ondat onto clusters that don't have d
 
 > 💡 This guide is recommended for **advanced users** who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.
 
-Below is a quick summary of the procedure that will be covered in this guide;
+Below is a quick summary of the procedure that will be covered in this guide:
 
 1. Install the Ondat kubectl plugin.
 1. Generate the Ondat deployment manifests for your use case.
