@@ -37,7 +37,7 @@ For those curious, in the past Ondat supported other Container Orchestrators (CO
 1. Download the following script and edit it to match your cluster's specifications.
 
     ```
-    curl -sO https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
+    curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
     ```
 
 1. Run the script below, with your Kubernetes CLI tool's context set to target your cluster:
