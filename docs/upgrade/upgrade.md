@@ -1,6 +1,6 @@
 ---
-title: "Upgrade Ondat"
-linkTitle: Upgrade Ondat
+title: "Ondat Upgrade"
+linkTitle: Ondat Upgrade
 ---
 # Overview
 

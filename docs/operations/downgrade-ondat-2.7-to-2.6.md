@@ -1,7 +1,6 @@
 ---
 title: "Downgrade Ondat from 2.7.0 to 2.6.0"
 linkTitle: Downgrade Ondat from 2.7.0 to 2.6.0
-weight: 150
 ---
 
 # Overview
