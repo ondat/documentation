@@ -1,4 +1,5 @@
 ---
+title: "Platform Upgrade"
 linkTitle: Platform Upgrade
 ---
 
