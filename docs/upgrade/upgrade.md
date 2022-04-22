@@ -54,13 +54,13 @@ This guide provides instructions how to upgrade Ondat.
         nodeContainer: "storageos/node:v2.7.0"
     ```
 
-### Step 3 - Scale Down The Stateful Applications To Zero
+### Step 3 - Scale Down Stateful Applications To Zero
 
 * Scale all of the stateful applications that use Ondat volumes to 0.
 
 ### Step 4 - Upgrade Ondat
 
-* Run the following command conduct the upgrade:
+* Run the following command to conduct the upgrade:
 
     ```bash
     kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints "<ETCD-IP1>:2379,<ETCD-IP2>:2379,<ETCD-IP3>:2379"
@@ -81,6 +81,6 @@ This guide provides instructions how to upgrade Ondat.
     kubectl get all --namespace=storageos-etcd
     ```
 
-### Step 6 - Scale Up The Stateful Applications
+### Step 6 - Scale Up Stateful Applications
 
 * Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.
