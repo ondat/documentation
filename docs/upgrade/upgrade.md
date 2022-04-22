@@ -72,9 +72,9 @@ This guide provides instructions how to upgrade Ondat.
 
 > 💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in `~/.kube/storageos/`.
 
-### Step 5 - Verifying The Ondat Upgrade 
+### Step 5 - Verifying The Ondat Upgrade
 
-* Run the following commands to inspect Ondat's resources are back online (the core components should all be in a `RUNNING` status) 
+* Run the following commands to inspect Ondat's resources are back online (the core components should all be in a `RUNNING` status)
 
     ```bash
     kubectl get all --namespace=storageos
@@ -83,4 +83,4 @@ This guide provides instructions how to upgrade Ondat.
 
 ### Step 6 - Scale Up The Stateful Applications
 
- - Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.
+* Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.

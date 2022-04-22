@@ -28,16 +28,16 @@ This guide will demonstrate how to enable protection for your orchestrator's rol
 
 * Add the following lines to the `StorageOSCluster` spec:
 
-	```yaml
-	 nodeManagerFeatures:
-	   upgradeGuard: "true"
-	```
+ ```yaml
+  nodeManagerFeatures:
+    upgradeGuard: "true"
+ ```
 
 * Alternatively, you can run the following command:
 
-	```bash
-	kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
-	```
+ ```bash
+ kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
+ ```
 
 * You will see new pods getting created, where one pod per node in a cluster called Node Manager.
 
