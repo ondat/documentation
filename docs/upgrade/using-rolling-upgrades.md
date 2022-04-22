@@ -1,15 +1,16 @@
 ---
 title: "Platform Upgrade"
-linkTitle: Platform Upgrade
+linkTitle: "Platform Upgrade"
+weight: 1
 ---
 
-# Overview
+## Overview
 
 This guide will demonstrate how to enable protection for your orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
 
 > ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
 
-# Prerequisites
+## Prerequisites
 
 > ⚠️ Make sure you have met the requirements of [configuring a Pod Disruption Budget (PDB)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/).
 
@@ -17,28 +18,30 @@ This guide will demonstrate how to enable protection for your orchestrator's rol
 
 > ⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.
 
+> ⚠️ OpenShift requires the internal registry to be available during the upgrade, however Ondat volumes may not be available. Therefore using Ondat for the internal registry is not recommended.
+
 > ⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.
 
-# Procedure
+## Procedure
 
-## Step 1 - Enable Node Manager and Upgrade Guard
+### Step 1 - Enable Node Manager & Upgrade Guard
 
-* Add the following lines to the StorageOSCluster spec:
+* Add the following lines to the `StorageOSCluster` spec:
 
-```
- nodeManagerFeatures:
-   upgradeGuard: "true"
-```
+	```yaml
+	 nodeManagerFeatures:
+	   upgradeGuard: "true"
+	```
 
 * Alternatively, you can run the following command:
 
-  ```
-  kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
-  ```
+	```bash
+	kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
+	```
 
-You will see new pods getting created, where one pod per node in a cluster called Node Manager.
+* You will see new pods getting created, where one pod per node in a cluster called Node Manager.
 
-## Step 2 - Rolling upgrade ready
+### Step 2 - Rolling Upgrades Is Ready
 
 Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!
 
