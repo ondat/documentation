@@ -32,7 +32,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
 
 > ⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.
 
-> ⚠️ Make sure that the nodes operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.
+> ⚠️ Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.
 
 ## Procedure
 
