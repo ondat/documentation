@@ -188,7 +188,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
                 - --etcd-repository=$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd  
         ```
 
-1. **`etcd-cluster`** - Modify the `3-etcd-cluster.yaml` manifest and apply the following changes.
+ 1. **`etcd-cluster`** - Modify the `3-etcd-cluster.yaml` manifest and apply the following changes.
     1. Locate the `storageos-etcd`  `CustomResource` YAML, navigate to the `storage` section and set the `storage` size value from `1Gi` to `256Gi`. For example;
 
         ```yaml
@@ -209,7 +209,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
                   storage: 256Gi
         ```
 
-1. **`storageos-operator`** - Modify the `0-storageos-operator.yaml` manifest and apply the following changes.
+ 1. **`storageos-operator`** - Modify the `0-storageos-operator.yaml` manifest and apply the following changes.
     1. Locate the `storageos-operator` `Deployment` YAML, navigate to the `manager` and `kube-rbac-proxy` containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;
 
          ```yaml
@@ -266,7 +266,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
           RELATED_IMAGE_UPGRADE_GUARD: $PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4
         ```
 
-1. **`storageos-cluster`**
+ 1. **`storageos-cluster`**
 
 > 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Cluster Operator Configuration](https://docs.ondat.io/docs/reference/cluster-operator/configuration) and [Cluster Operator Examples](https://docs.ondat.io/docs/reference/cluster-operator/examples) reference pages for more information.
 
