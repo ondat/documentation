@@ -1,29 +1,29 @@
 ---
 title: "Ondat Upgrade"
 linkTitle: Ondat Upgrade
+weight: 1
 ---
-# Overview
+## Overview
 
-This document details procedures to upgrade Ondat.
+This guide provides instructions how to upgrade Ondat.
 
-# Update an Ondat v2 cluster
+## Upgrading An Ondat `v2` Cluster
 
 ## Prerequisites
 
-> ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat v2.3](/docs/prerequisites/pidlimits) and that you check the init container logs to ensure your environments PID limits are set correctly.
+> ⚠️ Ensure that you have read the [PIDs prerequisite introduced in Ondat v2.3](/docs/prerequisites/pidlimits) and that you checked the init container logs to ensure your environments PID limits are set correctly.
 
-> 💡 Pull the new Ondat container image `storageos/node:v2.7.0` on the nodes beforehand so that the cluster spins up faster!
+> 💡 Pull down the new Ondat container image `storageos/node:v2.7.0` onto the nodes beforehand so that the cluster spins up faster.
 
 > 💡 Speak with our support team [here](/docs/support/) so we can assist you with your upgrade.
 
-> ⚠️ If you are upgrading to 2.7.0, you will only be able to downgrade to 2.6.0 due to the mapping changes made in the Data Plane. For more details, please look at the [release notes](/docs/release-notes).
+> ⚠️ If you are upgrading to `v2.7.0`, you will only be able to downgrade to `v2.6.0` due to the mapping changes made in the Data Plane. For more information, review the [release notes](/docs/release-notes).
 
 ## Procedure
 
-### Step 1 - Backup of all Ondat yaml files
+### Step 1 - Backup Ondat Deployment Manifests
 
-* Make sure you keep a backup of all the Ondat yaml files.
-* You can also backup the Statefulset yaml files to keep track of the replicas.
+* Make sure you keep a backup of all the Ondat YAML files. You can also backup the `StatefulSet` yaml files to keep track of the replicas.
 
     ```bash
     kubectl get pod -n storageos-operator -o yaml > storageos_operator.yaml
@@ -31,9 +31,9 @@ This document details procedures to upgrade Ondat.
     kubectl get statefulset --all-namespaces > statefulset-sizes.yaml
     ```
 
-### Step 2 - Generate yaml file to upgrade cluster
+### Step 2 - Generate The `storageos-config.yaml` Manifest
 
-* Run the following command to generate the `storageos-config.yaml` file that is used to upgrade your cluster based on your current configuration
+* Run the following commands to generate the `storageos-config.yaml` file that is used to upgrade your cluster based on your current configuration.
 
     ```bash
     SECRET_NAME=$(kubectl get storageoscluster -A -o=jsonpath='{.items[0].spec.secretRefName}')
@@ -47,39 +47,40 @@ This document details procedures to upgrade Ondat.
 
 * This file will include the manifest of 2 Kubernetes objects, the authentication Secret object and the StorageOS CR object.
 
-* Edit StorageOSCluster object in the `/tmp/storageos-config.yaml` file by removing all images in the image section and modify the `storageos/node` image to:
+* Edit `StorageOSCluster` object in the `/tmp/storageos-config.yaml` file by removing all images in the image section and modify the `storageos/node` image to:
 
-    ```
+    ```yaml
     images:
         nodeContainer: "storageos/node:v2.7.0"
     ```
 
-### Step 3 - Scale Ondat volumes to 0
+### Step 3 - Scale Down The Stateful Applications To Zero
 
-* Scale all stateful applications that use Ondat volumes to 0
+* Scale all of the stateful applications that use Ondat volumes to 0.
 
-### Step 4 - Run uninstall cluster command
+### Step 4 - Upgrade Ondat
 
-* Run the following command:
+* Run the following command conduct the upgrade:
 
-    ```
+    ```bash
     kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints "<ETCD-IP1>:2379,<ETCD-IP2>:2379,<ETCD-IP3>:2379"
     ```
 
 > 💡 The plugin uses the `--uninstall-stos-operator-namespace` argument because it uninstalls the cluster first and then reinstalls it with the new version.
 
-* The ETCD Endpoints should correspond to the endpoints you have in the `.spec.kvBackend` section of StorageOS object in the `/tmp/storageos-config.yaml` file.
+* The `etcd` endpoints should correspond to the endpoints you have in the `.spec.kvBackend` section of StorageOS object in the `/tmp/storageos-config.yaml` file.
 
 > 💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in `~/.kube/storageos/`.
 
-### Step 5 - Check for `RUNNING` states
+### Step 5 - Verifying The Ondat Upgrade 
 
-* Run the following command to check that all the Ondat pods have entered the `RUNNING` state
+* Run the following commands to inspect Ondat's resources are back online (the core components should all be in a `RUNNING` status) 
 
     ```bash
-    kubectl get pods -l app=storageos -A -w
+    kubectl get all --namespace=storageos
+    kubectl get all --namespace=storageos-etcd
     ```
 
-### Step 6 - Scale your stateful applications back up
+### Step 6 - Scale Up The Stateful Applications
 
-Congratulations, you now have the latest version of Ondat!
+ - Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.
