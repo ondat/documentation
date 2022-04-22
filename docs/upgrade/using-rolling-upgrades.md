@@ -39,7 +39,7 @@ This guide will demonstrate how to enable protection for your orchestrator's rol
  kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
  ```
 
-* You will see new pods getting created, where one pod per node in a cluster called Node Manager.
+* You will see new pods getting created, one pod per node in a cluster called Node Manager.
 
 ### Step 2 - Rolling Upgrades Is Ready
 
