@@ -23,7 +23,7 @@ This guide provides instructions on how to upgrade Ondat.
 
 ### Step 1 - Backup Ondat Deployment Manifests
 
-* Make sure you keep a backup of all the Ondat YAML files. You can also backup the `StatefulSet` yaml files to keep track of the replicas.
+* Make sure that you keep a backup of all the Ondat YAML files. You can also backup the `StatefulSet` yaml files to keep track of the replicas.
 
     ```bash
     kubectl get pod -n storageos-operator -o yaml > storageos_operator.yaml
