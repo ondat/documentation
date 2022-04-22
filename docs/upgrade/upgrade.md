@@ -5,7 +5,7 @@ weight: 1
 ---
 ## Overview
 
-This guide provides instructions how to upgrade Ondat.
+This guide provides instructions on how to upgrade Ondat.
 
 ## Upgrading An Ondat `v2` Cluster
 
