@@ -1,7 +1,7 @@
 ---
-title: "Air-Gap Install"
-linkTitle: "Air-Gap Install"
-weight: 1
+title: "Air-Gapped Install"
+linkTitle: "Air-Gapped Install"
+weight: 90
 ---
 
 ## Overview
