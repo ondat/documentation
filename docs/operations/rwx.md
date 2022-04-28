@@ -3,7 +3,7 @@ title: "ReadWriteMany"
 linkTitle: ReadWriteMany
 ---
 
-> ⚠️ Ondat Free Trial Licence or Enterprise Licence is required to create RWX Volumes.
+> ⚠️ Ondat Free Trial Licence or Enterprise Licence is required to create RWX Volumes. For more information, please visit [Licencing](/docs/operations/licensing/#types-of-licenses).
 
 Ondat supports ReadWriteMany (RWX) [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
