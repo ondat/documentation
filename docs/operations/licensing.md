@@ -17,7 +17,7 @@ You can use Ondat for free without any restrictions for 1 month.
 
 ## Free Forever
 
-You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes.
+You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes. Please note that [ReadWriteMany (RWX)](/docs/concepts/rwx/) access mode Persistent Volumes is not available in this tier.
 
 ## Enterprise Premium
 
