@@ -15,7 +15,7 @@ between all nodes in the cluster:
 | 5703          | TCP         | DirectFS                |
 | 5704          | TCP         | Dataplane Supervisor    |
 | 5705          | TCP         | REST API                |
-| 5711          | TCP & UDP   | Gossip service          |
+| 5710-5711     | TCP & UDP   | Gossip service          |
 | 25705-25960   | TCP         | RWX Volume Endpoints    |
 
 > 💡 Ondat also uses [ephemeral](https://en.wikipedia.org/wiki/Ephemeral_port)
