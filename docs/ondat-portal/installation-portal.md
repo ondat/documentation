@@ -14,7 +14,7 @@ This guide will demonstrate how to install the [Ondat SaaS Platform](https://por
 
 > ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
 
-> ⚠️ You must enable port 8883 for egress in your ACLs if a VPC is used.
+> ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.
 
 ## Procedure
 
