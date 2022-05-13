@@ -23,7 +23,7 @@ The answer is Ondat.
 In the first wave of Kubernetes adoption, the focus was on stateless workloads. These workloads did not care if a pod or node was killed. They can just move to another node in the cluster and restart with minimal fuss.
 What happens when we suddenly have data and state, well the obvious answer is that you need network attached storage which can be re-pointed to react in the same way as we have come to expect as for our stateless workloads.
 
-This is Ondat, delivering a data mesh using Kubernetes native constructs to power stateful applications. Ondat couples any storage to any Kubernetes cluster and, with the simple application of Kubernetes labels, also delivers advanced features such as:
+This is Ondat, delivering a data mesh for block storage using Kubernetes native constructs to power stateful applications. Ondat couples any storage to any Kubernetes cluster and, with the simple application of Kubernetes labels, also delivers advanced features such as:
 Encryption at a per Kubernetes volume level, allowing for safe multi-tenant operations.
 Topology aware placement of volumes to align with your availability zones and physical architecture to ensure your data compliance.
 Replication of data at a Kubernetes Volume making sure that the data you need is protected to deliver the business resilience required.
