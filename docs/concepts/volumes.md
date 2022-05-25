@@ -58,7 +58,7 @@ default. For more information on how to TRIM a filesystem, see [TRIM operations]
 
 ## Volume Resize
 
-Ondat  supports offline resize of volumes. This means that a volume cannot be
+Ondat supports offline resize of volumes. This means that a volume cannot be
 resized while it is in use. Furthermore, in order for a resize operation to
 take place the volume must not be attached to a node. This is to ensure that
 the volume is not in use.
