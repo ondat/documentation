@@ -13,15 +13,15 @@ You will need a license for Ondat if you want to make use of the full functional
 
 ## Free Trial
 
-You can use Ondat for free without any restrictions for 1 month.
+You can use Ondat with all features for free without any restrictions for 1 month.
 
-## Free Forever
+## Community Edition
 
-You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes. Please note that [ReadWriteMany (RWX)](/docs/concepts/rwx/) access mode Persistent Volumes is not available in this tier.
+Also known as 'Free Forever'. You can use Ondat with many features, including RWX volume support, for free without any time limit with a 1 TB usable capacity and up to 3 nodes.
 
 ## Enterprise Premium
 
-You can obtain a tailor-made license suitable for your needs with premium features. For more information, contact hello@ondat.io or message us via Intercom.
+You can obtain a tailor-made licence suitable for your needs with commercial support and a higher storage limit. For more information, contact hello@ondat.io or message us via Intercom.
 
 You can also book a demo with our customer success team [here](https://www.ondat.io/request-demo).
 
