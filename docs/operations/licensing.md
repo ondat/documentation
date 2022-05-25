@@ -21,7 +21,7 @@ Also known as 'Free Forever'. You can use Ondat with many features, including RW
 
 ## Enterprise Premium
 
-You can obtain a tailor-made license suitable for your needs with commercial support and a higher storage limit. For more information, contact hello@ondat.io or message us via Intercom.
+You can obtain a tailor-made licence suitable for your needs with commercial support and a higher storage limit. For more information, contact hello@ondat.io or message us via Intercom.
 
 You can also book a demo with our customer success team [here](https://www.ondat.io/request-demo).
 
