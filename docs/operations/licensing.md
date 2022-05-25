@@ -17,7 +17,7 @@ You can use Ondat with all features for free without any restrictions for 1 mont
 
 ## Community Edition
 
-Also known as 'Free Forever'. You can use Ondat with all features for free without any time limit with a 1 TB usable capacity and up to 3 nodes. 
+Also known as 'Free Forever'. You can use Ondat with all features for free without any time limit with a 1 TB usable capacity and up to 3 nodes.
 
 ## Enterprise Premium
 
