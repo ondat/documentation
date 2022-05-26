@@ -64,7 +64,7 @@ Failure modes are a complimentary feature of the Topology-Aware Placement
 functionality. Failure modes allow you to define how many replicas of a volume
 can become unavailable before the volume is marked as read-only. For more
 information , see the
-[failure mode concepts page](/docs/features/replication#failure-modes).
+[failure mode features page](/docs/features/replication#failure-modes).
 
 For example, assuming that your cluster has three topology zones, A, B and C,
 and your deployment has a master and two replicas, Ondat will attempt to
