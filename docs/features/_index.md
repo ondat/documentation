@@ -11,12 +11,11 @@ Ondat offers a wide range of features that would help you to manage your statefu
 
 * Delta Sync - replicas out of sync due to transient failures only transfer changed blocks
 
-* [Multiple Access Modes](/docs/features/rwx/) - dynamically provision ReadWriteOnce or ReadWriteMany volumes 
+* [Multiple Access Modes](/docs/features/rwx/) - dynamically provision ReadWriteOnce or ReadWriteMany volumes
 
 * Rapid Failover - quickly detects node failure and automates recovery actions without administrator intervention
 
 * [Data Encryption](/docs/features/encryption/) - both in transit and at rest
-
 
 * Scalability - disaggregated consensus means no single scheduling point of failure
 

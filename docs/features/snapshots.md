@@ -14,5 +14,3 @@ Customers often require backups for disaster recovery, auditing purposes and var
 1. The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster). The snapshot now lives within your cluster.
 1. Ondat Snapshots integrates with backup solutions like [Kasten](https://www.kasten.io) to provide backup and restore of Kubernetes stateful applications. Our feature integrates fully with Kasten, which offers free workflows for backing up Kubernetes data (e.g. to an S3 bucket if you are using AWS).
 1. Your volume is now backed up externally and can be retrieved and restored using Kasten.
-
-
