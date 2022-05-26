@@ -14,7 +14,7 @@ Compression can be enabled by setting the [label](/docs/reference/labels)
 
 Ondat utilises the [lz4 compression algorithm](https://lz4.github.io/lz4/)
 when writing to the backend store and when compressing [replication
-traffic](/docs/concepts/replication) before it is sent across the network.
+traffic](/docs/features/replication) before it is sent across the network.
 
 Ondat detects whether a block can be compressed or not by creating a
 heuristic that predicts the size of a compressed block. If the heuristic
@@ -27,5 +27,5 @@ uncompressible blocks. Ondat's patented on-disk format is used to tell
 whether individual blocks are compressed without overhead. As such volume
 compression can be dynamically enabled/disabled even while a volume is in use.
 
-When compression and [encryption](/docs/reference/encryption) are both enabled
+When compression and [encryption](/docs/features/encryption/) are both enabled
 for a volume, blocks are compressed then encrypted.

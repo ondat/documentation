@@ -76,5 +76,5 @@ For a walkthrough of how to resize a volume, see the [Volume Resize](/docs/opera
 
 Volumes can be configured on creation to have encryption-at-rest. Data
 is encrypted with XTS-AES and decrypted upon use. Please see
-the [Encryption](/docs/reference/encryption) reference page for
+the [Encryption](/docs/features/encryption/) reference page for
 more information.
