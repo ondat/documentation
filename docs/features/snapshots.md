@@ -1,6 +1,6 @@
 ---
 title: "Ondat Snapshots"
-linkTitle: "Snapshots"
+linkTitle: Snapshots
 ---
 
 # Overview
