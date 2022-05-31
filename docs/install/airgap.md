@@ -162,14 +162,14 @@ Below is a quick summary of the procedure that will be covered in this guide:
     ```bash
     grep --extended-regexp "RELATED|image:" *.yaml
     ```
- 
+
  2. You will also need to pull the kubernetes scheduler image for your release and push that to your private registry.
 
     ```bash
     export KUBERNETES_VERSION="v1.23.5"
     docker pull k8s.gcr.io/kube-scheduler:${KUBERNETES_VERSION}
     ```
-    
+
 ### Step 5 - Modify Deployment Manifests
 
  1. **`etcd-operator`** - Modify the `2-etcd-operator.yaml` manifest and apply the following changes.
