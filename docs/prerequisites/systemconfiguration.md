@@ -39,7 +39,14 @@ We require the following modules to be loaded:
 
 > ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO) cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.
 
-Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.
+In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately. The script [enable-lio.sh](https://github.com/storageos/init/blob/master/scripts/01-lio/enable-lio.sh) from Ondat's init container can be used to ensure that all kernel-level dependencies are installed, any errors will indicate which components are missing.
+
+For example, in Ubuntu versions prior to 22.04 several modules were not included in the base kernel configuration. The commands to install `linux-modules-extra` to obtain these additional modules required for Ondat were:
+
+```shell
+sudo apt-get update
+sudo apt-get install -y linux-modules-extra-$(uname -r)
+```
 
 ## Automatic Configuration
 
