@@ -24,7 +24,6 @@ The following distributions include the prerequisite modules but are not yet tes
 The following distributions are currently not supported:
 
 * Amazon Linux (lacks `target_core_mod` and `target_core_user`)
-* RancherOS (CSI is not supported on RancherOS)
 
 > 💡 If you require help with a specific issue with a listed distribution, [raise an issue on GitHub](https://github.com/ondat/documentation/issues) or reach out to us on our [Community Slack](https://slack.storageos.com)
 
