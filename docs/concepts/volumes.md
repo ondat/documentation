@@ -58,10 +58,10 @@ default. For more information on how to TRIM a filesystem, see [TRIM operations]
 
 ## Volume Resize
 
-Ondat v2.1 supports offline resize of volumes. This means that a volume
-cannot be resized while it is in use. Furthermore, in order for a resize
-operation to take place the volume must not be attached to a node. This is to
-ensure that the volume is not in use.
+Ondat supports offline resize of volumes. This means that a volume cannot be
+resized while it is in use. Furthermore, in order for a resize operation to
+take place the volume must not be attached to a node. This is to ensure that
+the volume is not in use.
 
 This means that if a Kubernetes pod is currently consuming a volume that a
 resize request has been issued for, the resize will not be actioned until the
