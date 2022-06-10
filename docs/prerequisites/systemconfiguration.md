@@ -6,6 +6,29 @@ weight: 100
 
 Ondat requires certain kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 
+## Distribution Specifics
+
+Current (non-EOL) versions of the following distributions are supported by default:
+
+* SUSE Linux Enterprise Server
+* Red Hat Enterprise Linux
+* CentOS
+* Debian
+* Ubuntu
+
+The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:
+
+* Bottlerocket
+* Google ContainerOS
+
+The following distributions are currently not supported:
+
+* Amazon Linux (lacks `target_core_mod` and `target_core_user`)
+
+> 💡 If you require help with a specific issue with a listed distribution, [raise an issue on GitHub](https://github.com/ondat/documentation/issues) or reach out to us on our [Community Slack](https://slack.storageos.com)
+
+## Kernel Modules
+
 We require the following modules to be loaded:
 
 * `target_core_mod`
@@ -16,57 +39,13 @@ We require the following modules to be loaded:
 
 > ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO) cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.
 
-> ⚠️ TCMU can be disabled using the [DISABLE_TCMU](/docs/reference/cluster-operator/configuration) StorageOSCluster spec parameter.
+In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately. The script [enable-lio.sh](https://github.com/storageos/init/blob/master/scripts/01-lio/enable-lio.sh) from Ondat's init container can be used to ensure that all kernel-level dependencies are installed, any errors will indicate which components are missing.
 
-Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.
+For example, in Ubuntu versions prior to 22.04 several modules were not included in the base kernel configuration. The commands to install `linux-modules-extra` to obtain these additional modules required for Ondat were:
 
-## Distribution Specifics
-
-The following distributions are supported by default:
-
-* RHEL 7.5
-* CentOS 7
-* Debian 9
-* Ubuntu Azure
-* RancherOS - Note CSI is not supported on RancherOS
-
-Ubuntu 16.04/18.04 requires the installation of additional packages.
-
-> ⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the necessary linux-image-extra package - [see below](/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels) for more information
-
-## Ubuntu Package Installation
-
-**Ubuntu 16.04/18.04 Generic** and **Ubuntu 16.04 GCE** require extra packages:
-
-Ubuntu 16.04:
-
-```bash
-sudo apt -y update
-sudo apt -y install linux-image-extra-$(uname -r)
-```
-
-Ubuntu 18.04+:
-
-```bash
-sudo apt -y update
-sudo apt -y install linux-modules-extra-$(uname -r)
-```
-
-## Ubuntu With AWS Or GCE Kernels
-
-**Ubuntu 16.04/18.04 AWS** and **Ubuntu 18.04 GCE** do not yet provide the
-linux-image-extra package. As such you should either use **Debian**, **CentOS**
-or **RHEL**, or install the non-cloud-provider optimised Ubuntu kernel.
-
-> ⚠️ Installing the non-cloud-provider optimised Ubuntu kernel is something that should only be done with full understanding of potential ramifications.
-
-```bash
-sudo apt -y update
-sudo apt install -y linux-virtual linux-image-extra-virtual
-sudo apt purge -y linux*aws
-
-# Reboot the machine
-sudo shutdown -r now
+```shell
+sudo apt-get update
+sudo apt-get install -y linux-modules-extra-$(uname -r)
 ```
 
 ## Automatic Configuration
