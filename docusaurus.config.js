@@ -25,14 +25,15 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
+          routeBasePath: '/',
           editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
-        },
+//        blog: {
+//          showReadingTime: true,
+//          // Please change this to your repo.
+//          editUrl:
+//            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+//        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -43,6 +44,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: 'XUGWZ3RNPX',
+        apiKey: '3f67973150fc739671ec3711e7112be5',
+        indexName: 'ondat_docs_search',
+
+      },
       navbar: {
         title: 'My Site',
         logo: {
@@ -52,19 +59,19 @@ const config = {
         items: [
           {
             type: 'docsVersionDropdown',
-          },  
+          },
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
+//          {to: '/blog', label: 'Blog', position: 'left'},
+//          {
+//            href: 'https://github.com/facebook/docusaurus',
+//            label: 'GitHub',
+//            position: 'right',
+//          },
         ],
       },
       footer: {
