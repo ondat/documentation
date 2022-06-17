@@ -21,7 +21,7 @@ The client auth certificates need the following filenames, in the Secret.
 
 ```bash
 kubectl create secret -n storageos generic \
-    etcd-client-tls \
+    storageos-etcd-secret \
     --from-file="etcd-client-ca.crt" \
     --from-file="etcd-client.crt" \
     --from-file="etcd-client.key"
@@ -45,7 +45,7 @@ spec:
     nodeContainer: "storageos/node:v2.7.0""
   namespace: "storageos"
   # External mTLS secured etcd cluster specific properties
-  tlsEtcdSecretRefName: "etcd-client-tls"                                   # Secret containing etcd client certificates in the same
+  tlsEtcdSecretRefName: "storageos-etcd-secret"                                   # Secret containing etcd client certificates in the same
   kvBackend:
     address: "https://storageos-etcd-cluster-client.storagos-etcd.svc:2379" # Etcd client service address.
     backend: "etcd"                                                         # Backend type
