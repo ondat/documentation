@@ -20,7 +20,7 @@ The client auth certificates need the following file names, in the Secret.
 * etcd-client.key - containing the etcd Client key
 
 ```bash
-kubectl create secret -n storageos-etcd generic \
+kubectl create secret -n storageos generic \
     etcd-client-tls \
     --from-file="etcd-client-ca.crt" \
     --from-file="etcd-client.crt" \
