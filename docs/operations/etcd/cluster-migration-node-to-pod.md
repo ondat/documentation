@@ -62,7 +62,7 @@ Kubernetes.
 1. Copy and amend the helper pod definition
     The following pod will be used as a bridge between the old etcd and the new
     one. Because of that, it is required to amend the env vars pointing to the
-    urls of the clusters and mount the TLS secrets to access both of them
+    URLs of the clusters and mount the TLS secrets to access both of them
 
     Create a file `helper-etcd-pod.yaml` with the following contents.
 
@@ -216,7 +216,7 @@ Kubernetes.
     ```
 
 1. Validate Ondat is connecting to the new etcd
-    Search for `ETCD connection established` and the new etcd url in the logs
+    Search for `ETCD connection established` and the new etcd URL in the logs
     of the daemonset pods.
 
    The pattern suggested must be found on any of the daemonset `node` pods.
