@@ -158,8 +158,7 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
     kubectl -n storageos logs etcdctl-migration -f
     ```
 
-    > ⚠️  Wait until the command outputs an integer (the number of keys synced)
-    > and leave the command running
+    > ⚠️  Wait until the command outputs an integer (the number of keys synced).
 
 1. Stop stateful applications
     Scale down to 0 replicas all applications using Ondat volumes and wait
@@ -193,9 +192,11 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
     ```
 
 1. Stop mirror
-    Ctrl-C on the shell with the helper pod executing the etcdctl mirror
-    command so the mirror stops running
 
+    ```bash
+    kubectl -n $STOS_NS delete pod etcdctl-migration
+    ```
+    
 1. Amend the StoragseOS Cluster CustomResource
 
     Edit the file `storageos-cluster.yaml`
