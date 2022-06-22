@@ -28,7 +28,7 @@ volume.
 In systems which have multiple `/var/lib/storageos/data/dev[\d+]` directories,
 two blob files are created per block device. This allows us to load-balance
 writes across multiple devices. In cases where dev directories are added after
-a period of run time, later directories are favoured for writes until the data
+a period of runtime, later directories are favoured for writes until the data
 is distributed evenly across the blob files.
 
 Metadata is kept in directories named `/var/lib/storageos/data/db[\d+]`. We

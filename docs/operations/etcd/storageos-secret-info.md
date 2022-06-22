@@ -13,7 +13,7 @@ authenticate Etcd traffic.
 
 ## How to create the certificates Secret
 
-The client auth certificates need the following file names, in the Secret.
+The client auth certificates need the following filenames, in the Secret.
 
 * etcd-client-ca.crt - containing the etcd Certificate Authority certificate
 * etcd-client.crt - containing the etcd Client certificate

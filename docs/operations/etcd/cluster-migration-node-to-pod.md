@@ -27,11 +27,13 @@ Kubernetes.
     local storage for Ondat's embedded `etcd` cluster operator deployment.
 
     __(Optional) Deploy Local path storageClass__
+
     ```bash
     kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
     ```
 
     __Deploy etcd__
+
     ```bash
     # Add ondat charts repo.
     $ helm repo add ondat https://ondat.github.io/charts
@@ -137,8 +139,7 @@ Kubernetes.
 
     > The helper pod creates a mirror between both etcd clusters
 
-1. Wait for the mirror 
-
+1. Wait for the mirror
 
     ```bash
     kubectl -n storageos logs etcdctl-migration -f
