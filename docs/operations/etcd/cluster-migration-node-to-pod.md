@@ -14,22 +14,31 @@ Kubernetes.
     ```bash
     $ kubectl get secret \
         -n storageos \
-        -oyaml \
+        -o yaml \
         etcd-client-tls > etcd-storageos-tls-secret-backup.yaml
     ```
 
 1. Deploy etcd cluster in Kubernetes
 
-    It is required to select a storageClass other than ondat/storageos to run
-    etcd in the cluster.
+    ⚠️  It is required to select a storageClass other than ondat/storageos to
+    run etcd in the cluster. If there is none available in the cluster, you can
+    run the following to deploy a [Local Path
+    Provisioner](https://github.com/rancher/local-path-provisioner) to provide
+    local storage for Ondat's embedded `etcd` cluster operator deployment.
 
+    __(Optional) Deploy Local path storageClass__
+    ```bash
+    kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
+    ```
+
+    __Deploy etcd__
     ```bash
     # Add ondat charts repo.
     $ helm repo add ondat https://ondat.github.io/charts
     # Install the chart in a namespace.
-    $ kubectl create namespace etcd-operator
     $ helm install storageos-etcd ondat/etcd-cluster-operator \
         --namespace etcd-operator \
+        --create-namespace \
         --set ondat.secret=storageos-etcd-secret-incluster \
         --set cluster.storageclass=standard # Choose the one according to your cluster
     ```
