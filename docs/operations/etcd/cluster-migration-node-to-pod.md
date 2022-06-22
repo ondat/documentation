@@ -84,7 +84,7 @@ Kubernetes.
       name: etcdctl-migration
     spec:
       containers:
-      - image: arau/tools:0.9
+      - image: quay.io/coreos/etcd:v3.5.3
         name: etcdctl
         env:
         - name: OLD_ETCD_ENDPOINT
