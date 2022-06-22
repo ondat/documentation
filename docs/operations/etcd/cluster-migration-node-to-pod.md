@@ -160,7 +160,8 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 
     > ⚠️  Wait until the command outputs an integer (the number of keys synced).
     > The number must not be 0. If that is the case:
-    > 1. Exec to the pod: 
+    >
+    > 1. Exec to the pod:
         ```
         kubectl -n storageos exec -it etcdctl-migration -- bash
         ```
@@ -312,7 +313,7 @@ The following script executes the same steps as the manual procedure.
     $ ./migrate-etcd-external-to-pods.sh \
         -s $ETCD_STORAGECLASS \
         -e $ETCD_ENDPOINT
-      
+
  Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
  Release "storageos-etcd" does not exist. Installing it now.
  NAME: storageos-etcd
