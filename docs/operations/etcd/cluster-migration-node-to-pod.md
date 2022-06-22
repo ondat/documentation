@@ -117,11 +117,11 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
         args:
         - "
             etcdctl make-mirror \
-            \$(OLD_ETCD_CMD_OPTS) \
-            --dest-cacert \$(NEW_ETCD_CERTS_DIR)/etcd-client-ca.crt \
-            --dest-cert \$(NEW_ETCD_CERTS_DIR)/etcd-client.crt \
-            --dest-key \$(NEW_ETCD_CERTS_DIR)/etcd-client.key \
-            \$(NEW_ETCD_ENDPOINT)
+            $(OLD_ETCD_CMD_OPTS) \
+            --dest-cacert $(NEW_ETCD_CERTS_DIR)/etcd-client-ca.crt \
+            --dest-cert $(NEW_ETCD_CERTS_DIR)/etcd-client.crt \
+            --dest-key $(NEW_ETCD_CERTS_DIR)/etcd-client.key \
+            $(NEW_ETCD_ENDPOINT)
         "
         volumeMounts:
         - mountPath: /etc/etcd_old/certs
@@ -154,10 +154,25 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 1. Wait for the mirror
 
     ```bash
-    kubectl -n storageos logs etcdctl-migration -f
+    $ kubectl -n storageos logs etcdctl-migration -f
+    893
     ```
 
     > ⚠️  Wait until the command outputs an integer (the number of keys synced).
+    > The number must not be 0. If that is the case:
+    > 1. Exec to the pod: 
+        ```
+        kubectl -n storageos exec -it etcdctl-migration -- bash
+        ```
+    > 2. Check env vars
+        ```
+        env | grep ETCD
+        ```
+    > 3. Check connectivity
+        ```
+        etcdctl $OLD_ETCD_CMD_OPTS member list;
+        etcdctl $NEW_ETCD_CMD_OPTS member list
+        ```
 
 1. Stop stateful applications
     Scale down to 0 replicas all applications using Ondat volumes and wait
@@ -252,8 +267,8 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 1. Start stateful applications
 
 1. Clean up
-    - Delete the helper pod `kubectl -n storageos delete -f helper-etcd-pod.yaml`
-    - Decommission the old etcd after a period of safety
+   - Decommission the old etcd after a period of safety.
+   - Delete old TLS secret from the StorageOS namespace when the etcd is decommissioned.
 
 ### Option B - Automated
 
