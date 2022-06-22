@@ -2,10 +2,23 @@
 title: "Etcd cluster migration"
 ---
 
+
 This procedure explains how to migrate data from an etcd cluster running
 outside a Kubernetes cluster towards an installation using the Ondat etcd
 Operator. As a result the Ondat cluster will use the etcd running as Pods in
 Kubernetes.
+
+## Prerequisites
+
+- Kubectl
+- Helm
+
+It is assumed that both etcd clusters in this procedure are using mTLS.
+
+## Procedure
+
+### Option A - Manual process
+
 
 1. Backup the TLS artifacts from the current etcd cluster (if current etcd uses mTLS)
     The Secret with the TLS material is usually named `storageos-etcd-secret`
@@ -241,3 +254,75 @@ Kubernetes.
 1. Clean up
     - Delete the helper pod `kubectl -n storageos delete -f helper-etcd-pod.yaml`
     - Decommission the old etcd after a period of safety
+
+### Option B - Automated
+
+> Before starting this procedure it is required to stop all usage of Ondat
+> volumes. Therefore any stateful applications need to be scaled to 0. 
+
+> ⚠️  It is required to select a storageClass other than ondat/storageos to run
+> etcd in the cluster. If there is none available in the cluster, you can run
+> the following to deploy a [Local Path
+> Provisioner](https://github.com/rancher/local-path-provisioner) to provide
+> local storage for Ondat's embedded `etcd` cluster operator deployment.
+
+__(Optional) Deploy Local path storageClass__
+```bash
+kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
+```
+
+The following script executes the same steps as the manual procedure. 
+
+
+1. Download script
+
+    ```bash
+    curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/migrate-etcd-external-to-pods.sh -o migrate-etcd-external-to-pods.sh \
+        && chmod +x migrate-etcd-external-to-pods.sh
+    ```
+
+1. Run the migration
+
+    ```bash
+    ETCD_STORAGECLASS=YOUR_STORAGE_CLASS # fill this env var
+    ETCD_ENDPOINT=PROD_ETCD_ENDPOINT # fill this env var
+    ./migrate-etcd-external-to-pods.sh -s $ETCD_STORAGECLASS -e $ETCD_ENDPOINT
+    ```
+
+    For example:
+
+    ```bash
+    $ ETCD_STORAGECLASS=local-path
+    $ ETCD_ENDPOINT="ip-192-168-17-118.eu-west-1.compute.internal:2379"
+    $ ./migrate-etcd-external-to-pods.sh \
+        -s $ETCD_STORAGECLASS \
+        -e $ETCD_ENDPOINT
+      
+	Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
+	Release "storageos-etcd" does not exist. Installing it now.
+	NAME: storageos-etcd
+	LAST DEPLOYED: Wed Jun 22 16:44:43 2022
+	NAMESPACE: etcd-operator
+	STATUS: deployed
+	REVISION: 1
+	TEST SUITE: None
+	Wating for etcd to be ready
+	...........................
+	Etcd is ready
+	pod/etcdctl-migration created
+	Wating for the mirror
+	......................
+	Mirror between etcds is running successfully
+	Backing up the StorageOSCluster configuration
+	Stopping Ondat
+	storageoscluster.storageos.com "storageoscluster" deleted
+	Stopping etcd mirror
+	pod "etcdctl-migration" deleted
+	Starting Ondat
+	storageoscluster.storageos.com/storageoscluster created
+	Wating for Ondat to be ready
+	...........
+	Ondat is ready
+	Checking that Ondat is pointing to the new etcd cluster in the node container logs:
+			success!
+    ```
