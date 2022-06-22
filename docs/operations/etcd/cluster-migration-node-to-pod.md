@@ -19,7 +19,6 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 
 ### Option A - Manual process
 
-
 1. Backup the TLS artifacts from the current etcd cluster (if current etcd uses mTLS)
     The Secret with the TLS material is usually named `storageos-etcd-secret`
     or `etcd-client-tls`
@@ -196,7 +195,7 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
     ```bash
     kubectl -n $STOS_NS delete pod etcdctl-migration
     ```
-    
+
 1. Amend the StoragseOS Cluster CustomResource
 
     Edit the file `storageos-cluster.yaml`
@@ -259,7 +258,7 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 ### Option B - Automated
 
 > Before starting this procedure it is required to stop all usage of Ondat
-> volumes. Therefore any stateful applications need to be scaled to 0. 
+> volumes. Therefore any stateful applications need to be scaled to 0.
 
 > ⚠️  It is required to select a storageClass other than ondat/storageos to run
 > etcd in the cluster. If there is none available in the cluster, you can run
@@ -268,12 +267,12 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 > local storage for Ondat's embedded `etcd` cluster operator deployment.
 
 __(Optional) Deploy Local path storageClass__
+
 ```bash
 kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
 ```
 
-The following script executes the same steps as the manual procedure. 
-
+The following script executes the same steps as the manual procedure.
 
 1. Download script
 
@@ -299,31 +298,31 @@ The following script executes the same steps as the manual procedure.
         -s $ETCD_STORAGECLASS \
         -e $ETCD_ENDPOINT
       
-	Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
-	Release "storageos-etcd" does not exist. Installing it now.
-	NAME: storageos-etcd
-	LAST DEPLOYED: Wed Jun 22 16:44:43 2022
-	NAMESPACE: etcd-operator
-	STATUS: deployed
-	REVISION: 1
-	TEST SUITE: None
-	Wating for etcd to be ready
-	...........................
-	Etcd is ready
-	pod/etcdctl-migration created
-	Wating for the mirror
-	......................
-	Mirror between etcds is running successfully
-	Backing up the StorageOSCluster configuration
-	Stopping Ondat
-	storageoscluster.storageos.com "storageoscluster" deleted
-	Stopping etcd mirror
-	pod "etcdctl-migration" deleted
-	Starting Ondat
-	storageoscluster.storageos.com/storageoscluster created
-	Wating for Ondat to be ready
-	...........
-	Ondat is ready
-	Checking that Ondat is pointing to the new etcd cluster in the node container logs:
-			success!
+ Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
+ Release "storageos-etcd" does not exist. Installing it now.
+ NAME: storageos-etcd
+ LAST DEPLOYED: Wed Jun 22 16:44:43 2022
+ NAMESPACE: etcd-operator
+ STATUS: deployed
+ REVISION: 1
+ TEST SUITE: None
+ Wating for etcd to be ready
+ ...........................
+ Etcd is ready
+ pod/etcdctl-migration created
+ Wating for the mirror
+ ......................
+ Mirror between etcds is running successfully
+ Backing up the StorageOSCluster configuration
+ Stopping Ondat
+ storageoscluster.storageos.com "storageoscluster" deleted
+ Stopping etcd mirror
+ pod "etcdctl-migration" deleted
+ Starting Ondat
+ storageoscluster.storageos.com/storageoscluster created
+ Wating for Ondat to be ready
+ ...........
+ Ondat is ready
+ Checking that Ondat is pointing to the new etcd cluster in the node container logs:
+   success!
     ```
