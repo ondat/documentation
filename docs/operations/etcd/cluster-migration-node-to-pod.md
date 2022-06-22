@@ -90,10 +90,16 @@ Kubernetes.
           value: "--endpoints $(OLD_ETCD_ENDPOINT) --cacert $(OLD_ETCD_CERTS_DIR)/etcd-client-ca.crt --key $(OLD_ETCD_CERTS_DIR)/etcd-client.key --cert $(OLD_ETCD_CERTS_DIR)/etcd-client.crt"
         - name: NEW_ETCD_CMD_OPTS
           value: "--endpoints $(NEW_ETCD_ENDPOINT) --cacert $(NEW_ETCD_CERTS_DIR)/etcd-client-ca.crt --key $(NEW_ETCD_CERTS_DIR)/etcd-client.key --cert $(NEW_ETCD_CERTS_DIR)/etcd-client.crt"
-        command:
-        - sleep
+        command: [ "/bin/sh", "-c" ]
         args:
-        - "3600"
+        - "
+            etcdctl make-mirror \
+            \$(OLD_ETCD_CMD_OPTS) \
+            --dest-cacert \$(NEW_ETCD_CERTS_DIR)/etcd-client-ca.crt \
+            --dest-cert \$(NEW_ETCD_CERTS_DIR)/etcd-client.crt \
+            --dest-key \$(NEW_ETCD_CERTS_DIR)/etcd-client.key \
+            \$(NEW_ETCD_ENDPOINT)
+        "
         volumeMounts:
         - mountPath: /etc/etcd_old/certs
           name: cert-dir-old
@@ -120,19 +126,13 @@ Kubernetes.
     kubectl -n storageos create -f ./helper-etcd-pod.yaml
     ```
 
-1. Mirror old etcd to new cluster
-    On a new shell, exec into the helper pod
+    > The helper pod creates a mirror between both etcd clusters
+
+1. Wait for the mirror 
+
 
     ```bash
-    $ kubectl -n storageos exec -it etcdctl-migration -- bash
-
-    # env vars are loaded from the yaml manifest
-    root@etcdctl-migration:/# etcdctl make-mirror \
-        $OLD_ETCD_CMD_OPTS \
-        --dest-cacert $NEW_ETCD_CERTS_DIR/etcd-client-ca.crt \
-        --dest-cert $NEW_ETCD_CERTS_DIR/etcd-client.crt \
-        --dest-key $NEW_ETCD_CERTS_DIR/etcd-client.key \
-        $NEW_ETCD_ENDPOINT
+    kubectl -n storageos logs etcdctl-migration -f
     ```
 
     > ⚠️  Wait until the command outputs an integer (the number of keys synced)
