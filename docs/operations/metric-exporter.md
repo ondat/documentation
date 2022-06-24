@@ -16,6 +16,7 @@ spec:
 > ⚠️ On OCP you may need to follow their instructions for enabling monitoring of user-defined projects, [here](https://docs.openshift.com/container-platform/4.8/monitoring/enabling-monitoring-for-user-defined-projects.html)
 
 ## Example setup
+
 Here’s an example [ServiceMonitor](https://prometheus-operator.dev/docs/operator/design/#servicemonitor) resource that scrapes our metrics endpoints:
 
 ```yaml
