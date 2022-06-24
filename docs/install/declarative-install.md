@@ -129,7 +129,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 * Ensure that the [Helm 3](https://helm.sh/) CLI utility is installed on your local machine and is available in your `$PATH`:
   * [helm](https://helm.sh/docs/intro/install/)
 
-#### Step 2 - Setup An `etcd` Cluster (External etcd) 
+#### Step 2 - Setup An `etcd` Cluster (External etcd)
 
 * If you are installing `etcd` externally, ensure that you have deployed the cluster before installing Ondat through the Helm chart. There are two different methods listed below with instructions on how to deploy an `etcd` cluster;
 
@@ -141,9 +141,9 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 #### Step 2 - Setup a `StorageClass` for `etcd` (Internal etcd)
 
-* If you are installing `etcd` inside the cluster, ensure that you have at least 3 (recommend 5) nodes ready to ensure high availability. It is recommended that these nodes are placed in different physical or virtual locations (ie. Datacenters or availability zones) for maximum resilience. 
+* If you are installing `etcd` inside the cluster, ensure that you have at least 3 (recommend 5) nodes ready to ensure high availability. It is recommended that these nodes are placed in different physical or virtual locations (ie. Datacenters or availability zones) for maximum resilience.
 
-* Before installing Ondat with `etcd`, create the `StorageClass` that you want to use for `etcd`. Note that this cannot be `storageos` as Ondat depends on etcd to function. The following procedure will install a local path `StorageClass` that will work in all configurations, ideally there is another more resilient option (eg. Gp3 on AWS) available that can be used instead. 
+* Before installing Ondat with `etcd`, create the `StorageClass` that you want to use for `etcd`. Note that this cannot be `storageos` as Ondat depends on etcd to function. The following procedure will install a local path `StorageClass` that will work in all configurations, ideally there is another more resilient option (eg. Gp3 on AWS) available that can be used instead.
 
 1. By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a [Local Path Provisioner](https://github.com/rancher/local-path-provisioner) to provide local storage for Ondat's embedded `etcd` cluster operator deployment.
 
@@ -167,7 +167,6 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
     ```
 
 > ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
-
 
 #### Step 3 - Configure Ondat's Helm Chart Repository
 
@@ -194,7 +193,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 ##### Declarative (Recommended)
 
 1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml) configuration file, rename it to `custom-values.yaml`, then ensure that the following configurable parameters have been populated before beginning the installation.
-    * [`ondat-operator.cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml#L23) 
+    * [`ondat-operator.cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml#L23)
 
     ```yaml
         # Password to authenticate to the StorageOS API with. This must be at least
@@ -231,20 +230,19 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 ##### Interactive
 
-1. Define and export the `STORAGEOS_PASSWORD` environment variable that will be used to manage your Ondat instance. 
+1. Define and export the `STORAGEOS_PASSWORD` environment variable that will be used to manage your Ondat instance.
 
     ```bash
     export STORAGEOS_PASSWORD="storageos"
     ```
 
-1. **If you are using an internal etcd cluster**, define and export a `ETCD_STORAGECLASS` environment variable, where the value will be the StorageClass to use for etcd volumes. 
+1. **If you are using an internal etcd cluster**, define and export a `ETCD_STORAGECLASS` environment variable, where the value will be the StorageClass to use for etcd volumes.
 
     ```bash
     export ETCD_STORAGECLASS="local-path"
     ```
 
 1. **If you are using an external etcd cluster**, define and export a `ETCD_ENDPOINTS` environment variable, where the value will be a list of `etcd` endpoints as comma-separated values noted down earlier in **Step 2**.
-
 
     ```bash
     export ETCD_ENDPOINTS="203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379"
