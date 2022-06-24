@@ -1,5 +1,14 @@
 #README
 
+For anyone working on the UX/UI on this repo, the doc search is still being
+implemented. The _category_.yml file in each subdirectory of docs/ is to
+ensure that the side bar renders properly. The pages in the versioned_docs/
+folder are pre-built static html files, and won't render properly in docusaurus
+yet.
+
+===
+
+
 [![Documentation Rendering](https://github.com/ondat/documentation/actions/workflows/doc-rendering.yml/badge.svg)](https://github.com/ondat/documentation/actions/workflows/doc-rendering.yml)
 [![Lint and Link Checking](https://github.com/ondat/documentation/actions/workflows/doc-linting.yml/badge.svg)](https://github.com/ondat/documentation/actions/workflows/doc-linting.yml)
 
