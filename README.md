@@ -1,13 +1,12 @@
-#README
+# README
 
-For anyone working on the UX/UI on this repo, the doc search is still being
+For anyone working on the UX/UI on this repository, the doc search is still being
 implemented. The _category_.yml file in each subdirectory of docs/ is to
 ensure that the side bar renders properly. The pages in the versioned_docs/
-folder are pre-built static html files, and won't render properly in docusaurus
+folder are pre-built static HTML files, and won't render properly in docusaurus
 yet.
 
 ===
-
 
 [![Documentation Rendering](https://github.com/ondat/documentation/actions/workflows/doc-rendering.yml/badge.svg)](https://github.com/ondat/documentation/actions/workflows/doc-rendering.yml)
 [![Lint and Link Checking](https://github.com/ondat/documentation/actions/workflows/doc-linting.yml/badge.svg)](https://github.com/ondat/documentation/actions/workflows/doc-linting.yml)
@@ -15,7 +14,7 @@ yet.
 This repository contains the Ondat Markdown documentation content published [here](https://docs.ondat.io).
 The documentation is readable directly out of this repository without needing any extra rendering steps.
 
-The `main` branch is the *latest* version of the documentation and is automatically pushed to <https://docs.ondat.io>.
+The `main` branch is the _latest_ version of the documentation and is automatically pushed to <https://docs.ondat.io>.
 
 # Contribute
 
@@ -90,6 +89,7 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 
 * Create a Pull Request and document your contribution and
 * an Ondat team member will review your PR contribution and merge it
+
 ```
 
 # Docusaurus Engine Readme
@@ -100,13 +100,17 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 ### Installation
 
 ```
+
 $ yarn
+
 ```
 
 ### Local Development
 
 ```
+
 $ yarn start
+
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -114,7 +118,9 @@ This command starts a local development server and opens up a browser window. Mo
 ### Build
 
 ```
+
 $ yarn build
+
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
@@ -122,7 +128,9 @@ This command generates static content into the `build` directory and can be serv
 ### Deployment
 
 ```
+
 $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

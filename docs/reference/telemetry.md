@@ -37,7 +37,7 @@ An exhaustive list of information included in the crash report is below:
 
 Ondat will perform a "latest version check" using a DNS query in order to
 inform administrators that a new version is available. Ondat will also send
-anonymized node ids, cluster ID and Ondat version information to Ondat
+anonymized node IDs, cluster ID and Ondat version information to Ondat
 using a DNS query. The information that we send in the query is encoded as well
 as being anonymized. This query allows us to inform Cluster admins when
 Ondat upgrades are available in the Ondat GUI and in the logs.
