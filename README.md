@@ -1,10 +1,11 @@
 # README
 
-For anyone working on the UX/UI on this repository, the doc search is still being
-implemented. The _category_.yml file in each subdirectory of docs/ is to
-ensure that the side bar renders properly. The pages in the versioned_docs/
-folder are pre-built static HTML files, and won't render properly in docusaurus
-yet.
+For anyone working on the UX/UI on this repo, the doc search is still being
+implemented. The \_category\_.yml file in each subdirectory of docs/ is to
+ensure that the side bar renders properly. The pages in the versioned\_docs/
+folder are pre-built static html files, and won't render properly in docusaurus
+yet, so I've deactivated them. If you want to try to work with them just remove
+the underscore from underneath the \_versioned\_docs/ and \_versions.json files
 
 ===
 
@@ -90,12 +91,11 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 * Create a Pull Request and document your contribution and
 * an Ondat team member will review your PR contribution and merge it
 
-```
+## Docusaurus Engine Readme
+## How to run these docs locally.
 
-# Docusaurus Engine Readme
-# How to run these docs locally.
-
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern 
+static website generator.
 
 ### Installation
 
@@ -113,7 +113,8 @@ $ yarn start
 
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server and opens up a browser window.
+Most changes are reflected live without having to restart the server.
 
 ### Build
 
@@ -123,7 +124,8 @@ $ yarn build
 
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This command generates static content into the `build` directory and can be 
+served using any static contents hosting service.
 
 ### Deployment
 
