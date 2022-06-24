@@ -28,7 +28,7 @@ k8s
 
 * Etcd in Production: We have added support for putting ETCD in your cluster in a production environment
 * Modified CSI provisioner to work with Snapshots
-* Ondat volumes metrics exporter: we have added support for Prometheus Endpoint to allow users to view metrics on Ondat Volumes
+* Ondat volumes metrics exporter: we have added a Prometheus endpoint to allow users to view metrics for Ondat Volumes
 
 Control Plane
 
