@@ -7,10 +7,12 @@ weight: 1
 
 This guide will demonstrate how to install Ondat onto a [Kubernetes](https://kubernetes.io/docs/setup/) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/). Ondat requires an `etcd` cluster to successfully run, which can be deployed through two different methods listed below;
   
-  1. **Embedded `etcd` Deployment** - deploy an `etcd` cluster operator into your Kubernetes cluster, recommended for **non-production** environments.
-  1. **External `etcd` Deployment** - deploy an `etcd` cluster in dedicated virtual machines, recommended for **production** environments.
+  1. **Embedded `etcd` Deployment** - deploy an `etcd` cluster operator into your Kubernetes cluster
+  1. **External `etcd` Deployment** - deploy an `etcd` cluster in dedicated virtual machines
 
 > 💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the [Install](https://docs.ondat.io/docs/install/) section and choose the appropriate installation guide for your Kubernetes distribution.
+
+> 💡 This guide outlines an *imperative* installation using our `kubectl` plugin. Ondat can also be [installed declaratively](/docs/install/declarative-install/) using either Helm or the aforementioned plugin.
 
 ## Prerequisites
 
