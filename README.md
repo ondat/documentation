@@ -1,9 +1,9 @@
 # README
 
-For anyone working on the UX/UI on this repo, the doc search is still being
+For anyone working on the UX/UI on this repository, the doc search is still being
 implemented. The \_category\_.yml file in each subdirectory of docs/ is to
 ensure that the side bar renders properly. The pages in the versioned\_docs/
-folder are pre-built static html files, and won't render properly in docusaurus
+folder are pre-built static HTML files, and won't render properly in docusaurus
 yet, so I've deactivated them. If you want to try to work with them just remove
 the underscore from underneath the \_versioned\_docs/ and \_versions.json files
 
@@ -92,16 +92,17 @@ Branch 'new-use-case' set up to track remote branch 'new-use-case' from 'origin'
 * an Ondat team member will review your PR contribution and merge it
 
 ## Docusaurus Engine Readme
-## How to run these docs locally.
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern 
+## How to run these docs locally
+
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern
 static website generator.
 
 ### Installation
 
 ```
 
-$ yarn
+yarn
 
 ```
 
@@ -109,7 +110,7 @@ $ yarn
 
 ```
 
-$ yarn start
+yarn start
 
 ```
 
@@ -120,18 +121,18 @@ Most changes are reflected live without having to restart the server.
 
 ```
 
-$ yarn build
+yarn build
 
 ```
 
-This command generates static content into the `build` directory and can be 
+This command generates static content into the `build` directory and can be
 served using any static contents hosting service.
 
 ### Deployment
 
 ```
 
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
+GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 
 ```
 
