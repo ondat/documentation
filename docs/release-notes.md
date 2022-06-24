@@ -18,6 +18,28 @@ The latest CLI release is `2.7.0`, available from
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
+## 2.8.0 - Release 2022-06-29
+2.8.0 Release Notes
+### New
+k8s
+* Etcd in Production: We have added support for putting ETCD in your cluster in a production environment
+* Modified CSI provisioner to work with Snapshots
+* Ondat volumes metrics exporter: we have added support for Prometheus Endpoint to allow users to view metrics on Ondat Volumes
+
+Control Plane
+* We have relaxed some Ondat specific security checks for the ReadWriteOnce [Node] volumes that we were doing in the control plane ahead of the new volume mode ReadWriteOncePod which is being introduced in k8s 1.22. This will align the Ondat RWO volumes with the spec and we will in a future release also implement support for RWOP (https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for users that wish to implement these existing controls. 
+  * Please note that the relaxation of these security checks could mean that Deployment objects using RWO volumes (if a rolling strategy is used for example) will be able to mount the volume concurrently on the same node, for this reason we suggest users are creating workloads using stateful sets or use RWX volumes for these deployments."
+
+Data Plane
+* Snapshot GA: we added the Snapshot feature to allow users to back up their Ondat data outside of their Kubernetes clusters in conjunction with a backup solution
+
+Portal Manager
+* Automatic licencing: we added a feature to allow automatic deployment of licence to your cluster when you connect to our Ondat SaaS Platform
+
+### Fixed
+k8s
+* Fixed a bug where the StorageOS operator would occasionally restart 
+
 ## 2.7.0 - Released 2022-04-11
 
 ### New
