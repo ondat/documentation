@@ -1,0 +1,1380 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.90.0" />
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="shortcut icon" href="/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/v1.x/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/v1.x/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/v1.x/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/v1.x/favicons/android-192x192.png" sizes="192x192">
+
+<title>Policies | </title><meta property="og:title" content="Policies" />
+<meta property="og:description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ Note: Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://docs.ondat.io/v1.x/docs/concepts/policies/" /><meta property="article:section" content="docs" />
+
+
+
+<meta itemprop="name" content="Policies">
+<meta itemprop="description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ Note: Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page.">
+
+<meta itemprop="wordCount" content="60">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Policies"/>
+<meta name="twitter:description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ Note: Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page."/>
+
+
+
+<link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
+
+
+
+<link rel="preload" href="/v1.x/scss/main.min.fb03b4520433490e70d1855f7f5ccbcf8a9a4f4783328c7c21243c1dbd3945eb.css" as="style">
+<link href="/v1.x/scss/main.min.fb03b4520433490e70d1855f7f5ccbcf8a9a4f4783328c7c21243c1dbd3945eb.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+
+
+
+<script
+  src="https://unpkg.com/lunr@2.3.8/lunr.min.js"
+  integrity="sha384-vRQ9bDyE0Wnu+lMfm57BlYLO0/XauFuKpVsZPs7KEDwYKktWi5+Kz3MP8++DFlRY"
+  crossorigin="anonymous"></script>
+
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"
+  integrity=""
+  crossorigin="anonymous"></script>
+<link href="/css/storageos.css" rel="stylesheet">
+<script> (function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:1025326,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv='); </script>
+<script src="/js/enable-link-tab.js"></script>
+
+
+    
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
+
+
+    <title>Policies | </title>
+  </head>
+  <body class="td-page">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    <header>
+      <div id="ondat-lp-header">
+  <div class="ondat-lp-header-wrapper">
+    <div class="ondat-lp-header-wrapper-left">
+      <a class="navbar-brand" href="https://ondat.io">
+        <svg width="135" height="24" viewBox="0 0 135 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M48.8466 13.2064V10.5821c0-4.27515 2.2857-6.56086 6.9841-6.56086 4.8254.0 6.9418 2.20106 6.9418 6.56086v2.6243c0 4.2328-2.2857 6.5609-6.9418 6.5609C50.963 19.8096 48.8466 17.6085 48.8466 13.2064zm10.836-2.6243C59.6826 8.0424 58.836 6.94188 55.8731 6.94188c-2.963.0-3.8519 1.10052-3.8519 3.64022v2.6243c0 2.5397.846600000000002 3.6402 3.8519 3.6402 2.9629.0 3.8095-1.0582 3.8095-3.6402V10.5821z" fill="#1239b8"/><path d="M68.91 18.074C68.91 19.1745 68.6561 19.4285 67.5555 19.4285H67.1746C66.074 19.4285 65.8201 19.1745 65.8201 18.074V9.90469C65.8201 5.96818 68.0635 3.97876 72.4656 3.97876 77.0793 3.97876 79.0687 5.96818 79.0687 9.90469V18.074C79.0687 19.1745 78.8148 19.4285 77.7143 19.4285h-.381C76.2328 19.4285 75.9788 19.1745 75.9788 18.074V9.90469C75.9788 7.83061 75.2169 6.94172 72.5079 6.94172 69.7989 6.94172 68.9947 7.87294 68.9947 9.90469V18.074H68.91z" fill="#1239b8"/><path d="M95.1534 13.5026C95.1534 17.6931 92.9947 19.7248 88.6772 19.7248 84.1481 19.7248 82.2433 17.5237 82.2433 13.5026v-2.963c0-4.06347 1.7778-6.26453 6.2646-6.26453 2.5397.0 4.1905.80423 4.9524 2.45502V1.31211C93.4603.719513 93.6296.592529 94.1799.592529H94.3492C94.9418.592529 95.0687.761841 95.0687 1.31211V13.5026H95.1534zm-11.2593.0C83.8941 16.7618 85.037 18.2433 88.7195 18.2433c3.64030000000001.0 4.8254-1.4815 4.8254-4.7407V10.4973C93.5449 7.23803 92.4021 5.75655 88.7195 5.75655 85.0793 5.75655 83.8941 7.23803 83.8941 10.4973v3.0053z" fill="#017efa"/><path d="M111.323 19.0053C111.323 19.5979 111.153 19.7249 110.603 19.7249H110.434C109.841 19.7249 109.714 19.5556 109.714 19.0053V17.3122C108.952 18.9207 107.259 19.7672 104.762 19.7672c-4.487.0-6.2646-2.2434-6.2646-6.2645V10.4974C98.4974 6.43388 100.317 4.27515 104.931 4.27515c4.27500000000001.0 6.476 2.07407 6.476 6.22225v8.5079H111.323zm-11.302-5.5026c0 3.2592 1.143 4.7407 4.82599999999999 4.7407 3.682.0 4.825-1.4815 4.825-4.7407V10.4974c0-3.25929-1.143-4.74077-4.825-4.74077C101.164 5.75663 100.021 7.23811 100.021 10.4974v3.0053z" fill="#017efa"/><path d="M113.862 5.3756C113.862 4.99465 113.947 4.86766 114.413 4.78301l1.947-.21164L116.656 1.14279C116.741.677185 116.868.592529 117.249.592529H117.418C117.884.592529 117.968.761841 117.968 1.14279V4.57137h5.461C124.021 4.57137 124.148 4.74068 124.148 5.29094v.12699C124.148 5.92586 124.021 6.1375 123.429 6.1375h-5.461v8.4233c0 2.709 1.101 3.7248 3.133 3.7248C122.159 18.2856 123.09 18.1587 123.979 17.9047 124.444 17.7354 124.698 17.947 124.698 18.4973V18.6243C124.698 19.1322 124.529 19.3438 123.979 19.4708 123.132 19.7248 122.201 19.8518 121.143 19.8518c-3.217.0-4.783-1.7778-4.783-5.2487V6.05285h-1.947C114.032 6.05285 113.862 5.88353 113.862 5.50258V5.3756z" fill="#017efa"/><path d="M130.794 4.78311C130.794 4.95242 130.751 4.99475 130.582 4.99475H129.905v2.1164C129.905 7.32279 129.862 7.36512 129.651 7.36512H129.566C129.355 7.36512 129.312 7.32279 129.312 7.11115V4.99475H128.635C128.466 4.99475 128.423 4.95242 128.423 4.78311V4.69846C128.423 4.52914 128.466 4.48682 128.635 4.48682h1.947C130.751 4.48682 130.794 4.52914 130.794 4.69846V4.78311zM134.392 7.11115C134.392 7.32279 134.349 7.36512 134.138 7.36512H134.053C133.841 7.36512 133.799 7.32279 133.799 7.11115V4.99475L133.206 7.06883C133.164 7.28047 133.079 7.36512 132.825 7.36512 132.656 7.36512 132.529 7.28047 132.444 7.06883L131.852 4.99475v2.1164C131.852 7.32279 131.81 7.36512 131.598 7.36512H131.513C131.302 7.36512 131.259 7.32279 131.259 7.11115V4.86777c0-.25397.12700000000001-.38095.381-.38095H131.894C132.148 4.48682 132.318 4.65613 132.402 4.95242L132.825 6.60322 133.291 4.86777C133.333 4.57147 133.503 4.48682 133.841 4.48682H133.968C134.222 4.48682 134.349 4.6138 134.349 4.86777V7.11115H134.392z" fill="#017efa"/><path d="M0 7.83057V16.1692l10.1587-4.1905L0 7.83057z" fill="#017efa"/><path d="M10.1587 11.9788l8.9736-3.64018V0L0 7.83069 10.1587 11.9788z" fill="#1239b8"/><path d="M0 16.1692l19.1323 7.8307V15.6613l-8.9736-3.6825L0 16.1692z" fill="#0bbbef"/><path d="M30.0106 11.9787l10.1587 4.1905V7.83057L30.0106 11.9787z" fill="#017efa"/><path d="M40.1692 7.83069 20.9946.0V8.33862l9.0159 3.64018L40.1692 7.83069z" fill="#0bbbef"/><path d="M20.9946 15.6613v8.3386l19.1746-7.8307-10.1587-4.1904-9.0159 3.6825z" fill="#1239b8"/></g><defs><clipPath id="clip0"><rect width="134.392" height="24" fill="#fff"/></clipPath></defs></svg>
+        <span class="text-uppercase font-weight-bold"></span>
+      </a>
+      <ul class="ondat-lp-menu">
+        <li class="ondat-lp-menu-drop">
+          <a href="#">Platform</a>
+          <ul>
+            <li><a href="https://ondat.io/platform/platform-overview">Platform Overview</a></li>
+            <li><a href="https://ondat.io/platform/how-it-works">How it works</a></li>
+          </ul>
+        </li>
+        <li class="ondat-lp-menu-drop">
+          <a href="#">Teams</a>
+          <ul>
+            <li><a href="https://ondat.io/teams/development">Development</a></li>
+            <li><a href="https://ondat.io/teams/devops-sre">DevOps SRE</a></li>
+            <li><a href="https://ondat.io/digital-transformation">Digital Transformation</a></li>
+          </ul>
+        </li>
+        <li class="ondat-lp-menu-drop">
+          <a href="#">Solutions</a>
+          <ul>
+            <li><a href="https://ondat.io/solutions/stateful-applications">Stateful Apps</a></li>
+            <li><a href="https://ondat.io/solutions/kubernetes-distributions">Kubernetes Distros</a></li>
+          </ul>
+        </li>
+        <li class="ondat-lp-menu-no-drop"><a href="https://www.ondat.io/blog">Blog</a></li>
+        <li class="ondat-lp-menu-no-drop"><a href="https://docs.ondat.io">Resources</a></li>
+        
+        <li class="ondat-lp-menu-drop">
+          <a href="#">Releases</a>
+          <ul>
+            
+            <li><a class="dropdown-item" href="/v1.x">v1.x</a></li>
+            
+            <li><a class="dropdown-item" href="/v2.0">v2.0</a></li>
+            
+            <li><a class="dropdown-item" href="/v2.1">v2.1</a></li>
+            
+            <li><a class="dropdown-item" href="/v2.2">v2.2</a></li>
+            
+            <li><a class="dropdown-item" href="/v2.3">v2.3</a></li>
+            
+            <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            
+          </ul>
+        </li>
+        
+      </div>
+      </ul>
+    <div class="ondat-lp-header-wrapper-right">
+      <a href="https://www.ondat.io/request-demo" class="gs-btn">Get started for free</a>
+      
+
+
+<input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="Search this site…"
+  aria-label="Search this site…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="/v1.x/offline-search-index.46db0fdf06e6961f4ce08a0f4422dfd683ca71cc89247535f5a528a885893f678c16a6f790fe5407e134f1fd447d817aa9dffe41022ff4194eac6f5afe3b0d65.json"
+  data-offline-search-base-href="/"
+>
+
+
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+
+  #ondat-lp-header {
+    width: 100%;
+    padding: 20px 0;
+    background-color: white;
+    font-weight: 500;
+  }
+
+  .ondat-lp-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1240px;
+    margin: auto;
+  }
+
+  .ondat-lp-header-wrapper-left {
+    display: flex;
+    align-items: center;
+  }
+
+  ul.ondat-lp-menu,
+  ul.ondat-lp-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.ondat-lp-menu {
+    display: flex;
+  }
+
+  ul.ondat-lp-menu > li {
+    margin-left: 48px;
+  }
+
+  li.ondat-lp-menu-drop > a {
+    display: flex;
+    align-items: center;
+  }
+
+  li.ondat-lp-menu-no-drop a {
+    display: flex;
+    align-items: center;
+  }
+
+  li.ondat-lp-menu-drop > a:after {
+    display: inline-block;
+    content: "";
+    width: 8px;
+    height: 5px;
+    margin-left: 6px;
+    background: url("images/drop.svg") no-repeat;
+  }
+
+  li.ondat-lp-menu-drop ul {
+    display: none;
+    box-shadow: 0px 10px 35px 5px rgb(50 50 50 / 15%);
+    background-color: white;
+    border-top: 2px solid #017efa;
+    position: absolute;
+    padding-left: 0;
+    padding: 15px;
+    margin-left: 0;
+  }
+
+  li.ondat-lp-menu-drop ul > li {
+    list-style: none;
+    margin-bottom: 10px;
+    line-height: normal;
+    font-size: 13px;
+  }
+
+  li.ondat-lp-menu-drop ul > li:last-child {
+    margin-bottom: 0px;
+  }
+
+  li.ondat-lp-menu-drop ul > li > a {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+  }
+
+  li.ondat-lp-menu-drop:hover ul {
+    display: block;
+  }
+
+  li.ondat-lp-menu-drop:hover ul {
+    display: block;
+  }
+
+  #ondat-lp-header a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #081d60;
+    font-family: "Plus Jakarta Display";
+  }
+
+  .ondat-lp-header-wrapper-right {
+    display: flex;
+    align-items: center;
+  }
+
+  #ondat-lp-header a.gs-btn {
+    color: #017efa;
+    display: block;
+    padding: 10px 24px;
+  }
+
+  #ondat-lp-header a.login-btn {
+    color: #fff;
+    font-weight: 700;
+    display: block;
+    padding: 10px 24px;
+    background-color: #017efa;
+    border-radius: 4px;
+  }
+</style>
+
+    </header>
+    <div class="body-search">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#td-section-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    
+
+
+<input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="Search this site…"
+  aria-label="Search this site…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="/v1.x/offline-search-index.46db0fdf06e6961f4ce08a0f4422dfd683ca71cc89247535f5a528a885893f678c16a6f790fe5407e134f1fd447d817aa9dffe41022ff4194eac6f5afe3b0d65.json"
+  data-offline-search-base-href="/"
+>
+
+
+  </div>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  
+  <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+    
+    
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation V1</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="v1xdocs">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/introduction/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Introduction</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsintroduction">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsintroductionquickstart" href="/v1.x/docs/introduction/quickstart/">Quickstart</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsintroductionplatforms" href="/v1.x/docs/introduction/platforms/">Supported Platforms</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Concepts</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="v1xdocsconcepts">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsarchitecture" href="/v1.x/docs/concepts/architecture/">Architecture</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsclusters" href="/v1.x/docs/concepts/clusters/">Clusters</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptscompression" href="/v1.x/docs/concepts/compression/">Compression</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsencryption" href="/v1.x/docs/concepts/encryption/">Encryption</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsfencing" href="/v1.x/docs/concepts/fencing/">Fencing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsmetrics" href="/v1.x/docs/concepts/metrics/">Metrics</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsnamespaces" href="/v1.x/docs/concepts/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsnodes" href="/v1.x/docs/concepts/nodes/">Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptspodlocality" href="/v1.x/docs/concepts/podlocality/">Podlocality</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-v1xdocsconceptspolicies" href="/v1.x/docs/concepts/policies/">Policies</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptspools" href="/v1.x/docs/concepts/pools/">Pools</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsreplication" href="/v1.x/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsrules" href="/v1.x/docs/concepts/rules/">Rules</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptssharedfs" href="/v1.x/docs/concepts/sharedfs/">Shared Filesystem - RWX</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsconceptsvolumes" href="/v1.x/docs/concepts/volumes/">Volumes</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/prerequisites/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Prerequisites</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsprerequisites">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsprerequisitessystemconfiguration" href="/v1.x/docs/prerequisites/systemconfiguration/">System Configuration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsprerequisitesfirewalls" href="/v1.x/docs/prerequisites/firewalls/">Ports and Firewall settings</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsprerequisitesmountpropagation" href="/v1.x/docs/prerequisites/mountpropagation/">Mount Propagation</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsinstall">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsinstallkubernetes" href="/v1.x/docs/install/kubernetes/">Kubernetes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsinstallopenshift" href="/v1.x/docs/install/openshift/">OpenShift</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsinstallrancher" href="/v1.x/docs/install/rancher/">Rancher</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/platforms/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Platforms</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsplatforms">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsplatformsaws-eks" href="/v1.x/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsplatformsazure-aks" href="/v1.x/docs/platforms/azure-aks/">Azure AKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsplatformsdockeree" href="/v1.x/docs/platforms/dockeree/">DockerEE</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsplatformsopenshift" href="/v1.x/docs/platforms/openshift/">OpenShift</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsplatformsrancher" href="/v1.x/docs/platforms/rancher/">Rancher</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsbest-practices" href="/v1.x/docs/best-practices/">Best Practices</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/operations/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Operations</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsoperations">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsupdates" href="/v1.x/docs/operations/updates/"></a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsdecommission-nodes" href="/v1.x/docs/operations/decommission-nodes/">Decommissioning of Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsencrypted-volumes" href="/v1.x/docs/operations/encrypted-volumes/">Encryption</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/operations/external-etcd/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsoperationsexternal-etcd">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsexternal-etcdetcd-tls" href="/v1.x/docs/operations/external-etcd/etcd-tls/">mTLS</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsfencing" href="/v1.x/docs/operations/fencing/">Fencing Pods</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsfirstpvc" href="/v1.x/docs/operations/firstpvc/">First PVC</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationshealth" href="/v1.x/docs/operations/health/">Health</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsmanaging-host-storage" href="/v1.x/docs/operations/managing-host-storage/">Host Storage</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationslicensing" href="/v1.x/docs/operations/licensing/">Licensing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsmaintenance" href="/v1.x/docs/operations/maintenance/">Maintenance</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/operations/monitoring/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Monitoring</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsoperationsmonitoring">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsmonitoringprometheus-setup" href="/v1.x/docs/operations/monitoring/prometheus-setup/">Prometheus Setup</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsnamespaces" href="/v1.x/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationspolicies" href="/v1.x/docs/operations/policies/">Policies</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsovercommitment" href="/v1.x/docs/operations/overcommitment/">Pool Overcommitment</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsrules" href="/v1.x/docs/operations/rules/">Rules</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationssharedfs" href="/v1.x/docs/operations/sharedfs/">Shared Filesystem - RWX</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationstroubleshooting" href="/v1.x/docs/operations/troubleshooting/">Troubleshooting</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsupgrades" href="/v1.x/docs/operations/upgrades/">Upgrade Ondat</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsoperationsusers" href="/v1.x/docs/operations/users/">User Management</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/usecases/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Use Cases</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsusecases">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesbackups" href="/v1.x/docs/usecases/backups/">Backups</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasescassandra" href="/v1.x/docs/usecases/cassandra/">Cassandra</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecaseselasticsearch" href="/v1.x/docs/usecases/elasticsearch/">Elasticsearch</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesjenkins" href="/v1.x/docs/usecases/jenkins/">Jenkins</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecaseskafka" href="/v1.x/docs/usecases/kafka/">Kafka</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecaseskubevirt" href="/v1.x/docs/usecases/kubevirt/">Kubevirt</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesmssql" href="/v1.x/docs/usecases/mssql/">MS SQL</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesmysql" href="/v1.x/docs/usecases/mysql/">MySQL</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesnginx" href="/v1.x/docs/usecases/nginx/">Nginx</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasespostgres" href="/v1.x/docs/usecases/postgres/">PostgreSQL</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecasesredis" href="/v1.x/docs/usecases/redis/">Redis</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsusecaseszookeeper" href="/v1.x/docs/usecases/zookeeper/">Zookeeper</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsreference">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceapi" href="/v1.x/docs/reference/api/">API Reference</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/reference/cli/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">CLI</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsreferencecli">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclicluster" href="/v1.x/docs/reference/cli/cluster/">Cluster</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclilicence" href="/v1.x/docs/reference/cli/licence/">Licence</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclilogin" href="/v1.x/docs/reference/cli/login/">Login</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclilogs" href="/v1.x/docs/reference/cli/logs/">Logs</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclinamespace" href="/v1.x/docs/reference/cli/namespace/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclinode" href="/v1.x/docs/reference/cli/node/">Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclipolicy" href="/v1.x/docs/reference/cli/policy/">Policies</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclipool" href="/v1.x/docs/reference/cli/pool/">Pools</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclirule" href="/v1.x/docs/reference/cli/rule/">Rules</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecliuser" href="/v1.x/docs/reference/cli/user/">Users</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclivolume" href="/v1.x/docs/reference/cli/volume/">Volumes</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceclusterdiscovery" href="/v1.x/docs/reference/clusterdiscovery/">Cluster discovery</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/reference/cluster-operator/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Cluster Operator</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsreferencecluster-operator">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecluster-operatorinstall" href="/v1.x/docs/reference/cluster-operator/install/">Install</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecluster-operatorconfiguration" href="/v1.x/docs/reference/cluster-operator/configuration/">Configuration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecluster-operatorexamples" href="/v1.x/docs/reference/cluster-operator/examples/">Examples</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecluster-operatorupgrade" href="/v1.x/docs/reference/cluster-operator/upgrade/">Operator upgrade</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencecontributing" href="/v1.x/docs/reference/contributing/">Contributing to the docs</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceenvvars" href="/v1.x/docs/reference/envvars/">Environment Variables</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencegui" href="/v1.x/docs/reference/gui/">GUI</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceinit-container" href="/v1.x/docs/reference/init-container/">Init container</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencelabels" href="/v1.x/docs/reference/labels/">Labels</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencetelemetry" href="/v1.x/docs/reference/telemetry/">Ondat Telemetry</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceopen_source_attribution" href="/v1.x/docs/reference/open_source_attribution/">Open Source Attribution</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceprometheus" href="/v1.x/docs/reference/prometheus/">Prometheus Endpoint</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencerelease_notes" href="/v1.x/docs/reference/release_notes/">Release notes</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/v1.x/docs/reference/scheduler/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Scheduler</a>
+  </li>
+  <ul>
+    <li class="collapse " id="v1xdocsreferencescheduler">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencescheduleradmission-controller" href="/v1.x/docs/reference/scheduler/admission-controller/">Admission Controller</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferenceschedulerexamples" href="/v1.x/docs/reference/scheduler/examples/">Examples</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsreferencefilesystems" href="/v1.x/docs/reference/filesystems/">Supported File systems</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocssupport" href="/v1.x/docs/support/">Support</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-v1xdocsself-eval" href="/v1.x/docs/self-eval/">Self Evaluation Guide</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+  </nav>
+</div>
+
+
+
+
+          </div>
+          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="https://docs.ondat.io/v1.x/docs/">Documentation V1</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="https://docs.ondat.io/v1.x/docs/concepts/">Concepts</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="https://docs.ondat.io/v1.x/docs/concepts/policies/">Policies</a>
+</li>
+
+	</ol>
+</nav	>
+
+            
+<div class="td-content">
+	<h1>Policies</h1>
+	
+	<p>Ondat policies are a way to control user and group access to Ondat
+<a href="https://docs.ondat.io/v1.x/docs/concepts/namespaces/">Namespaces</a>. To grant a user or group
+access to a namespace, a policy needs to be created mapping the user or group
+to the namespace.</p>
+<blockquote>
+<p>Note: Users always have access to the default namespace</p>
+</blockquote>
+<p>For more information on how to use policies, see the
+<a href="https://docs.ondat.io/v1.x/docs/operations/policies/">Policies operations</a> page.</p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top"></div>
+</div>
+
+
+          </main>
+        </div>
+      </div>
+
+    </div>
+    <div id="ondat-lp-footer">
+  <div class="ondat-lp-footer-wrapper">
+    <div class="ondat-lp-footer-wrapper-left">
+      <a class="navbar-brand" href="https://ondat.io">
+        <svg width="135" height="24" viewBox="0 0 135 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M48.8466 13.2064V10.5821c0-4.27515 2.2857-6.56086 6.9841-6.56086 4.8254.0 6.9418 2.20106 6.9418 6.56086v2.6243c0 4.2328-2.2857 6.5609-6.9418 6.5609C50.963 19.8096 48.8466 17.6085 48.8466 13.2064zm10.836-2.6243C59.6826 8.0424 58.836 6.94188 55.8731 6.94188c-2.963.0-3.8519 1.10052-3.8519 3.64022v2.6243c0 2.5397.846600000000002 3.6402 3.8519 3.6402 2.9629.0 3.8095-1.0582 3.8095-3.6402V10.5821z" fill="#1239b8"/><path d="M68.91 18.074C68.91 19.1745 68.6561 19.4285 67.5555 19.4285H67.1746C66.074 19.4285 65.8201 19.1745 65.8201 18.074V9.90469C65.8201 5.96818 68.0635 3.97876 72.4656 3.97876 77.0793 3.97876 79.0687 5.96818 79.0687 9.90469V18.074C79.0687 19.1745 78.8148 19.4285 77.7143 19.4285h-.381C76.2328 19.4285 75.9788 19.1745 75.9788 18.074V9.90469C75.9788 7.83061 75.2169 6.94172 72.5079 6.94172 69.7989 6.94172 68.9947 7.87294 68.9947 9.90469V18.074H68.91z" fill="#1239b8"/><path d="M95.1534 13.5026C95.1534 17.6931 92.9947 19.7248 88.6772 19.7248 84.1481 19.7248 82.2433 17.5237 82.2433 13.5026v-2.963c0-4.06347 1.7778-6.26453 6.2646-6.26453 2.5397.0 4.1905.80423 4.9524 2.45502V1.31211C93.4603.719513 93.6296.592529 94.1799.592529H94.3492C94.9418.592529 95.0687.761841 95.0687 1.31211V13.5026H95.1534zm-11.2593.0C83.8941 16.7618 85.037 18.2433 88.7195 18.2433c3.64030000000001.0 4.8254-1.4815 4.8254-4.7407V10.4973C93.5449 7.23803 92.4021 5.75655 88.7195 5.75655 85.0793 5.75655 83.8941 7.23803 83.8941 10.4973v3.0053z" fill="#017efa"/><path d="M111.323 19.0053C111.323 19.5979 111.153 19.7249 110.603 19.7249H110.434C109.841 19.7249 109.714 19.5556 109.714 19.0053V17.3122C108.952 18.9207 107.259 19.7672 104.762 19.7672c-4.487.0-6.2646-2.2434-6.2646-6.2645V10.4974C98.4974 6.43388 100.317 4.27515 104.931 4.27515c4.27500000000001.0 6.476 2.07407 6.476 6.22225v8.5079H111.323zm-11.302-5.5026c0 3.2592 1.143 4.7407 4.82599999999999 4.7407 3.682.0 4.825-1.4815 4.825-4.7407V10.4974c0-3.25929-1.143-4.74077-4.825-4.74077C101.164 5.75663 100.021 7.23811 100.021 10.4974v3.0053z" fill="#017efa"/><path d="M113.862 5.3756C113.862 4.99465 113.947 4.86766 114.413 4.78301l1.947-.21164L116.656 1.14279C116.741.677185 116.868.592529 117.249.592529H117.418C117.884.592529 117.968.761841 117.968 1.14279V4.57137h5.461C124.021 4.57137 124.148 4.74068 124.148 5.29094v.12699C124.148 5.92586 124.021 6.1375 123.429 6.1375h-5.461v8.4233c0 2.709 1.101 3.7248 3.133 3.7248C122.159 18.2856 123.09 18.1587 123.979 17.9047 124.444 17.7354 124.698 17.947 124.698 18.4973V18.6243C124.698 19.1322 124.529 19.3438 123.979 19.4708 123.132 19.7248 122.201 19.8518 121.143 19.8518c-3.217.0-4.783-1.7778-4.783-5.2487V6.05285h-1.947C114.032 6.05285 113.862 5.88353 113.862 5.50258V5.3756z" fill="#017efa"/><path d="M130.794 4.78311C130.794 4.95242 130.751 4.99475 130.582 4.99475H129.905v2.1164C129.905 7.32279 129.862 7.36512 129.651 7.36512H129.566C129.355 7.36512 129.312 7.32279 129.312 7.11115V4.99475H128.635C128.466 4.99475 128.423 4.95242 128.423 4.78311V4.69846C128.423 4.52914 128.466 4.48682 128.635 4.48682h1.947C130.751 4.48682 130.794 4.52914 130.794 4.69846V4.78311zM134.392 7.11115C134.392 7.32279 134.349 7.36512 134.138 7.36512H134.053C133.841 7.36512 133.799 7.32279 133.799 7.11115V4.99475L133.206 7.06883C133.164 7.28047 133.079 7.36512 132.825 7.36512 132.656 7.36512 132.529 7.28047 132.444 7.06883L131.852 4.99475v2.1164C131.852 7.32279 131.81 7.36512 131.598 7.36512H131.513C131.302 7.36512 131.259 7.32279 131.259 7.11115V4.86777c0-.25397.12700000000001-.38095.381-.38095H131.894C132.148 4.48682 132.318 4.65613 132.402 4.95242L132.825 6.60322 133.291 4.86777C133.333 4.57147 133.503 4.48682 133.841 4.48682H133.968C134.222 4.48682 134.349 4.6138 134.349 4.86777V7.11115H134.392z" fill="#017efa"/><path d="M0 7.83057V16.1692l10.1587-4.1905L0 7.83057z" fill="#017efa"/><path d="M10.1587 11.9788l8.9736-3.64018V0L0 7.83069 10.1587 11.9788z" fill="#1239b8"/><path d="M0 16.1692l19.1323 7.8307V15.6613l-8.9736-3.6825L0 16.1692z" fill="#0bbbef"/><path d="M30.0106 11.9787l10.1587 4.1905V7.83057L30.0106 11.9787z" fill="#017efa"/><path d="M40.1692 7.83069 20.9946.0V8.33862l9.0159 3.64018L40.1692 7.83069z" fill="#0bbbef"/><path d="M20.9946 15.6613v8.3386l19.1746-7.8307-10.1587-4.1904-9.0159 3.6825z" fill="#1239b8"/></g><defs><clipPath id="clip0"><rect width="134.392" height="24" fill="#fff"/></clipPath></defs></svg>
+        <span class="text-uppercase font-weight-bold"></span>
+      </a>
+      <ul>
+        <li class="ondat-lp-footer-header">Platform</li>
+        <li><a href="https://ondat.io/platform/platform-overview">Platform Overview</a></li>
+        <li><a href="https://ondat.io/platform/how-it-works">How it works</a></li>
+      </ul>
+      <ul>
+        <li class="ondat-lp-footer-header">Teams</li>
+        <li><a href="https://ondat.io/teams/development">Development</a></li>
+        <li><a href="https://ondat.io/teams/devops-sre">DevOps SRE</a></li>
+        <li><a href="https://ondat.io/digital-transformation">Digital Transformation</a></li>
+      </ul>
+      <ul>
+        <li class="ondat-lp-footer-header">Solutions</li>
+        <li><a href="https://ondat.io/solutions/stateful-applications">Stateful Apps</a></li>
+        <li><a href="https://ondat.io/solutions/kubernetes-distributions">Kubernetes Distros</a></li>
+      </ul>
+      <ul>
+        <li class="ondat-lp-footer-header">Blog</li>
+        <li class="ondat-lp-footer-header"><a href="https://www.ondat.io/blog">Ondat Blog</a></li>
+      </ul>
+      <ul>
+        <li class="ondat-lp-footer-header">Contact Us</li>
+      </ul>
+    </div>
+    <div class="ondat-lp-footer-wrapper-right"></div>
+  </div>
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+  #ondat-lp-footer {
+    background-color: #f8f9ff;
+    padding: 120px 0;
+  }
+  .ondat-lp-footer-wrapper {
+    max-width: 1240px;
+    margin: auto;
+    display: flex;
+  }
+  .ondat-lp-footer-wrapper-left {
+    display: flex;
+  }
+
+  .ondat-lp-footer-wrapper-left ul,
+  .ondat-lp-footer-wrapper-left ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ondat-lp-footer-wrapper-left ul {
+    margin-left: 60px;
+  }
+  .ondat-lp-footer-wrapper-left ul li a {
+    text-decoration: none;
+    color: #5e6a8e;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 18px;
+    display: block;
+  }
+  .ondat-lp-footer-wrapper-left ul li.ondat-lp-footer-header {
+    font-weight: 700;
+    font-size: 14px;
+    color: #081d60;
+  }
+  .ondat-lp-footer-wrapper-right {
+  }
+</style>
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+<script src="/v1.x/js/main.min.648fa099c4460d7e569f8c1e4ae2eaf6b7ed3e7235aabe0f50e72f2356c5e7d9.js" integrity="sha256-ZI&#43;gmcRGDX5Wn4weSuLq9rftPnI1qr4PUOcvI1bF59k=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript"
+	  id="hs-script-loader"
+	  async
+	  defer
+	  src="//js.hs-scripts.com/3402546.js"></script>
+
+
+
+  </body>
+</html>

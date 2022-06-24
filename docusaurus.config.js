@@ -12,9 +12,9 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  favicon: 'images/generic/Ondat_favicon.png',
+  organizationName: 'ondat', // Usually your GitHub org/user name.
+  projectName: 'documentation', // Usually your repo name.
   noIndex: true,
 
   presets: [
@@ -44,35 +44,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        appId: 'XUGWZ3RNPX',
-        apiKey: '3f67973150fc739671ec3711e7112be5',
-        indexName: 'ondat_docs_search',
-
-      },
       navbar: {
-        title: 'My Site',
+        title: 'Ondat Documentation',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Ondat Logo',
+          src: 'images/generic/Ondat_favicon.png',
         },
-        items: [
-          {
-            type: 'docsVersionDropdown',
-          },
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
-          },
-//          {to: '/blog', label: 'Blog', position: 'left'},
-//          {
-//            href: 'https://github.com/facebook/docusaurus',
-//            label: 'GitHub',
-//            position: 'right',
-//          },
-        ],
       },
       footer: {
         style: 'dark',
