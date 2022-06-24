@@ -708,6 +708,7 @@ channel](https://storageos.slack.com).
 * dataplane: start gRPC threads separately from rest of the supervisor.
 
 ### Fixed
+
 * ui: centre licence types.
 * ui: capacity in ui is per namespace.
 * cli: fail gracefully if missing some output details (i.e. no node exists for ID).
