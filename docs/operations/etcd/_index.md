@@ -8,13 +8,12 @@ for a step by step installation of etcd.
 
 ## Best practices - Etcd Inside the Cluster
 
-This page describe best practices when hosting etcd **inside** Kubernetes using Ondat's etcd operator. Best practices when hosting etcd **outside** Kubernetes can be found [here](/docs/operations/etcd/etcd-outside-k8s/_index.md) 
+This page describe best practices when hosting etcd **inside** Kubernetes using Ondat's etcd operator. Best practices when hosting etcd **outside** Kubernetes can be found [here](/docs/operations/etcd/etcd-outside-k8s/_index.md)
 
 Ondat uses etcd as a service, whether it is deployed following the
 [step by step](/docs/prerequisites/etcd) instructions or as a custom
 installation.  
-The etcd operator will maintain availability and integrity of the etcd cluster, however it is recommended to monitor etcd metrics to ensure the cluster is functioning as expected. 
-
+The etcd operator will maintain availability and integrity of the etcd cluster, however it is recommended to monitor etcd metrics to ensure the cluster is functioning as expected.
 
 It is highly recommended to keep the cluster backed up and ensure high
 availability of its data.
@@ -68,7 +67,7 @@ for production, you can use the
 the [etcd-cluster-as-pod](https://grafana.com/grafana/dashboards/10323) can be
 used when using etcd from the operator.
 
-### Defragmentation 
+### Defragmentation
 
 Etcd uses revisions to store multiple versions of keys. Compaction removes all
 key revision prior to a certain revision from etcd. Typically the etcd
@@ -89,4 +88,4 @@ performed per node, hence the etcd node will be locked for the duration of the
 defragmentation. Defragmentation usually takes a few milliseconds to complete.
 
 The etcd operator will automatically defrag the etcd cluster when it reaches 80% used space or every hour.
-It will never defrag more than one etcd peer at once, so etcd will remain available. 
+It will never defrag more than one etcd peer at once, so etcd will remain available.

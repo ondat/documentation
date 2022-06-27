@@ -49,6 +49,7 @@ characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.
 
 ### Etcd advertise URLs
+
 The etcd startup parameters `advertise-client-urls` and
 `initial-advertise-peer-urls` specify the addresses etcd clients or other etcd
 members should use to contact the etcd server. The advertised addresses must
@@ -67,7 +68,6 @@ for production, you can use the
 [etcd-cluster-as-service](https://grafana.com/grafana/dashboards/10322), while
 the [etcd-cluster-as-pod](https://grafana.com/grafana/dashboards/10323) can be
 used when using etcd from the operator.
-
 
 ### Defragmentation
 
