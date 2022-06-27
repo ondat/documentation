@@ -6,7 +6,7 @@ weight: 600
 
 
 
-In some circumstances it can make sense to run etcd outside of Kubernetes. One of such circumstances is running an on-premises Kubernetes cluster and not having access to reliable cloud disks (for storing etcd data). 
+In some circumstances it can make sense to run etcd outside of Kubernetes. One of such circumstances is running an on-premises Kubernetes cluster and not having access to reliable cloud disks (for storing etcd data).
 
 For production installations running etcd outside the cluster, Ondat strongly recommends running etcd on a minimum of 3 dedicated virtual machines. This
 topology offers strong guarantees of resilience and uptime.
