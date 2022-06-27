@@ -1,20 +1,12 @@
 ---
-title: "Etcd"
-linkTitle: Etcd
+title: "Etcd outside the cluster - Best Practices"
+linkTitle: Etcd outside the cluster - Best Practices
 ---
 
-Check the [etcd prerequisites page](/docs/prerequisites/etcd)
-for a step by step installation of etcd.
+## Best practices - Etcd Outside the Cluster
 
-## Best practices - Etcd Inside the Cluster
-
-This page describe best practices when hosting etcd **inside** Kubernetes using Ondat's etcd operator. Best practices when hosting etcd **outside** Kubernetes can be found [here](/docs/operations/etcd/etcd-outside-k8s/_index.md) 
-
-Ondat uses etcd as a service, whether it is deployed following the
-[step by step](/docs/prerequisites/etcd) instructions or as a custom
-installation.  
-The etcd operator will maintain availability and integrity of the etcd cluster, however it is recommended to monitor etcd metrics to ensure the cluster is functioning as expected. 
-
+Ondat uses etcd as a service. It is expected that the user maintains the availability and
+integrity of the etcd cluster.
 
 It is highly recommended to keep the cluster backed up and ensure high
 availability of its data.
@@ -56,11 +48,19 @@ traffic as a production cluster with 100 nodes. Adding [monitoring](/docs/operat
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.
 
+### Etcd advertise URLs
+The etcd startup parameters `advertise-client-urls` and
+`initial-advertise-peer-urls` specify the addresses etcd clients or other etcd
+members should use to contact the etcd server. The advertised addresses must
+be reachable from the remote machines - i.e. where Ondat is running - so
+it can connect successfully. Do not advertise addresses like `localhost` or
+`0.0.0.0` for a production setup since these addresses are unreachable from
+remote machines.
+
 ### Monitoring
 
-It is highly recommended to add monitoring to the etcd cluster.
-When using the Ondat etcd operator etcd serves
-Prometheus metrics on a separate metrics port `http://storageos-etcd.storageos-etcd:2381/metrics`.
+It is highly recommended to add monitoring to the etcd cluster. Etcd serves
+Prometheus metrics on the client port `http://etcd-url:2379/metrics`.
 
 You can use Ondat developed Grafana Dashboards for etcd. When using etcd
 for production, you can use the
@@ -68,7 +68,8 @@ for production, you can use the
 the [etcd-cluster-as-pod](https://grafana.com/grafana/dashboards/10323) can be
 used when using etcd from the operator.
 
-### Defragmentation 
+
+### Defragmentation
 
 Etcd uses revisions to store multiple versions of keys. Compaction removes all
 key revision prior to a certain revision from etcd. Typically the etcd
@@ -84,9 +85,18 @@ itself read only and only allows reads and deletes. To avoid hitting the db
 backend bytes limit, compaction and defragmentation are required. How often
 defragmentation is required depends on the churn of key revisions in etcd.
 
-Be aware that defragmentation is a blocking operation that is
+The Grafana Dashboards mentioned above indicate when nodes require
+defragmentation. Be aware that defragmentation is a blocking operation that is
 performed per node, hence the etcd node will be locked for the duration of the
 defragmentation. Defragmentation usually takes a few milliseconds to complete.
 
-The etcd operator will automatically defrag the etcd cluster when it reaches 80% used space or every hour.
-It will never defrag more than one etcd peer at once, so etcd will remain available. 
+You can also set cronjobs that execute the following defragmentation script.
+It will run a defrag when the DB is at 80% full. A defragmentation operation
+has to be executed per etcd node and __it is a blocking operation__. It is
+recommended to __not execute the defragmentation on all etcd members at the
+same time__. If using a cronjob, set them up for different times.
+
+```bash curl -sSLo defrag-etcd.sh
+https://raw.githubusercontent.com/storageos/deploy/master/k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd/roles/install_etcd/templates/defrag-etcd.sh.j2
+chmod +x defrag-etcd.sh
+```
