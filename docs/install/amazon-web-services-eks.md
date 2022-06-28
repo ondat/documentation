@@ -40,7 +40,7 @@ aws ec2 describe-images \
 
 > In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `t3.large` running Ubuntu for EKS in the `eu-west-2` region. We have provided `100 GB` of disk space for each node. Note that by default, Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode).
 
-> In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
+> In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario. An example configuration is provided below that used local NVMe based storage from i3en instances and places these ready for Ondat to utilise.
 
 ```yaml
 # cluster.yaml
@@ -51,6 +51,7 @@ kind: ClusterConfig
 metadata:
   name: ondat-cluster
   region: eu-west-2
+  version: "1.22"
 
 addons:
   - name: aws-ebs-csi-driver
@@ -59,26 +60,81 @@ iam:
   withOIDC: true
 
 managedNodeGroups:
-  - name: ondat-ng
-    minSize: 3
+  - name: ondat-ng-2a
+    availabilityZones:
+      - eu-west-2a
+    minSize: 1
     maxSize: 3
-    instanceType: t3.large
-    ami: ami-0cb2cb474d9e4e075
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
     labels: {ondat: node}
-    volumeSize: 100
-    volumeName: /dev/xvda
+    volumeSize: 20
+    volumeType: gp3
     volumeEncrypted: true
     disableIMDSv1: true
     iam:
       withAddonPolicies:
         ebs: true
-    overrideBootstrapCommand: |
-      #!/bin/bash
-      mkdir -p /var/lib/storageos
-      echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
-      mkfs.ext4 /dev/nvme1n1
-      mount /var/lib/storageos
-      /etc/eks/bootstrap.sh ondat-cluster
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
+  - name: ondat-ng-2b
+    availabilityZones:
+      - eu-west-2b
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
+    labels: {ondat: node}
+    volumeSize: 20
+    volumeType: gp3
+    volumeEncrypted: true
+    disableIMDSv1: true
+    iam:
+      withAddonPolicies:
+        ebs: true
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
+  - name: ondat-ng-2c
+    availabilityZones:
+      - eu-west-2c
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
+    labels: {ondat: node}
+    volumeSize: 20
+    volumeType: gp3
+    volumeEncrypted: true
+    disableIMDSv1: true
+    iam:
+      withAddonPolicies:
+        ebs: true
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
 ```
 
 ```bash
@@ -86,7 +142,7 @@ eksctl create cluster --config-file=cluster.yaml
 ```
 
 > ⚠️ With the above configuration, volumes will be deleted when the nodes they
-> are attached to are terminated. Be sure to keep snapshots, for example by using
+> are attached to are terminated. Be sure to keep backups and snapshots, for example by using
 > [Data Lifecycle Manager](https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/)
 
 ## Procedure
