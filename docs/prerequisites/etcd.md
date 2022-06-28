@@ -36,6 +36,7 @@ To use a gp3 storage class in Kubernetes it is required to install the Amazon CS
 ## Installing Etcd
 
 An etcd cluster can be created in three different ways:
+
 * Installing the etcd operator via our helm chart
 * Installing Ondat (and the etcd operator) via our Plugin
 * Manually deploying the etcd operator and applying an `etcdcluster` custom resource 
@@ -48,16 +49,31 @@ For full instructions, visit [here](https://github.com/ondat/charts/tree/main/ch
 
 ### **Configurable:** Manually applying an `etcdcluster` custom resource: 
 This installation method allows the most configuration of the etcd cluster, but is the most error prone. 
+* Manually applying an `etcdcluster` custom resource
 
-Find the verison of the etcd operator you want to install from [Github](https://github.com/storageos/etcd-cluster-operator/releases/)
+### Recommended: Installing the etcd operator via our helm chart
+
+For full instructions, visit [here](https://github.com/ondat/charts/tree/main/charts/ondat)
+
+### Recommended: Installing Ondat (and the etcd operator) via our Plugin
+
+`kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled`
+
+### Manually applying an `etcdcluster` custom resource
+
+This installation method allows the most configuration of the etcd cluster, but is the most error-prone.
+
+Find the verison of the etcd operator you want to install from [GitHub](https://github.com/storageos/etcd-cluster-operator/releases/)
 
 Install the etcd operator:
+
 ```
 export ETCD_OPERATOR_VERSION=<set the version you want to use>
 kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
 ```
 
 Then adapt the following sample to your needs and use `kubectl` to  apply it:
+
 ```
 export ETCD_OPERATOR_VERSION=<set the version you want to use>
 wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
