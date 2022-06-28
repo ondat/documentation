@@ -111,4 +111,4 @@ poddisruptionbudget.policy/storageos-etcd   3               N/A               2 
 
 ## Etcd on External Virtual Machines
 
-This [page](/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster.md) documents the process for installing etcd outside the Kubernetes cluster
+This [page](/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster) documents the process for installing etcd outside the Kubernetes cluster
