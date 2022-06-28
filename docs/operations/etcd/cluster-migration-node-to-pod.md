@@ -36,7 +36,8 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
     run etcd in the cluster. If there is none available in the cluster, you can
     run the following to deploy a [Local Path
     Provisioner](https://github.com/rancher/local-path-provisioner) to provide
-    local storage for Ondat's embedded `etcd` cluster operator deployment.
+    local storage for Ondat's embedded `etcd` cluster operator deployment. Even
+    though, that CSI provisioner is not intended for production.
 
     __(Optional) Deploy Local path storageClass__
 
@@ -59,11 +60,6 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 
     > ⚠️  The Secret name for the etcd client certificates is amended to avoid
     > using the same Secret name as the one used for the old etcd cluster
-
-    > If the chart is uninstalled the Secret in the storageos namespace with
-    > the etcd tls material needs to be deleted manually. A second installation
-    > of the chart will not update the secret, thus the certificates won't
-    > match.
 
     > For more details, check the [etcd cluster operator
     > chart](https://github.com/ondat/charts/tree/main/charts/etcd-cluster-operator).
@@ -280,7 +276,8 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
 > etcd in the cluster. If there is none available in the cluster, you can run
 > the following to deploy a [Local Path
 > Provisioner](https://github.com/rancher/local-path-provisioner) to provide
-> local storage for Ondat's embedded `etcd` cluster operator deployment.
+> local storage for Ondat's embedded `etcd` cluster operator deployment. Even
+> though, that CSI provisioner is not intended for production.
 
 __(Optional) Deploy Local path storageClass__
 
