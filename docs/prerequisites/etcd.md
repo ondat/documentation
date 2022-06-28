@@ -25,13 +25,15 @@ For testing environments a node-local storage option can be used, such as [Local
 > ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
 
 ### How to set up an EBS CSI Driver
-In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted. 
+
+In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.
 
 To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to install. The procedure is comprehended by the following steps:
-* Create IAM permissions https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
+
+* Create IAM permissions <https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html>
 * Install the CSI driver
-    * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
-    * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
+  * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
+  * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
 
 ## Installing Etcd
 
@@ -39,16 +41,20 @@ An etcd cluster can be created in three different ways:
 
 * Installing the etcd operator via our helm chart
 * Installing Ondat (and the etcd operator) via our Plugin
-* Manually deploying the etcd operator and applying an `etcdcluster` custom resource 
+* Manually deploying the etcd operator and applying an `etcdcluster` custom resource
 
-### **Recommended:** Installing the etcd operator via our helm chart:
+### **Recommended:** Installing the etcd operator via our helm chart
+
 For full instructions, visit [here](https://github.com/ondat/charts/tree/main/charts/ondat)
 
-### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin:
+### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin
+
 `kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled`
 
-### **Configurable:** Manually applying an `etcdcluster` custom resource: 
-This installation method allows the most configuration of the etcd cluster, but is the most error prone. 
+### **Configurable:** Manually applying an `etcdcluster` custom resource
+
+This installation method allows the most configuration of the etcd cluster, but is the most error-prone.
+
 * Manually applying an `etcdcluster` custom resource
 
 ### Recommended: Installing the etcd operator via our helm chart
