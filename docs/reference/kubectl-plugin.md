@@ -15,7 +15,7 @@ weight: 1
 
 ```bash
 curl --silent --show-error --location --output kubectl-storageos.tar.gz \
-  https://github.com/storageos/kubectl-storageos/releases/download/v1.2.0/kubectl-storageos_1.2.0_linux_amd64.tar.gz \
+  https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
   && tar --extract --file kubectl-storageos.tar.gz kubectl-storageos \
   && chmod +x kubectl-storageos \
   && sudo mv kubectl-storageos /usr/local/bin/ \
@@ -28,7 +28,7 @@ curl --silent --show-error --location --output kubectl-storageos.tar.gz \
 
 ```bash
 curl --silent --show-error --location --output kubectl-storageos.tar.gz \
-  https://github.com/storageos/kubectl-storageos/releases/download/v1.2.0/kubectl-storageos_1.2.0_darwin_amd64.tar.gz \
+  https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_darwin_amd64.tar.gz \
   && tar --extract --verbose --file kubectl-storageos.tar.gz kubectl-storageos \
   && chmod +x kubectl-storageos \
   && sudo mv kubectl-storageos /usr/local/bin/ \
@@ -41,7 +41,7 @@ curl --silent --show-error --location --output kubectl-storageos.tar.gz \
 
 ```bash
 # PowerShell
-Invoke-WebRequest https://github.com/storageos/kubectl-storageos/releases/download/v1.2.0/kubectl-storageos_1.2.0_windows_amd64.tar.gz -OutFile kubectl-storageos.tar.gz `
+Invoke-WebRequest https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_windows_amd64.tar.gz -OutFile kubectl-storageos.tar.gz `
   ; tar -xf kubectl-storageos.tar.gz kubectl-storageos.exe `
   ; Remove-Item kubectl-storageos.tar.gz `
   ; Write-Host "Plugin version installed:" `
