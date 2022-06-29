@@ -6,7 +6,6 @@ weight: 700
 
 This page documents the process for installing etcd outside the Kubernetes cluster.
 
-
 In some circumstances it can make sense to run etcd outside of Kubernetes. One
 of such circumstances is running an on-premises Kubernetes cluster and not
 having access to reliable cloud disks (for storing etcd data).
