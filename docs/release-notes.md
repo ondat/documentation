@@ -22,7 +22,7 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 2.8.0 Release Notes
 
-> 💡 For Ondat 2.8.0, we recommend setting up your cluster to have 5 nodes if you put your etcd inside the cluster.
+> 💡 For Ondat 2.8.0, we recommend setting up your cluster to have 5 nodes if you put your etcd inside the cluster, as it's recommended to run etcd with 5 replicas (with one on each node).
 
 ### New
 
