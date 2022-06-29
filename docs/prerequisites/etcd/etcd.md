@@ -1,5 +1,5 @@
 ---
-title: "Etcd"
+title: "Etcd in Kubernetes"
 linkTitle: Etcd - Recommended
 weight: 600
 ---
