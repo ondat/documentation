@@ -1,7 +1,7 @@
 ---
 title: "Etcd outside the cluster"
 linkTitle: Etcd outside the cluster
-weight: 600
+weight: 700
 ---
 
 This page documents the process for installing etcd outside the Kubernetes cluster.
