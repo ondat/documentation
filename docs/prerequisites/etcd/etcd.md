@@ -68,7 +68,10 @@ Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repository.
 ### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin
 
 ```
-kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled
+kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class <the storage class you want to use for etcd> \
+    --etcd-tls-enabled
 ```
 
 ### **Configurable:** Manually applying an `etcdcluster` custom resource
@@ -85,7 +88,10 @@ For full instructions, visit [here](https://github.com/ondat/charts/tree/main/ch
 ### Recommended: Installing Ondat (and the etcd operator) via our Plugin
 
 ```
-kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled
+kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class <the storage class you want to use for etcd> \
+    --etcd-tls-enabled
 ```
 
 ### Manually applying an `etcdcluster` custom resource
