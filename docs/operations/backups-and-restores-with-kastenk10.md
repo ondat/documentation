@@ -325,7 +325,7 @@ namespace "ondat-test".
 
 Leave everything else as is then click `Create Policy` to create the policy.
 
-> ⚠️ do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
+> ⚠️ Do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
 section. This is taken care of by the steps in "Adding pre/post-snapshot hooks".
 
 ## 5.4: Manually running a backup job
