@@ -7,11 +7,11 @@ weight: 150
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.7.0`. For
+The latest tagged release is `2.8.0`. For
 installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.7.0`, available from
+The latest CLI release is `2.8.0`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
@@ -32,8 +32,8 @@ k8s
 
 Control Plane
 
-* We have relaxed some Ondat specific security checks for the ReadWriteOnce [Node] volumes that we were doing in the control plane ahead of the new volume mode ReadWriteOncePod which is being introduced in k8s 1.22. This will align the Ondat RWO volumes with the spec and we will in a future release also implement support for RWOP (<https://kubernetes.io/docs/concepts/storage/persistent-volumes/>) for users that wish to implement these existing controls.
-  * Please note that the relaxation of these security checks could mean that Deployment objects using RWO volumes (if a rolling strategy is used for example) will be able to mount the volume concurrently on the same node, for this reason we suggest users are creating workloads using stateful sets or use RWX volumes for these deployments."
+* We have relaxed some Ondat specific security checks for the ReadWriteOnce node volumes that we were doing in the control plane ahead of the new volume mode ReadWriteOncePod which is being introduced in k8s 1.22. This will align the Ondat RWO volumes with the spec and we will in a future release also implement support for [RWOP](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) for users that wish to implement these existing controls.
+  * Please note that the relaxation of these security checks could mean that Deployment objects using RWO volumes (if a rolling strategy is used for example) will be able to mount the volume concurrently on the same node, for this reason we suggest users are creating workloads using stateful sets or use RWX volumes for these deployments.
 
 Data Plane
 
