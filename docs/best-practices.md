@@ -4,6 +4,10 @@ linkTitle: Best Practices
 weight: 450
 ---
 
+## Etcd - In Cluster - Replicas and Availability Zones
+
+We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.
+
 ## Etcd low latency IO
 
 It is recommended to run etcd on low-latency disks and keep other IO-intensive
