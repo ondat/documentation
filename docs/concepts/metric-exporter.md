@@ -16,6 +16,6 @@ Likewise, we distribute example alerting rules for our metrics using [Alertmanag
 
 Contributions to both are welcome!
 
-> ⚠️ When installing be sure to create the rules in the same namespace as your Prometheus resource and match its ruleSelector field.
+> ⚠️ When setting up a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md) be sure to create the rules in the same namespace as your Prometheus resource and have its `selector` field match the labels of ours services exposing metrics (see example manifest [here](/docs/operations/metric-exporter/)).
 
 If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our [public slack](https://slack.storageos.com/).
