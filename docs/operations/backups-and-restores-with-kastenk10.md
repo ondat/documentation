@@ -8,7 +8,7 @@ linkTitle: Backup and restores with Ondat Snapshots and Kasten K10
 This guide will walk you through how to use the Ondat Snapshots feature to
 backup and restore your Kubernetes applications using Kasten K10. Before
 starting please consult the [Snapshots
-Concepts](/docs/concepts/snapshots.md) page for an overview of the feature.
+Concepts](/docs/concepts/snapshots) page for an overview of the feature.
 
 We’ll now run through the steps required to configure and utilise the feature:
 
@@ -27,9 +27,9 @@ We’ll now run through the steps required to configure and utilise the feature:
 
 Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
 first time then please follow the instructions
-[here](https://docs.ondat.io/docs/install/). If you are upgrading an existing
+[here](/docs/install/). If you are upgrading an existing
 Ondat deployment then please follow the instructions
-[here](https://docs.ondat.io/docs/upgrade/upgrade/).
+[here](/docs/upgrade/upgrade/).
 
 # 2: Installing the Kubernetes snapshot CRDs
 
@@ -44,7 +44,7 @@ $ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-sn
 $ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
 ```
 
-Now let's need to install the `snapshot-controller`. The
+Now you need to install the `snapshot-controller`. The
 [snapshot controller](https://kubernetes-csi.github.io/docs/snapshot-controller.html)
 monitors the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent`
 CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
@@ -104,7 +104,7 @@ be found [here](https://docs.kasten.io/latest/install/install.html).
 The remainder of this walk through will assume you have access to the Kasten K10 UI. You
 can install it following the instructions
 [here](https://docs.kasten.io/latest/access/dashboard.html). Everything we do in the
-following steps may be done via `kubectl` and the command line, however, but is not shown
+following steps may be done via `kubectl` and the command line, however this is not shown
 in this guide.
 
 Once K10 is installed you can then create a "Profile" and configure the backup location.
@@ -229,10 +229,10 @@ these blueprints to perform various actions pre and post-snapshot.
 We’ll use the following blueprint to quiesce the filesystem before taking a
 snapshot and unquiesce it after taking the snapshot.
 
-Note: we don’t perform any application level quiescing here as it’s not required
+> We don’t perform any application level quiescing here as it’s not required
 for our toy application.
 
-Note: for statefulsets the blueprint below can be used as a baseline, but change
+> For statefulsets the blueprint below can be used as a baseline, but change
 `kind` to `StatefulSet`, `Deployment.Namespace` to `StatefulSet.Namespace` and
 `Deployment.Pods` to `StatefulSet.Pods`.
 
@@ -285,8 +285,8 @@ actions:
           fsfreeze --unfreeze /mnt
 ```
 
-Note: if you have installed kasten into a namespace other than `kasten-io` then
-you’ll have to modify the `namespace` field in the above config.
+> If you have installed kasten into a namespace other than `kasten-io` then
+you’ll have to modify the `namespace` field in the above configuration.
 
 Apply the blueprint with the `kubect create -f` command. One can observe the
 blueprint like so:
@@ -306,7 +306,7 @@ Ensure you have the Kasten K10 dashboard installed
 to do the steps in this section via `kubectl` and the command line. Please see the
 Kasten K10 documentation for how to do this.
 
-Browse to the "Policies" page and click "Create New Policy":
+Go to the "Policies" page and click "Create New Policy":
 
 ![CreatePolicy](/images/docs/operations/backups/image1.png)
 
@@ -326,7 +326,7 @@ namespace "ondat-test".
 
 Leave everything else as is then click `Create Policy` to create the policy.
 
-Note: do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
+> ⚠️ do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
 section. This is taken care of by the steps in "Adding pre/post-snapshot hooks".
 
 ## 5.4: Manually running a backup job
@@ -368,7 +368,7 @@ Let’s emulate a disaster recovery scenario, by deleting our deployment:
 $ kubectl delete -n ondat-test deployments.apps myapp-deployment
 ```
 
-Now let’s restore it. First browse to the dashboard and select "Applications".
+Now let’s restore it. First go to the dashboard and select "Applications".
 From there find "ondat-test" and select "restore":
 
 ![Restore1](/images/docs/operations/backups/image7.png)
@@ -428,7 +428,7 @@ Ideally the Kubernetes `VolumeSnapshot` object should be deleted as soon as the
 application has been backed up externally. There’s no reason to keep the snapshot
 as it can’t be meaningfully used. Furthermore, it takes up space on the local node
 and can cause a slight performance degradation for IO to the parent volume. At the
-moment, there is no good way to automate this procedure. Consequently user's should:
+moment, there is no good way to automate this procedure. Consequently users should:
 set their snapshot retention policy to 1 hourly snapshot when setting up a backup
 policy. This does not fix the issue, but ensures that the snapshot is removed within
 an hour of been taken. It is also possible to remove the snapshot manually by

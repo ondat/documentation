@@ -48,10 +48,10 @@ done at Ondat. Additional tools, like Kasten K10, can then be utilised to
 orchestrate and automate snapshotting, backups and restores. 
 
 Please see the [Backups and restores with Kasten
-K10](/docs/operations/backups-and-restores-with-kastenk10.md) for a full
+K10](/docs/operations/backups-and-restores-with-kastenk10) for a full
 walk through.
 
-Note: the Ondat Snapshot feature is not fully CSI compliant. As such the feature
+> ⚠️ The Ondat Snapshot feature is not fully CSI compliant. As such the feature
 can only be used with Kasten K10 and with restoration from an external backup.
 
 # Scope and limitations
