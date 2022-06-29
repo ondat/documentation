@@ -111,37 +111,34 @@ kubectl storageos preflight
 ### Step 2 - Installing Ondat
 
 1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance.
-2. Set the `StorageClass` for etcd to use.
+1. Set the `StorageClass` for etcd to use.
 
-> 💡 This cannot be Ondat, as Ondat is dependent upon etcd. On AWS EKS, we suggest `gp3` for a good balance of performance and resilience, or `io2` where top performance is essential.
+    If you used the `eksctl` cluster configuration defined above, the gp3 storage
+    class is available so you can skip to the next step. Otherwise you can set up
+    the EBS CSI Driver as follows. It is important to note that the Ondat etcd
+    usage of disk depends on the size of the Kubernetes cluster. However, it is
+    recommended that the disks have at least 800 IOPS at any point in time. The
+    best cost effective storage class that fulfils such requirements is gp3. If gp2
+    is used, it is paramount to use a volume bigger than 256Gi as it will have
+    enough IOPS even when the burstable credits are exhausted.
 
-> 💡 The default `StorageClass` in EKS is `gp2` which is not recommended, instead we will create a `gp3` `StorageClass` and set it as default, at least until we install Ondat:
+    To use a gp3 storage class in Kubernetes it is required to install the Amazon
+    CSI Driver. Follow [this
+    guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to
+    install. The procedure is comprehended by the following steps:
 
-```bash
-kubectl create -f - <<EOF
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: gp3
-  annotations:
-    storageclass.kubernetes.io/is-default-class: "true"
-allowVolumeExpansion: true
-provisioner: ebs.csi.aws.com
-volumeBindingMode: WaitForFirstConsumer
-parameters:
-  type: gp3
-EOF
-```
+    * Create IAM permissions <https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html>
+    * Install the CSI driver
+      * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
+      * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
 
-> 💡 This `StorageClass` requires the AWS EBS EKS addon we specified in the `eksctl` cluster configuration above
+    ```bash
+    export STORAGEOS_USERNAME="storageos"
+    export STORAGEOS_PASSWORD="storageos"
+    export ETCD_STORAGECLASS="gp3"
+    ```
 
-```bash
-export STORAGEOS_USERNAME="storageos"
-export STORAGEOS_PASSWORD="storageos"
-export ETCD_STORAGECLASS="gp3"
-```
-
-2. Run the following  `kubectl-storageos` plugin command to install Ondat.
+1. Run the following  `kubectl-storageos` plugin command to install Ondat.
 
 ```bash
 kubectl storageos install \

@@ -33,25 +33,6 @@ This will store etcd data on the node hosting an etcd pod
 > clusters, as this stores all the data of the `etcd` peers locally, which
 > makes it susceptible to state being lost on node failures.
 
-### How to set up an EBS CSI Driver
-
-In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of
-disk depends on the size of the Kubernetes cluster. However, it is recommended
-that the disks have at least 800 IOPS at any point in time. The best cost
-effective storage class that fulfils such requirements is gp3. If gp2 is used,
-it is paramount to use a volume bigger than 256Gi as it will have enough IOPS
-even when the burstable credits are exhausted.
-
-To use a gp3 storage class in Kubernetes it is required to install the Amazon
-CSI Driver. Follow [this
-guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to
-install. The procedure is comprehended by the following steps:
-
-* Create IAM permissions <https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html>
-* Install the CSI driver
-  * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
-  * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
-
 ## Installing Etcd
 
 An etcd cluster can be created in three different ways:
