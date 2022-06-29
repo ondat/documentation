@@ -1,6 +1,6 @@
 ---
-title: "Backup and restores with Kasten K10"
-linkTitle: Backup and restores with Kasten K10
+title: "Backup and restores with Ondat Snapshots and Kasten K10"
+linkTitle: Backup and restores with Ondat Snapshots and Kasten K10
 ---
 
 # Overview
