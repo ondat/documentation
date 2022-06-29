@@ -8,7 +8,7 @@ for a step by step installation of etcd.
 
 ## Best practices - Etcd Inside the Cluster
 
-This page describe best practices when hosting etcd **inside** Kubernetes using Ondat's etcd operator. Best practices when hosting etcd **outside** Kubernetes can be found [here](/docs/operations/etcd/etcd-outside-k8s/_index.md)
+This page describe best practices when hosting etcd **inside** Kubernetes using Ondat's etcd operator. Best practices when hosting etcd **outside** Kubernetes can be found [here](/docs/operations/etcd/etcd-outside-k8s/)
 
 Ondat uses etcd as a service, whether it is deployed following the
 [step by step](/docs/prerequisites/etcd) instructions or as a custom
