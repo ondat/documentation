@@ -209,7 +209,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
           address: # for example -> 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379
     ```
 
-    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml), set this to the storage class installed earlier
+    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml), set this to the StorageClass installed earlier
 
     ```yaml
     # Storageclass for etcd backing storage
