@@ -45,11 +45,13 @@ An etcd cluster can be created in three different ways:
 
 ### **Recommended:** Installing the etcd operator via our helm chart
 
-For full instructions, visit [here](https://github.com/ondat/charts/tree/main/charts/ondat)
+For full instructions, visit [Ondat Helm Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repository.
 
 ### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin
 
-`kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled`
+```
+kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled
+```
 
 ### **Configurable:** Manually applying an `etcdcluster` custom resource
 
@@ -63,13 +65,15 @@ For full instructions, visit [here](https://github.com/ondat/charts/tree/main/ch
 
 ### Recommended: Installing Ondat (and the etcd operator) via our Plugin
 
-`kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled`
+```
+kubectl storageos install --include-etcd --etcd-storage-class <the storage class you want to use for etcd> --etcd-tls-enabled
+```
 
 ### Manually applying an `etcdcluster` custom resource
 
 This installation method allows the most configuration of the etcd cluster, but is the most error-prone.
 
-Find the verison of the etcd operator you want to install from [GitHub](https://github.com/storageos/etcd-cluster-operator/releases/)
+Find the verison of the etcd operator you want to install from [GitHub](https://github.com/storageos/etcd-cluster-operator/releases/).
 
 Install the etcd operator:
 
