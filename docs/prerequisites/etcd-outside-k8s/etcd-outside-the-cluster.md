@@ -7,14 +7,17 @@ weight: 600
 This page documents the process for installing etcd outside the Kubernetes cluster.
 
 
-In some circumstances it can make sense to run etcd outside of Kubernetes. One of such circumstances is running an on-premises Kubernetes cluster and not having access to reliable cloud disks (for storing etcd data).
+In some circumstances it can make sense to run etcd outside of Kubernetes. One
+of such circumstances is running an on-premises Kubernetes cluster and not
+having access to reliable cloud disks (for storing etcd data).
 
-For production installations running etcd outside the cluster, Ondat strongly recommends running etcd on a minimum of 3 dedicated virtual machines. This
+For production installations running etcd outside the cluster, Ondat strongly
+recommends running etcd on a minimum of 3 dedicated virtual machines. This
 topology offers strong guarantees of resilience and uptime.
 
-Ondat doesn't require a high performance etcd cluster, as the throughput
-of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity [best practices](/docs/operations/etcd/) to ensure that etcd
+Ondat doesn't require a high performance etcd cluster, as the throughput of
+metadata to the cluster is low. However, we recommend a careful assessment of
+IOPS capacity [best practices](/docs/operations/etcd/) to ensure that etcd
 operates normally.
 
 You can choose between two installation options.
@@ -283,12 +286,14 @@ help you deploy etcd on standalone virtual machines.
 ## Bind Etcd IPs to Kubernetes Service
 
 Kubernetes external services use a DNS name to reference external endpoints,
-making them easy to reference from inside the cluster.  You can use the
-example from the [helper GitHub repository](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc)
+making them easy to reference from inside the cluster.  You can use the example
+from the [helper GitHub
+repository](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc)
 to deploy the external Service. Using an external service can make monitoring
 of etcd from Prometheus easier.
 
 ## Using Etcd with Ondat
 
 During installation of Ondat the `kvBackend.address` parameter in the
- `storageoscluster` custom resource is used to specify the address of the etcd cluster.
+`storageoscluster` custom resource is used to specify the address of the etcd
+cluster.
