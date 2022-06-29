@@ -133,8 +133,3 @@ service/storageos-etcd-proxy   ClusterIP   10.43.199.194   <none>        80/TCP 
 NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
 poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
 ```
-
-## Etcd on External Virtual Machines
-
-This [page](/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster)
-documents the process for installing etcd outside the Kubernetes cluster
