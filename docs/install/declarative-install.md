@@ -209,13 +209,15 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
           address: # for example -> 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379
     ```
 
-    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml)
+    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml), set this to the storage class installed earlier
 
     ```yaml
     # Storageclass for etcd backing storage
     # NOTE: We CANNOT use storageos here as this is the egg to Ondat's chicken
-    storageclass: gp3
+    storageclass: local-path
     ```
+
+    > ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
 
 1. Once the parameters above have been defined, run the following  `helm install`  command to install Ondat using the Helm chart. Ensure that you use the `--values=` flag with your `custom-values.yaml` file.
 
