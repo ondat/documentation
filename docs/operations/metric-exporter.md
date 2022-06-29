@@ -23,25 +23,25 @@ Here’s an example [ServiceMonitor](https://prometheus-operator.dev/docs/operat
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
- labels:
-   app: storageos
-   release: prometheus
- name: storageos-metrics
- namespace: storageos
+  labels:
+    app: storageos
+    release: prometheus
+  name: storageos-metrics-service-monitor
+  namespace: storageos
 spec:
- endpoints:
- - interval: 15s
-   path: /metrics
-   port: metrics
- namespaceSelector:
-   matchNames:
-   - storageos
- selector:
-   matchLabels:
-app: storageos
-app.kubernetes.io/component: storageos-metrics-exporter
+  endpoints:
+  - interval: 15s
+    path: /metrics
+    port: metrics
+  namespaceSelector:
+    matchNames:
+    - storageos
+  selector:
+    matchLabels:
+      service-discovery: storageos-metrics-exporter
+      app: storageos
 ```
 
 ⚠️ The label selector fields must match those of our service.
 
-After the script is applied, Ondat metrics will be scraped by your Prometheus server.
+After the manifest is applied, Ondat metrics will be scraped by your Prometheus server.
