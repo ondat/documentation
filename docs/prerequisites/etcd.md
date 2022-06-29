@@ -4,31 +4,48 @@ linkTitle: Etcd
 weight: 600
 ---
 
-Ondat requires an etcd cluster in order to function. For more information
-on why etcd is required, see our [etcd concepts](/docs/concepts/etcd) page.
+Ondat requires an etcd cluster in order to function. For more information on
+why etcd is required, see our [etcd concepts](/docs/concepts/etcd) page.
 
 We do not support using the Kubernetes etcd for Ondat installations.
 
-For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat's required etcd cluster.
-In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster.
+For most use-cases we recommend installing our etcd operator, which will manage
+creation and maintenance of Ondat's required etcd cluster.  In some
+circumstances it makes sense to install etcd on separate machines outside of
+your Kubernetes cluster.
 
 ## Installing Etcd Into Your Kubernetes Cluster
 
-This is our recommended way to host etcd, in both testing and production environments.
+This is our recommended way to host etcd, in both testing and production
+environments.
 
 ## Configuring Storage for Etcd
 
-We highly recommend using cloud provider network attached disks for storing etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This allows the etcd operator to recover from node failures.
+We highly recommend using cloud provider network attached disks for storing
+etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
+allows the etcd operator to recover from node failures.
 
-For testing environments a node-local storage option can be used, such as [Local Path Provisioner](https://github.com/rancher/local-path-provisioner). This will store etcd data on the node hosting an etcd pod
+For testing environments a node-local storage option can be used, such as
+[Local Path Provisioner](https://github.com/rancher/local-path-provisioner).
+This will store etcd data on the node hosting an etcd pod
 
-> ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters, as this stores all the data of the `etcd` peers locally, which makes it susceptible to state being lost on node failures.
+> ⚠️ The `local-path` StorageClass is only recommended for **non production**
+> clusters, as this stores all the data of the `etcd` peers locally, which
+> makes it susceptible to state being lost on node failures.
 
 ### How to set up an EBS CSI Driver
 
-In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.
+In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of
+disk depends on the size of the Kubernetes cluster. However, it is recommended
+that the disks have at least 800 IOPS at any point in time. The best cost
+effective storage class that fulfils such requirements is gp3. If gp2 is used,
+it is paramount to use a volume bigger than 256Gi as it will have enough IOPS
+even when the burstable credits are exhausted.
 
-To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to install. The procedure is comprehended by the following steps:
+To use a gp3 storage class in Kubernetes it is required to install the Amazon
+CSI Driver. Follow [this
+guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to
+install. The procedure is comprehended by the following steps:
 
 * Create IAM permissions <https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html>
 * Install the CSI driver
@@ -45,7 +62,8 @@ An etcd cluster can be created in three different ways:
 
 ### **Recommended:** Installing the etcd operator via our helm chart
 
-For full instructions, visit [Ondat Helm Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repository.
+For full instructions, visit [Ondat Helm
+Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repository.
 
 ### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin
 
@@ -55,7 +73,8 @@ kubectl storageos install --include-etcd --etcd-storage-class <the storage class
 
 ### **Configurable:** Manually applying an `etcdcluster` custom resource
 
-This installation method allows the most configuration of the etcd cluster, but is the most error-prone.
+This installation method allows the most configuration of the etcd cluster, but
+is the most error-prone.
 
 * Manually applying an `etcdcluster` custom resource
 
@@ -71,9 +90,11 @@ kubectl storageos install --include-etcd --etcd-storage-class <the storage class
 
 ### Manually applying an `etcdcluster` custom resource
 
-This installation method allows the most configuration of the etcd cluster, but is the most error-prone.
+This installation method allows the most configuration of the etcd cluster, but
+is the most error-prone.
 
-Find the verison of the etcd operator you want to install from [GitHub](https://github.com/storageos/etcd-cluster-operator/releases/).
+Find the verison of the etcd operator you want to install from
+[GitHub](https://github.com/storageos/etcd-cluster-operator/releases/).
 
 Install the etcd operator:
 
@@ -115,4 +136,5 @@ poddisruptionbudget.policy/storageos-etcd   3               N/A               2 
 
 ## Etcd on External Virtual Machines
 
-This [page](/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster) documents the process for installing etcd outside the Kubernetes cluster
+This [page](/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster)
+documents the process for installing etcd outside the Kubernetes cluster
