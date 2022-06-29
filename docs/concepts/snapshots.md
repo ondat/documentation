@@ -8,6 +8,7 @@ linkTitle: Ondat Snapshots
 The Ondat Snapshot feature can be used in conjunction with [Kasten
 K10](https://www.kasten.io/) to snapshot, backup and restore Kubernetes
 applications. This functionality is useful for:
+
 1. Disaster recovery scenarios
 1. Rolling back unwanted changes
 1. Auditing purposes
@@ -16,6 +17,7 @@ applications. This functionality is useful for:
 # Prerequisites
 
 To utilize the Ondat Snapshot feature the following prerequisites must be met:
+
 1. Ondat v2.8.0 or later is installed in the cluster
 1. Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
 [prerequisites](https://docs.kasten.io/latest/install/requirements.html#).
@@ -45,7 +47,7 @@ feature provides users with a set of custom resource definitions (CRD) and APIs
 to create and manage volume snapshots. Storage providers can then implement the
 necessary CSI APIs to integrate with this feature. This is exactly what we’ve
 done at Ondat. Additional tools, like Kasten K10, can then be utilised to
-orchestrate and automate snapshotting, backups and restores. 
+orchestrate and automate snapshotting, backups and restores.
 
 Please see the [Backups and restores with Kasten
 K10](/docs/operations/backups-and-restores-with-kastenk10) for a full
@@ -62,7 +64,7 @@ The feature has the following limitations:
 fully CSI compliant implementation of the spec.
 1. Restoring via Kasten 10 from a “local snapshot” is not supported with the
 Ondat Snapshot feature. Users may only restore applications using a Kasten K10
-“External backup”. 
+“External backup”.
 1. Snapshotting RWX volumes is not supported. This is because it is next to
 impossible to ensure that a NFS mounted volume is in a suitable state for
 snapshotting. For RWX volumes, the user only has access to the filesystem on

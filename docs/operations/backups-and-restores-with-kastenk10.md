@@ -39,9 +39,9 @@ install these by default. To install the `VolumeSnapshots`,
 `VolumeSnapshotContents` and `VolumeSnapshotClasses` CRDs run the following:
 
 ```
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
 ```
 
 Now you need to install the `snapshot-controller`. The
@@ -49,7 +49,6 @@ Now you need to install the `snapshot-controller`. The
 monitors the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent`
 CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
 the controller with the following command:
-
 
 ```
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
@@ -78,7 +77,7 @@ This will prompt the Ondat operator to create a `VolumeSnapshotClass` named
 `StorageOSCluster` by using the following command:
 
 ```
-$ kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
+kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
 ```
 
 You can view the `VolumeSnapshotClass` by running:
@@ -104,7 +103,7 @@ be found [here](https://docs.kasten.io/latest/install/install.html).
 The remainder of this walk through will assume you have access to the Kasten K10 UI. You
 can install it following the instructions
 [here](https://docs.kasten.io/latest/access/dashboard.html). Everything we do in the
-following steps may be done via `kubectl` and the command line, however this is not shown
+following steps may be done via `kubectl` and the command-line, however this is not shown
 in this guide.
 
 Once K10 is installed you can then create a "Profile" and configure the backup location.
@@ -121,7 +120,7 @@ back it up and restore from it.
 Start by creating an example deployment in a new namespace `ondat-test`, which utilises a Ondat PVC:
 
 ```
-$ kubectl create namespace ondat-test
+kubectl create namespace ondat-test
 ```
 
 Then apply the following configuration using `kubectl create -f`:
@@ -303,7 +302,7 @@ k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
 
 Ensure you have the Kasten K10 dashboard installed
 (see [here](https://docs.kasten.io/latest/access/dashboard.html)). It’s possible
-to do the steps in this section via `kubectl` and the command line. Please see the
+to do the steps in this section via `kubectl` and the command-line. Please see the
 Kasten K10 documentation for how to do this.
 
 Go to the "Policies" page and click "Create New Policy":
@@ -359,13 +358,12 @@ $ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
 volumesnapshot.snapshot.storage.k8s.io "k10-csi-snap-wlxhw8vf9dx4qtq2" deleted
 ```
 
-
 ## 5.5: Restoring an application from a backup
 
 Let’s emulate a disaster recovery scenario, by deleting our deployment:
 
 ```
-$ kubectl delete -n ondat-test deployments.apps myapp-deployment
+kubectl delete -n ondat-test deployments.apps myapp-deployment
 ```
 
 Now let’s restore it. First go to the dashboard and select "Applications".
