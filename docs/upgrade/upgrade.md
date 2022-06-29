@@ -41,7 +41,7 @@ This guide provides instructions on how to upgrade Ondat.
     kubectl storageos upgrade
     ```
 
-> 💡 Please use the `--etcd-tls-enabled` if using TLS with your ETCD.
+> 💡 Use the `--etcd-tls-enabled` if using TLS with your ETCD.
 
 > 💡 If you are using a namespace other than `storageos` for your Ondat install, please use `--uninstall-stos-operator-namespace` argument because it uninstalls the cluster first and then reinstalls it with the new version.
 
