@@ -45,7 +45,7 @@ An etcd cluster can be created in three different ways:
 
 ### **Recommended:** Installing the etcd operator via our helm chart
 
-For full instructions, visit [Ondat Helm Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repo.
+For full instructions, visit [Ondat Helm Chart](https://github.com/ondat/charts/tree/main/charts/ondat) repository.
 
 ### **Recommended:** Installing Ondat (and the etcd operator) via our Plugin
 
