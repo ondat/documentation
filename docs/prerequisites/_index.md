@@ -22,7 +22,7 @@ One machine with the following:
 
 ## Recommended
 
-* At least three nodes for replication and high availability
+* Prepare a cluster with minimum of 5 nodes when running etcd within Kubernetes for replication and high availability; 3 nodes if etcd is outside Kubernetes
 * [Install the Ondat CLI](/docs/reference/cli/)
 * If using Helm2, make sure the tiller ServiceAccount has enough privileges to create resources such as Namespaces, ClusterRoles, etc. For instance, following this [installation procedure](https://v2.helm.sh/docs/using_helm/#role-based-access-control)
 * System clocks synchronized using NTP or similar methods. While our distributed consensus algorithm does not require synchronised clocks, it does help to more easily correlate logs across multiple nodes
