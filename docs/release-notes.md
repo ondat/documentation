@@ -22,6 +22,8 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 2.8.0 Release Notes
 
+> 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.
+
 ### New
 
 k8s
