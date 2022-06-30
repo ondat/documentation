@@ -35,7 +35,8 @@ This guide provides instructions on how to upgrade Ondat.
 
 ### Step 3 - Upgrade Ondat
 
-* Run the following command using the kubectl plugin.
+* Run the following command using the kubectl storageos plugin.
+> Make sure you are using the latest version of the kubectl storageos plugin. You can make use of the [installation guide](/docs/reference/kubectl-plugin/) and get the latest version [here](https://github.com/storageos/kubectl-storageos).
 
     ```bash
     kubectl storageos upgrade
