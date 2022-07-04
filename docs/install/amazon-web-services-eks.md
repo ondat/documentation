@@ -131,7 +131,20 @@ kubectl storageos preflight
     * Install the CSI driver
       * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
       * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
+* Install the `gp3` `StorageClass`:
 
+```bash
+kubectl create -f - <<EOF
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: gp3
+allowVolumeExpansion: true
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp3
+EOF
     ```bash
     export STORAGEOS_USERNAME="storageos"
     export STORAGEOS_PASSWORD="storageos"
