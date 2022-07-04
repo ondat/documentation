@@ -4,17 +4,9 @@ linkTitle: Best Practices
 weight: 450
 ---
 
-## Use an external Etcd cluster
+## Etcd - In Cluster - Replicas and Availability Zones
 
-Ondat uses the `etcd` distributed key-value store to store essential cluster
-metadata and manage distributed configuration state. For production environments
-and testing of production workloads, __we recommend deploying an external etcd
-cluster.__ For more details about, and an example of, how to run etcd, see the
-[External etcd Operations](/docs/operations/etcd) page.
-
-It is highly recommended to use external etcd for __cloud environments__ and
-place the etcd cluster on stable nodes. Placing the etcd on nodes that are
-recycled often might affect the normal operations of Ondat.
+We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.
 
 ## Etcd low latency IO
 
