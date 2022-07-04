@@ -35,6 +35,8 @@ This will store etcd data on the node hosting an etcd pod
 > storage classes are not available, as this stores
 > all the data of the `etcd` peers locally, which
 > makes it susceptible to state being lost on node failures.
+> In the case of `local-path` storage, a minimum of 5 etcd nodes
+> is recommended to increase resilience.
 
 ## Installing Etcd
 
