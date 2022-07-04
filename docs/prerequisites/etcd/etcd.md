@@ -60,7 +60,8 @@ kubectl storageos install \
 ### **Configurable:** Manually applying an `etcdcluster` custom resource
 
 This installation method allows the most configuration of the etcd cluster, but
-is the most error-prone.
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.
 
 * Manually applying an `etcdcluster` custom resource
 
