@@ -11,10 +11,6 @@ You will need a license for Ondat if you want to make use of the full functional
 
 # Types of Licenses
 
-## Free Trial
-
-You can use Ondat with all features for free without any restrictions for 1 month.
-
 ## Community Edition
 
 You can use Ondat with many features, including RWX volume support, for free without any time limit with a 1 TB usable capacity and up to 3 nodes.
@@ -34,22 +30,18 @@ You can also book a demo with our customer success team [here](https://www.ondat
 You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.io/signup) in order to retrieve your license.
 
 ## Step 2 - Generate a License
+  > Note: For airgapped use case: If you don't have a cluster connected to the portal you can generate a licence just by using the `clusterId`. To obtain your `clusterId`, follow the steps [here](/docs/operations/cluster-id/)
 
 1. Go to the “Organization” tab on the menu bar
 1. Click on “Generate a New License”
-1. Choose the cluster you want to add a license to
-
-  > NOTE: If you don't have a cluster connected to the portal you can generate a licence just by using the `clusterId`
-
-  > NOTE: To obtain your `clusterId`, follow the steps [here](/docs/operations/cluster-id/)
-
+1. Choose the cluster you want to add a license to. You can add your airgapped `clusterId` on this step.
 1. Choose the type of license you want the cluster to use
 1. Click generate
-1. Copy the command shown on the the modal
 
-## Step 3 - Add license to the cluster
+For Ondat 2.8.0 or above: Your cluster would be licensed automatically with your chosen licence type. No further action needed.
 
-1. Run the CLI command that you have copied on your machine
+## Step 3 - For Ondat 2.7.0 or below: Add license to the cluster
+1. Copy the command displayed on your screen and run the CLI command on your machine
 1. Congratulations, you have successfully applied the license to your cluster!
 
 # Further Reading: Manage Your License in CLI
