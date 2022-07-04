@@ -11,7 +11,8 @@ We do not support using the Kubernetes etcd for Ondat installations.
 
 For most use-cases it is recommended installing the Ondat etcd operator, which
 will manage creation and maintenance of Ondat's required etcd cluster. In some
-circumstances it makes sense to install etcd on separate machines outside of
+circumstances, eg. when cloud storage technologies are not available, 
+it makes sense to install etcd on separate machines outside of
 your Kubernetes cluster.
 
 ## Installing Etcd Into Your Kubernetes Cluster
