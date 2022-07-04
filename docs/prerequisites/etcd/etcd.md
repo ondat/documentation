@@ -26,7 +26,8 @@ We highly recommend using cloud provider network attached disks for storing
 etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
 allows the etcd operator to recover from node failures.
 
-For testing environments a node-local storage option can be used, such as
+For testing environments or where there are no resilient storage options available,
+a node-local storage option can be used, such as
 [Local Path Provisioner](https://github.com/rancher/local-path-provisioner).
 This will store etcd data on the node hosting an etcd pod
 
