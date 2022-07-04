@@ -17,7 +17,7 @@ your Kubernetes cluster.
 
 ## Installing Etcd Into Your Kubernetes Cluster
 
-This is our recommended way to host etcd, in both testing and production
+This is our recommended way to host etcd in both testing and production
 environments.
 
 ## Configuring Storage for Etcd
