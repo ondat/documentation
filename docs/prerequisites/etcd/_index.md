@@ -10,5 +10,5 @@ standards set out by the Kubernetes project.
 
 For most use-cases it is recommended to install the Ondat etcd operator, which
 will manage creation and maintenance of Ondat's etcd cluster. In some
-circumstances it makes sense to install etcd on separate machines outside of
+circumstances, it makes sense to install etcd on separate machines outside of
 your Kubernetes cluster.
