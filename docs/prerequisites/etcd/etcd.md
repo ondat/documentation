@@ -81,7 +81,8 @@ kubectl storageos install \
 ### Manually applying an `etcdcluster` custom resource
 
 This installation method allows the most configuration of the etcd cluster, but
-is the most error-prone.
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.
 
 Find the verison of the etcd operator you want to install from
 [GitHub](https://github.com/storageos/etcd-cluster-operator/releases/).
