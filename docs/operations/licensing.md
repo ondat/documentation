@@ -30,6 +30,7 @@ You can also book a demo with our customer success team [here](https://www.ondat
 You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.io/signup) in order to retrieve your license.
 
 ## Step 2 - Generate a License
+
   > Note: For airgapped use case: If you don't have a cluster connected to the portal you can generate a licence just by using the `clusterId`. To obtain your `clusterId`, follow the steps [here](/docs/operations/cluster-id/)
 
 1. Go to the “Organization” tab on the menu bar
@@ -41,6 +42,7 @@ You need to register yourself on the [Ondat SaaS Platform](https://portal.ondat.
 For Ondat 2.8.0 or above: Your cluster would be licensed automatically with your chosen licence type. No further action needed.
 
 ## Step 3 - For Ondat 2.7.0 or below: Add license to the cluster
+
 1. Copy the command displayed on your screen and run the CLI command on your machine
 1. Congratulations, you have successfully applied the license to your cluster!
 
