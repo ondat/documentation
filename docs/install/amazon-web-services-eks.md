@@ -131,6 +131,7 @@ kubectl storageos preflight
     * Install the CSI driver
       * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
       * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
+
 * Install the `gp3` `StorageClass`:
 
 ```bash

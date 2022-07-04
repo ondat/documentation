@@ -32,7 +32,7 @@ a node-local storage option can be used, such as
 This will store etcd data on the node hosting an etcd pod
 
 > ⚠️ The `local-path` StorageClass is only recommended when other, better
-> storage classes are not available, as this stores 
+> storage classes are not available, as this stores
 > all the data of the `etcd` peers locally, which
 > makes it susceptible to state being lost on node failures.
 
