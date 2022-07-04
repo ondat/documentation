@@ -8,7 +8,7 @@ This page documents the process for installing etcd outside the Kubernetes
 cluster.
 
 In some circumstances it can make sense to run etcd outside of Kubernetes. One
-of such circumstances is running an on-premises Kubernetes cluster and not
+example is when running an on-premises Kubernetes cluster, if you do not
 having access to reliable cloud disks (for storing etcd data).
 
 For production installations running etcd outside the cluster, Ondat strongly
