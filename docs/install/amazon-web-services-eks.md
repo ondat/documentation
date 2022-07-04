@@ -136,6 +136,7 @@ managedNodeGroups:
       - mount /var/lib/storageos
 
 ```
+Note the `<key-name>` field in the publicKeyName parameter, please make sure you update this to match your ssh key name.
 
 ```bash
 eksctl create cluster --config-file=cluster.yaml
