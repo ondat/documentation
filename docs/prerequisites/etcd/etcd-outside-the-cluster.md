@@ -15,7 +15,7 @@ For production installations running etcd outside the cluster, Ondat strongly
 recommends running etcd on a minimum of 3 dedicated virtual machines. This
 topology offers strong guarantees of resilience and uptime.
 
-Ondat doesn't require a high performance etcd cluster, as the throughput of
+Ondat doesn't require a high performance etcd cluster as the throughput of
 metadata to the cluster is low. However, we recommend a careful assessment of
 IOPS capacity [best practices](/docs/operations/etcd/) to ensure that etcd
 operates normally.
