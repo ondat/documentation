@@ -40,7 +40,11 @@ Scale all of the stateful applications that use Ondat volumes to 0.
 
 ### Step 3 - Upgrade Ondat
 
+<<<<<<< HEAD
 Run the following command using the kubectl storageos plugin.
+=======
+* Run the following command using the kubectl plugin.
+>>>>>>> d6b848e (Autofix linter errors)
 
 > Make sure you are using the latest version of the kubectl storageos plugin.
 > You can make use of the [installation guide](/docs/reference/kubectl-plugin/)
