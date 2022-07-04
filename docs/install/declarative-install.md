@@ -250,7 +250,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 1. Run the following  `helm install`  command to install Ondat using the Helm chart.
 
-**Internal Etcd**
+    **Internal Etcd**
 
     ```bash
     helm install ondat ondat/ondat \
@@ -260,7 +260,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
       --set etcd-cluster-operator.cluster.storageclass="$ETCD_STORAGECLASS"
     ```
 
-**External etcd**
+    **External etcd**
 
     ```bash
     helm install ondat ondat/ondat \
