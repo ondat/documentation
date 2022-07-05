@@ -1,6 +1,6 @@
 ---
-title: "ReadWriteMany (RWX)"
-linkTitle: "ReadWriteMany (RWX)"
+title: "Ondat Files"
+linkTitle: "Ondat Files"
 weight: 1
 ---
 
