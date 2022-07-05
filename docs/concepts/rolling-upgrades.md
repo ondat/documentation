@@ -1,6 +1,7 @@
 ---
-link: Rolling Upgrades to Orchestrator
+title: "Rolling Upgrades to Orchestrator"
 linkTitle: "Rolling Upgrades to Orchestrator"
+weight: 1
 ---
 
 # Overview

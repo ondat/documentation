@@ -1,6 +1,8 @@
 ---
 title: "Cluster"
-linkTitle: Clusters
+linkTitle: "Clusters"
+
+
 ---
 
 Ondat clusters represent groups of nodes which run a common distributed control plane.

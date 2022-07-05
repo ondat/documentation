@@ -1,6 +1,7 @@
 ---
 title: "ReadWriteMany (RWX)"
 linkTitle: "ReadWriteMany (RWX)"
+weight: 1
 ---
 
 > ⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit [Licensing](/docs/operations/licensing/#types-of-licenses).
