@@ -1,6 +1,7 @@
 ---
-title: "Labels"
-linkTitle: Labels
+title: "Ondat Feature Labels"
+linkTitle: "Ondat Feature Labels"
+weight: 1
 ---
 
 Feature labels are a powerful and flexible way to control storage features.
