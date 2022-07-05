@@ -311,31 +311,31 @@ The following script executes the same steps as the manual procedure.
         -s $ETCD_STORAGECLASS \
         -e $ETCD_ENDPOINT
 
- Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
- Release "storageos-etcd" does not exist. Installing it now.
- NAME: storageos-etcd
- LAST DEPLOYED: Wed Jun 22 16:44:43 2022
- NAMESPACE: etcd-operator
- STATUS: deployed
- REVISION: 1
- TEST SUITE: None
- Wating for etcd to be ready
- ...........................
- Etcd is ready
- pod/etcdctl-migration created
- Wating for the mirror
- ......................
- Mirror between etcds is running successfully
- Backing up the StorageOSCluster configuration
- Stopping Ondat
- storageoscluster.storageos.com "storageoscluster" deleted
- Stopping etcd mirror
- pod "etcdctl-migration" deleted
- Starting Ondat
- storageoscluster.storageos.com/storageoscluster created
- Wating for Ondat to be ready
- ...........
- Ondat is ready
- Checking that Ondat is pointing to the new etcd cluster in the node container logs:
-   success!
+     Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
+     Release "storageos-etcd" does not exist. Installing it now.
+     NAME: storageos-etcd
+     LAST DEPLOYED: Wed Jun 22 16:44:43 2022
+     NAMESPACE: etcd-operator
+     STATUS: deployed
+     REVISION: 1
+     TEST SUITE: None
+     Wating for etcd to be ready
+     ...........................
+     Etcd is ready
+     pod/etcdctl-migration created
+     Wating for the mirror
+     ......................
+     Mirror between etcds is running successfully
+     Backing up the StorageOSCluster configuration
+     Stopping Ondat
+     storageoscluster.storageos.com "storageoscluster" deleted
+     Stopping etcd mirror
+     pod "etcdctl-migration" deleted
+     Starting Ondat
+     storageoscluster.storageos.com/storageoscluster created
+     Wating for Ondat to be ready
+     ...........
+     Ondat is ready
+     Checking that Ondat is pointing to the new etcd cluster in the node container logs:
+       success!
     ```
