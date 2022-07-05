@@ -37,7 +37,7 @@ enable Topology-Aware Placement on a PVC, set it to the `soft` Failure Mode.
     metadata:
       name: pvc-tap
       labels:
-        storageos.com/topology-aware: true        # <---- Enable TAP
+        storageos.com/topology-aware: "true"        # <---- Enable TAP
         storageos.com/topology-key: custom-region # <---- TAP failure domain node label key
         storageos.com/failure-mode: soft
     spec:
