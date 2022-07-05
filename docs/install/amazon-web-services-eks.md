@@ -167,7 +167,7 @@ environment variables that will be used to manage your Ondat instance.
     guide](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to
     install. The procedure is comprehended by the following steps:
 
-    * Create IAM permissions <https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html>
+    * [Create IAM permissions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html)
     * Install the CSI driver
       * [Using EKS addon](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
       * [Using self-managed add on](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md) (AWS clusters, but not in EKS)
