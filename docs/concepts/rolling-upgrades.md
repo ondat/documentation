@@ -5,6 +5,8 @@ linkTitle: "Rolling Upgrades to Orchestrator"
 
 # Overview
 
+> 💡 This feature is currently available as a Technical Preview.
+
 You can use our rolling upgrade protection feature to upgrade your cluster's orchestrator without causing downtime or failure of Ondat.
 
 If the volumes containing the data for your stateful workloads do not wait to successfully synchronize in-between nodes upgrading, this can potentially cause data inconsistency and downtime. As such it is necessary to perform these upgrades intelligently.
