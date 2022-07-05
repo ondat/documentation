@@ -18,7 +18,7 @@ This guide will demonstrate how to install Ondat onto an [Openshift](/docs/platf
 > ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
 > opened for the worker nodes' security group.
 
-> ⚠️ Make sure to add a [Ondat licence](/docs/operations/licensing/) after installing.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
 > 💡 For OpenShift upgrades, refer to the
 > [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).

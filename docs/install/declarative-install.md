@@ -19,7 +19,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
-> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
 > ⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 

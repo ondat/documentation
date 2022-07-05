@@ -32,8 +32,9 @@ kubectl plugin](/docs/reference/kubectl-plugin/).
 * [aws](https://aws.amazon.com/cli/)
 * [eksctl](https://eksctl.io/), at least version `>=0.83.0`
 
-> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after
-> installing.
+> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after 
+installing. You can request a licence via the [Ondat SaaS 
+Platform](https://portal.ondat.io/).
 
 > ⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes
 > and the sufficient [Role-Based Access Control
