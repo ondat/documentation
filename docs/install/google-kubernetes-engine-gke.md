@@ -21,7 +21,7 @@ This guide will demonstrate how to install Ondat onto a [Google Kubernetes Engin
 
 > ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
-> ⚠️ Make sure you have a running GKE cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure you have a running GKE cluster with a minimum of 5 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
 > ⚠️ Make sure your GKE cluster uses  [`ubuntu_containerd`](https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
 

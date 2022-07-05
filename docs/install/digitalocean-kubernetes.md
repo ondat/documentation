@@ -19,7 +19,7 @@ This guide will demonstrate how to install Ondat onto a [DigitalOcean Managed Ku
 
 > ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
-> ⚠️ Make sure you have a running DOKS cluster with a minimum of 3 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+> ⚠️ Make sure you have a running DOKS cluster with a minimum of 5 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 
 > ⚠️ Make sure your DOKS cluster version is greater than or equal to `v1.21.10` or `v1.22.7` as they will have the required kernel modules available for Ondat to run successfully.
 
