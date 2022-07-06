@@ -1,6 +1,7 @@
 ---
 title: "Namespaces"
-linkTitle: Namespaces
+linkTitle: "Namespaces"
+weight: 1
 ---
 
 Ondat namespaces are an identical concept to Kubernetes namespaces. They

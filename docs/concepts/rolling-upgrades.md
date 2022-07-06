@@ -1,6 +1,7 @@
 ---
-link: Rolling Upgrades to Orchestrator
-linkTitle: "Rolling Upgrades to Orchestrator"
+title: "Ondat Rolling Upgrades Protection For Orchestrators"
+linkTitle: "Ondat Rolling Upgrades Protection For Orchestrators"
+weight: 1
 ---
 
 # Overview

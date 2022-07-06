@@ -1,6 +1,7 @@
 ---
 title: "Metric Exporter"
-linkTitle: Metric Exporter
+linkTitle: "Metric Exporter"
+weight: 1
 ---
 ## Overview
 

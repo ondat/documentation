@@ -1,6 +1,7 @@
 ---
 title: "Replication"
-linkTitle: Replication
+linkTitle: "Replication"
+weight: 1
 ---
 
 Ondat replicates volumes across nodes for data protection and high

@@ -1,6 +1,7 @@
 ---
 title: "Nodes"
-linkTitle: Nodes
+linkTitle: "Nodes"
+weight: 1
 ---
 
 An Ondat node is any machine (virtual or physical) that is running the
