@@ -1,7 +1,7 @@
 ---
-title: "Concepts"
-linkTitle: "Concepts"
+title: "Features"
+linkTitle: "Features"
 weight: 200
 description: >
-    High level overview of Ondat concepts and features.
+    Overview of Ondat features.
 ---

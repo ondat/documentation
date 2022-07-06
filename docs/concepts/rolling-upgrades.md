@@ -1,9 +1,12 @@
 ---
-link: Rolling Upgrades to Orchestrator
-linkTitle: "Rolling Upgrades to Orchestrator"
+title: "Ondat Rolling Upgrades Protection For Orchestrators"
+linkTitle: "Ondat Rolling Upgrades Protection For Orchestrators"
+weight: 1
 ---
 
 # Overview
+
+> 💡 This feature is currently available as a Technical Preview from release `2.7.0` or greater.
 
 You can use our rolling upgrade protection feature to upgrade your cluster's orchestrator without causing downtime or failure of Ondat.
 

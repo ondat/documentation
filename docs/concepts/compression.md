@@ -1,6 +1,7 @@
 ---
 title: "Compression"
-linkTitle: Compression
+linkTitle: "Compression"
+weight: 1
 ---
 
 Ondat compression is handled on a per volume basis and is disabled by

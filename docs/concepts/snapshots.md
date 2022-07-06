@@ -1,6 +1,7 @@
 ---
 title: "Ondat Snapshots"
-linkTitle: Ondat Snapshots
+linkTitle: "Ondat Snapshots"
+weight: 1
 ---
 
 # Overview

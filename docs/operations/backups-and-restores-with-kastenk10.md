@@ -77,7 +77,7 @@ This will prompt the Ondat operator to create a `VolumeSnapshotClass` named
 `StorageOSCluster` by using the following command:
 
 ```
-kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
+kubectl -n storageos edit storageosclusters.storageos.com cluster
 ```
 
 You can view the `VolumeSnapshotClass` by running:
@@ -296,6 +296,13 @@ NAME                                              AGE
 fsfreeze-hooks-deployment                         15h
 k10-deployment-generic-volume-2.0.20              3h2m
 k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
+```
+
+We must now annotate our deployment so that the aforementioned hooks are used at
+snapshot time:
+
+```
+kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint='fsfreeze-hooks-deployment'
 ```
 
 ## 5.3: Setting up a backup policy

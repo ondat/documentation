@@ -1,6 +1,7 @@
 ---
 title: "Volumes"
-linkTitle: Volumes
+linkTitle: "Volumes"
+weight: 1
 ---
 
 Ondat volumes are a logical construct which represent a writeable volume

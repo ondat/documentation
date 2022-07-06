@@ -1,6 +1,7 @@
 ---
 title: "Policies"
-linkTitle: Policies
+linkTitle: "Policies"
+weight: 1
 ---
 
 Ondat policies are a way to control user and group access to Ondat

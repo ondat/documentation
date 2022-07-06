@@ -55,9 +55,6 @@ spec:
   secretRefName: "storageos-api" # Reference to the Secret created in the previous step
 ```
 
-Check out [Cluster Definition
-examples](https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/cluster-operator/examples) for full CR files.
-
 ## Installing with an external etcd
 
 ```yaml

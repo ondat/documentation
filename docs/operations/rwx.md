@@ -3,7 +3,7 @@ title: "ReadWriteMany"
 linkTitle: ReadWriteMany
 ---
 
-> ⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the forever free Ondat Community Edition. For more information, please visit [Licensing](/docs/operations/licensing/#types-of-licenses).
+> ⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit [Licensing](/docs/operations/licensing/#types-of-licenses).
 
 Ondat supports ReadWriteMany (RWX) [access mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the

@@ -1,6 +1,7 @@
 ---
 title: "Fencing"
-linkTitle: Fencing
+linkTitle: "Fencing"
+weight: 1
 ---
 
 ## StatefulSet behaviour
