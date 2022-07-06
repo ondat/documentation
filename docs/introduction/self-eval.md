@@ -62,7 +62,7 @@ modern distributions:
 
 ```
 curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
     && tar -xf kubectl-storageos.tar.gz \
     && chmod +x kubectl-storageos \
     && sudo mv kubectl-storageos /usr/local/bin/ \
@@ -157,7 +157,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.7.0
+        image: storageos/cli:v2.8.0
         name: cli
 END
 ```
