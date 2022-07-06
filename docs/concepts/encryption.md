@@ -1,6 +1,7 @@
 ---
-title: "Encryption"
-linkTitle: Encryption
+title: "Ondat Data Encryption"
+linkTitle: "Ondat Data Encryption"
+weight: 1
 ---
 
 Ondat supports encryption for data-at-rest and data-in-transit.
