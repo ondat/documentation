@@ -92,7 +92,7 @@ and replication with [soft mode](/docs/operations/failure-modes):
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storageos-rep-enc-tap
+  name: storageos-rep-tap
 provisioner: csi.storageos.com
 allowVolumeExpansion: true
 parameters:
