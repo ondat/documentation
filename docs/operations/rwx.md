@@ -103,3 +103,34 @@ Under `Volumes`, the `Attachment` column shows an `nfs` tag. The
 `Volume Details` section provides information about the NFS Volume, such
 as the service endpoint and the node on which the underlying Volume is
 attached.
+
+## Changing the Squash mode
+
+As part of the 2.8 release, a change was made so that users can change the
+squash mode that is used with the RWX shares.
+Historically, all shares were exported with a `Squash = All` mode of operation.
+This was requested by most customers as the idea of identity in a container
+based deployment is very abstract.
+There is now a label that can applied to make this tunable, users can now add
+`storageos.com/nfs-squash = root|rootuid|all|none` to their volumes (where
+all is still the default behaviour still) to adjust this setting.
+
+As an example, the above PVC definition can be labelled as:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-rwx
+  labels:
+    storageos.com/nfs-squash: "rootuid"
+spec:
+  storageClassName: storageos
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+```
+
+This will squash only the root user to `root` leaving other UID operations intact.
