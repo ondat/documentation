@@ -711,9 +711,18 @@ channel](https://storageos.slack.com).
 
 ### Fixed
 
+<<<<<<< HEAD
+
 * ui: centre licence types.
 * ui: capacity in ui is per namespace.
 * cli: fail gracefully if missing some output details (i.e. no node exists for ID).
+=======
+
+* ui: centre licence types.
+* ui: capacity in ui is per namespace.
+* cli: fail gracefully if missing some output details (i.e. no node exists for ID).
+
+>>>>>>> main
 
 ## v2.0.0-rc.1 - Released 2020-03-31
 

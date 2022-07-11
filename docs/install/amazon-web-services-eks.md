@@ -84,6 +84,7 @@ kind: ClusterConfig
 metadata:
   name: ondat-cluster
   region: eu-west-2
+  version: "1.22"
 
 addons:
   - name: aws-ebs-csi-driver
@@ -92,27 +93,84 @@ iam:
   withOIDC: true
 
 managedNodeGroups:
-  - name: ondat-ng
-    minSize: 3
+  - name: ondat-ng-2a
+    availabilityZones:
+      - eu-west-2a
+    minSize: 1
     maxSize: 3
-    instanceType: t3.large
-    ami: ami-0cb2cb474d9e4e075
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
     labels: {ondat: node}
-    volumeSize: 100
-    volumeName: /dev/xvda
+    volumeSize: 20
+    volumeType: gp3
     volumeEncrypted: true
     disableIMDSv1: true
     iam:
       withAddonPolicies:
         ebs: true
-    overrideBootstrapCommand: |
-      #!/bin/bash
-      mkdir -p /var/lib/storageos
-      echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
-      mkfs.ext4 /dev/nvme1n1
-      mount /var/lib/storageos
-      /etc/eks/bootstrap.sh ondat-cluster
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
+  - name: ondat-ng-2b
+    availabilityZones:
+      - eu-west-2b
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
+    labels: {ondat: node}
+    volumeSize: 20
+    volumeType: gp3
+    volumeEncrypted: true
+    disableIMDSv1: true
+    iam:
+      withAddonPolicies:
+        ebs: true
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
+  - name: ondat-ng-2c
+    availabilityZones:
+      - eu-west-2c
+    minSize: 1
+    maxSize: 3
+    desiredCapacity: 1
+    instanceType: i3en.xlarge
+    amiFamily: Ubuntu2004
+    ssh:
+      allow: true
+      publicKeyName: <key-name>
+    labels: {ondat: node}
+    volumeSize: 20
+    volumeType: gp3
+    volumeEncrypted: true
+    disableIMDSv1: true
+    iam:
+      withAddonPolicies:
+        ebs: true
+    preBootstrapCommands:
+      - mkdir -p /var/lib/storageos
+      - echo "/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1" >> /etc/fstab
+      - mkfs.ext4 /dev/nvme1n1
+      - mount /var/lib/storageos
+
 ```
+
+Note the `<key-name>` field in the publicKeyName parameter, please make sure you update this to match your ssh key name.
 
 ```bash
 eksctl create cluster --config-file=cluster.yaml
