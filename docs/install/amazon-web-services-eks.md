@@ -1,7 +1,7 @@
 ---
 title: "Amazon Elastic Kubernetes Service (EKS)"
 linkTitle: "Amazon Elastic Kubernetes Service (EKS)"
-weight: 1
+weight: 10
 ---
 
 ## Overview

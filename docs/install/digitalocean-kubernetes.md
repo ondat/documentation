@@ -1,7 +1,7 @@
 ---
 title: "DigitalOcean Kubernetes (DOKS)"
 linkTitle: "DigitalOcean Kubernetes (DOKS)"
-weight: 1
+weight: 10
 ---
 
 ## Overview
