@@ -6,26 +6,25 @@ weight: 1
 
 # Quick Start Guide - Non-Production
 
-This guide will provide step by step instructions on how to install Ondat onto your cluster, with our helm chart, for a non-production environment. 
+This guide will provide step by step instructions on how to install Ondat onto your cluster, with our helm chart, for a non-production environment.
 
-> ⚠️ This guide is for a non-production installation. Please follow our [other installation guides](https://docs.ondat.io/docs/install/) for a production-ready installation of Ondat 
+> ⚠️ This guide is for a non-production installation. Please follow our [other installation guides](https://docs.ondat.io/docs/install/) for a production-ready installation of Ondat
 
 ## Prerequisites
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [helm](https://helm.sh/docs/intro/install/)
 
-
-This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes. 
+This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes.
 
 ### This guide has been tested on the following Kubernetes distributions
- - Vanilla Kubernetes
- - Rancher
 
+* Vanilla Kubernetes
+* Rancher
 
 ## Step 1 - Install Ondat Helm Charts
 
-Add the Ondat chart repo to Helm:
+Add the Ondat chart repository to Helm:
 
 ```bash
 helm repo add ondat https://ondat.github.io/charts
@@ -35,7 +34,6 @@ helm repo update
 ## Step 2 - Install Local Path Provisioner
 
 Etcd requires a storage class before we can start Ondat. For non-production environments the Local Path Provisioner storage class can be used.
-
 
 ```bash
 kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
@@ -59,6 +57,7 @@ kubectl create namespace storageos
 ```
 
 ## Step 4 - Customise and install the helm chart
+
 We make a few changes to the default helm chart values, so we can run in smaller non-production sized clusters.
 
 > ⚠️ Make sure to set the values of `ONDAT_USERNAME` and `ONDAT_PASSWORD`
@@ -84,7 +83,7 @@ It can take a few seconds for the storageos storage class to be created. We need
 
 The following command can be used to ensure the storageos storage class was successfully deployed. The expected output is also shown
 
-```bash 
+```bash
 > kubectl -n storageos get storageclass -w
 NAME         PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  3h4m
@@ -100,10 +99,10 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 kubectl patch storageclass storageos -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
-
 ## Step 7 - Ensure everything is running
 
 It can take a couple of minutes for the cluster to converge. A ready cluster will look like this:
+
 ```bash
 > kubectl -n storageos get pods,storageclass,svc                    
 NAME                                           READY   STATUS    RESTARTS      AGE
