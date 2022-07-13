@@ -123,7 +123,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-rwx
   labels:
-    storageos.com/nfs-squash: "rootuid"
+    storageos.com/nfs-squash: rootuid
 spec:
   storageClassName: storageos
   accessModes:
