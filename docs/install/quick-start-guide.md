@@ -18,7 +18,7 @@ More information can be [found here](../prerequisites/systemconfiguration.md)
 
 This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes.
 
-### This guide has been tested on the following Kubernetes distributions
+### This guide works on the following Kubernetes distributions
 
 * Vanilla Kubernetes
 * Rancher
