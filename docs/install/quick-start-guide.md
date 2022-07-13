@@ -4,14 +4,17 @@ linkTitle: "Quick Start Guide"
 weight: 1
 ---
 
-This guide will provide step by step instructions on how to install Ondat onto your cluster, with our helm chart, for a non-production environment.
+This guide will provide step by step instructions on how to install Ondat onto your cluster, with the [Ondat helm chart](https://github.com/ondat/charts), for a non-production environment.
 
-> ⚠️ This guide is for a non-production installation. Please follow our [other installation guides](https://docs.ondat.io/docs/install/) for a production-ready installation of Ondat
+> ⚠️ This guide is for a non-production installation. Please follow the [other installation guides](https://docs.ondat.io/docs/install/) for a production-ready installation of Ondat
 
 ## Prerequisites
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [helm](https://helm.sh/docs/intro/install/)
+
+Ondat requires certain kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
+More information can be [found here](../prerequisites/systemconfiguration.md) 
 
 This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes.
 
@@ -31,13 +34,13 @@ helm repo update
 
 ## Step 2 - Install Local Path Provisioner
 
-Etcd requires a storage class before we can start Ondat. For non-production environments the Local Path Provisioner storage class can be used.
+Etcd requires a storage class before Ondat can be started. For non-production environments the Local Path Provisioner storage class can be used.
 
 ```bash
 kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
 ```
 
-The following command can be used to ensure the Local Path Provisioner was successfully deployed. The expected output is also shown
+The following command can be used to ensure the Local Path Provisioner was successfully deployed.
 
 ```bash
 > kubectl get pod,storageclass --namespace=local-path-storage
@@ -48,15 +51,9 @@ NAME                                     PROVISIONER             RECLAIMPOLICY  
 storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  3h10m
 ```
 
-## Step 3 - Create the StorageOS namespace
+## Step 3 - Customise and install the helm chart
 
-```bash
-kubectl create namespace storageos
-```
-
-## Step 4 - Customise and install the helm chart
-
-We make a few changes to the default helm chart values, so we can run in smaller non-production sized clusters.
+A few changes need to be made to the default helm chart values, so it can run in smaller non-production sized clusters.
 
 > ⚠️ Make sure to set the values of `ONDAT_USERNAME` and `ONDAT_PASSWORD`
 
@@ -64,7 +61,7 @@ We make a few changes to the default helm chart values, so we can run in smaller
 export ONDAT_USERNAME="changeme"
 export ONDAT_PASSWORD="changeme"
 
-helm install ondat ondat/ondat --namespace storageos \
+helm install ondat ondat/ondat --create-namespace --namespace storageos \
 --set ondat-operator.cluster.admin.username=${ONDAT_USERNAME},\
 ondat-operator.cluster.admin.password=${ONDAT_PASSWORD},\
 etcd-cluster-operator.cluster.namespace=storageos-etcd,\
@@ -75,11 +72,11 @@ etcd-cluster-operator.cluster.resources.requests.cpu=100m,\
 etcd-cluster-operator.cluster.resources.requests.memory=300Mi
 ```
 
-## Step 5 - Wait until the storageos storage class has been created
+## Step 4 - Wait until the storageos storage class has been created
 
-It can take a few seconds for the storageos storage class to be created. We need to wait for this before we can set it as the default storage class.
+It can take a few seconds for the storageos storage class to be created. This needs to happen before it can be set as the default storage class.
 
-The following command can be used to ensure the storageos storage class was successfully deployed. The expected output is also shown
+The following command can be used to ensure the storageos storage class was successfully deployed.
 
 ```bash
 > kubectl -n storageos get storageclass -w
@@ -88,16 +85,16 @@ local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   fals
 storageos    csi.storageos.com       Delete          Immediate              true                   75m
 ```
 
-## Step 6 - Set the default storage class
+## Step 5 - Set the default storage class
 
-Set the storageos storage class as the default
+Set the storageos storage class as the default.
 
 ```bash
 kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 kubectl patch storageclass storageos -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
-## Step 7 - Ensure everything is running
+## Step 6 - Ensure everything is running
 
 It can take a couple of minutes for the cluster to converge. A ready cluster will look like this:
 
@@ -145,4 +142,4 @@ poddisruptionbudget.policy/storageos-etcd   2               N/A               1 
 
 > ⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1 TiB of provisioned storage.
 
-To obtain a licence, follow the instructions on our [licensing operations](/docs/operations/licensing) page.
+To obtain a licence, follow the instructions on the [licensing operations](/docs/operations/licensing) page.
