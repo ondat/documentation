@@ -1,7 +1,7 @@
 ---
 title: "Google Kubernetes Engine (GKE)"
 linkTitle: "Google Kubernetes Engine (GKE)"
-weight: 1
+weight: 10
 ---
 
 ## Overview

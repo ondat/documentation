@@ -1,7 +1,7 @@
 ---
 title: "Google Anthos"
 linkTitle: "Google Anthos"
-weight: 1
+weight: 10
 ---
 
 ## Overview

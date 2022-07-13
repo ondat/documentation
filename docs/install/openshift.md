@@ -1,7 +1,7 @@
 ---
 title: "OpenShift"
 linkTitle: "OpenShift"
-weight: 1
+weight: 10
 ---
 
 ## Overview

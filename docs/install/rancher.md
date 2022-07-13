@@ -1,7 +1,7 @@
 ---
 title: "Rancher Kubernetes Engine (RKE)"
 linkTitle: "Rancher Kubernetes Engine (RKE)"
-weight: 1
+weight: 10
 --- 
 
 ## Overview
