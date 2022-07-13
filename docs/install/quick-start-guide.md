@@ -14,7 +14,7 @@ This guide will provide step by step instructions on how to install Ondat onto y
 * [helm](https://helm.sh/docs/intro/install/)
 
 Ondat requires certain kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
-More information can be [found here](../prerequisites/systemconfiguration.md) 
+More information can be [found here](../prerequisites/systemconfiguration.md)
 
 This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes.
 
