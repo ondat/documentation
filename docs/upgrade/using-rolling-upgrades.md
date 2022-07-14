@@ -30,16 +30,26 @@ This guide will demonstrate how to enable protection for your orchestrator's rol
 
  ```yaml
   nodeManagerFeatures:
-    upgradeGuard: "true"
+    upgradeGuard: ""
  ```
 
 * Alternatively, you can run the following command:
 
  ```bash
- kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: "true"|' | kubectl apply -f - 
+ kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: ""|' | kubectl apply -f - 
  ```
 
-* You will see new pods getting created, one pod per node in a cluster called Node Manager.
+* You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable upgrade guard during first installation, upgrade guard might fall into a temporary `CrashLoopBackoff` loop until all cluster components are up and running.
+
+Upgrade Guard has a few configuration options:
+
+* `MINIMUM_REPLICAS_FOR_UPGRADE`: minimum replica number of any volume, to allow an upgrade. Default: 1
+* `WATCH_ALL_VOLUMES`: watch all volume on every nodes, otherwise Upgrade Guard watches volumes and its replicas on the node where it is running. Extra safety option with performance impact. Default: false
+
+ ```yaml
+  nodeManagerFeatures:
+    upgradeGuard: "MINIMUM_REPLICAS_FOR_UPGRADE=2,WATCH_ALL_VOLUMES=true"
+ ```
 
 ### Step 2 - Rolling Upgrades Is Ready
 
