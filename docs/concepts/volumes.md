@@ -39,13 +39,13 @@ Ondat supports offline resize of volumes.
 - This means that if a Kubernetes pod is currently consuming a volume that a resize request has been issued for, the resize will not be actioned until the pod is terminated and the volume is detached from the node. 
 - The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) to expand the filesystem.
 
-For more information on how to resize a volume, see the [Volume Resize](/docs/operations/resize) operations page.
+For more information on how to resize a volume, review the [Volume Resize](/docs/operations/resize) operations page.
 
 ### Ondat Volume Encryption
 
 Volumes can be configured on creation to have [data encryption-at-rest](https://en.wikipedia.org/wiki/Data_at_rest). Data is encrypted with XTS-AES and decrypted upon use.
 
-For more information on how to enable data encryption for Ondat volumes, review the [Ondat Data Encryption](/docs/concepts/encryption) feature page for more information.
+For more information on how to enable data encryption for Ondat volumes, review the [Ondat Data Encryption](/docs/concepts/encryption) feature page.
 
 ### TRIM
 
