@@ -34,7 +34,7 @@ The Kubernetes [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/vo
 
 This is exactly what we’ve done at Ondat. Additional backup tooling, like Kasten K10, can then be utilised to orchestrate and automate snapshotting, backups and restores.
 
-To get started with installing and configuring the Ondat Snapshot feature in your Ondat cluster with Kasten K10, review the [Snapshots](/docs/operations/metric-exporter/) operations page for more information.
+To get started with installing and configuring the Ondat Snapshot feature in your Ondat cluster with Kasten K10, review the [Snapshots](/docs/operations/backups-and-restores-with-kastenk10/) operations page for more information.
 
 > ⚠️ The Ondat Snapshots feature is not fully CSI compliant yet. As of today, the feature can only be used with Kasten K10 and with restoration from an external backup.
 
@@ -46,4 +46,4 @@ The Ondat Snapshots feature has the following limitations:
 1. Restoring via Kasten 10 from a “local snapshot” is not supported with the Ondat Snapshot feature. Users may only restore applications using a Kasten K10
 “External backup”.
 1. Snapshotting [ReadWriteMany (RWX)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) volumes is not supported. This is because it is next to impossible to ensure that a NFS mounted volume is in a suitable state for snapshotting. 
-    1. For RWX volumes, the user only has access to the filesystem on the NFS client. It is not possible to run `fsfreeze` on this mount point -- NFS does not support it. Thus the user can not [quiesce](https://en.wikipedia.org/wiki/Quiesce) the filesystem and we can not take a "consistent" snapshot.
+    1. For RWX volumes, the user only has access to the filesystem on the NFS client. It is not possible to run [`fsfreeze`](https://man7.org/linux/man-pages/man8/fsfreeze.8.html) on this mount point -- NFS does not support it. Thus the user can not [quiesce](https://en.wikipedia.org/wiki/Quiesce) the filesystem and we can not take a "consistent" snapshot.
