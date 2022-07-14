@@ -23,6 +23,15 @@ We’ll now run through the steps required to configure and utilise the feature:
     1. Manually running a backup job
     1. Restoring an application from a backup
 
+# Prerequisites
+
+To utilize the Ondat Snapshot feature the following prerequisites must be met:
+
+1. Ondat v2.8.0 or later is installed in the cluster
+1. Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
+[prerequisites](https://docs.kasten.io/latest/install/requirements.html#).
+Kasten supports Kubernetes versions up to 1.22.
+
 # 1: Installing Ondat
 
 Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
