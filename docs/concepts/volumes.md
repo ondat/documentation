@@ -49,6 +49,8 @@ For more information on how to enable data encryption for Ondat volumes, review 
 
 ### TRIM
 
+> 💡 This feature is available in release `v2.4.0` or greater.
+
 Ondat volumes support [TRIM/UNMAP](https://en.wikipedia.org/wiki/Trim_%28computing%29) which allows the space allocated to deleted blocks to be reclaimed from the backend blob files that back each volume when a TRIM call is made.
 - Support for TRIM is enabled by default for all uncompressed volumes, volumes are created without compression enabled by default. 
 
