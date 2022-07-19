@@ -35,12 +35,12 @@ For each RWX persistent volume, the following components below are required:
 The sequence in which a RWX PVC is provisioned and used demonstrated in the steps below:
 
 1. A `PersistentVolumeClaim` (PVC) is created with `ReadWriteMany` (RWX) access mode using any Ondat `StorageClass`.
-2. Ondat dynamically provisions the `PersistentVolume` (PV).
-3. A new Ondat `ReadWriteOnly` (RWO) Volume is provisioned internally (not visible in Kubernetes).
-4. When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
+1. Ondat dynamically provisions the `PersistentVolume` (PV).
+1. A new Ondat `ReadWriteOnly` (RWO) Volume is provisioned internally (not visible in Kubernetes).
+1. When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
 	1. The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.
-5. The *Ondat API Manager* publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.
-6. Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.
+1. The *Ondat API Manager* publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.
+1. Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.
 
 For more information on how to get started with Ondat Files, review the [ReadWriteMany (RWX)](/docs/operations/rwx) operations page.
 
