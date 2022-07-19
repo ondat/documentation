@@ -12,7 +12,7 @@ Conceptually, Ondat volumes have a frontend presentation, which is what the appl
 
 Volumes are formatted using the linux standard `ext4` filesystem by default. Kubernetes users may change the default filesystem type to `ext2`, `ext3`, `ext4`, or `xfs` by setting the `fsType` parameter in their `StorageClass` - review the [Supported Filesystems](/docs/reference/filesystems#persistent-volume-filesystems) page for more information.
 
-> ⚠️ Different filesystems may be supported in the future.
+> 💡 Different filesystems may be supported in the future.
 
 Ondat volumes are represented on disk in two parts. 
 - Actual volume data is written to blob files in `/var/lib/storageos/data/dev[\d+]`. Inside these directories, each Ondat block device gets two blob files of the form `vol.xxxxxx.y.blob`, where `x` is the inode number for the device, and `y` is an index between `0` and `1`. 
