@@ -17,7 +17,7 @@ Ondat utilises the [LZ4 (compression algorithm)](https://en.wikipedia.org/wiki/L
 
 Ondat detects whether a block can be compressed or not by creating a heuristic that predicts the size of a compressed block. 
 - If the heuristic indicates that the compressed block is likely to be larger than the original block then the uncompressed block is stored. 
-- Block size increases post compression if the compression dictionary is added to a block that cannot be compressed. By verifying whether blocks can be compressed, disk efficiency is increased and CPU resources are not wasted on attempts to compress incompressible blocks. 
+- Block size increases post-compression if the compression dictionary is added to a block that cannot be compressed. By verifying whether blocks can be compressed, disk efficiency is increased and CPU resources are not wasted on attempts to compress incompressible blocks. 
 - Ondat's patented on-disk format is used to tell whether individual blocks are compressed without overhead. As such volume compression can be dynamically enabled/disabled even while a volume is in use.
 
 ### How To Enable Ondat Compression?
