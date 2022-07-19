@@ -8,6 +8,8 @@ weight: 1
 
 > 💡 This feature is available in release `v2.4.0` or greater.
 
+> 💡 End users can also leverage [Trousseau](https://www.ondat.io/trousseau) with Ondat's volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau's repository can be located on [GitHub](https://github.com/ondat/trousseau). 
+
 ### Data Encryption
 
 Ondat supports [data encryption-at-rest](https://en.wikipedia.org/wiki/Data_at_rest) and [data encryption-in-transit](https://en.wikipedia.org/wiki/Data_in_transit).
@@ -32,7 +34,7 @@ On PVC creation, if data encryption-at-rest is enabled, Ondat will automatically
     2. The `storageos.com/encryption-secret-name` and `storageos.com/encryption-secret-namespace` annotations are added to the PVC by an admission controller to map the PVC back to its secret.
 1. The encryption key is passed to Ondat as part of the CSI volume creation request and is used to encrypt the volume.
 
-### How Are Encryptions Key Used?
+### How Are Encryption Keys Used?
 
 The volume specific secret is needed whenever a volume is attached to a node for use by a pod.
 - When this happens, the Ondat node container's [ServiceAccount](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) reads the secret and passes it to the Ondat Control Plane.
@@ -67,5 +69,3 @@ To address this from a Kubernetes limitations perspective and provide an agnosti
 1. The KMS plugin will handle the Kubernetes API Secret creation call and interface to the KMS server instance.
 1. The KMS server will return the secret using its encryption envelop scheme.
 1. The KMS plugin will store the encrypted secret within Kubernetes `etcd` backing store.
-
-> 💡 End users can also leverage [Trousseau](https://www.ondat.io/trousseau) with Ondat's volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau's repository can be located on [GitHub](https://github.com/ondat/trousseau). 
