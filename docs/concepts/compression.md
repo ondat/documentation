@@ -6,7 +6,7 @@ weight: 1
 
 ## Overview
 
-> 💡 This feature is disabled by default in in release `v2.2.0` or greater.
+> 💡 This feature is disabled by default in release `v2.2.0` or greater.
 
 ### Data Compression
 
