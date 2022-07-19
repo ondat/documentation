@@ -128,7 +128,7 @@ Kubernetes:
 
 Components
 
-* We have added a new component called upgrade guard that once enabled allows
+* We have added a new component called Node Guard that once enabled allows
   you to do rolling upgrades to the orchestrator without any downtime. This
   component is disabled by default and we do not recommend using the feature
   for production workloads as it is a technical preview feature.
