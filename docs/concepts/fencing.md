@@ -35,7 +35,7 @@ For more information on the rationale behind the design of StatefulSets, review 
 
 > 💡 High Availability for StatefulSet applications can be achieved with the Ondat Fencing feature.
 
-Since Ondat is able to determine when a node is no longer able to access a volume and has protections in place to ensure that a partitioned or formerly partitioned node can not continue to write data, it can work with Kubernetes to perform safe, fast failovers of pods, including those running in StatefulSets.
+Since Ondat is able to determine when a node is no longer able to access a volume and has protections in place to ensure that a partitioned or formerly partitioned node can stop writing data, it can work with Kubernetes to perform safe, fast failovers of pods, including those running in StatefulSets.
 - When Ondat detects that a node has gone offline or become partitioned, it marks the node offline and performs volume failover operations.
 
 The [Ondat Fencing Controller](https://github.com/storageos/api-manager/tree/master/controllers/fencer) watches for these node failures and determines if there are any pods assigned to the failed node with the label `storageos.com/fenced=true`, and if the pods have any PVCs backed by Ondat volumes.
