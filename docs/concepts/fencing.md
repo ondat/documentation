@@ -15,7 +15,7 @@ In order to understand what Ondat Fencing for Kubernetes is and when it is neede
 *StatefulSets* are the de facto Kubernetes controller to use for stateful applications. The StatefulSet controller offers guarantees around pod uniqueness, sticky identities and the persistence of PVCs beyond the lifetime of their pods. 
 - As such, StatefulSets have different characteristics and provide different guarantees than [Kubernetes Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 
-*Deployments* guarantee the amount of healthy replicas by reconciling towards the deployment desired  state. Attempts to align the number of healthy pods with the deployment's desired state happen as fast as possible by aggressively initialising and terminating pods. 
+*Deployments* guarantee the amount of healthy replicas by reconciling towards the deployment desired state. Attempts to align the number of healthy pods with the deployment's desired state happen as fast as possible by aggressively initialising and terminating pods. 
 - If one pod is terminating, another will be automatically scheduled to start even if the first pod is not yet completely terminated. Stateless applications benefit from this behaviour as one pod executes the same work as any other in the deployment.
 
 StatefulSets, on the other hand, **guarantee that every pod scheduled has a unique identity**, which is to say that only a single copy of a pod is running in the cluster at any one time. 
