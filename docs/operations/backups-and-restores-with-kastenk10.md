@@ -1,9 +1,9 @@
 ---
-title: "Backup and restores with Ondat Snapshots and Kasten K10"
-linkTitle: Backup and restores with Ondat Snapshots and Kasten K10
+title: "Backup & restores using Ondat Snapshots with Kasten K10"
+linkTitle: "Backup $ restores using Ondat Snapshots with Kasten K10"
 ---
 
-# Overview
+## Overview
 
 This guide will walk you through how to use the Ondat Snapshots feature to
 backup and restore your Kubernetes applications using Kasten K10. Before
@@ -23,7 +23,18 @@ We’ll now run through the steps required to configure and utilise the feature:
     1. Manually running a backup job
     1. Restoring an application from a backup
 
-# 1: Installing Ondat
+## Prerequisites
+
+To utilize the Ondat Snapshot feature the following prerequisites must be met:
+
+1. Ondat v2.8.0 or later is installed in the cluster
+1. Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
+[prerequisites](https://docs.kasten.io/latest/install/requirements.html#).
+Kasten supports Kubernetes versions up to 1.22.
+
+## Procedure
+
+### Step 1 - Installing Ondat
 
 Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
 first time then please follow the instructions
@@ -31,14 +42,14 @@ first time then please follow the instructions
 Ondat deployment then please follow the instructions
 [here](/docs/upgrade/upgrade/).
 
-# 2: Installing the Kubernetes snapshot CRDs
+### Step 2 - Installing the Kubernetes Snapshot CRDs
 
 In order to use the Kubernetes snapshot feature the Kubernetes snapshot CRDs
 and the `snapshot-controller` must be installed. Most distributions don’t
 install these by default. To install the `VolumeSnapshots`,
 `VolumeSnapshotContents` and `VolumeSnapshotClasses` CRDs run the following:
 
-```
+```bash
 kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
 kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
 kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
@@ -50,23 +61,22 @@ monitors the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotConte
 CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
 the controller with the following command:
 
-```
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-$ kubectl apply -f
-https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
 ```
 
 Note: it’s important that v6.0 is used for the CRDs and the `snapshot-controller`.
 Other versions may work or may appear to work, but have not been formally tested
 and ratified by Ondat.
 
-# 3: Configuring the Ondat VolumeSnapshotClass
+### Step 3 - Configuring the Ondat `VolumeSnapshotClass`
 
 In order to utilise the Ondat CSI plugin with the Kubernetes snapshot feature, one
 must provide a `VolumeSnapshotClass` for the Ondat CSI plugin. Once the CRDs and the
 `snapshot-controller` have been installed edit your `StorageOSCluster` to add:
 
-```
+```yaml
 spec:
   snapshots:
     volumeSnapshotClassName: $EXAMPLE_NAME
@@ -76,26 +86,26 @@ This will prompt the Ondat operator to create a `VolumeSnapshotClass` named
 `$EXAMPLE_NAME` and configure it for use with Kasten K10. You can edit your
 `StorageOSCluster` by using the following command:
 
-```
+```bash
 kubectl -n storageos edit storageosclusters.storageos.com cluster
 ```
 
 You can view the `VolumeSnapshotClass` by running:
 
-```
+```bash
 kubectl get volumesnapshotclasses
 ```
 
 and:
 
-```
+```bash
 kubectl describe volumesnapshotclasses $EXAMPLE_NAME
 ```
 
 You’ll notice the `VolumeSnapshotClass` contains the `k10.kasten.io/is-snapshot-class: true`
 annotation. This is very important and allows Kasten K10 to utilise the Ondat storage plugin.
 
-# 4: Installing Kasten K10
+### Step 4 - Installing Kasten K10
 
 The next step is to install Kasten K10 on your cluster. Instructions for how to do this can
 be found [here](https://docs.kasten.io/latest/install/install.html).
@@ -110,22 +120,22 @@ Once K10 is installed you can then create a "Profile" and configure the backup l
 Instructions on how to do this can be found
 [here](https://docs.kasten.io/latest/api/profiles.html#). It’s also possible to do this via the UI.
 
-# 5: Backup and restore example
+### Step 5 - Backup and Restore Example
 
 In the following sections, we’ll create a toy application and run through the steps required to
 back it up and restore from it.
 
-## 5.1: Creating an example application
+#### Step 5.1 - Create an Example Application
 
 Start by creating an example deployment in a new namespace `ondat-test`, which utilises a Ondat PVC:
 
-```
+```bash
 kubectl create namespace ondat-test
 ```
 
 Then apply the following configuration using `kubectl create -f`:
 
-```
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -180,8 +190,9 @@ spec:
 This deployment creates a pod with 2 containers. The `date` container will simply append
 the date to stdout and `/mnt/date` every 5 seconds:
 
-```
-$ kubectl -n ondat-test exec myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date | head
+```bash
+kubectl -n ondat-test exec myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date | head
+
 Tue Jun 28 08:56:07 UTC 2022
 Tue Jun 28 08:59:01 UTC 2022
 Tue Jun 28 08:59:06 UTC 2022
@@ -194,7 +205,7 @@ a consistent snapshot can be taken. It serves no other purpose. Notice how this
 container must have the `privileged` flag set to `true`. This is necessary to run
 the `fsfreeze` command.
 
-## 5.2: Adding pre/post-snapshot hooks to quiesce the application/filesystem
+#### Step 5.2 - Add Pre/Post-Snapshot Hooks To Quiesce the Application/Filesystem
 
 In order to take a snapshot of an application we must first quiesce the application
 and the underlying filesystem.
@@ -235,7 +246,7 @@ for our toy application.
 `kind` to `StatefulSet`, `Deployment.Namespace` to `StatefulSet.Namespace` and
 `Deployment.Pods` to `StatefulSet.Pods`.
 
-```
+```yaml
 apiVersion: cr.kanister.io/v1alpha1
 kind: Blueprint
 metadata:
@@ -290,8 +301,9 @@ you’ll have to modify the `namespace` field in the above configuration.
 Apply the blueprint with the `kubect create -f` command. One can observe the
 blueprint like so:
 
-```
-$ kubectl -n kasten-io get blueprints.cr.kanister.io
+```bash
+kubectl -n kasten-io get blueprints.cr.kanister.io
+
 NAME                                              AGE
 fsfreeze-hooks-deployment                         15h
 k10-deployment-generic-volume-2.0.20              3h2m
@@ -301,11 +313,11 @@ k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
 We must now annotate our deployment so that the aforementioned hooks are used at
 snapshot time:
 
-```
+```bash
 kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint='fsfreeze-hooks-deployment'
 ```
 
-## 5.3: Setting up a backup policy
+#### Step 5.3 - Setting Up a Backup Policy
 
 Ensure you have the Kasten K10 dashboard installed
 (see [here](https://docs.kasten.io/latest/access/dashboard.html)). It’s possible
@@ -335,7 +347,7 @@ Leave everything else as is then click `Create Policy` to create the policy.
 > ⚠️ Do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
 section. This is taken care of by the steps in "Adding pre/post-snapshot hooks".
 
-## 5.4: Manually running a backup job
+#### Step 5.4 - Manually Running a Backup Job
 
 We can now manually run a job to backup our application. Browse to the dashboard
 homepage and select "Policies". From there we can find our policy and initiate a
@@ -356,20 +368,22 @@ In order to save space and reduce copy-on-write latency on the parent volume
 we should now manually delete the `VolumeSnapshot` object associated with our
 snapshot. This instructs Ondat that we are done with the snapshot.
 
-```
-$ kubectl get volumesnapshots -n ondat-test
+```bash
+kubectl get volumesnapshots -n ondat-test
+
 NAME                            READYTOUSE   SOURCEPVC   SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS             SNAPSHOTCONTENT                                    CREATIONTIME   AGE
 k10-csi-snap-wlxhw8vf9dx4qtq2   true         mypvc                               2Gi           csi-storageos-snapclass   snapcontent-359f9126-f428-4dbf-82da-932a74d10e83   40m            40m
 
-$ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
+kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
+
 volumesnapshot.snapshot.storage.k8s.io "k10-csi-snap-wlxhw8vf9dx4qtq2" deleted
 ```
 
-## 5.5: Restoring an application from a backup
+#### Step 5.5 - Restoring an Application From a Backup
 
 Let’s emulate a disaster recovery scenario, by deleting our deployment:
 
-```
+```bash
 kubectl delete -n ondat-test deployments.apps myapp-deployment
 ```
 
@@ -400,16 +414,18 @@ Once the restore job has finished you’ll see a screen like this:
 
 Let’s check our application is running:
 
-```
-$ kubectl get -n ondat-test deployments.apps myapp-deployment
+```bash
+kubectl get -n ondat-test deployments.apps myapp-deployment
+
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 myapp-deployment   1/1     1            1           10m
 ```
 
 And let’s view the contents of the "/mnt/date" in the application’s pod:
 
-```
-$ kubectl -n ondat-test exec myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
+```bash
+kubectl -n ondat-test exec myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
+
 Tue Jun 28 08:56:07 UTC 2022
 Tue Jun 28 08:59:01 UTC 2022
 …
@@ -425,9 +441,9 @@ Tue Jun 28 12:10:34 UTC 2022
 Notice how there’s an 8 minute gap between 11:50:45 and 11:58:33. This coincides
 with the snapshot being taken at circa 11:51 (UTC) and being restored at 11:58 (UTC).
 
-## Known issues and gotchas
+## Known Issues & Gotchas
 
-### Deletion of VolumeSnapshot
+### Deletion of `VolumeSnapshot`
 
 Ideally the Kubernetes `VolumeSnapshot` object should be deleted as soon as the
 application has been backed up externally. There’s no reason to keep the snapshot
@@ -439,7 +455,7 @@ policy. This does not fix the issue, but ensures that the snapshot is removed wi
 an hour of been taken. It is also possible to remove the snapshot manually by
 running `kubectl delete volumesnapshots -n <app_namespace> <snapshot>`.
 
-### Performance implications
+### Performance Implications
 
 The Ondat snapshots feature utilises copy-on-write semantics under the hood. This
 means while a `VolumeSnapshot` object exists any blocks which are written to the

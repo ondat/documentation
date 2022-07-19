@@ -1,22 +1,36 @@
 ---
-title: "Metric Exporter"
-linkTitle: "Metric Exporter"
+title: "Ondat Metric Exporter"
+linkTitle: "Ondat Metric Exporter"
 weight: 1
 ---
+
 ## Overview
 
-Following the [exporter pattern](https://prometheus.io/docs/instrumenting/exporters/), we maintain and distribute our own [Prometheus](https://prometheus.io/) exporter for monitoring & alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity & traffic.
+> 💡 This feature is available in release `v2.8.0` or greater.
 
-Our exporter’s source code can be found [here](https://github.com/ondat/metrics-exporter).
+### Prometheus Metrics for Ondat Volumes
 
-Please see our [operations page](/docs/operations/metric-exporter/) to get started.
+Following the [exporter pattern](https://prometheus.io/docs/instrumenting/exporters/), we maintain and distribute our own [Prometheus](https://prometheus.io/) exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.
 
-Additionally, we distribute Grafana dashboards to visualize the data. They can be found [here](https://github.com/ondat/metrics-exporter/tree/main/grafana).
+- The Ondat metric exporter repository is open source and can be located on [GitHub](https://github.com/ondat/metrics-exporter).
 
-Likewise, we distribute example alerting rules for our metrics using [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/), they can be found [here](https://github.com/ondat/metrics-exporter/tree/main/alertmanager)
+To get started with installing and configuring the exporter in your Ondat cluster, review the [metric exporter's](/docs/operations/metric-exporter/) operations page for more information.
 
-Contributions to both are welcome!
+> ⚠️ When setting up a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md) resource, ensure that you create the rules in the same namespace as your Prometheus resource and have its `selector` field match the labels of the services exposing metrics - review the [example ServiceMonitor resource](/docs/operations/metric-exporter/) manifest in the operations page for more information.
 
-> ⚠️ When setting up a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md) be sure to create the rules in the same namespace as your Prometheus resource and have its `selector` field match the labels of ours services exposing metrics (see example manifest [here](/docs/operations/metric-exporter/)).
+### Alerting Rules for Ondat Volumes
 
-If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our [public slack](https://slack.storageos.com/).
+Ondat also distributes example alert rules for Ondat metrics using [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/).
+- The alert rules manifest can be located in the [`alertmanager` sub directory under the Ondat metric exporter](https://github.com/ondat/metrics-exporter/tree/main/alertmanager) repository.
+
+### Grafana Dashboard for Ondat Volumes
+
+In addition to the Ondat metric exporter project, we also distribute [Grafana dashboards](https://grafana.com/grafana/dashboards/) that allow end users to easily visualize and get insights into the status of Ondat volumes. 
+
+- The dashboards can be also located in the [`grafana` sub directory under the Ondat metric exporter](https://github.com/ondat/metrics-exporter/tree/main/grafana) repository.
+
+## Contributing
+
+If end users have suggestions/ideas for metrics that they would like Ondat to gather by default or improve the Grafana dashboards and Alertmanager integration, contributions are welcome. 
+
+You can reach out to us on the [Ondat community slack workspace](https://slack.storageos.com/) or review the [contributing guidelines](https://github.com/ondat/metrics-exporter/blob/main/CONTRIBUTING.md) in the Ondat metric exporter repository.

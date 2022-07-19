@@ -2,6 +2,8 @@
 title: "Release Notes"
 linkTitle: Release Notes
 weight: 150
+description: >
+  Ondat release notes on new features, fixes and changes.
 ---
 
 We recommend always using "tagged" versions of Ondat rather than "latest",
@@ -133,7 +135,7 @@ Components
   component is disabled by default and we do not recommend using the feature
   for production workloads as it is a technical preview feature.
   
-## 2.5 - Released 2021-12-06
+## 2.5.0 - Released 2021-12-06
 
 ### Fixed
 
