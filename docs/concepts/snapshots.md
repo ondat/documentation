@@ -13,9 +13,9 @@ The Ondat Snapshot feature can be used in conjunction with [Kasten K10](https://
 The snapshot functionality is useful for:
 
 1. Disaster Recovery (DR) scenarios.
-2. Rolling back unwanted changes.
-3. Auditing purposes.
-4. Migrating applications between clusters.
+1. Rolling back unwanted changes.
+1. Auditing purposes.
+1. Migrating applications between clusters.
 
 ### What Are Snapshots, Backups & Restores?
 
