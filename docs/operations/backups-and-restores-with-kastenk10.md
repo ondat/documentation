@@ -42,7 +42,7 @@ first time then please follow the instructions
 Ondat deployment then please follow the instructions
 [here](/docs/upgrade/upgrade/).
 
-### Step 2 - Installing The Kubernetes Snapshot CRDs
+### Step 2 - Installing the Kubernetes Snapshot CRDs
 
 In order to use the Kubernetes snapshot feature the Kubernetes snapshot CRDs
 and the `snapshot-controller` must be installed. Most distributions don’t
@@ -120,12 +120,12 @@ Once K10 is installed you can then create a "Profile" and configure the backup l
 Instructions on how to do this can be found
 [here](https://docs.kasten.io/latest/api/profiles.html#). It’s also possible to do this via the UI.
 
-### Step 5 - Backup and restore example
+### Step 5 - Backup and Restore Example
 
 In the following sections, we’ll create a toy application and run through the steps required to
 back it up and restore from it.
 
-#### Step 5.1 - Create An Example Application
+#### Step 5.1 - Create an Example Application
 
 Start by creating an example deployment in a new namespace `ondat-test`, which utilises a Ondat PVC:
 
@@ -205,7 +205,7 @@ a consistent snapshot can be taken. It serves no other purpose. Notice how this
 container must have the `privileged` flag set to `true`. This is necessary to run
 the `fsfreeze` command.
 
-#### Step 5.2 - Adding Pre/Post-Snapshot Hooks To Quiesce The Application/Filesystem
+#### Step 5.2 - Add Pre/Post-Snapshot Hooks To Quiesce the Application/Filesystem
 
 In order to take a snapshot of an application we must first quiesce the application
 and the underlying filesystem.
@@ -317,7 +317,7 @@ snapshot time:
 kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint='fsfreeze-hooks-deployment'
 ```
 
-#### Step 5.3 - Setting Up A Backup Policy
+#### Step 5.3 - Setting Up a Backup Policy
 
 Ensure you have the Kasten K10 dashboard installed
 (see [here](https://docs.kasten.io/latest/access/dashboard.html)). It’s possible
@@ -347,7 +347,7 @@ Leave everything else as is then click `Create Policy` to create the policy.
 > ⚠️ Do not try to set the `Pre and Post-Snapshot Action Hooks` in the `Advanced Settings`
 section. This is taken care of by the steps in "Adding pre/post-snapshot hooks".
 
-#### Step 5.4 - Manually Running A Backup Job
+#### Step 5.4 - Manually Running a Backup Job
 
 We can now manually run a job to backup our application. Browse to the dashboard
 homepage and select "Policies". From there we can find our policy and initiate a
@@ -379,7 +379,7 @@ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
 volumesnapshot.snapshot.storage.k8s.io "k10-csi-snap-wlxhw8vf9dx4qtq2" deleted
 ```
 
-#### Step 5.5 - Restoring An Application From A Backup
+#### Step 5.5 - Restoring an Application From a Backup
 
 Let’s emulate a disaster recovery scenario, by deleting our deployment:
 
