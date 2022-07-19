@@ -67,7 +67,7 @@ Ondat failure modes offer different guarantees with regards to a volume's mode o
 `soft` failure mode allows a volume to continue serving I/O even when a replica goes offline and a new replica fails to provision. 
 - So long as there are `not less than max(1, N-1)` available replicas where `N` is the number of replicas for the volume.
 - For example, if a volume with `2` replicas loses `1` replica, then I/O would continue to be served since `1` replica remaining `>= max(1, 1)`. 
-- If a volume with `1` replica loses `1` replica, then I/O would halt after `90` seconds since `0`
+    > ⚠️ If a volume with `1` replica loses `1` replica, then I/O would halt after `90` seconds since `0`
 replicas remaining `< max(1, 0)`.
 
 	```bash
