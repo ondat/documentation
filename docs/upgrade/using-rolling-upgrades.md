@@ -6,7 +6,7 @@ weight: 1
 
 ## Overview
 
-This guide will demonstrate how to enable protection for your orchestrator's rolling upgrades using the [Upgrade Guard](/docs/concepts/rolling-upgrades/#upgrade-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+This guide will demonstrate how to enable protection for your orchestrator's rolling upgrades using the [Node Guard](/docs/concepts/rolling-upgrades/#node-guard) and [Node Manager](/docs/concepts/rolling-upgrades/#node-manager). This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
 
 > ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
 
@@ -24,31 +24,31 @@ This guide will demonstrate how to enable protection for your orchestrator's rol
 
 ## Procedure
 
-### Step 1 - Enable Node Manager & Upgrade Guard
+### Step 1 - Enable Node Manager & Node Guard
 
 * Add the following lines to the `StorageOSCluster` spec:
 
  ```yaml
   nodeManagerFeatures:
-    upgradeGuard: ""
+    nodeGuard: ""
  ```
 
 * Alternatively, you can run the following command:
 
  ```bash
- kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: ""|' | kubectl apply -f - 
+ kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    nodeGuard: ""|' | kubectl apply -f - 
  ```
 
-* You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable the Upgrade Guard during the first installation, Upgrade Guard might fall into a temporary `CrashLoopBackoff` loop until all cluster components are up and running.
+* You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable the Node Guard during the first installation, Node Guard might fall into a temporary `CrashLoopBackoff` loop until all cluster components are up and running.
 
-Upgrade Guard has a few configuration options:
+Node Guard has a few configuration options:
 
-* `MINIMUM_REPLICAS_FOR_UPGRADE`: minimum replica number of any volume, to allow an upgrade. Default: 1
-* `WATCH_ALL_VOLUMES`: watch all volumes on every node, otherwise Upgrade Guard watches volumes and their replicas on the node where it is running. Extra safety option with a performance impact. Default: false
+* `MINIMUM_REPLICAS`: minimum replica number of any volume. Default: 1
+* `WATCH_ALL_VOLUMES`: watch all volumes on every node, otherwise Node Guard watches volumes and their replicas on the node where it is running. Extra safety option with a performance impact. Default: false
 
  ```yaml
   nodeManagerFeatures:
-    upgradeGuard: "MINIMUM_REPLICAS_FOR_UPGRADE=2,WATCH_ALL_VOLUMES=true"
+    nodeGuard: "MINIMUM_REPLICAS=2,WATCH_ALL_VOLUMES=true"
  ```
 
 ### Step 2 - Rolling Upgrades Is Ready
@@ -59,13 +59,13 @@ Congratulations, you are now ready to start the rolling upgrade process of your 
 
 > ⚠️ EKS takes care of PDB for 50 mins, after this period upgrade would fail unless it was forced.
 
-> ⚠️ Upgrade Guard has a one-day termination period by default. The final termination period heavily depends on the platform you use. During the termination period, you should SSH into the node to create a backup in the worst-case scenario.
+> ⚠️ Node Guard has a one-day termination period by default. The final termination period heavily depends on the platform you use. During the termination period, you should SSH into the node to create a backup in the worst-case scenario.
 
 ## Troubleshooting
 
 * Volumes are healthy, all in sync but `storageos-node-manager` pod is hanging on the `Terminating` state.
 
-The long termination period of Node Manager tries to keep failed node - and volumes on it - up and running as long as possible. This gives a chance to create a backup from an accidentally deleted machine. In case, Upgrade Guard isn't able to determine volume statuses, because of a network issue or missing StorageOS service, you have to delete pod manually by executing the following command:
+The long termination period of Node Manager tries to keep failed node - and volumes on it - up and running as long as possible. This gives a chance to create a backup from an accidentally deleted machine. In case, Node Guard isn't able to determine volume statuses, because of a network issue or missing StorageOS service, you have to delete pod manually by executing the following command:
 
 ```bash
 kubectl delete pods -n storageos storageos-node-manager-XYZ --grace-period=0 --force

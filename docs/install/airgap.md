@@ -253,7 +253,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
           RELATED_IMAGE_PORTAL_MANAGER: storageos/portal-manager:v1.0.2
           RELATED_IMAGE_STORAGEOS_INIT: storageos/init:v2.1.2
           RELATED_IMAGE_STORAGEOS_NODE: storageos/node:v2.7.0
-          RELATED_IMAGE_UPGRADE_GUARD: storageos/upgrade-guard:v0.0.4
+          RELATED_IMAGE_NODE_GUARD: storageos/node-guard:v0.0.4
         ```
 
         ```yaml
@@ -270,7 +270,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
           RELATED_IMAGE_PORTAL_MANAGER: $PRIVATE_REGISTRY_URL/portal-manager:v1.0.2
           RELATED_IMAGE_STORAGEOS_INIT: $PRIVATE_REGISTRY_URL/init:v2.1.2
           RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
-          RELATED_IMAGE_UPGRADE_GUARD: $PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4
+          RELATED_IMAGE_NODE_GUARD: $PRIVATE_REGISTRY_URL/node-guard:v0.0.4
         ```
 
  1. **`storageos-cluster`**
