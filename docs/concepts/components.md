@@ -34,7 +34,7 @@ The [**Ondat API Manager**](https://github.com/storageos/api-manager) acts as a 
 
 ### Ondat Data Plane
 
-The **Ondat Data Plane** is responsible for all I/O operation path related tasks; 
+The **Ondat Data Plane** is responsible for all [I/O operations](https://en.wikipedia.org/wiki/Input/output) path related tasks; 
 - [Reading](https://en.wikipedia.org/wiki/Reading_%28computer%29),
 - [Writing](https://en.wikipedia.org/wiki/Read%E2%80%93write_memory), 
 - [Compression](https://en.wikipedia.org/wiki/Data_compression),
@@ -62,7 +62,7 @@ The [**CSI Helper**](https://github.com/storageos/external-provisioner) is respo
 
 The **Ondat Node Guard** is a key component of the [Ondat Rolling Upgrade Protection for Orchestrators](/docs/concepts/rolling-upgrades/) feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.
 - The Node Guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume's master and replicas become unready. 
-- Ondat uses a [PodDisruptionBudget (PDB)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to stop more than `1` node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled
+- Ondat uses a [PodDisruptionBudget (PDB)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to stop more than `1` node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled.
 - If the PDB is set to `1` and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The `api-managercomponent` will be able to dynamically set the PDB value if it can determine the health of the volume. 
 - If the `api-managercomponent` knows that a volume will not be ready, it can increase the PDB `maxUnavailable` value, allowing the upgrade to continue. The Node Guard container will log when it is available to upgrade, it will also log the reason if upgrade is not possible.
 
