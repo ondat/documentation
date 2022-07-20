@@ -38,7 +38,7 @@ Topology-Aware Placement can be enabled by applying the label `storageos.com/top
 
 A topology domain is a set of nodes. The domain is identified by a label, which can be defined by the user.
 - The default label that Ondat uses to segment nodes in failure domains is >> `topology.kubernetes.io/zone`. 
-- However, you can define your own topology key by setting the key string in the [Ondat feature label](docs/concepts/labels/) >> `storageos.com/topology-key`.
+- However, you can define your own topology key by setting the key string in the [Ondat feature label](/docs/concepts/labels/) >> `storageos.com/topology-key`.
 
 
 ### Ondat Failure Modes & Topology-Aware Placement
