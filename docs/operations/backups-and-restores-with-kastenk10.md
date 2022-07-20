@@ -1,6 +1,6 @@
 ---
-title: "Backup & restores using Ondat Snapshots with Kasten K10"
-linkTitle: "Backup & restores using Ondat Snapshots with Kasten K10"
+title: "How To Backup & Restore Using Ondat Snapshots with Kasten K10"
+linkTitle: "How To Backup & Restore Using Ondat Snapshots with Kasten K10"
 ---
 
 ## Overview
