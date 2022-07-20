@@ -4,132 +4,56 @@ linkTitle: "Ondat Feature Labels"
 weight: 1
 ---
 
-Feature labels are a powerful and flexible way to control storage features.
+## Overview
 
-Applying specific feature labels triggers compression, replication and other
-storage features. No feature labels are present by default.
+Ondat Feature labels are [Kubernetes Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) which provide a powerful and flexible way to control storage features.
+- Applying specific feature labels triggers [compression](/docs/concepts/compression/), [replication](/docs/concepts/replication/), [data encryption](/docs/concepts/encryption/) and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.
 
-## Ondat Node labels
+## Types Of Ondat Feature Labels
 
-Nodes do not have any feature labels present by default.  When Ondat is run
-within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels
-to the corresponding Ondat node. The Kubernetes node labels act as the
-"source of truth", so labels should be applied to the Kubernetes nodes rather
-than to Ondat nodes. This is because the Kubernetes node labels overwrite
-the Ondat node labels on sync.
+### Ondat Volume Labels
 
-| Feature        | Label                         | Values                               | Description                    |
-| :------------- | :---------------------------- | :----------------------------------- | :----------------------------- |
-| Compute only   | `storageos.com/computeonly`   | true / false                         | Specifies whether a node should be `computeonly` where it only acts as a client and does not host volume data locally, otherwise the node is hyperconverged (the default), where the node can operate in both client and server modes. |
+Below are the list of available feature labels that can be used to define [Volume resources](https://kubernetes.io/docs/concepts/storage/volumes/) and [StorageClass resources](https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource) in an Ondat cluster. 
 
-You can set the compute-only label on the Kubernetes node and the label will be
-synced to the Ondat node (labels take an eventual consistency reconciliation
-time of up to a minute (or less)).
+> 💡 The **encryption**, **caching** and **compression** labels can only apply at provisioning time, they can't be changed during execution.
 
-```bash
-kubectl label node $NODE storageos.com/computeonly=true
-```
+| Feature Name                                                        | Label Reference                | Values                                                                                         | Feature Description                                                                                                                                                                                                                            |
+| :------------------------------------------------------------------ | :----------------------------- | :--------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Caching**                                                         | `storageos.com/nocache`        | `true` / `false`                                                                               | Enables or disables [caching](https://en.wikipedia.org/wiki/Cache_%28computing%29).                                                                                                                                                            |
+| [**Compression**](/docs/concepts/compression/)                      | `storageos.com/nocompress`     | `true` / `false`                                                                               | Enables or disables compression of data-at-rest and data-in-transit. Compression **is not enabled by default** to maximise performance.                                                                                                        |
+| [**Encryption**](/docs/concepts/encryption/)                        | `storageos.com/encryption`     | `true` / `false`                                                                               | Encrypts the contents of the volume. For each volume, a key is automatically generated, stored, and linked with the PVC.                                                                                                                       |
+| [**Failure Mode**](/docs/concepts/replication/#ondat-failure-modes) | `storageos.com/failure-mode`   | `hard`, `soft`, `alwayson`, or `threshold` integers starting from `0` to `5`                   | Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default setting of a failure mode is `hard`.                                                                           |
+| [**Replication**](/docs/concepts/replication/)                      | `storageos.com/replicas`       | `integers` starting from `0` to `5`                                                            | Sets the number of replicas, for example full copies of the data across nodes. Typically `1` or `2` replicas is sufficient (`2` or `3` instances of the data). Latency implications need to be assessed when using **more than** `2` replicas. |
+| [**Topology-Aware Placement**](/docs/concepts/tap/)                 | `storageos.com/topology-aware` | `true` / `false`                                                                               | Enables or disables Ondat Topology-Aware Placement.                                                                                                                                                                                            |
+| [**Topology Domain Key**](/docs/concepts/tap/#topology-domains)     | `storageos.com/topology-key`   | custom region, read as a [string](https://en.wikipedia.org/wiki/String_%28computer_science%29) | Define the failure domain for the node by using a custom key. If you don't define a custom key, the label defaults to the `topology.kubernetes.io/zone` value.                                                                                 |
 
-## Ondat Volume labels
+### Ondat Node Labels
 
-Volumes do not have any feature labels present by default.
+When Ondat is run within Kubernetes, the [Ondat API Manager](https://github.com/storageos/api-manager) syncs any [Kubernetes node labels](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/) to the corresponding Ondat node. The Kubernetes node labels act as the "source of truth", so labels should be applied to the Kubernetes nodes rather than to Ondat nodes. This is because the Kubernetes node labels overwrite the Ondat node labels on sync.
+- Below are the list of available feature labels that can be used to define [Kubernetes Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) in an Ondat Cluster.
 
-> ⚠️ The encryption, caching and compression labels can only apply
-> at provisioning time, they can't be changed during execution.
+| Feature Name                                                      | Label Reference             | Values           | Feature Description                                                                                                                                                                                                                     |
+| :---------------------------------------------------------------- | :-------------------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Compute-only Nodes**](/docs/concepts/nodes/#compute-only-mode) | `storageos.com/computeonly` | `true` / `false` | Specifies whether a node should be `computeonly` where it only acts as a client and does not host volume data locally, otherwise the node is hyper-converged (the default), where the node can operate in both client and server modes. |
 
-| Feature             | Label                               | Values                                  | Description                                                                                                                                  |
-| :------------------ | :---------------------------------- | :-----------------------------------    | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| Caching             | `storageos.com/nocache`             | true / false                            | Switches off caching.                                                                                                                        |
-| Compression         | `storageos.com/nocompress`          | true / false                            | Switches off compression of data at rest and in transit (compression is not enabled by default to maximise performance).                                                                                     |
-| Encryption          | `storageos.com/encryption`          | true / false                            | Encrypts the contents of the volume. For each volume, a key is automatically generated, stored, and linked with the PVC.                     |
-| Failure Mode        | `storageos.com/failure-mode`        | hard, soft, alwayson or integers [0, 5] | Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default setting of a failure mode is `hard`.                         |
-| Replication         | `storageos.com/replicas`            | integers [0, 5]                         | Sets the number of replicas i.e full copies of the data across nodes. Typically 1 or 2 replicas is sufficient (2 or 3 instances of the data); latency implications need to be assesed when using more than 2 replicas.  |
-| Topology-Aware Placement | `storageos.com/topology-aware` | true / false  | Enables Topology-Aware Placement |
-| Topology Domain Key      | `storageos.com/topology-key`   | custom region | Define the failure domain for the node by using a custom key. If you don't define a custom key, the label defaults to the `topology.kubernetes.io/zone` value. |
+### Ondat Pod Labels
 
-To create a volume with a feature label, choose one of the following options:
+Below are the list of available feature labels that can be used to define [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/) in an Ondat Cluster.
 
-- Option 1: PVC Label
+> 💡 For a pod to be fenced by Ondat, a recommendation will be to review the the [Ondat Fencing](/operations/fencing) operations page for more information. 
 
-    Add the label in the PVC definition, for instance:
+| Feature Name                               | Label Reference        | Values           | Feature Description                                                              |
+| :----------------------------------------- | :--------------------- | :--------------- | :------------------------------------------------------------------------------- |
+| [**Pod Fencing**](/docs/concepts/fencing/) | `storageos.com/fenced` | `true` / `false` | Targets a pod to be fenced in case of node failure. The default value is `false` |
 
-    ```yaml
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      name: pvc-3
-      labels:
-        storageos.com/replicas: "1" # Label <-----
-    spec:
-      storageClassName: "storageos"
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 1G
-    ```
+## How To Use Ondat Feature Labels?
 
-- Option 2: Set label in the StorageClass
-
-    Any PVC using the StorageClass inherits the label. The PVC label takes
-    precedence over the StorageClass parameters.
-
-    ```yaml
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      name: storageos-replicated
-    provisioner: csi.storageos.com
-    allowVolumeExpansion: true
-    parameters:
-      csi.storage.k8s.io/fstype: ext4
-      storageos.com/replicas: "1"
-      storageos.com/encryption: "true"
-      csi.storage.k8s.io/secret-name: storageos-api
-      csi.storage.k8s.io/secret-namespace: storageos
-    ```
-
-> ⚠️ The Ondat API manager periodically syncs labels from Kubernetes PVCs
-> to the corresponding Ondat volume. Therefore changes to Ondat volume
-> labels should be made to the corresponding Kubernetes PVC rather than to the
-> Ondat volume directly.
-
-## Ondat Pod labels
-
-| Feature        | Label                         | Values                               | Description                    |
-| :------------- | :---------------------------- | :----------------------------------- | :----------------------------- |
-| Pod fencing   | `storageos.com/fenced`         | true / false                         | Targets a pod to be fenced in case of node failure. The default value is `false` |
-
-> ⚠️ For a pod to be fenced by Ondat, a few requirements described in the
-> [Fencing Operations](/docs/operations/fencing) page need to be fulfilled.
-
-```bash
-kubectl label pod $POD storageos.com/fenced=true
-```
-
-It is recommended to define the fenced label in the pod's manifest, i.e in the
-Statefulset definitions. Statefulsets pass labels to their
-VolumeClaimTemplates. You must set the label only at the
-`spec.template.metadata.labels`. Otherwise, the Ondat volumes will fail to
-provision as only special accepted labels can be passed to volumes.
-
-```bash
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: my-statefulset
-spec:
-  selector:
-    matchLabels: # <----- Note that the matchLabels don't have the fenced label
-      env: prod
-  serviceName: my-statefulset-svc
-  replicas: 1
-  template:
-    metadata:
-      labels:   # <----- Note that the fenced label IS PRESENT
-        env: prod
-        storageos.com/fenced: "true"
-    spec:
-      containers:
-...
-```
+For more information about how to enable Ondat fencing, review the Ondat Feature Labels operations pages below;
+- replication feature label example
+- tap feature label example
+- failure mode feature label example
+- encryption feature label example
+- fencing feature label example
+- compression feature label example
+- caching feature label example
+- compute only feature label example
