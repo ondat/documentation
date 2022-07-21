@@ -39,7 +39,7 @@ spec:
 EOF
 ```
 
-Once the PVC resource has been successfully created, review and confirm that the `storageos.com/failure-mode: "soft"` and `storageos.com/replicas: "2" ` has been applied.
+Once the PVC resource has been successfully created, review and confirm that the `storageos.com/failure-mode: "soft"` and `storageos.com/replicas: "2"` labels have been applied.
 
 ```bash
 # Get the labels applied to the `my-vol-1 ` PVC.

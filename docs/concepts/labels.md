@@ -48,12 +48,7 @@ Below are the list of available feature labels that can be used to define [Kuber
 
 ## How To Use Ondat Feature Labels?
 
-For more information about how to enable Ondat fencing, review the Ondat Feature Labels operations pages below;
-- replication feature label example
-- tap feature label example
-- failure mode feature label example
-- encryption feature label example
-- fencing feature label example
-- compression feature label example
-- caching feature label example
-- compute only feature label example
+For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;
+
+- [How To Use Failure Modes](/docs/operations/failure-modes/).
+- [How To Enable Fencing](/docs/operations/fencing/).
