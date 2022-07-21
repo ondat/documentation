@@ -40,7 +40,7 @@ When Ondat is run within Kubernetes, the [Ondat API Manager](https://github.com/
 
 Below are the list of available feature labels that can be used to define [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/) in an Ondat Cluster.
 
-> 💡 For a pod to be fenced by Ondat, a recommendation will be to review the the [Ondat Fencing](/operations/fencing) operations page for more information. 
+> 💡 For a pod to be fenced by Ondat, a recommendation will be to review the the [Ondat Fencing](/docs/operations/fencing) operations page for more information. 
 
 | Feature Name                               | Label Reference        | Values           | Feature Description                                                              |
 | :----------------------------------------- | :--------------------- | :--------------- | :------------------------------------------------------------------------------- |
