@@ -106,4 +106,4 @@ replicas remaining `< max(1, 0)`.
 - The minimum node count here is `1` as the loss of all replicas will be tolerated.
 - `Minimum number of storage nodes = 1 (primary)`.
 
-For details about how to use the labels on the VolumesCheck, see the [Failure Modes](/docs/operations/failure-modes) operations page.
+For details about how to use the labels on the Volumes, review the [Failure Modes](/docs/operations/failure-modes) operations page.
