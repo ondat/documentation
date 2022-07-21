@@ -20,6 +20,8 @@ The failure mode for a specific volume can be set using a label on a PVC or it c
 Below is an example of a PVC resource that ensures that 2 replica volumes will be available and sets a `soft` failure mode.
 
 ```yaml
+# Create a `my-vol-1` PVC with 2 volume replicas and `soft` failure mode enabled.
+cat <<EOF | kubectl create --filename -
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -34,4 +36,15 @@ spec:
   resources:
     requests:
       storage: 5Gi
+EOF
+```
+
+Once the PVC resource has been successfully created, review and confirm that the `storageos.com/failure-mode: "soft"` and `storageos.com/replicas: "2" ` has been applied.
+
+```bash
+# Get the labels applied to the `my-vol-1 ` PVC.
+kubectl get pvc --output=wide --show-labels
+
+NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
+my-vol-1                            Bound    pvc-9477f989-8a60-4d10-8407-99bad90b29a3   5Gi        RWO            storageos      63s   Filesystem   storageos.com/failure-mode=soft,storageos.com/replicas=2
 ```
