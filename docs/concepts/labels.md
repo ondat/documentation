@@ -52,3 +52,4 @@ For more information about how to enable specific Ondat features, review the Ond
 
 - [How To Use Failure Modes](/docs/operations/failure-modes/).
 - [How To Enable Fencing](/docs/operations/fencing/).
+- [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
