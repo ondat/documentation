@@ -52,7 +52,7 @@ The **Ondat Scheduler** is responsible for scheduling applications on the same n
 volumes.
 - Ondat uses a custom [Kubernetes scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/) to handle pod placement, ensuring that volumes are deployed on the same nodes as the relevant workloads as often as possible.
 
-### CSI Helper
+### Ondat CSI Helper
 
 The [**CSI Helper**](https://github.com/storageos/external-provisioner) is responsible for registering Ondat with Kubernetes as a CSI driver. 
 - It is necessary because the internal persistent volume controller running in Kubernetes controller-manager does not have any direct interfaces to CSI drivers. 
