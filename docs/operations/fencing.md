@@ -29,7 +29,7 @@ Below is an example that shows how a [StatefulSet](https://kubernetes.io/docs/co
 > 💡 Note that the `storageos.com/fenced: "true"` label is applied only in the `.spec.template.metadata.label` section, as the label must only be present on the pod, but not on the PVC. Otherwise, the Ondat volumes will fail to provision as only special accepted labels can be passed to volumes.
 
 ```yaml
-# Create a `my-statefulset` resource with a fencing enabled. 
+# Create a "my-statefulset" resource with a fencing enabled. 
 cat <<EOF | kubectl create --filename -
 apiVersion: apps/v1
 kind: StatefulSet
@@ -37,7 +37,7 @@ metadata:
   name: my-statefulset
 spec:
   selector:
-    matchLabels:                       # Notice that the `matchLabels` does NOT have the fencing label.
+    matchLabels:                       # Notice that the "matchLabels" does NOT have the fencing label.
       app: prod
   serviceName: "default"
   replicas: 1
@@ -73,7 +73,7 @@ EOF
 Once the resource has been successfully created and is running, review and confirm that the `storageos.com/fenced: "true"` label has been applied to the StatefulSet.
 
 ```bash
- # Get the labels applied to the `my-statefulset-0` pod.
+ # Get the labels applied to the "my-statefulset-0" pod.
 kubectl get pod my-statefulset-0 --namespace=default --show-labels --output=wide
 
 NAME               READY   STATUS    RESTARTS   AGE     IP           NODE                              NOMINATED NODE   READINESS GATES   LABELS
@@ -93,13 +93,13 @@ The following example below shows how the Ondat API manager fences a pod.
 1. Ensure the `storageos.com/fenced=true` label is present:
 
     ```bash
-    # Get the labels applied to the `mysql` pod.
+    # Get the labels applied to the "mysql" pod.
     kubectl --namespace=mysql get pod --show-labels --output=wide
     
     NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
     mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker1   <none>           <none>            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
 
-    # Get the labels applied to the `mysql` PVC.
+    # Get the labels applied to the "mysql" PVC.
     kubectl --namespace=mysql get pvc --show-labels --output=wide
     
     NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
@@ -111,9 +111,9 @@ The following example below shows how the Ondat API manager fences a pod.
 1. Purposefully stop the node that is hosting the `mysql-0` pod:
 
     ```bash
-    # SSH to `worker1` node.
+    # SSH to "worker1" node.
     ssh worker1
-    # Shut down `worker1` node.
+    # Shut down "worker1" node.
     shutdown -h now
     ```
 
@@ -147,7 +147,7 @@ The following example below shows how the Ondat API manager fences a pod.
 1. Check the pod's new node location :
 
     ```bash 
-    # Get the labels applied to the `mysql` pod
+    # Get the labels applied to the "mysql" pod.
     kubectl --namespace=mysql get pod --show-labels --output=wide
     
     NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
