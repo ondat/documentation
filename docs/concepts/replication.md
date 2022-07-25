@@ -33,12 +33,16 @@ Ondat implements a delta sync between a volume master and its replicas.
 - This optimisation reduces the time it takes for replicas to catch up, improving volume resilience.
 - Additionally, it reduces network and I/O bandwidth which can reduce costs when running in public clouds.
 
+### How to use Ondat's Volume Replication?
+
+For more information on how to use the volume replication feature, review the [Volume Replication](/docs/operations/replication) operations page.
+
 ### Ondat Topology-Aware Placement (TAP)
 
 Ondat Topology-Aware Placement (TAP) is a feature that enforces placement of data across failure domains to guarantee high availability.
 - TAP uses default labels on nodes to define failure domains. For instance, an [Availability Zone (AZ)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html). 
 
-For more information on Topology-Aware Placement feature, review the [Ondat Topology-Aware Placement](/docs/concepts/tap) feature page.
+For more information on the Topology-Aware Placement feature, review the [Ondat Topology-Aware Placement](/docs/concepts/tap) feature page.
 
 ## Ondat Failure Modes
 
@@ -106,4 +110,4 @@ replicas remaining `< max(1, 0)`.
 - The minimum node count here is `1` as the loss of all replicas will be tolerated.
 - `Minimum number of storage nodes = 1 (primary)`.
 
-For details about how to use the labels on the Volumes, review the [Failure Modes](/docs/operations/failure-modes) operations page.
+For more information on how to use failure mode labels on volumes, review the [Failure Modes](/docs/operations/failure-modes) operations page.
