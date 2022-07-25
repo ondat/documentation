@@ -15,7 +15,7 @@ Ondat Feature labels are [Kubernetes Labels](https://kubernetes.io/docs/concepts
 
 Below are the list of available feature labels that can be used to define [Volume resources](https://kubernetes.io/docs/concepts/storage/volumes/) and [StorageClass resources](https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource) in an Ondat cluster. 
 
-> 💡 The **encryption**, **caching** and **compression** labels can only apply at provisioning time, they can't be changed during execution.
+> 💡 The **encryption**, **caching** and **compression** labels can only applied at provisioning time, they can't be changed during execution.
 
 | Feature Name                                                        | Label Reference                | Values                                                                                         | Feature Description                                                                                                                                                                                                                            |
 | :------------------------------------------------------------------ | :----------------------------- | :--------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,9 +50,9 @@ Below are the list of available feature labels that can be used to define [Kuber
 
 For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;
 
-
-- [How To Use Volume Replication](docs/operations/replication).
 - [How To Use Failure Modes](/docs/operations/failure-modes/).
+- [How To Enable Fencing](/docs/operations/fencing/).
+- [How to Use Volume Replication](/docs/operations/replication).
 - [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
 - [How To Enable Data Encryption](/docs/operations/encryption/).
-- [How To Enable Fencing](/docs/operations/fencing/).
+- [How to Enable Data Compression](/docs/operations/compression).
