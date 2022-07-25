@@ -1,63 +1,453 @@
 ---
-title: "Encryption"
-linkTitle: Encryption
+title: "How To Enable Data Encryption For Volumes"
+linkTitle: How To Enable Data Encryption For Volumes
 ---
 
-For more detail on encryption at rest in Ondat, see [the reference page](/docs/reference/encryption).
+## Overview
 
-## Enabling encryption on a volume
+Encrypting a volume is done by simply creating a volume with the `storageos.com/encryption=true` label. This label can be applied against a `PersistentVolumeClaim` (PVC) resource definition or through a custom Ondat `StorageClass` resource definition.
+- Only the label is required to enable encryption. Once the label is present - during the volume creation, the [`MutatingAdmissionWebhook`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that runs as part of the [Ondat API Manager](/docs/concepts/components/#ondat-api-manager), will create the volume encryption key, link it to the PVC and store it in a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
 
-Encrypting a volume is done by simply creating a volume with the
-`storageos.com/encryption=true` label. This can be set on the PVC or on
-the PVC's StorageClass.
+> ⚠️ Encryption can only be enabled before an Ondat volume is provisioned. Once the encrypted volume has been created, encryption can not be remove during the [volume's lifetime](https://spot.io/resources/kubernetes-architecture/7-stages-in-the-life-of-a-kubernetes-persistent-volume-pv/).
 
-This label is all that is needed. If it is present, the mutating admission
-webhook that runs as part of the Ondat API Manager will create the
-encryption key, link it to the PVC and store it in a secret.
+> 💡 For more information on the Ondat's Data Encryption feature, review the [Data Encryption](/docs/concepts/encryption) feature page.
 
-Encryption is enabled when a volume is provisioned, and it can not be removed
-during during the volume's lifetime.
+### Example - Enable Volume Data Encryption Through a `PersistentVolumeClaim` Definition
 
-## An example encrypted volume
+The following guidance below will demonstrates how to enable Ondat's Data Encryption through a  `PersistentVolumeClaim` (PVC) definition.
+-   The instructions will enable data encryption on a PVC that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
-- Option 1: Label the PVC
+1. Create a namespace called `encrypted` where the encrypted volume and `StatefulSet` will reside.
 
-    Add the label in the PVC definition, for instance:
+```yaml
+# Create namespace called "encrypted".
+cat <<EOF | kubectl create --filename -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: encrypted
+  labels:
+    name: encrypted
+EOF
+```
 
-    ```yaml
-    apiVersion: v1
-    kind: PersistentVolumeClaim
+2.  Create a custom  `PersistentVolumeClaim`  named  `encrypted`  and ensure that you add the following label >> `storageos.com/encryption=true` to the manifest.
+
+```yaml
+# Create a "encrypted" PVC.
+cat <<EOF | kubectl create --filename -
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: encrypted
+  namespace: encrypted
+  labels:
+    storageos.com/encryption: "true"         # Enable Data Encryption.
+spec:
+  storageClassName: storageos                # Use the default Ondat StorageClass to provision persistent volumes.
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+EOF
+```
+
+3. Once the PVC resource has been successfully created, review and confirm that the `storageos.com/encryption=true` label has been applied.
+
+```bash
+# Get the label applied to the "encrypted" PVC.
+kubectl get pvc encrypted --output=wide --show-labels --namespace=encrypted
+```
+
+4. Create a `StatefulSet` workload in the `encrypted` namespace that uses the `encrypted` PVC that was created in *Step 2*.
+
+```yaml
+# Create a StatefulSet workload that uses the "encrypted" PVC.
+cat <<EOF | kubectl create --filename -
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: encrypted
+  namespace: encrypted                             # Create the StatefulSet workload in the "encrypted" namespace.
+spec:
+  selector:
+    matchLabels:
+      app: encrypted
+  serviceName: encrypted
+  replicas: 1
+  template:
     metadata:
-      name: encrypted-vol
       labels:
-        storageos.com/encryption: "true" # Label <-----
+        app: encrypted
     spec:
-      storageClassName: "storageos"
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 1G
-    ```
+      volumes:
+      - name: encrypted
+        persistentVolumeClaim:
+          claimName: encrypted                     # Use the "encrypted" PVC for the StatefulSet workload.
+      containers:
+        - name: encrypted
+          image: spurin/gatsby:latest
+          imagePullPolicy: Always
+          volumeMounts:
+          - mountPath: "/data"
+            name: encrypted
+EOF
+```
 
-    The encryption label as set on a PVC takes precedence over the encryption
-    label as set on the PVC's StorageClass.
+```bash
+# Review and confirm that StatefulSet workload was successfully created.
+kubectl get pod --namespace=encrypted
+kubectl get statefulsets.apps --namespace=encrypted
+```
 
-- Option 2: Add a parameter to the StorageClass
+5. To review and confirm that volume encryption is enabled and working, run the following commands below to inspect the resources created.
 
-    Add a parameter to the StorageClass definition. This will cause the above
-    label to be present on PVCs created using this StorageClass. For instance:
+```bash
+# Review the secrets created in "encrypted" namespace. 
+# There will be a "namespace" and "volume" encryption key generated by Ondat.
+kubectl get secrets --namespace=encrypted
 
-    ```yaml
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
+NAME                                                        TYPE                                  DATA   AGE
+default-token-zm5dk                                         kubernetes.io/service-account-token   3      81s
+storageos-namespace-key                                     Opaque                                1      63s
+storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572   Opaque                                4      63s
+
+# Describe all of the secrets in the `encrypted` namespace related to Ondat.
+# Notice that there is a "storageos-namespace-key" - 1 unique key per namespace)
+# Notice that there is a "storageos-volume-key-$RANDOM" - 1 unique key per volume in the namespace.
+# Take note of the annotation "storageos.com/pvc=encrypted" under the "storageos-volume-key-$RANDOM" secret
+kubectl describe secrets "storageos" --namespace=encrypted
+
+Name:         storageos-namespace-key
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component=storageos-api-manager
+              app.kubernetes.io/managed-by=storageos-operator
+              app.kubernetes.io/name=storageos
+              app.kubernetes.io/part-of=storageos
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+key:  32 bytes
+
+Name:         storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component=storageos-api-manager
+              app.kubernetes.io/managed-by=storageos-operator
+              app.kubernetes.io/name=storageos
+              app.kubernetes.io/part-of=storageos
+              storageos.com/pvc=encrypted
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+hmac:  32 bytes
+iv:    32 bytes
+key:   64 bytes
+vuk:   80 bytes
+```
+
+```yaml
+# Review "storageos-volume-key-$RANDOM".
+# Notice that there are 4 data objects stored in the secret > "hmac", "iv", "vuk", "iv" respectively.
+kubectl get secrets storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572 --namespace=encrypted --output=yaml
+
+apiVersion: v1
+data:
+  hmac: mDIGqgm1mcjdJycz0Mg807+j+B9cCL59tuQwdvW0ow4=
+  iv: gTto6RstRUamHwbn/QDZODTOuE2T2D9WzjX1ck8nZSg=
+  key: FNiJp5hyoKxMTgJismLHuD0fuFgW6ozsg3vKHs2Zpzqj0enLLfT+yIiFtWW88TIi+ZpNP4hwnqpKMvKOKzU3jA==
+  vuk: kWqmRear2ew6lEv48b/d3U6JJh58LCzeuY9r06Xi6dCKTBaHrLQD2A+gtxuZ0HHhoTwO1nEYAIE20QALRAi61GrosRmQzm05Jov0D/aZJ9Q=
+kind: Secret
+metadata:
+  creationTimestamp: "2022-07-25T13:08:12Z"
+  labels:
+    app.kubernetes.io/component: storageos-api-manager
+    app.kubernetes.io/managed-by: storageos-operator
+    app.kubernetes.io/name: storageos
+    app.kubernetes.io/part-of: storageos
+    storageos.com/pvc: encrypted
+  name: storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572
+  namespace: encrypted
+  resourceVersion: "64424"
+  uid: 481ace83-8fb8-4656-8820-a8b8dec88017
+```
+
+6. The last step will be to try and read the data on the node where the encrypted volume resides.
+
+```bash
+# Get the node locations where "encrypted-0" pod is running.
+kubectl get pods --namespace=encrypted --output=wide
+
+NAME          READY   STATUS    RESTARTS   AGE    IP           NODE                              NOMINATED NODE   READINESS GATES
+encrypted-0   1/1     Running   0          8m4s   10.244.3.6   aks-storage-26370890-vmss000000   <none>           <none>
+
+# Use "kubectl debug" to temporarily run a privileged container on the node where "encrypted-0" is located.
+kubectl debug node/aks-storage-26370890-vmss000000 -it --image=ubuntu:latest
+
+# Through the privileged container, update the repository index and install "binutils" to access the "strings" utility.
+apt update && apt install --yes binutils
+
+# Navigate to where data is being stored as blob files on the node and list the files.
+cd /host/var/lib/storageos/data/dev1/
+ls -lah
+
+total 340M
+drwxr-xr-x 2 root root 4.0K Jul 25 13:08 .
+drwxr-xr-x 4 root root 4.0K Jul 25 13:08 ..
+-rw------- 1 root root  42M Jul 25 13:09 deployment.094b604f-a30a-4879-8976-0614ae15d5af.0.blob
+-rw------- 1 root root  42M Jul 25 13:09 deployment.094b604f-a30a-4879-8976-0614ae15d5af.1.blob
+
+# Use the "strings" utilty to try and read the content of the blob files in the directory.
+# Note - the output will return multiple strings of random, unreadable characters as the content is encrypted.
+strings *.blob | head -10
+
+SbP4E
+=oZ5
+ey{*t|N
+`0|_
+xdR>
+q6Yul
+(OF(a
+kbY#(
+5-	n
+02p8
+
+# exit from the pod and return to your local shell
+exit
+```
+
+### Example - Enable Volume Data Encryption Through a `StorageClass` Definition
+
+The following guidance below will demonstrates how to enable Ondat's Data Encryption through a  `StorageClass` (PVC) definition.
+-   The instructions will enable data encryption for PVCs through a custom `StorageClass` that will be used by a `StatefulSet` resource in the `encrypted` namespace.
+
+```yaml
+# Create the "ondat-tap" StorageClass.
+cat <<EOF | kubectl create --filename -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-encryption
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  storageos.com/encryption: "true"
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+EOF
+```
+
+```bash
+# Review and confirm that "ondat-encryption" was created.
+kubectl get sc | grep "ondat-encryption"
+```
+
+1. Create a namespace called `encrypted` where the encrypted volume and `StatefulSet` will reside.
+
+```yaml
+# Create namespace called "encrypted".
+cat <<EOF | kubectl create --filename -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: encrypted
+  labels:
+    name: encrypted
+EOF
+```
+
+2.  Create a `PersistentVolumeClaim` that will use `ondat-encryption`  as its `StorageClass` and confirm that it was successfully created.
+
+```yaml
+# Create a "encrypted-2" PVC.
+cat <<EOF | kubectl create --filename -
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: encrypted-2
+  namespace: encrypted
+spec:
+  storageClassName: ondat-encryption          # Use the custom Ondat StorageClass called "ondat-encryption" to provision encrypted persistent volumes.
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+EOF
+```
+
+```bash
+# Ensure that the PVC was successfully provisioned with "ondat-encryption".
+kubectl get pvc encrypted-2 --output=wide --show-labels --namespace=encrypted
+
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE   VOLUMEMODE   LABELS
+encrypted-2   Bound    pvc-fe3958cb-c3d9-43aa-9ae7-530d1362e560   5Gi        RWO            ondat-encryption   46s   Filesystem   <none>
+```
+
+4. Create a `StatefulSet` workload in the `encrypted` namespace that uses the `encrypted-2` PVC that was created in *Step 2*.
+
+```yaml
+# Create a StatefulSet workload that uses the "encrypted" PVC.
+cat <<EOF | kubectl create --filename -
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: encrypted-2
+  namespace: encrypted                             # Create the StatefulSet workload in the "encrypted" namespace.
+spec:
+  selector:
+    matchLabels:
+      app: encrypted
+  serviceName: encrypted
+  replicas: 1
+  template:
     metadata:
-      name: storageos-encrypted
-    provisioner: csi.storageos.com
-    allowVolumeExpansion: true
-    parameters:
-      csi.storage.k8s.io/fstype: ext4
-      storageos.com/encryption: "true"
-      csi.storage.k8s.io/secret-name: storageos-api
-      csi.storage.k8s.io/secret-namespace: storageos
-    ```
+      labels:
+        app: encrypted
+    spec:
+      volumes:
+      - name: encrypted
+        persistentVolumeClaim:
+          claimName: encrypted-2                   # Use the "encrypted-2" PVC for the StatefulSet workload.
+      containers:
+        - name: encrypted
+          image: spurin/gatsby:latest
+          imagePullPolicy: Always
+          volumeMounts:
+          - mountPath: "/data"
+            name: encrypted
+EOF
+```
+
+```bash
+# Review and confirm that StatefulSet workload was successfully created.
+kubectl get pod --namespace=encrypted
+kubectl get statefulsets.apps --namespace=encrypted
+```
+
+```bash
+# Review the secrets created in "encrypted" namespace. 
+# There will be a "namespace" and "volume" encryption key generated by Ondat.
+kubectl get secrets --namespace=encrypted
+
+NAME                                                        TYPE                                  DATA   AGE
+default-token-wb76h                                         kubernetes.io/service-account-token   3      10m
+storageos-namespace-key                                     Opaque                                1      9m48s
+storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb   Opaque                                4      9m48s
+
+# Describe all of the secrets in the `encrypted` namespace related to Ondat.
+# Notice that there is a "storageos-namespace-key" - 1 unique key per namespace)
+# Notice that there is a "storageos-volume-key-$RANDOM" - 1 unique key per volume in the namespace.
+# Take note of the annotation "storageos.com/pvc=encrypted" under the "storageos-volume-key-$RANDOM" secret
+kubectl describe secrets "storageos" --namespace=encrypted
+
+Name:         storageos-namespace-key
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component=storageos-api-manager
+              app.kubernetes.io/managed-by=storageos-operator
+              app.kubernetes.io/name=storageos
+              app.kubernetes.io/part-of=storageos
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+key:  32 bytes
+
+Name:         storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component=storageos-api-manager
+              app.kubernetes.io/managed-by=storageos-operator
+              app.kubernetes.io/name=storageos
+              app.kubernetes.io/part-of=storageos
+              storageos.com/pvc=encrypted-2
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+hmac:  32 bytes
+iv:    32 bytes
+key:   64 bytes
+vuk:   80 bytes
+```
+
+```yaml
+# Review "storageos-volume-key-$RANDOM".
+# Notice that there are 4 data objects stored in the secret > "hmac", "iv", "vuk", "iv" respectively.
+kubectl get secrets storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb --namespace=encrypted --output=yaml
+
+apiVersion: v1
+data:
+  hmac: K26qP2LJF0GnLBLOSPmGlLatPGhLnW4l6LUFapnlKnI=
+  iv: zDrINiKUNS8CAZfOPPzXxDRjdQETR6weTgN8S6irmzQ=
+  key: 9rXsIPru1P9X6C+PGBRuGIH5pdRh1Y5LZ4psLjyzy0oyM/yylqUIG9Ez8XBkOW8pCrwY303TC6aBAOdlzEjJtw==
+  vuk: CokhOv1bVPySm/afmpZA9RHSTm2uWd2cPD2WGbw+xB7xAmPx3NqKws2yFcLAf2370K3Sh/iHMeAfNMQoMPWVUZdqIsZcSnUcvtfd1YOHZv8=
+kind: Secret
+metadata:
+  creationTimestamp: "2022-07-25T13:41:05Z"
+  labels:
+    app.kubernetes.io/component: storageos-api-manager
+    app.kubernetes.io/managed-by: storageos-operator
+    app.kubernetes.io/name: storageos
+    app.kubernetes.io/part-of: storageos
+    storageos.com/pvc: encrypted-2
+  name: storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb
+  namespace: encrypted
+  resourceVersion: "19756"
+  uid: bb793310-0ad9-46d1-a590-34556dffe3a6
+type: Opaque
+```
+
+6. The last step will be to try to read the data on the node where the encrypted volume resides.
+
+```bash
+# Get the node locations where "encrypted-2-0" pod is running.
+kubectl get pods --namespace=encrypted --output=wide
+
+NAME            READY   STATUS    RESTARTS   AGE     IP          NODE                 NOMINATED NODE   READINESS GATES
+encrypted-2-0   1/1     Running   0          4m46s   10.42.4.7   demo-worker-node-5   <none>           <none>
+
+# Use "kubectl debug" to temporarily run a privileged container on the node where "encrypted-2-0" is located.
+kubectl debug node/demo-worker-node-5 -it --image=ubuntu:latest
+
+# Through the privileged container, update the repository index and install "binutils" to access the "strings" utility.
+apt update && apt install --yes binutils
+
+# Navigate to where data is being stored as blob files on the node and list the files.
+cd /host/var/lib/storageos/data/dev1/
+ls -lah
+
+total 340M
+drwxr-xr-x 2 root root 4.0K Jul 25 13:41 .
+drwxr-xr-x 4 root root 4.0K Jul 25 13:41 ..
+-rw------- 1 root root  42M Jul 25 13:48 deployment.b9ea560c-5fc2-4f6f-9f43-c2d33483ed89.0.blob
+-rw------- 1 root root  42M Jul 25 13:49 deployment.b9ea560c-5fc2-4f6f-9f43-c2d33483ed89.1.blob
+
+# Use the "strings" utilty to try and read the content of the blob files in the directory.
+# Note - the output will return multiple strings of random, unreadable characters as the content is encrypted.
+strings *.blob | head -10
+
+n.@LG
+c%rs/
+r`R;
+|'U%
+E"k9^
+*59G
+#q={
+uOb
+JC#rtb
+]=?b
+
+# exit from the pod and return to your local shell
+exit
+```
