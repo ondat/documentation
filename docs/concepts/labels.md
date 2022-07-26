@@ -56,3 +56,4 @@ For more information about how to enable specific Ondat features, review the Ond
 - [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
 - [How To Enable Data Encryption](/docs/operations/encryption/).
 - [How to Enable Data Compression](/docs/operations/compression).
+- [How to Enable Caching](/docs/operations/caching).
