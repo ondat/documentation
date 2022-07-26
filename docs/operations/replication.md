@@ -111,7 +111,7 @@ The following guidance below will demonstrates how to use Ondat's Volume Replica
 1. Create a custom `StorageClass`, named  `ondat-replicated` and check that it has been successfully created.
 
 ```yaml
-# Create the "ondat-tap" StorageClass.
+# Create the "ondat-replicated" StorageClass.
 cat <<EOF | kubectl create --filename -
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -128,14 +128,14 @@ EOF
 ```
 
 ```bash
-# Review and confirm that "ondat-tap" was created.
+# Review and confirm that "ondat-replicated" was created.
 kubectl get sc | grep "ondat-replicated"
 ```
 
 3.  Create a  `PersistentVolumeClaim`  that will use  `ondat-replicated`  as its  `StorageClass`  and confirm that it was successfully created.
 
 ```yaml
-# Create a "pvc-tap-2" PVC that uses the "ondat-replicated" StorageClass.
+# Create a "pvc-replicated-2" PVC that uses the "ondat-replicated" StorageClass.
 cat <<EOF | kubectl create --filename -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -152,14 +152,14 @@ EOF
 ```
 
 ```bash
-# Ensure that the PVC was successfully provisioned with "ondat-tap".
+# Ensure that the PVC was successfully provisioned with "ondat-replicated".
 kubectl get pvc pvc-replicated-2 --output=wide --show-labels --namespace=default
 
 NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE   VOLUMEMODE   LABELS
 pvc-replicated-2   Bound    pvc-c5f4e448-e78e-4ece-ad24-f65c3e04d646   5Gi        RWO            ondat-replicated   57s   Filesystem   <none>
 ```
 
-💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-replicated` StorageClass parameters defined in _Step 2_.
+> 💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-replicated` StorageClass parameters defined in _Step 1_.
 
 
 3. To review and confirm that Ondat has successfully provisioned `1` master volume and `2` replica volume as defined in the `StorageClass` manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
