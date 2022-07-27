@@ -35,7 +35,7 @@ k8s
 
 Data Plane
 
-* Warn that filesystem might go read-only after a failed write/unmap/sync SCSI command. The log of interest is: `"SCSI command failed - if the block device is mounted the filesystem may go read-only".`
+* Warn that filesystem might go read-only after a failed write or sync SCSI command. The log of interest is: `"SCSI command failed - if the block device is mounted the filesystem may go read-only".`
 * Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: `"it is taking unsually long to send and receive IO from the presentation node"`. Metrics are included in the log message.
   * Note: this measurement is tracking the time it takes to send the IO over the network to the master and any replicas and for the IO to be committed and the response sent back to the mount node.
 * Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: "it is taking unsually long to send and receive IO from the master deployment to its replica". Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.
