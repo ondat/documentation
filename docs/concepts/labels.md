@@ -50,7 +50,7 @@ Below are the list of available feature labels that can be used to define [Kuber
 For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;
 
 - [How To Setup A Centralised Cluster Topology](/docs/operations/compute-only).
-- [How to Use Volume Replication](/docs/operations/replication).
+- [How To Use Volume Replication](/docs/operations/replication).
 - [How To Use Failure Modes](/docs/operations/failure-modes/).
 - [How To Enable Fencing](/docs/operations/fencing/).
 - [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
