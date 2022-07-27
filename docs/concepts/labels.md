@@ -15,7 +15,7 @@ Ondat Feature labels are [Kubernetes Labels](https://kubernetes.io/docs/concepts
 
 Below are the list of available feature labels that can be used to define [Volume resources](https://kubernetes.io/docs/concepts/storage/volumes/) and [StorageClass resources](https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource) in an Ondat cluster. 
 
-> 💡 The **encryption**, **caching** and **compression** labels can only applied at provisioning time, they can't be changed during execution.
+> 💡 The **encryption** and **compression** labels can only applied at provisioning time, they can't be changed during execution.
 
 | Feature Name                                                        | Label Reference                | Values                                                                                         | Feature Description                                                                                                                                                                                                                            |
 | :------------------------------------------------------------------ | :----------------------------- | :--------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -54,4 +54,5 @@ For more information about how to enable specific Ondat features, review the Ond
 - [How to Use Volume Replication](/docs/operations/replication).
 - [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
 - [How To Enable Data Encryption](/docs/operations/encryption/).
-- [How to Enable Data Compression](/docs/operations/compression).
+- [How To Enable Data Compression](/docs/operations/compression).
+- [How To Setup A Centralised Cluster Topology](/docs/operations/compute-only)
