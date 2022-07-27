@@ -31,11 +31,7 @@ k8s
 * Operator:
   * Add snapshot controller and related CRDs if not present
   * Pod Disruption Budget support for k8s v1.25
-* Improve logging on kubectl plugin <https://github.com/storageos/kubectl-storageos/pull/194>
-
-Control Plane
-
-* Adds randomisation behaviour of placement
+* Improve logging on kubectl plugin
 
 Data Plane
 
@@ -49,14 +45,16 @@ Data Plane
 
 Control Plane
 
-* Adds the `nodiscard` option to the mkfs.ext4 command. `nodiscard`used to be on by default, but it's now changed in the ubi image we ship. The new default behaviour forces us to send a lot of TRIM writes across the network, sometimes exceeding timeouts if the disk is big enough
-* Reduces the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes)
-* Controlplane will crash loop less frequently on startup when etcd is down
+ * Reduced the amount of crash loop backoffs when installing via the helm chart
+ * Reduced the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes) 
+ * Fixed an issue where formatting would timeout due to large TRIM writes being sent across the network 
+ * Fixed an issue where volume deployments would all be scheduled on the same nodes when deploying multiple PVC at the same time 
+
 
 Data Plane
 
-* Fix Convert<> and add support for uint16_t.
-* Fix Volume::GetConsumerCount
+* Fix `Convert<>` and add support for `uint16_t`.
+* Fix `Volume::GetConsumerCount`
 * Improve error message when a write/unmap SCSI command is not committed to the backend disk: `"a consumer IO was not committed to rdbplugin because its transaction ID lost. This could mean there are two consumers with the same transaction ID (bad); the CP has forgotten to increment the consumer count in between remounts of the volume (bad) or it could indicate that a retry of this IO operation has overtaken a previous IO attempt (normally indicative of a very slow/flaky network and/or disk)."`
 
 ## 2.8.0 - Release 2022-06-29
