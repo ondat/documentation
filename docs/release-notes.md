@@ -45,11 +45,10 @@ Data Plane
 
 Control Plane
 
- * Reduced the amount of crash loop backoffs when installing via the helm chart
- * Reduced the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes) 
- * Fixed an issue where formatting would timeout due to large TRIM writes being sent across the network 
- * Fixed an issue where volume deployments would all be scheduled on the same nodes when deploying multiple PVC at the same time 
-
+* Reduced the amount of crash loop backoffs when installing via the helm chart
+* Reduced the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes)
+* Fixed an issue where formatting would timeout due to large TRIM writes being sent across the network
+* Fixed an issue where volume deployments would all be scheduled on the same nodes when deploying multiple PVC at the same time
 
 Data Plane
 
