@@ -9,20 +9,107 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.8.0`. For
+The latest tagged release is `2.8.1`. For
 installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.8.0`, available from
+The latest CLI release is `2.8.1`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
-## 2.8.0 - Release 2022-06-29
+## 2.8.1 - Release 2022-08-02
 
-2.8.0 Release Notes
+### New
+
+k8s
+
+* Install resource quota for GKE
+* Disable scheduler option in storageoscluster CR
+* Operator:
+    * Add snapshot controller and related CRDs if not present
+    * Pod Disruption Budget support for k8s v1.25
+* Improve logging on kubectl plugin https://github.com/storageos/kubectl-storageos/pull/194
+
+Control Plane
+
+* Adds randomisation behaviour of placement
+
+Data Plane
+
+* Warn that filesystem might go read-only after a failed write/unmap/sync SCSI command. The log of interest is: `"SCSI command failed - if the block device is mounted the filesystem may go read-only".`
+* Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: `"it is taking unsually long to send and receive IO from the presentation node"`. Metrics are included in the log message. 
+  * Note: this measurement is tracking the time it takes to send the IO over the network to the master and any replicas and for the IO to be committed and the response sent back to the mount node.
+* Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: "it is taking unsually long to send and receive IO from the master deployment to its replica". Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.
+* Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format `"X operation took longer than Yms to complete completion_time=Zms".`
+* Adds support for per volume IO tracing. For each mounted volume we'll dump the following every 60 seconds
+to `/var/lib/storageos/traces/<volume_id>`:
+  * the volume topology: i.e. where the mount, master and replicas live
+  * the average time taken during each stage of the IO pipeline. This is done for each IO type: write, read, sync and unmaps.
+
+  Example output below:
+  ```
+  ########## timestamp=2022-07-27T09:37:07.180058305+00:00 ##########
+  Mount Node (hop_count=0):                 volume_id=0865ea1f-b70e-4935-a823-01a0fced8d23 node_addr=0.0.0.0:5703
+  Master Node (local, hop_count=0):        : deployment_id=a30eb98b-35e8-4288-a8a1-f031838545c1 node_addr=0.0.0.0:5703
+  Replica Node (replica_id=0, hop_count=1) : deployment_id=93195261-9669-4f3e-9733-b35423ae3d45 node_addr=192.168.201.32:5703
+
+  ---------- IO Type: write ----------
+  Num IOs sampled: 47
+  Min latency (us): 591
+  Max latency (us): 14587
+  Ave latency (us): 2486
+  50th percentile latency (us): 1426
+  90th percentile latency (us): 5186
+  99th percentile latency (us): 14587
+  Time Ave (us)  Hop Count  Replica ID Trace ID
+  0              0          0          DequeuedFromCmdRing
+  9              0          0          StartProcessingCmd
+  73             0          1          DfsiEnqueueNetworkIO
+  117            0          0          InitiatedIOToAllReplicas
+  120            0          0          RdbIOStart
+  139            0          0          RdbGetKeysStart
+  178            0          0          RdbGetKeysFinish
+  179            0          0          RdbWriteToDiskStart
+  262            0          0          RdbWriteToDiskFinish
+  264            0          0          RdbPutKeysStart
+  318            0          0          RdbPutKeysFinish
+  320            0          0          RdbIOFinish
+  1456           1          1          DfsrReceivedIORequest
+  1463           1          1          RdbIOStart
+  1477           1          1          RdbGetKeysStart
+  1533           1          1          RdbWriteToDiskStart
+  1533           1          1          RdbGetKeysFinish
+  1639           1          1          RdbWriteToDiskFinish
+  1642           1          1          RdbPutKeysStart
+  1698           1          1          RdbPutKeysFinish
+  1700           1          1          RdbIOFinish
+  1701           1          1          DfsrEnqueuedIOResponse
+  2356           0          1          DfsiReceiveNetworkResponse
+  2383           0          0          FinishedIOToAllReplicas
+  2486           0          0          IOFinished
+
+  ...snipped...
+  ```
+
+
+### Fixed
+
+Control Plane
+
+* Adds the `nodiscard` option to the mkfs.ext4 command. `nodiscard`used to be on by default, but it's now changed in the ubi image we ship. The new default behaviour forces us to send a lot of TRIM writes across the network, sometimes exceeding timeouts if the disk is big enough
+* Reduces the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes)
+* Controlplane will crash loop less frequently on startup when etcd is down
+
+Data Plane
+* Fix Convert<> and add support for uint16_t.
+* Fix Volume::GetConsumerCount
+* Improve error message when a write/unmap SCSI command is not committed to the backend disk: `"a consumer IO was not committed to rdbplugin because its transaction ID lost. This could mean there are two consumers with the same transaction ID (bad); the CP has forgotten to increment the consumer count in between remounts of the volume (bad) or it could indicate that a retry of this IO operation has overtaken a previous IO attempt (normally indicative of a very slow/flaky network and/or disk)."`
+
+
+## 2.8.0 - Release 2022-06-29
 
 > 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.
 
