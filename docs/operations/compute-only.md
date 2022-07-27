@@ -5,13 +5,13 @@ linkTitle: How To Setup A Centralised Cluster Topology
 
 ## Overview
 
-With Ondat, cluster administrators can set the `storageos.com/computeonly` label against Kubernetes nodes that they want to dedicate as to running compute intensive workloads.
+With Ondat, cluster administrators can set the `storageos.com/computeonly` label against Kubernetes nodes that they want to dedicate to running compute intensive workloads.
 > 💡 For more information on the Centralised Cluster Topology model, review the [Cluster Topologies](/docs/concepts/cluster-topologies) feature page.
 
 ### Example - Configuring A Centralised Cluster Topology
 
 The following guidance below will demonstrates how to create a centralised cluster topology model by using Ondat's >> `storageos.com/computeonly=true` node label.
-> 💡 In this guideline, we are using an [Azure Kubernetes Service (AKS)](/docs/install/amazon-web-services-eks/) cluster to demonstrate how to configure a centralised cluster topology model.
+> 💡 In this guideline, we are using an [Azure Kubernetes Service (AKS)](/docs/install/microsoft-azure-aks/) cluster to demonstrate how to configure a centralised cluster topology model.
 
 1. Get the list of nodes in your Kubernetes cluster.
 
@@ -29,7 +29,7 @@ aks-storage-78891087-vmss000001   Ready    agent   24m   v1.23.5   10.224.0.8   
 
 2. Using the the output, we are going to label the nodes that begin with the prefix >> `aks-default-` with `storageos.com/computeonly=true`, whilst we dedicate nodes that begin with the prefix >> `aks-storage-` as storage nodes.
 ```bash
-# Label the "aks-default-*" nodes with the "storageos.com/computeonly" feature label.
+# Label the "aks-default-*" nodes with the "storageos.com/computeonly=true" feature label.
 kubectl label node aks-default-26276352-vmss000000 storageos.com/computeonly=true
 kubectl label node aks-default-26276352-vmss000001 storageos.com/computeonly=true
 kubectl label node aks-default-26276352-vmss000002 storageos.com/computeonly=true
@@ -40,10 +40,10 @@ kubectl describe node aks-default-26276352-vmss000001 | grep "computeonly"
 kubectl describe node aks-default-26276352-vmss000002 | grep "computeonly"
 ```
 
-3. Now we have labelled nodes with `storageos.com/computeonly=true` - the next step will be to [install Ondat](/docs/install/) onto the cluster. 
+3. Now we have labelled nodes with >> `storageos.com/computeonly=true` - the next step will be to [install Ondat](/docs/install/) onto the cluster. 
     - Ensure that you have met the prerequisites for the Kubernetes distribution that you will be using for the Ondat deployment.
 
-4. Once we have successfully deployed Ondat, we are also going to deploy and 3.  run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
+4. Once we have successfully deployed Ondat, we are also going to deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat alongside `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
 
 ```bash
 # Get the Ondat CLI utility pod name.
@@ -52,7 +52,7 @@ kubectl --namespace=storageos get pod -ocustom-columns=_:.metadata.name --no-hea
 storageos-cli-79787d586d-fkjnk
 ```
 
-5. To test that the `storageos.com/computeonly=true` is working - create 2 custom  `PersistentVolumeClaim` definitions  named;`pvc-replicated-centralised-topology` and `pvc-replicated-centralised-topology-test` that use the following specifications below;
+5. To test that the `storageos.com/computeonly=true` is working - create `2` custom  `PersistentVolumeClaim` definitions  named - `pvc-replicated-centralised-topology` and `pvc-replicated-centralised-topology-test` that use the following specifications below;
 
 ```yaml
 # Create a "pvc-replicated-centralised-topology" PVC that has a replica volume count of 1.
@@ -74,7 +74,7 @@ EOF
 ```
 
 ```yaml
-# Create a "pvc-replicated-centralised-topology-test" PVC that has a replica volume count of 1.
+# Create a "pvc-replicated-centralised-topology-test" PVC that has a replica volume count of 3.
 cat <<EOF | kubectl create --filename -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -92,7 +92,7 @@ spec:
 EOF
 ```
 
-6.  With the Ondat CLI and `kubectl`, you can check to see which Ondat volumes have provisioned and the node location where the volumes reside.
+6.  With the Ondat CLI and `kubectl`, you can check to see which Ondat volumes have been provisioned and the node location where the volumes reside.
 
 ```bash
 # List the PVCs that have been created in the previous step.
@@ -102,7 +102,7 @@ NAME                                       STATUS    VOLUME                     
 pvc-replicated-centralised-topology        Bound     pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2   5Gi        RWO            storageos      5m9s    Filesystem
 pvc-replicated-centralised-topology-test   Pending                                                                        storageos      4m32s   Filesystem
 
-# List the PVCs that have been created in the previous step.
+# List the PVs that have been created.
 kubectl get pv --output=wide
 
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                         STORAGECLASS   REASON   AGE    VOLUMEMODE
@@ -113,7 +113,6 @@ pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2   5Gi        RWO            Delete     
 pvc-741604ef-20c0-4219-bdb4-944d1371f684   12Gi       RWO            Delete           Bound    storageos-etcd/storageos-etcd-1               default                 99m    Filesystem
 pvc-e8564514-dd7a-4f39-8a60-76cee4cb6452   12Gi       RWO            Delete           Bound    storageos-etcd/storageos-etcd-0               default                 99m    Filesystem
 ```
-
 
 ```bash
 # Get the volumes in the "default" namespace using the Ondat CLI.
@@ -157,8 +156,8 @@ Replicas:
   Promotable        true
 ```
 
-As demonstrated above, notice that only `pvc-replicated-centralised-topology` is in a `Bound` state and its volume name  `pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2` has `1` master volume and `1` replica volume which are located on node `aks-storage-78891087-vmss000001` and `aks-storage-78891087-vmss000000` respectively.
+As demonstrated above, notice how only `pvc-replicated-centralised-topology` is in a `Bound` state and its volume name  `pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2` has `1` master volume and `1` replica volume which are located on node `aks-storage-78891087-vmss000001` and `aks-storage-78891087-vmss000000` respectively.
 - The volumes have been successfully been provisioned on nodes which do not have the >> `storageos.com/computeonly=true` node label.
 
-For `pvc-replicated-centralised-topology-test`, we can see that it is stuck in a `Pending` state as in the PVC definition, we used the label >> `storageos.com/replicas=3` which requests for `1` master volume and `3` replica volumes respectively. 
+For `pvc-replicated-centralised-topology-test`, we can see that it is stuck in a `Pending` state, as the PVC definition - we used the label >> `storageos.com/replicas=3` which requests for `1` master volume and `3` replica volumes respectively. 
 - This would mean that we require at least `4` nodes to provision the Ondat volume and its replicas - which is not possible as only `2` nodes are available to be used as storage nodes whilst the rest of the nodes are reserved for compute intensive tasks.
