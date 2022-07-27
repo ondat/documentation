@@ -55,4 +55,4 @@ For more information about how to enable specific Ondat features, review the Ond
 - [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/).
 - [How To Enable Data Encryption](/docs/operations/encryption/).
 - [How To Enable Data Compression](/docs/operations/compression).
-- [How To Setup A Centralised Cluster Topology](/docs/operations/compute-only)
+- [How To Setup A Centralised Cluster Topology](/docs/operations/compute-only).
