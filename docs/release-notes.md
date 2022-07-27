@@ -29,9 +29,9 @@ k8s
 * Install resource quota for GKE
 * Disable scheduler option in storageoscluster CR
 * Operator:
-    * Add snapshot controller and related CRDs if not present
-    * Pod Disruption Budget support for k8s v1.25
-* Improve logging on kubectl plugin https://github.com/storageos/kubectl-storageos/pull/194
+  * Add snapshot controller and related CRDs if not present
+  * Pod Disruption Budget support for k8s v1.25
+* Improve logging on kubectl plugin <https://github.com/storageos/kubectl-storageos/pull/194>
 
 Control Plane
 
@@ -40,7 +40,7 @@ Control Plane
 Data Plane
 
 * Warn that filesystem might go read-only after a failed write/unmap/sync SCSI command. The log of interest is: `"SCSI command failed - if the block device is mounted the filesystem may go read-only".`
-* Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: `"it is taking unsually long to send and receive IO from the presentation node"`. Metrics are included in the log message. 
+* Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: `"it is taking unsually long to send and receive IO from the presentation node"`. Metrics are included in the log message.
   * Note: this measurement is tracking the time it takes to send the IO over the network to the master and any replicas and for the IO to be committed and the response sent back to the mount node.
 * Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: "it is taking unsually long to send and receive IO from the master deployment to its replica". Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.
 * Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format `"X operation took longer than Yms to complete completion_time=Zms".`
@@ -50,6 +50,7 @@ to `/var/lib/storageos/traces/<volume_id>`:
   * the average time taken during each stage of the IO pipeline. This is done for each IO type: write, read, sync and unmaps.
 
   Example output below:
+
   ```
   ########## timestamp=2022-07-27T09:37:07.180058305+00:00 ##########
   Mount Node (hop_count=0):                 volume_id=0865ea1f-b70e-4935-a823-01a0fced8d23 node_addr=0.0.0.0:5703
@@ -94,7 +95,6 @@ to `/var/lib/storageos/traces/<volume_id>`:
   ...snipped...
   ```
 
-
 ### Fixed
 
 Control Plane
@@ -104,10 +104,10 @@ Control Plane
 * Controlplane will crash loop less frequently on startup when etcd is down
 
 Data Plane
+
 * Fix Convert<> and add support for uint16_t.
 * Fix Volume::GetConsumerCount
 * Improve error message when a write/unmap SCSI command is not committed to the backend disk: `"a consumer IO was not committed to rdbplugin because its transaction ID lost. This could mean there are two consumers with the same transaction ID (bad); the CP has forgotten to increment the consumer count in between remounts of the volume (bad) or it could indicate that a retry of this IO operation has overtaken a previous IO attempt (normally indicative of a very slow/flaky network and/or disk)."`
-
 
 ## 2.8.0 - Release 2022-06-29
 
