@@ -20,7 +20,7 @@ Read about [the cloud native storage principles behind Ondat](https://www.ondat.
 ## Kubernetes-native Ondat Components 
 
 Ondat is architected as a series of containers that fulfil separate, discrete functions. 
-- Below is a list of core Ondat components with a description each components responsibilities & tasks:
+- Below is a list of core Ondat components with a description for each components responsibilities & tasks:
 
 ### Ondat Cluster Operator
 
