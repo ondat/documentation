@@ -6,7 +6,7 @@ weight: 10
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws.amazon.com/eks/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Ondat Helm Chart](https://helm.sh/docs/intro/install/).  The other alternative installation method is to use the [Amazon EKS Blueprints for Terraform](https://github.com/aws-ia/terraform-aws-eks-blueprints), where you can refer to our [getting-started blueprint](https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started) for the Ondat EKS Blueprints addon.
+This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws.amazon.com/eks/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/).  The other alternative installation method is to use the [Amazon EKS Blueprints for Terraform](https://github.com/aws-ia/terraform-aws-eks-blueprints), where you can refer to our [getting-started blueprint](https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started) for the Ondat EKS Blueprints addon.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ The minimum requirements for the nodes are as follows:
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guid takes you through that process as it is not easily available in the AWS Console
-* For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding extra steps to the node's user data.
+* For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules please see [System Configuration](../prerequisites/systemconfiguration.md)
 
 
 ### 2 - Client Tools Prerequisits
