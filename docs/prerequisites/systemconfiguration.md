@@ -6,7 +6,7 @@ weight: 100
 
 Ondat requires certain standard kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however not all of them ship with Linux-IO.
 
-## Distribution Specifics
+## Supported Distributions
 
 Current (non-EOL) versions of the following distributions are supported by default:
 
