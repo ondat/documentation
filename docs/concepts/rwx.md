@@ -39,7 +39,7 @@ The sequence in which a RWX PVC is provisioned and used demonstrated in the step
 1. Ondat dynamically provisions the `PersistentVolume` (PV).
 1. A new Ondat `ReadWriteOnly` (RWO) Volume is provisioned internally (not visible in Kubernetes).
 1. When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
- 1. The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.
+1. The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.
 1. The *Ondat API Manager* publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.
 1. Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.
 
