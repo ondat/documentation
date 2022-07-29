@@ -6,12 +6,11 @@ weight: 10
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Ondat Helm Chart](https://helm.sh/docs/intro/install/)
+This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisits
-
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture
