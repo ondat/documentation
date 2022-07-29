@@ -21,16 +21,17 @@ To get started with installing and configuring the exporter in your Ondat cluste
 ### Alerting Rules for Ondat Volumes
 
 Ondat also distributes example alert rules for Ondat metrics using [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/).
+
 - The alert rules manifest can be located in the [`alertmanager` sub directory under the Ondat metric exporter](https://github.com/ondat/metrics-exporter/tree/main/alertmanager) repository.
 
 ### Grafana Dashboard for Ondat Volumes
 
-In addition to the Ondat metric exporter project, we also distribute [Grafana dashboards](https://grafana.com/grafana/dashboards/) that allow end users to easily visualize and get insights into the status of Ondat volumes. 
+In addition to the Ondat metric exporter project, we also distribute [Grafana dashboards](https://grafana.com/grafana/dashboards/) that allow end users to easily visualize and get insights into the status of Ondat volumes.
 
 - The dashboards can be also located in the [`grafana` sub directory under the Ondat metric exporter](https://github.com/ondat/metrics-exporter/tree/main/grafana) repository.
 
 ## Contributing
 
-If end users have suggestions/ideas for metrics that they would like Ondat to gather by default or improve the Grafana dashboards and Alertmanager integration, contributions are welcome. 
+If end users have suggestions/ideas for metrics that they would like Ondat to gather by default or improve the Grafana dashboards and Alertmanager integration, contributions are welcome.
 
 You can reach out to us on the [Ondat community slack workspace](https://slack.storageos.com/) or review the [contributing guidelines](https://github.com/ondat/metrics-exporter/blob/main/CONTRIBUTING.md) in the Ondat metric exporter repository.
