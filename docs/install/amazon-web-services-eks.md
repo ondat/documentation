@@ -11,6 +11,7 @@ This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisits
+
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture
@@ -18,7 +19,6 @@ The minimum requirements for the nodes are as follows:
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guid takes you through that process as it is not easily available in the AWS Console
 * For kernel versions below `linux-aws-5.4.0-1066.69` or `linux-aws-5.13.0-1014.15`, the module `tcm_loop` is not included in the base kernel distribution. In that case, the package `linux-modules-extra-$(uname -r)` is additionally required on each of the nodes - this can be installed automatically by adding extra steps to the node's user data.
-
 
 ### 2 - Client Tools Prerequisits
 
@@ -33,13 +33,14 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 * [kubectl-storageos CLI](/docs/reference/kubectl-plugin/)
 * [Helm 3 CLI](https://helm.sh/docs/intro/install/)
 
-
 ### 3 - Creating a cluster with the correct Linux distribution
 
 In this example, we have used [eksctl](https://eksctl.io/introduction/) to create a cluster with 3 nodes of size `i3en.xlarge` running Ubuntu for EKS in the `eu-west-2` region. We have provided `20 GB` of disk space for each node. With a default instalation Ondat will store data locally in the node's file system under the path `/var/lib/storageos` on each node in [hyperconverged mode](/docs/concepts/nodes/#hyperconverged-mode).  In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and [mount our volumes under data device directories](/docs/concepts/volumes/) with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.
 
 #### 3a - Create the cluster.yaml file
+
 Create the following cluster.yaml file that will be used to create your cluster and make the following updates:
+
 * You will need to update the file to use the `region` and `availabilityZones` that you need
 * The `<key-name>` field in the publicKeyName parameter, please make sure you update this to match your ssh key name.
 
@@ -166,11 +167,11 @@ the next steps.
 
 ### 5 - Creating a StorageClass for etcd to use
 
-If you used the `eksctl` cluster configuration defined above, the gp3 storage class is already available so you can skip to the next step. Otherwise you can set up the EBS CSI Driver as follows. 
+If you used the `eksctl` cluster configuration defined above, the gp3 storage class is already available so you can skip to the next step. Otherwise you can set up the EBS CSI Driver as follows.
 
 > It is important to note that the Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.
 
-To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide] (https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to install. The procedure is comprehended by the following steps:
+To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide] (<https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>) to install. The procedure is comprehended by the following steps:
 
 * [Create IAM permissions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html)
 * Install the CSI driver
@@ -214,7 +215,6 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
-
 1. The first set of commands adds the Ondat Helm repository and ensures a updated local cache
 
 ```bash
@@ -240,7 +240,6 @@ helm install ondat ondat/ondat \
 ```
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing
-
 
 ### Step 3b - Installing via kubectl-storageos
 
