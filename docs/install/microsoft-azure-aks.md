@@ -11,6 +11,7 @@ This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisits
+
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture

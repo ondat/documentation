@@ -13,6 +13,7 @@ This guide will demonstrate how to install Ondat onto a [Google Kubernetes Engin
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisits
+
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture
@@ -78,7 +79,6 @@ helm install ondat ondat/ondat \
 ```
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing
-
 
 ### Step 3b - Installing via kubectl-storageos
 
