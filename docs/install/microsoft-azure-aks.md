@@ -6,16 +6,19 @@ weight: 10
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Microsoft Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
+This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Ondat Helm Chart](https://helm.sh/docs/intro/install/)
 
 ## Prerequisites
 
+### 1 - Cluster and Node Prerequisits
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your AKS cluster uses [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat
+
+### 2 - Client Tools Prerequisits
 
 The following CLI utilities are install on your local machine and available in your `$PATH`:
 
@@ -26,7 +29,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 * [kubectl-storageos CLI](/docs/reference/kubectl-plugin/)
 * [Helm 3 CLI](https://helm.sh/docs/intro/install/)
 
-## Procedure
+## Installation of Ondat
 
 ### Step 1 - Choosing where your cluster is located
 
@@ -46,7 +49,7 @@ You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) 
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm
 
-![Azure Helm Install](/images/docs/install/AzureStep2Helm.png)
+![Helm Install](/images/docs/install/HelmInstall.png)
 
 1. The first set of commands adds the Ondat Helm repository and ensures a updated local cache
 
@@ -78,9 +81,9 @@ helm install ondat ondat/ondat \
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the kubectl-storageos plugin
 
-![Azure kubectl-storageos Install](/images/docs/install/AzureStep2Helm.png)
+![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-1. This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial instalation.
+This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial instalation. The installation process may take a few minutes.
 
 ```bash
 kubectl storageos install \
@@ -94,8 +97,6 @@ kubectl storageos install \
   --etcd-memory-limit=300Mi \
   --etcd-replicas=3
 ```
-
-2. The installation process may take a few minutes.
 
 ### Step 4 - Verifying Ondat Installation
 
