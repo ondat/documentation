@@ -7,7 +7,7 @@ weight: 1
 
 > 💡 This feature is available in release `v2.5.0` or greater.
 
-Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+Ondat Topology-Aware Placement (TAP) is a feature that enforces placement of data across failure domains to guarantee high availability.
 
 Ondat TAP uses default [labels on nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#built-in-node-labels) to define failure domains - for instance, an [Availability Zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html). However, the key label used to segment failure domains can be defined by the user per node. Lastly, Ondat TAP is an opt-in feature per volume.
 
