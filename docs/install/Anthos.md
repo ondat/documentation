@@ -117,9 +117,10 @@ Once all the components are up and running the output should look like this:
 
 Newly installed Ondat clusters must be licensed within 24 hours. For details of our Community Edition and pricing see [here](https://www.ondat.io/pricing).
 
-To license your cluster with the community edition:
+To licence your cluster with the community edition:
 
 1. On the Clusters page select 'View Details'
-1. Click on the 'Change License' button
-1. In the following pop-up select the 'Community License' option then click ''Generate'
-1. This generates a license and installs it for you
+1. Click on 'Change Licence'
+1. In the following pop-up select the 'Community Licence' option then click 'Generate'
+
+This process generates a licence and installs it for you. Now you are good to go!
