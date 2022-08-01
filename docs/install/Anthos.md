@@ -36,30 +36,30 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 
 ### Step 1 - Choosing where your cluster is located
 
-The Ondat Portal is how you can license and get the commands for installing Ondat
+The Ondat Portal is how you can license and get the commands for installing Ondat:
 
 * Either login or create an account on the Ondat Portal <https://portal.ondat.io/>
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
-* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above
+* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisites as are listed above
 
 ### Step 2 - Choosing the Installation Method
 
-You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below
+You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below.
 
 ### Step 3a - Installing via Helm
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm.
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
-1. The first set of commands adds the Ondat Helm repository and ensures a updated local cache
+1. The first set of commands adds the Ondat Helm repository and ensures an updated local cache.
 
 ```bash
 helm repo add ondat https://ondat.github.io/charts && \
 helm repo update && \
 ```
 
-2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation
+2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.
 
 ```bash
 helm install ondat ondat/ondat \
@@ -76,15 +76,15 @@ helm install ondat ondat/ondat \
   --set etcd-cluster-operator.cluster.resources.requests.memory=300Mi
 ```
 
-3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing
+3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
 ### Step 3b - Installing via kubectl-storageos
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using the kubectl-storageos plugin
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin.
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial instalation. The installation process may take a few minutes.
+This command uses the `kubectl-storageos` plugin with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.
 
 ```bash
 kubectl storageos install \
@@ -101,7 +101,7 @@ kubectl storageos install \
 
 ### Step 4 - Verifying Ondat Installation
 
-Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status).
 
 ```bash
 kubectl get all --namespace=storageos
@@ -115,11 +115,11 @@ Once all the components are up and running the output should look like this:
 
 ### Step 5 - Applying a Licence to the Cluster
 
-Newly installed Ondat clusters must be licensed within 24 hours. For details of our Community Edition and pricing see <https://www.ondat.io/pricing>
+Newly installed Ondat clusters must be licensed within 24 hours. For details of our Community Edition and pricing see [here](https://www.ondat.io/pricing).
 
 To license your cluster with the community edition:
 
 1. On the Clusters page select 'View Details'
-2. Click on the 'Change License' button
-3. In the following pop-up select the 'Community License' option then click ''Generate'
-4. This generates a license and installs it for you
+1. Click on the 'Change License' button
+1. In the following pop-up select the 'Community License' option then click ''Generate'
+1. This generates a license and installs it for you
