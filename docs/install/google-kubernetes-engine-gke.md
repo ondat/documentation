@@ -20,6 +20,7 @@ The minimum requirements for the nodes are as follows:
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your GKE cluster uses [`ubuntu_containerd`](https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
+* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
@@ -34,7 +35,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 
 ## Installation of Ondat
 
-### Step 1 - Choosing where your cluster is located
+### Step 1 - Adding a Cluster
 
 The Ondat Portal is how you can license and get the commands for installing Ondat.
 
@@ -80,7 +81,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via kubectl-storageos
+### Step 3b - Installing via kubectl-storageos plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin
 

@@ -19,6 +19,7 @@ The minimum requirements for the nodes are as follows:
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guide takes you through that process as it is not easily available in the AWS Console
 * For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules, see [System Configuration](/docs/prerequisites/systemconfiguration/).
+* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
@@ -191,15 +192,13 @@ To use a gp3 storage class in Kubernetes it is required to install the Amazon CS
 
 ## Installation of Ondat
 
-### Step 1 - Choosing where your cluster is located
+### Step 1 - Adding a Cluster
 
 The Ondat Portal is how you can license and get the commands for installing Ondat:
 
 * Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options the UI
 * Add a Name for your cluster and where it is going to be located
-
-![EKS Install Step 1](/images/docs/install/AWSStep1.png)
 
 ### Step 2 - Choosing the Installation Method
 

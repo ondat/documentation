@@ -18,6 +18,7 @@ The minimum requirements for the nodes are as follows:
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your AKS cluster uses [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat
+* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
@@ -32,15 +33,13 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 
 ## Installation of Ondat
 
-### Step 1 - Choosing where your cluster is located
+### Step 1 - Adding a Cluster
 
 The Ondat Portal is how you can license and get the commands for installing Ondat
 
-* Either login or create an account on the [Ondat Porta](https://portal.ondat.io/)
+* Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
 * Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above
-
-![Azure Install Step 1](/images/docs/install/AzureStep1.png)
 
 ### Step 2 - Choosing the Installation Method
 
@@ -78,7 +77,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via `kubectl-storageos`
+### Step 3b - Installing via `kubectl-storageos` plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 
