@@ -12,7 +12,7 @@ This guide will demonstrate how to install Ondat onto a [Google Anthos](https://
 
 ## Prerequisites
 
-### 1 - Cluster and Node Prerequisits
+### 1 - Cluster and Node Prerequisites
 
 The minimum requirements for the nodes are as follows:
 
@@ -22,7 +22,7 @@ The minimum requirements for the nodes are as follows:
 * Make sure your Google Anthos cluster uses [`ubuntu_containerd`](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
 * For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
-### 2 - Client Tools Prerequisits
+### 2 - Client Tools Prerequisites
 
 The following CLI utilities are install on your local machine and available in your `$PATH`:
 
@@ -60,7 +60,7 @@ helm repo add ondat https://ondat.github.io/charts && \
 helm repo update && \
 ```
 
-2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.
+2. The last command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.
 
 ```bash
 helm install ondat ondat/ondat \
@@ -79,7 +79,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via kubectl-storageos
+### Step 3b - Installing via `kubectl-storageos`
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin.
 
