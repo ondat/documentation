@@ -14,13 +14,14 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 
 ### 1 - Cluster and Node Prerequisites
 
-The minimum requirements for the nodes are as follows:
+The minimum cluster requirements for a **non-production installation** of ondat are as follows:
 
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [SUSE Rancher Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/) documentation to ensure that you are using a supported Linux distribution.
-* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
+
+For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Installing a Local Path Provisioner
 
@@ -51,7 +52,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 
 ### Installing Ondat Using Rancher's Apps & Marketplace
 
-#### Step 1 - Setup An `etcd` Cluster
+#### Step 1 - Setup An etcd Cluster
 
 * Ensure that you have an `etcd` cluster deployed first before installing Ondat through the Helm chart located on Apps & Marketplace. There are two different methods listed below with instructions on how to deploy an `etcd` cluster;
 

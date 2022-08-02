@@ -21,7 +21,8 @@ The minimum cluster requirements for a **non-production installation** of ondat 
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guide takes you through that process as it is not easily available in the AWS Console
 * For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules, see [System Configuration](/docs/prerequisites/systemconfiguration/).
-* For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
+
+For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
@@ -238,7 +239,7 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via `kubectl-storageos` plugin
+### Step 3b - Installing via kubectl-storageos plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 

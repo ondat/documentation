@@ -16,13 +16,14 @@ This guide will demonstrate how to install Ondat onto a [Google Kubernetes Engin
 
 ### 1 - Cluster and Node Prerequisites
 
-The minimum requirements for the nodes are as follows:
+The minimum cluster requirements for a **non-production installation** of ondat are as follows:
 
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your GKE cluster uses [`ubuntu_containerd`](https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
-* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
+
+For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
