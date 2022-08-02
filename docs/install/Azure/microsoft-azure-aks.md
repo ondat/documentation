@@ -1,14 +1,14 @@
 ---
-title: "Google Kubernetes Engine (GKE)"
-linkTitle: "Google Kubernetes Engine (GKE)"
+title: "Azure Kubernetes Service (AKS)"
+linkTitle: "Azure Kubernetes Service (AKS)"
 weight: 10
+description: >
+    Walkthough guide to install Ondat onto an AKS Cluster
 ---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
-
-> 💡 For users who are looking to deploy Ondat onto a [Google Anthos](https://cloud.google.com/anthos) cluster, use the [Google Anthos installation guide](https://docs.ondat.io/docs/install/anthos/) for more information.
+This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ The minimum requirements for the nodes are as follows:
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
-* Make sure your GKE cluster uses [`ubuntu_containerd`](https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
+* Make sure your AKS cluster uses [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat
 * For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
@@ -37,21 +37,19 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 
 ### Step 1 - Adding a Cluster
 
-The Ondat Portal is how you can license and get the commands for installing Ondat.
+The Ondat Portal is how you can license and get the commands for installing Ondat
 
 * Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
-* Add a Name for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.
-
-![GKE Install Step 1](/images/docs/install/GKEStep1.png)
+* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisites as are listed above
 
 ### Step 2 - Choosing the Installation Method
 
-You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below.
+You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below
 
 ### Step 3a - Installing via Helm
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm.
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
@@ -83,7 +81,7 @@ helm install ondat ondat/ondat \
 
 ### Step 3b - Installing via `kubectl-storageos` plugin
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
@@ -104,7 +102,7 @@ kubectl storageos install \
 
 ### Step 4 - Verifying Ondat Installation
 
-Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
+Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status).
 
 ```bash
 kubectl get all --namespace=storageos

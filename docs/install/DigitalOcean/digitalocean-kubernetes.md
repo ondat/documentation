@@ -2,6 +2,8 @@
 title: "DigitalOcean Kubernetes (DOKS)"
 linkTitle: "DigitalOcean Kubernetes (DOKS)"
 weight: 10
+description: >
+    Walkthough guide to install Ondat onto a DigitialOcean Kubernetes Cluster
 ---
 
 ## Overview

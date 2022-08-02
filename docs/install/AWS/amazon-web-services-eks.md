@@ -1,12 +1,14 @@
 ---
 title: "Amazon Elastic Kubernetes Service (EKS)"
-linkTitle: "Amazon Elastic Kubernetes Service (EKS)"
+linkTitle: "Installing on EKS"
 weight: 10
+description: >
+    Walkthough guide to install Ondat onto an EKS Cluster
 ---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws.amazon.com/eks/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/).  It is also possible to install Ondat using the [Amazon EKS Blueprints for Terraform](https://github.com/aws-ia/terraform-aws-eks-blueprints), where you can refer to our [getting-started blueprint](https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started) for the Ondat EKS Blueprints addon.
+This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws.amazon.com/eks/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/).
 
 ## Prerequisites
 

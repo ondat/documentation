@@ -2,6 +2,8 @@
 title: "OpenShift"
 linkTitle: "OpenShift"
 weight: 10
+description: >
+    Walkthough guide to install Ondat onto an Openshift
 ---
 
 ## Overview
