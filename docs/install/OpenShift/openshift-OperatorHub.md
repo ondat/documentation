@@ -3,7 +3,7 @@ title: "OpenShift"
 linkTitle: "OpenShift"
 weight: 5
 description: >
-     Walkthough guide to install Ondat onto an OpenShift Cluster via OperatorHub
+     Walkthrough guide to install Ondat onto an OpenShift Cluster via OperatorHub
 ---
 
 ## Overview

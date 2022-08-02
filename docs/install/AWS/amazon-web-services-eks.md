@@ -3,7 +3,7 @@ title: "Amazon Elastic Kubernetes Service (EKS)"
 linkTitle: "Installing on EKS"
 weight: 5
 description: >
-    Walkthough guide to install Ondat onto an EKS Cluster
+    Walkthrough guide to install Ondat onto an EKS Cluster
 ---
 
 ## Overview
@@ -14,7 +14,7 @@ This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws
 
 ### 1 - Cluster and Node Prerequisites
 
-The minimum cluster requirements for a **non-production installation** of ondat are as follows:
+The minimum cluster requirements for a **non-production installation** of Ondat are as follows:
 
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory

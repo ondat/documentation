@@ -3,7 +3,7 @@ title: "Rancher Kubernetes Engine (RKE)"
 linkTitle: "Rancher Kubernetes Engine (RKE)"
 weight: 10
 description: >
-    Walkthough guide to install Ondat onto a Rancher Cluster
+    Walkthrough guide to install Ondat onto a Rancher Cluster
 ---
 
 ## Overview

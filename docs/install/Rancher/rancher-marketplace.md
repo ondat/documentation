@@ -3,7 +3,7 @@ title: "Rancher Kubernetes Engine (RKE) via Marketplace"
 linkTitle: "Rancher Kubernetes Engine (RKE) via Marketplace"
 weight: 11
 description: >
-    Walkthough guide to install Ondat onto a Rancher Cluster via Marketplace
+    Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace
 ---
 
 ## Overview

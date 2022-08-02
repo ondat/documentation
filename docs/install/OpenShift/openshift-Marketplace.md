@@ -3,7 +3,7 @@ title: "OpenShift"
 linkTitle: "OpenShift"
 weight: 10
 description: >
-     Walkthough guide to install Ondat onto an OpenShift Cluster via the Red Hat marketplace
+     Walkthrough guide to install Ondat onto an OpenShift Cluster via the Red Hat marketplace
 ---
 
 ## Overview
@@ -12,18 +12,13 @@ This guide will demonstrate how to install Ondat onto an [Openshift](/docs/platf
 
 ## Prerequisites
 
-> ⚠️ Make sure the
-> [prerequisites for Ondat](/docs/prerequisites/) are
-> satisfied before proceeding. Including the deployment of an etcd cluster and
-> configuration of CRI-O PID limits.
+> ⚠️ Make sure the [prerequisites for Ondat](/docs/prerequisites/) are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
 
-> ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
-> opened for the worker nodes' security group.
+> ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes' security group.
 
 > ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
 
-> 💡 For OpenShift upgrades, refer to the
-> [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).
+> 💡 For OpenShift upgrades, refer to the [OpenShift platform page](/docs/platforms/openshift#openshift-upgrades).
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 

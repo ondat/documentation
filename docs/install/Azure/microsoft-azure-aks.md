@@ -3,7 +3,7 @@ title: "Azure Kubernetes Service (AKS)"
 linkTitle: "Azure Kubernetes Service (AKS)"
 weight: 10
 description: >
-    Walkthough guide to install Ondat onto an AKS Cluster
+    Walkthrough guide to install Ondat onto an AKS Cluster.
 ---
 
 ## Overview

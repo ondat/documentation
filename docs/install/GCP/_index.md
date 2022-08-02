@@ -3,7 +3,7 @@ title: "GCP"
 linkTitle: "GCP"
 weight: 20
 description: >
-  Ondat deployment guides for GCP.
+  Ondat deployment guides for GCP
 ---
 
 ## Overview
