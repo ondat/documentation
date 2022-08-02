@@ -6,8 +6,9 @@ linkTitle: How To Use TRIM with Ondat Volumes
 ## Overview
 
 Ondat volumes support [TRIM/UNMAP](https://en.wikipedia.org/wiki/Trim_%28computing%29) by default for all uncompressed volumes.
+
 - [Compression](/docs/concepts/compression/) is disabled by default from release version `v2.2.0`, therefore Ondat volumes will support TRIM/UNMAP calls - unless compression is explicitly enabled. By trimming an Ondat volume, this will release space that has been taken up by deleted blocks in Ondat volume blob files.
-- TRIM can either be called periodically through [`fstrim`](https://man7.org/linux/man-pages/man8/fstrim.8.html) or continuously using the [`-o discard`](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#enabling-online-block-discard_discarding-unused-blocks) [`mount`](https://man7.org/linux/man-pages/man8/mount.8.html) option. 
+- TRIM can either be called periodically through [`fstrim`](https://man7.org/linux/man-pages/man8/fstrim.8.html) or continuously using the [`-o discard`](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#enabling-online-block-discard_discarding-unused-blocks) [`mount`](https://man7.org/linux/man-pages/man8/mount.8.html) option.
 - The recommended discard method to use is [periodic discarding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#types-of-block-discard-operations_discarding-unused-blocks).
 
 > 💡 For more information on TRIM support with Ondat, review the [Volumes](/docs/concepts/volumes/#trim) feature page.
@@ -15,6 +16,7 @@ Ondat volumes support [TRIM/UNMAP](https://en.wikipedia.org/wiki/Trim_%28computi
 ### Example - Using `fstrim` To Conduct Periodic Discarding
 
 In order to TRIM a volume you can run `fstrim` against the Ondat volume filesystem. The volume filesystem will be presented at the mount point for the Ondat device.
+
 - Below is an example that shows the effect of `fstrim` on an Ondat volume mounted on `/mnt`.
 
 ```bash
@@ -41,6 +43,7 @@ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk '!/^t
 ### Example - Automate Periodic Discarding with `fstrim`
 
 Discarding unused blocks can be automated by running `fstrim` against mounted Ondat volumes.
+
 - When running in Kubernetes, the [kubelet](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) component is responsible for mounting volumes into pods so the mount endpoints for pods are accessible under `/var/lib/kubelet/pods`.
 - Ondat volume mounts appear as mounts from `/var/lib/storageos/volumes/v.${DEPLOYMENT_ID}` on `/var/lib/kubelet/pods/${POD_UID}/volumes/kubernetes.io~csi/${PV_ID}/mount`.
 
@@ -99,6 +102,7 @@ Ondat volumes can be mounted using the `-o discard` `mount` option which will au
 
 The `discard` option can be enabled as a `StorageClass` or `PersistentVolume`. Enabling `discard` as a `StorageClass` option will result in all volumes
 provisioned with that StorageClass being mounted with `discard`, whereas setting the option through a `PersistentVolume` will set discarding on a per-volume basis.
+
 - Below is an exmaple that uses a custom Ondat `StorageClass` to provision StorageClass below would provision xfs volumes with the `discard` option
 enabled by default.
 
@@ -155,6 +159,7 @@ kubectl get pv | grep "pvc-discard"
 
 pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528   5Gi        RWO            Delete           Bound    default/pvc-discard          storageos               4m3s
 ```
+
 - Edit `pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528` and add the `discard` mount option to the resource.
 
 ```bash
