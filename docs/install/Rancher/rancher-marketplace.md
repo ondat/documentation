@@ -10,7 +10,6 @@ description: >
 
 This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engine (RKE)](https://rancher.com/products/rke) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
-
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisites
