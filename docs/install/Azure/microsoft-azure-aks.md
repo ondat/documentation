@@ -79,7 +79,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via `kubectl-storageos` plugin
+### Step 3b - Installing via kubectl-storageos plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 

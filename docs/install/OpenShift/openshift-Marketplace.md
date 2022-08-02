@@ -3,7 +3,7 @@ title: "OpenShift"
 linkTitle: "OpenShift"
 weight: 10
 description: >
-    Walkthough guide to install Ondat onto an Openshift
+     Walkthough guide to install Ondat onto an OpenShift Cluster via the Red Hat marketplace
 ---
 
 ## Overview
@@ -27,106 +27,7 @@ This guide will demonstrate how to install Ondat onto an [Openshift](/docs/platf
 
 Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platform](/docs/platforms/openshift) page.
 
-## Procedure
-
-### Option A: Via Operatorhub
-
-#### Step 1: Operatorhub
-
-1. Select the `OperatorHub` from the Catalog sub menu and search for StorageOS
-
-   > 💡 Choose between using the RedHat Marketplace or the Community Operators
-   > installation.
-
-2. Select StorageOS and click __Install__.
-
-3. Select the relevant install options.
-
-    > Make sure the `Approval Strategy` is set to __Manual__. This option makes sure that the StorageOS
-    > Operator doesn't upgrade versions without explicit approval.
-
-4. Start the approval procedure by clicking on the operator name.
-
-5. On __Subscription Details__, click the approval link.
-
-6. On __Review Manual Install__ panel in the __Components__ tab, click __Approve__ to confirm the installation.
-
-The Ondat Cluster Operator is installed along the required CRDs.
-
-#### Step 2: Authentication
-
-1. Create a Secret in the `openshift-operators` project and select the YAML option to create a secret containing the `username` and an
-   `password` key. The username and password defined in the secret will be
-   used to authenticate when using the Ondat CLI and GUI. Take note of
-   which project you created the secret in.
-
-    Input the secret as YAML for simplicity.
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: storageos-api
-      namespace: openshift-operators
-    type: "kubernetes.io/storageos"
-    data:
-      # echo -n '<secret>' | base64
-      username: c3RvcmFnZW9z
-      password: c3RvcmFnZW9z
-    ```
-
-2. Go to the __Operators__->__Installed Operators__ and verify that the StorageOS Cluster Operator is installed.
-
-3. Go to the __StorageOS Cluster__ section.
-
-4. Click __Create StorageOSCluster__.
-
-    > 💡 An Ondat Cluster is defined using a Custom Resource Definition
-
-5. Create the Custom Resource
-
-   The StorageOS cluster resource describes the Ondat cluster that will be
-   created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
-   the `kvBackend.address` are mandatory.
-
-   > 💡 Additional `spec` parameters are available on the [Cluster Operator configuration](/docs/reference/cluster-operator/configuration) page.
-
-   ```bash
-   apiVersion: "storageos.com/v1"
-   kind: StorageOSCluster
-   metadata:
-     name: storageos
-     namespace: openshift-operators
-   spec:
-     # Ondat Pods are in kube-system by default
-     secretRefName: "storageos-api" # Reference the Secret created in the previous step
-     secretRefNamespace: "openshift-operators"  # Namespace of the Secret created in the previous step
-     k8sDistro: "openshift"
-     kvBackend:
-       address: 'storageos-etcd-client.etcd:2379' # Example address, change for your etcd endpoint
-     # address: '10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379' # You can set ETCD server ips
-     resources:
-       requests:
-         memory: "512Mi"
-         cpu: 1
-     # nodeSelectorTerms:
-     #   - matchExpressions:
-     #     - key: "node-role.kubernetes.io/worker" # Compute node label will vary according to your installation
-     #       operator: In
-     #       values:
-     #       - "true"
-   ```
-
-6. Verify that the StorageOS Cluster resource status is __Running__.
-
-    > It can take up to a minute to report the Ondat Pods ready.
-
-7. Check the StorageOS Pods in the `kube-system` project
-
-    > A Status of 3/3 in the __Ready__ column for the Daemonset Pods indicates that Ondat is
-    > bootstrapped successfully.
-
-### Option B: Via Red Hat Marketplace
+## installation of Ondat via Red Hat Marketplace
 
 #### Step 1: Red Hat Markerplace
 

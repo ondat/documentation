@@ -1,7 +1,7 @@
 ---
 title: "Google Kubernetes Engine (GKE)"
 linkTitle: "Google Kubernetes Engine (GKE)"
-weight: 10
+weight: 5
 description: >
     Walkthough guide to install Ondat onto a GKE Cluster
 ---
@@ -45,8 +45,6 @@ The Ondat Portal is how you can license and get the commands for installing Onda
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
 * Add a Name for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.
 
-![GKE Install Step 1](/images/docs/install/GKEStep1.png)
-
 ### Step 2 - Choosing the Installation Method
 
 You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below.
@@ -83,7 +81,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via `kubectl-storageos` plugin
+### Step 3b - Installing via kubectl-storageos plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin
 
