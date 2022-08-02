@@ -168,7 +168,7 @@ If you used the `eksctl` cluster configuration defined above, the gp3 storage cl
 
 > It is important to note that the Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost-effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.
 
-To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide] (<https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html>) to install. Follow the steps below:
+To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide] (https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to install. Follow the steps below:
 
 1. [Create IAM permissions](https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html)
 1. Install the CSI driver
@@ -244,18 +244,18 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.
 
-    ```bash
-    kubectl storageos install \
-      --include-etcd=true \
-      --enable-portal-manager=true \
-      --portal-client-id=37540b25-285c-4326-b76c-742100723ac3 \
-      --portal-secret=e946f84a-e6c0-4afd-9087-f9cdd6906aa5 \
-      --portal-api-url=https://portal-setup-7dy4neexbq-ew.a.run.app \
-      --portal-tenant-id=16e51eb9-37cf-4103-9a31-9e2cdaeec373 \
-      --etcd-cpu-limit=100m \
-      --etcd-memory-limit=300Mi \
-      --etcd-replicas=3
-    ```
+```bash
+kubectl storageos install \
+  --include-etcd=true \
+  --enable-portal-manager=true \
+  --portal-client-id=37540b25-285c-4326-b76c-742100723ac3 \
+  --portal-secret=e946f84a-e6c0-4afd-9087-f9cdd6906aa5 \
+  --portal-api-url=https://portal-setup-7dy4neexbq-ew.a.run.app \
+  --portal-tenant-id=16e51eb9-37cf-4103-9a31-9e2cdaeec373 \
+  --etcd-cpu-limit=100m \
+  --etcd-memory-limit=300Mi \
+  --etcd-replicas=3
+```
 
 ### Step 4 - Verifying Ondat Installation
 
