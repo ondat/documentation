@@ -3,7 +3,7 @@ title: "Digital Ocean"
 linkTitle: "Digital Ocean"
 weight: 60
 description: >
-  Ondat deployment guides for Digital Ocean.
+  Ondat deployment guides for Digital Ocean
 ---
 
 ## Overview

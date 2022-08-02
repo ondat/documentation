@@ -3,7 +3,7 @@ title: "Rancher Kubernetes Engine 2 (RKE2)"
 linkTitle: "Rancher Kubernetes Engine 2 (RKE2)"
 weight: 20
 description: >
-    Walkthough guide to install Ondat onto a Rancher RKE2/RKE Government Cluster
+    Walkthrough guide to install Ondat onto a Rancher RKE2/RKE Government Cluster
 ---
 
 ## Overview

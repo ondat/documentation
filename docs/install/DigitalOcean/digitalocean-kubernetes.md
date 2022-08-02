@@ -3,7 +3,7 @@ title: "DigitalOcean Kubernetes (DOKS)"
 linkTitle: "DigitalOcean Kubernetes (DOKS)"
 weight: 10
 description: >
-    Walkthough guide to install Ondat onto a DigitialOcean Kubernetes Cluster
+    Walkthrough guide to install Ondat onto a DigitialOcean Kubernetes Cluster
 ---
 
 ## Overview
@@ -43,7 +43,7 @@ The Ondat Portal is how you can license and get the commands for installing Onda
 
 * Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
-* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above
+* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisites as are listed above
 
 ### Step 2 - Choosing the Installation Method
 
@@ -62,7 +62,7 @@ helm repo add ondat https://ondat.github.io/charts && \
 helm repo update && \
 ```
 
-2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.
+2. The last command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.
 
 ```bash
 helm install ondat ondat/ondat \
@@ -81,7 +81,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via kubectl-storageos plugin
+### Step 3b - Installing via `kubectl-storageosa plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 
