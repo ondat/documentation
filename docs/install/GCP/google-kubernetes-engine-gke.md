@@ -3,14 +3,14 @@ title: "Google Kubernetes Engine (GKE)"
 linkTitle: "Google Kubernetes Engine (GKE)"
 weight: 5
 description: >
-    Walkthough guide to install Ondat onto a GKE Cluster
+    Walkthrough guide to install Ondat onto a GKE Cluster
 ---
 
 ## Overview
 
 This guide will demonstrate how to install Ondat onto a [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
-> 💡 For users who are looking to deploy Ondat onto a [Google Anthos](https://cloud.google.com/anthos) cluster, use the [Google Anthos installation guide](https://docs.ondat.io/docs/install/anthos/) for more information.
+> 💡 For users who are looking to deploy Ondat onto a [Google Anthos](https://cloud.google.com/anthos) cluster, use the [Google Anthos Installation guide](https://docs.ondat.io/docs/install/anthos/) for more information.
 
 ## Prerequisites
 
