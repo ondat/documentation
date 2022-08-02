@@ -41,7 +41,6 @@ The Ondat Portal is how you can license and get the commands for installing Onda
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
 * Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above
 
-
 ### Step 2 - Choosing the Installation Method
 
 You can use either the [kubectl-storageos CLI](/docs/reference/kubectl-plugin/) or [Helm 3 CLI](https://helm.sh/docs/intro/install/) to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below
