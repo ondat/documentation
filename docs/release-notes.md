@@ -27,7 +27,6 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 k8s
 
 * Install resource quota for GKE
-* Disable scheduler option in storageoscluster CR
 * Operator:
   * Add snapshot controller and related CRDs if not present
   * Pod Disruption Budget support for k8s v1.25
