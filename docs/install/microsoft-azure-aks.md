@@ -39,7 +39,7 @@ The Ondat Portal is how you can license and get the commands for installing Onda
 
 * Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
-* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above
+* Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisites as are listed above
 
 ### Step 2 - Choosing the Installation Method
 
@@ -58,7 +58,7 @@ helm repo add ondat https://ondat.github.io/charts && \
 helm repo update && \
 ```
 
-2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.
+2. The last command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.
 
 ```bash
 helm install ondat ondat/ondat \
@@ -83,7 +83,7 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial instalation. The installation process may take a few minutes.
+This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.
 
 ```bash
 kubectl storageos install \

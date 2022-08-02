@@ -62,7 +62,7 @@ helm repo add ondat https://ondat.github.io/charts && \
 helm repo update && \
 ```
 
-2. The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.
+2. The last command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.
 
 ```bash
 helm install ondat ondat/ondat \
@@ -81,7 +81,7 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via kubectl-storageos plugin
+### Step 3b - Installing via `kubectl-storageos` plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin
 
