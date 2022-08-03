@@ -15,7 +15,7 @@ Encrypting a volume is done by simply creating a volume with the `storageos.com/
 ### Example - Enable Volume Data Encryption Through a `PersistentVolumeClaim` Definition
 
 The following guidance will demonstrate how to enable Ondat's Data Encryption through a  `PersistentVolumeClaim` (PVC) definition.
--   The instructions will enable data encryption on a PVC that will be used by a `StatefulSet` resource in the `encrypted` namespace.
+- The instructions will enable data encryption on a PVC that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
 1. Create a namespace called `encrypted` where the encrypted volume and `StatefulSet` will reside.
 
@@ -31,7 +31,7 @@ The following guidance will demonstrate how to enable Ondat's Data Encryption th
     EOF
     ```
 
-1.  Create a custom `PersistentVolumeClaim` named `encrypted` and ensure that you add the following label >> `storageos.com/encryption=true` to the manifest.
+1. Create a custom `PersistentVolumeClaim` named `encrypted` and ensure that you add the following label >> `storageos.com/encryption=true` to the manifest.
 
     ```yaml
     # Create a "encrypted" PVC.
@@ -215,7 +215,7 @@ The following guidance will demonstrate how to enable Ondat's Data Encryption th
     q6Yul
     (OF(a
     kbY#(
-    5-	n
+    5- n
     02p8
 
     # exit from the pod and return to your local shell
@@ -225,7 +225,7 @@ The following guidance will demonstrate how to enable Ondat's Data Encryption th
 ### Example - Enable Volume Data Encryption Through a `StorageClass` Definition
 
 The following guidance will demonstrates how to enable Ondat's Data Encryption through a `StorageClass` (PVC) definition.
--   The instructions will enable data encryption for PVCs through a custom `StorageClass` that will be used by a `StatefulSet` resource in the `encrypted` namespace.
+- The instructions will enable data encryption for PVCs through a custom `StorageClass` that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
     ```yaml
     # Create the "ondat-tap" StorageClass.
@@ -263,7 +263,7 @@ The following guidance will demonstrates how to enable Ondat's Data Encryption t
     EOF
     ```
 
-1.  Create a `PersistentVolumeClaim` that will use `ondat-encryption` as its `StorageClass` and confirm that it was successfully created.
+1. Create a `PersistentVolumeClaim` that will use `ondat-encryption` as its `StorageClass` and confirm that it was successfully created.
 
     ```yaml
     # Create a "encrypted-2" PVC.
@@ -382,8 +382,7 @@ The following guidance will demonstrates how to enable Ondat's Data Encryption t
     key:   64 bytes
     vuk:   80 bytes
     ```
-
-
+ 
     ```yaml
     # Review "storageos-volume-key-$RANDOM".
     # Notice that there are 4 data objects stored in the secret > "hmac", "iv", "vuk", "iv" respectively.
