@@ -1,6 +1,6 @@
 ---
-title: "OpenShift"
-linkTitle: "OpenShift"
+title: "OpenShift via Marketplace"
+linkTitle: "OpenShift via Marketplace"
 weight: 10
 description: >
      Walkthrough guide to install Ondat onto an OpenShift Cluster via the Red Hat marketplace
