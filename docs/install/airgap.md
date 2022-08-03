@@ -8,7 +8,7 @@ weight: 90
 
 This guide will demonstrate how to install Ondat onto clusters that don't have direct access to the internet - i.e., [air-gapped](https://en.wikipedia.org/wiki/Air_gap_%28networking%29) environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
 
-> 💡 This guide is recommended for **advanced users** who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.
+💡 This guide is recommended for **advanced users** who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.
 
 Below is a quick summary of the procedure that will be covered in this guide:
 
@@ -20,19 +20,13 @@ Below is a quick summary of the procedure that will be covered in this guide:
 
 ## Prerequisites
 
-> ⚠️ Make sure you have met the minimum resource requirements for Ondat so your set up would be successful. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
-
-> ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your `$PATH`:
-
-* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-
-> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
-
-> ⚠️ Make sure you have a running Kubernetes cluster with a minimum of 5 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
-
-> ⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.
-
-> ⚠️ Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.
+* Make sure you have met the minimum resource requirements for Ondat so your set up would be successful. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
+* Make sure the following CLI utility is installed on your local machine and is available in your `$PATH`:
+[kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
+* Make sure you have a running Kubernetes cluster with a minimum of 5 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+* Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.
+* Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.
 
 ## Procedure
 

@@ -2,13 +2,13 @@
 title: "Google Anthos"
 linkTitle: "Google Anthos"
 weight: 10
+description: >
+    Walkthough guide to install Ondat onto an Anthos
 ---
 
 ## Overview
 
 This guide will demonstrate how to install Ondat onto a [Google Anthos](https://cloud.google.com/anthos) cluster using the [Ondat kubectl plugin](https://docs.ondat.io/docs/reference/kubectl-plugin/).
-
-> 💡 For users who are looking to deploy Ondat onto a [Google GKE](https://cloud.google.com/kubernetes-engine) cluster, please use the [Google GKE installation guide](https://docs.ondat.io/docs/install/google-kubernetes-engine-gke/) for more information.
 
 ## Prerequisites
 

@@ -1,105 +1,58 @@
 ---
-title: "Rancher Kubernetes Engine (RKE)"
-linkTitle: "Rancher Kubernetes Engine (RKE)"
-weight: 10
---- 
+title: "Rancher Kubernetes Engine (RKE) via Marketplace"
+linkTitle: "Rancher Kubernetes Engine (RKE) via Marketplace"
+weight: 11
+description: >
+    Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace
+---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engine (RKE)](https://rancher.com/products/rke) cluster. Ondat can be installed on a RKE cluster through two different methods;
-
-1. Using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
-1. Using [Ondat's Helm chart](https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator) through [Rancher's Apps & Marketplace](https://rancher.com/docs/rancher/v2.6/en/helm-charts/).
+This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engine (RKE)](https://rancher.com/products/rke) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
 ## Prerequisites
 
-> ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main [Ondat prerequisites](/docs/prerequisites/) page for more information.
+### 1 - Cluster and Node Prerequisites
 
-> ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your `$PATH`:
+The minimum cluster requirements for a **non-production installation** of ondat are as follows:
 
-* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* Linux with a 64-bit architecture
+* 2 vCPU and 8GB of memory
+* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
+* Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [SUSE Rancher Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/) documentation to ensure that you are using a supported Linux distribution.
 
-> ⚠️ Make sure to add an [Ondat licence](/docs/operations/licensing/) after installing. You can request a licence via the [Ondat SaaS Platform](https://portal.ondat.io/).
+For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
-> ⚠️ Make sure you have a running RKE cluster with a minimum of 5 worker nodes and the sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+### 2 - Installing a Local Path Provisioner
 
-> ⚠️ Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [SUSE Rancher Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/) documentation to ensure that you are using a supported Linux distribution.
+By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a [Local Path Provisioner](https://github.com/rancher/local-path-provisioner) and make it the default storageclass to provide local storage for Ondat's embedded `etcd` cluster operator deployment.
 
-## Procedure
-
-### Option A - Using Ondat Kubectl Plugin
-
-#### Step 1 - Install Ondat Kubectl Plugin
-
-* Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your `$PATH`:
-  * [kubectl-storageos](/docs/reference/kubectl-plugin/)
-
-#### Step 2 - Install Local Path Provisioner
-
-1. By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a [Local Path Provisioner](https://github.com/rancher/local-path-provisioner) to provide local storage for Ondat's embedded `etcd` cluster operator deployment.
-
-    ```bash
-    kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml"
+    ```bash  
+    kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml"
+    kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
 
-1. Define and export the `ETCD_STORAGECLASS` environment variable so that value is `local-path`, which is the default StorageClass name for the Local Path Provisioner.
-
-    ```bash
-    export ETCD_STORAGECLASS="local-path"
-    ```
-
-1. Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  `RUNNING`  status, run the following  `kubectl`  commands.
+Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  `RUNNING` status, run the following `kubectl` commands.
 
     ```bash
     kubectl get pod --namespace=local-path-storage
     kubectl get storageclass
     ```
 
-> ⚠️ The `local-path` StorageClass is only recommended for **non production** clusters as this stores all the data of the `etcd` peers locally which makes it susceptible to state being lost on node failures.
+### 3 - Client Tools Prerequisites
 
-#### Step 3 - Conducting Preflight Checks
+The following CLI utilities are installed on your local machine and available in your `$PATH`:
 
-* Run the following command to conduct preflight checks against the RKE cluster to validate that Ondat prerequisites have been met before attempting an installation.
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
-    ```bash
-    kubectl storageos preflight
-    ```
+Ondat can be installed either via Helm Chart or using our command-line tool.  Depending on which installation method you choose you will require either:
 
-#### Step 4 - Installing Ondat
+* [kubectl-storageos CLI](/docs/reference/kubectl-plugin/)
+* [Helm 3 CLI](https://helm.sh/docs/intro/install/)
 
-1. Define and export the `STORAGEOS_USERNAME` and `STORAGEOS_PASSWORD` environment variables that will be used to manage your Ondat instance.
+### Installing Ondat Using Rancher's Apps & Marketplace
 
-    ```bash
-    export STORAGEOS_USERNAME="storageos"
-    export STORAGEOS_PASSWORD="storageos"
-    ```
-
-1. Run the following  `kubectl-storageos` plugin command to install Ondat.
-
-    ```bash
-    kubectl storageos install \
-      --include-etcd \
-      --etcd-tls-enabled \
-      --etcd-storage-class="$ETCD_STORAGECLASS" \
-      --admin-username="$STORAGEOS_USERNAME" \
-      --admin-password="$STORAGEOS_PASSWORD"
-    ```
-
-* The installation process may take a few minutes.
-
-#### Step 5 - Verifying Ondat Installation
-
-* Run the following `kubectl` commands to inspect Ondat's resources (the core components should all be in a `RUNNING` status)
-
-    ```bash
-    kubectl get all --namespace=storageos
-    kubectl get all --namespace=storageos-etcd
-    kubectl get storageclasses | grep "storageos"
-    ```
-
-### Option B - Using Rancher's Apps & Marketplace
-
-#### Step 1 - Setup An `etcd` Cluster
+#### Step 1 - Setup An etcd Cluster
 
 * Ensure that you have an `etcd` cluster deployed first before installing Ondat through the Helm chart located on Apps & Marketplace. There are two different methods listed below with instructions on how to deploy an `etcd` cluster;
 

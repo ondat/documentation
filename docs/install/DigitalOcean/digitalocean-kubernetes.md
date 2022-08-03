@@ -1,24 +1,28 @@
 ---
-title: "Azure Kubernetes Service (AKS)"
-linkTitle: "Azure Kubernetes Service (AKS)"
+title: "DigitalOcean Kubernetes (DOKS)"
+linkTitle: "DigitalOcean Kubernetes (DOKS)"
 weight: 10
+description: >
+    Walkthrough guide to install Ondat onto a DigitialOcean Kubernetes Cluster
 ---
 
 ## Overview
 
-This guide will demonstrate how to install Ondat onto a [Microsoft AKS](https://azure.microsoft.com/en-gb/services/kubernetes-service/) cluster using either the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
+This guide will demonstrate how to install Ondat onto a [DigitalOcean Managed Kubernetes (DOKS)](https://www.digitalocean.com/products/kubernetes) cluster using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/) or [Helm Chart](https://helm.sh/docs/intro/install/)
 
 ## Prerequisites
 
 ### 1 - Cluster and Node Prerequisites
 
-The minimum requirements for the nodes are as follows:
+The minimum cluster requirements for a **non-production installation** of ondat are as follows:
 
 * Linux with a 64-bit architecture
 * 2 vCPU and 8GB of memory
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
-* Make sure your AKS cluster uses [Ubuntu](https://ubuntu.com/) as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than `4.15.0-1029-azure` is compatible with Ondat
-* For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
+* Make sure your DOKS cluster version is greater than or equal to `v1.21.10` or `v1.22.7` as they will have the required kernel modules available for Ondat to run successfully.
+* Ensure the following firewall ports are open: [Firewalls and VPS providers](https://docs.ondat.io/docs/prerequisites/firewalls/#firewalls-and-vps-providers)
+
+For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
 ### 2 - Client Tools Prerequisites
 
@@ -77,13 +81,13 @@ helm install ondat ondat/ondat \
 
 3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
-### Step 3b - Installing via `kubectl-storageos` plugin
+### Step 3b - Installing via `kubectl-storageosa plugin
 
 The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin:
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.
+This command uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial instalation. The installation process may take a few minutes.
 
 ```bash
 kubectl storageos install \
