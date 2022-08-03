@@ -8,7 +8,7 @@ linkTitle: How To Enable Data Encryption For Volumes
 Encrypting a volume is done by simply creating a volume with the `storageos.com/encryption=true` label. This label can be applied against a `PersistentVolumeClaim` (PVC) resource definition or through a custom Ondat `StorageClass` resource definition.
 - Only the label is required to enable encryption. Once the label is present - during the volume creation, the [`MutatingAdmissionWebhook`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that runs as part of the [Ondat API Manager](/docs/concepts/components/#ondat-api-manager), will create the volume encryption key, link it to the PVC and store it in a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
 
-> ⚠️ Encryption can only be enabled before an Ondat volume is provisioned. Once the encrypted volume has been created, encryption can not be remove during the [volume's lifetime](https://spot.io/resources/kubernetes-architecture/7-stages-in-the-life-of-a-kubernetes-persistent-volume-pv/).
+> ⚠️ Encryption can only be enabled before an Ondat volume is provisioned. Once the encrypted volume has been created, encryption cannot be removed during the [volume's lifetime](https://spot.io/resources/kubernetes-architecture/7-stages-in-the-life-of-a-kubernetes-persistent-volume-pv/).
 
 > 💡 For more information on the Ondat's Data Encryption feature, review the [Data Encryption](/docs/concepts/encryption) feature page.
 
