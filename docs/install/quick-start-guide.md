@@ -1,7 +1,7 @@
 ---
 title: "Quick Start Guide - Non-Production"
 linkTitle: "Quick Start Guide"
-weight: 1
+weight: 99
 ---
 
 This guide will provide step by step instructions on how to install Ondat onto your cluster, with the [Ondat helm chart](https://github.com/ondat/charts), for a non-production environment.

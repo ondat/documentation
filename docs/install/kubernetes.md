@@ -2,6 +2,8 @@
 title: "Kubernetes"
 linkTitle: "Kubernetes"
 weight: 10
+description: >
+  Ondat deployment guides for a vanilla Kubernetes cluster
 ---
 ## Overview
 

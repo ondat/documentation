@@ -27,17 +27,17 @@ For a comprehensive list of prerequisites and how to build a **production instal
 
 By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a [Local Path Provisioner](https://github.com/rancher/local-path-provisioner) and make it the default storageclass to provide local storage for Ondat's embedded `etcd` cluster operator deployment.
 
-    ```bash  
-    kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml"
-    kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-    ```
+```bash  
+kubectl apply --filename="https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml"
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+```
 
 Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  `RUNNING` status, run the following `kubectl` commands.
 
-    ```bash
-    kubectl get pod --namespace=local-path-storage
-    kubectl get storageclass
-    ```
+```bash
+kubectl get pod --namespace=local-path-storage
+kubectl get storageclass
+```
 
 ### 3 - Client Tools Prerequisites
 
