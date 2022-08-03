@@ -14,8 +14,8 @@ When Ondat detects that a node has gone offline or become partitioned, it marks 
 
 In order for a pod to be fenced, the following criteria listed below is required:
 
-1. The pod must have the label `storageos.com/fenced=true`,
-1. The pod to be fenced must claim an Ondat volume,
+1. The pod must have the label `storageos.com/fenced=true`.
+1. The pod to be fenced must claim an Ondat volume.
 1. The Ondat volume claimed by the pod needs to be `online`.
 
 If the node becomes offline and these criteria are met, the pod is deleted and rescheduled on another node.
@@ -144,7 +144,7 @@ The following example below shows how the Ondat API manager fences a pod.
 
     > 💡 The Ondat API Manager detects all the pods that are on the failed node, and selects only the ones that meet the fencing criteria as described above. In this case only `mysql-0` is selected for fencing.
 
-1. Check the pod's new node location :
+1. Check the pod's new node location:
 
     ```bash 
     # Get the labels applied to the "mysql" pod.
