@@ -14,7 +14,7 @@ Encrypting a volume is done by simply creating a volume with the `storageos.com/
 
 ### Example - Enable Volume Data Encryption Through a `PersistentVolumeClaim` Definition
 
-The following guidance will demonstrates how to enable Ondat's Data Encryption through a  `PersistentVolumeClaim` (PVC) definition.
+The following guidance will demonstrate how to enable Ondat's Data Encryption through a  `PersistentVolumeClaim` (PVC) definition.
 -   The instructions will enable data encryption on a PVC that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
 1. Create a namespace called `encrypted` where the encrypted volume and `StatefulSet` will reside.
@@ -31,7 +31,7 @@ The following guidance will demonstrates how to enable Ondat's Data Encryption t
     EOF
     ```
 
-1.  Create a custom  `PersistentVolumeClaim`  named  `encrypted`  and ensure that you add the following label >> `storageos.com/encryption=true` to the manifest.
+1.  Create a custom `PersistentVolumeClaim` named `encrypted` and ensure that you add the following label >> `storageos.com/encryption=true` to the manifest.
 
     ```yaml
     # Create a "encrypted" PVC.
