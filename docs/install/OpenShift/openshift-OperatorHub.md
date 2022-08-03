@@ -1,6 +1,6 @@
 ---
-title: "OpenShift"
-linkTitle: "OpenShift"
+title: "OpenShift via OperatorHub"
+linkTitle: "OpenShift via OperatorHub"
 weight: 5
 description: >
      Walkthrough guide to install Ondat onto an OpenShift Cluster via OperatorHub
