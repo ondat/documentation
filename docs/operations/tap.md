@@ -12,7 +12,7 @@ Ondat Topology-Aware Placement is a feature that enforces placement of data acro
 
 ### Example - Enable Topology-Aware Placement Through a `PersistentVolumeClaim` Definition
 
-The following guidance below will demonstrates how to use Ondat Topology-Aware Placement through a `PersistentVolumeClaim` (PVC) definition. 
+The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a `PersistentVolumeClaim` (PVC) definition. 
 - The instructions will enable Topology-Aware Placement on a PVC, use a custom zone labelling scheme with the label >> `storageos.com/topology-key=custom-region` and set it to the `soft` Failure Mode.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.
@@ -149,7 +149,7 @@ The following guidance below will demonstrates how to use Ondat Topology-Aware P
 
 ### Example - Enable Topology-Aware Placement Through a `StorageClass` Definition
 
-The following guidance below will demonstrates how to use Ondat Topology-Aware Placement through a `StorageClass` definition. 
+The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a `StorageClass` definition. 
 - The instructions will enable Topology-Aware Placement through a custom StorageClass, use the node label >> `topology.kubernetes.io/zone` and set the default volume replica count >> `storageos.com/replicas` to `2`.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.
@@ -194,7 +194,7 @@ The following guidance below will demonstrates how to use Ondat Topology-Aware P
     kubectl get sc | grep "ondat-tap"
     ```
 
-1. Create a `PersistentVolumeClaim` that will use  `ondat-tap` as its `StorageClass` and confirm that it was successfully created.
+1. Create a `PersistentVolumeClaim` that will use `ondat-tap` as its `StorageClass` and confirm that it was successfully created.
 
     ```yaml
     # Create a "pvc-tap-2" PVC that uses the "ondat-tap" StorageClass.
@@ -223,7 +223,7 @@ The following guidance below will demonstrates how to use Ondat Topology-Aware P
 
     > 💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-tap` StorageClass parameters defined in *Step 2*.
 
-1. To review and confirm that Ondat TAP has successfully provisioned 2 volumes and evenly distributed in different zones - deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`. Once deployed, obtain the  Ondat CLI utility pod name for later reference.
+1. To review and confirm that Ondat TAP has successfully provisioned 2 volumes and evenly distributed in different zones - deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
 
     ```bash
     # Get the Ondat CLI utility pod name.
