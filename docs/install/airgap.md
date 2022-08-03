@@ -2,6 +2,8 @@
 title: "Air-Gapped Install"
 linkTitle: "Air-Gapped Install"
 weight: 90
+description: >
+  Ondat deployment guides for an air-gapped installation - advanced
 ---
 
 ## Overview

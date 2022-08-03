@@ -2,6 +2,8 @@
 title: "Declarative Install"
 linkTitle: "Declarative Install"
 weight: 90
+description: >
+  Ondat deployment guides for a declarative installation  - advanced
 --- 
 
 ## Overview
