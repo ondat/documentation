@@ -1,6 +1,6 @@
 ---
 title: "Amazon Elastic Kubernetes Service (EKS)"
-linkTitle: "Installing on EKS"
+linkTitle: "Amazon Elastic Kubernetes Service (EKS)"
 weight: 5
 description: >
     Walkthrough guide to install Ondat onto an EKS Cluster
