@@ -13,7 +13,7 @@ Ondat TAP uses default [labels on nodes](https://kubernetes.io/docs/concepts/sch
 
 ### How does Ondat Topology-Aware Placement Work?
 
-Ondat's Topology-Aware Placement attempts to distribute sensitive data across different failure domains. Hence, a primary volume and its replicas are scattered across failure domains - that is implemented following a [best effort algorithm](https://en.wikipedia.org/wiki/Best-effort_delivery). 
+Ondat's Topology-Aware Placement attempts to distribute sensitive data across different failure domains. Hence, a primary volume and its replicas are scattered across failure domains - that is implemented following a [best effort algorithm](https://en.wikipedia.org/wiki/Best-effort_delivery).
 - In case that Ondat TAP rules can't be fulfilled the placement algorithm will attempt a best approach placement (even if new replicas are in the same failure domain).
 - The best effort placement allows the system to place replicas on the same failure domains when a full domain has failed catastrophically. Hence, the system self heals as fast as possible without waiting for the nodes on the failed domain to recover.
 
@@ -37,20 +37,19 @@ Topology-Aware Placement can be enabled by applying the label `storageos.com/top
 ### Understanding Topology Domains
 
 A topology domain is a set of nodes. The domain is identified by a label, which can be defined by the user.
-- The default label that Ondat uses to segment nodes in failure domains is >> `topology.kubernetes.io/zone`. 
+- The default label that Ondat uses to segment nodes in failure domains is >> `topology.kubernetes.io/zone`.
 - However, you can define your own topology key by setting the key string in the [Ondat feature label](/docs/concepts/labels/) >> `storageos.com/topology-key`.
-
 
 ### Ondat Failure Modes & Topology-Aware Placement
 
-Failure modes are a complimentary feature of the Topology-Aware Placement functionality. Failure modes allow you to define how many replicas of a volume can become unavailable before the volume is marked as read-only. 
+Failure modes are a complimentary feature of the Topology-Aware Placement functionality. Failure modes allow you to define how many replicas of a volume can become unavailable before the volume is marked as read-only.
 - For more information on how to Failure Modes work , review the [Ondat Topology-Aware Placement](/docs/concepts/replication) feature page.
 
 For example, assuming that your cluster has three topology zones, `A`, `B` and `C`, and your deployment has a master and two replicas, Ondat will attempt to place one volume in each topology zone.
-- If zone `A` fails, I/O operations to your volume will stop completely - if the Failure Mode is `hard`. 
-- If the Failure Mode is `soft` - I/O operations will continue while volume failover is in progress, and a new replica will be placed in an operational zone. 
+- If zone `A` fails, I/O operations to your volume will stop completely - if the Failure Mode is `hard`.
+- If the Failure Mode is `soft` - I/O operations will continue while volume failover is in progress, and a new replica will be placed in an operational zone.
 - Note that if zone `A` recovers, the cluster will **not** automatically rebalance.
 
-The `soft` failure mode will not tolerate the failure of multiple replicas at once, and will suspend I/O operations in this case. 
+The `soft` failure mode will not tolerate the failure of multiple replicas at once, and will suspend I/O operations in this case.
 - If you wish to tolerate more than one failed replica, then you can set this as an integer using the `<integer>` label.
 - If individual nodes within a topology zone fail, the replicas will fail over to other nodes within that zone. Once nodes in the zone are exhausted, placement will revert to best-effort.
