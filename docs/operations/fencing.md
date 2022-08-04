@@ -10,7 +10,7 @@ linkTitle: How To Enable Fencing
 ### How To Label a Pod for Fencing?
 
 When Ondat detects that a node has gone offline or become partitioned, it marks the node offline and performs volume failover operations.
-- The [Ondat Fencing Controller](https://github.com/storageos/api-manager/tree/master/controllers/fencer) watches for node failures and determines if there are any pods targeted for fencing. 
+- The [Ondat Fencing Controller](https://github.com/storageos/api-manager/tree/master/controllers/fencer) watches for node failures and determines if there are any pods targeted for fencing.
 
 In order for a pod to be fenced, the following criteria listed below is required:
 
@@ -83,7 +83,7 @@ my-statefulset-0   1/1     Running   0          2m34s   10.244.4.6   aks-storage
 ## Understanding Ondat's Fencing Trigger
 
 The Ondat Fencing Controller checks the Ondat node health **every `5` seconds**. This is how quickly the fencing controller can react to node failures.
-- Pods assigned to unhealthy nodes will be evaluated immediately on state change, and then re-evaluated every hour, though this is configurable. 
+- Pods assigned to unhealthy nodes will be evaluated immediately on state change, and then re-evaluated every hour, though this is configurable.
 - This retry allows pods that had unhealthy volumes which have now recovered to eventually failover, or pods that were rescheduled on an unhealthy node to be re-evaluated for fencing.
 
 ### Fencing Trigger Demonstration
@@ -146,7 +146,7 @@ The following example below shows how the Ondat API manager fences a pod.
 
 1. Check the pod's new node location:
 
-    ```bash 
+    ```bash
     # Get the labels applied to the "mysql" pod.
     kubectl --namespace=mysql get pod --show-labels --output=wide
     
@@ -155,4 +155,3 @@ The following example below shows how the Ondat API manager fences a pod.
     ```
 
     > 💡 Notice that the pod `mysql-0` started on a different node successfully.
-
