@@ -26,7 +26,6 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 k8s
 
-* Install resource quota for GKE
 * Operator:
   * Install snapshot controller and related CRDs if not present
   * Pod Disruption Budget support for k8s v1.25
@@ -41,6 +40,14 @@ Data Plane
 * Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format `"X operation took longer than Yms to complete completion_time=Zms".`
 
 ### Fixed
+
+k8s
+
+* Fixed an issue where Portal Manager would not work if installed in a namespace that was not `storageos`
+* Fixed an issue where CSI requests would occasionally not be serviced
+* Fixed an issue on GKE where some pods would not be scheduled if there was no resource quota
+* Fixed a bug where the operator would attempt to delete snapshot related CRs when the CRD did not exist
+* Fixed an issue where default containers were not correctly marked
 
 Control Plane
 
