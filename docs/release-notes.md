@@ -39,6 +39,9 @@ Data Plane
 * Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: "it is taking unsually long to send and receive IO from the master deployment to its replica". Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.
 * Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format `"X operation took longer than Yms to complete completion_time=Zms".`
 
+Control Plane
+* Automatically round up storage requests to align with blocksize, instead of rejecting requests
+
 ### Fixed
 
 k8s
