@@ -11,11 +11,11 @@ linkTitle: How To Enable Data Compression
 
 The following guidance below will demonstrates how to use Ondat’s Data Compression feature through a `PersistentVolumeClaim` (PVC) definition.
 
--   The instructions will enable compression on a PVC with the label »  `storageos.com/nocompress=false` for the Ondat volume that will be provisioned.
+- The instructions will enable compression on a PVC with the label »  `storageos.com/nocompress=false` for the Ondat volume that will be provisioned.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a  `StorageClass`.
 
-1.  Create a custom  `PersistentVolumeClaim`  named  `pvc-compressed`  and ensure that you add the following label »  `storageos.com/nocompress=false`  to the manifest.
+1. Create a custom  `PersistentVolumeClaim`  named  `pvc-compressed`  and ensure that you add the following label »  `storageos.com/nocompress=false`  to the manifest.
 
     ```yaml
     # Create a "pvc-compressed" PVC that enables data compression.
@@ -36,7 +36,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
     EOF
     ```
 
-1.  Once the PVC resource has been successfully created, review and confirm that the  `storageos.com/nocompress=false`, label has been applied.
+1. Once the PVC resource has been successfully created, review and confirm that the  `storageos.com/nocompress=false`, label has been applied.
 
     ```bash
     # Get the label applied to the "pvc-replicated" PVC.
@@ -46,7 +46,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
     pvc-compressed   Bound    pvc-4457be86-54a3-4f2b-8326-5d4c8799d48a   5Gi        RWO            storageos      15s   Filesystem   storageos.com/nocompress=false
     ```
 
-1.  To review and confirm that Ondat has successfully provisioned a volume that has compression enabled as defined in the PVC manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
+1. To review and confirm that Ondat has successfully provisioned a volume that has compression enabled as defined in the PVC manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
 
     ```bash
     # Get the Ondat CLI utility pod name.
@@ -55,7 +55,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
     storageos-cli-79787d586d-qp9dj
     ```
 
-1.  With the Ondat CLI now deployed, you can check the volume created for  `pvc-compressed` and confirm if it has compression enabled.
+1. With the Ondat CLI now deployed, you can check the volume created for  `pvc-compressed` and confirm if it has compression enabled.
 
     ```bash
     # Get the volumes in the "default" namespace using the Ondat CLI.
@@ -99,11 +99,11 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
 
 The following guidance below will demonstrates how to use Ondat’s Data Compression feature through a  `StorageClass`  (PVC) definition.
 
--   The instructions will enable compression through a custom  `StorageClass`  and use the following parameter »  `storageos.com/nocompress=false`  - which will be used to create an Ondat volume.
+- The instructions will enable compression through a custom  `StorageClass`  and use the following parameter »  `storageos.com/nocompress=false`  - which will be used to create an Ondat volume.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a  `StorageClass`.
 
-1.  Create a custom  `StorageClass`, named  `ondat-compressed`  and check that it has been successfully created.
+1. Create a custom  `StorageClass`, named  `ondat-compressed`  and check that it has been successfully created.
 
     ```yaml
     # Create the "ondat-compressed" StorageClass.
@@ -129,7 +129,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
     ondat-compressed        csi.storageos.com    Delete          Immediate              true                   92s
     ```
 
-1.  Create a  `PersistentVolumeClaim`  that will use  `ondat-replicated`  as its  `StorageClass`  and confirm that it was successfully created.
+1. Create a  `PersistentVolumeClaim`  that will use  `ondat-replicated`  as its  `StorageClass`  and confirm that it was successfully created.
 
     ```yaml
     # Create a "pvc-compressed-2" PVC that uses the "ondat-compressed" StorageClass.
@@ -158,7 +158,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
 
     > 💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-compressed` StorageClass parameters defined in _Step 1_.
 
-1.  To review and confirm that Ondat has successfully provisioned a volume that has compression enabled as defined in the PVC manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
+1. To review and confirm that Ondat has successfully provisioned a volume that has compression enabled as defined in the PVC manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat through  `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
 
     ```bash
     # Get the Ondat CLI utility pod name.
@@ -167,8 +167,7 @@ The following guidance below will demonstrates how to use Ondat’s Data Compres
     storageos-cli-79787d586d-qp9dj
     ```
 
-1.  With the Ondat CLI now deployed, you can check the volume created for  `pvc-compressed-2` and confirm if it has compression enabled.
-
+1. With the Ondat CLI now deployed, you can check the volume created for  `pvc-compressed-2` and confirm if it has compression enabled.
 
     ```bash
     # Get the volumes in the "default" namespace using the Ondat CLI.
