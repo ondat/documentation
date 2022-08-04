@@ -10,11 +10,11 @@ linkTitle: How To Use Volume Replication
 ### Example - Enable Volume Replication Through a `PersistentVolumeClaim` Definition
 
 The following guidance will demonstrate how to use Ondat's Volume Replication through a `PersistentVolumeClaim` (PVC) definition.
--   The instructions will enable volume replication on a PVC with the label » `storageos.com/replicas=1` - which will create `1` master volume and `1` replica volume respectively.
+- The instructions will enable volume replication on a PVC with the label » `storageos.com/replicas=1` - which will create `1` master volume and `1` replica volume respectively.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a `StorageClass`.
 
-1.  Create a custom `PersistentVolumeClaim` named `pvc-replicated` and ensure that you add the following label >> `storageos.com/replicas=1` to the manifest.
+1. Create a custom `PersistentVolumeClaim` named `pvc-replicated` and ensure that you add the following label >> `storageos.com/replicas=1` to the manifest.
 
     ```yaml
     # Create a "pvc-replicated" PVC that has a replica volume count of 1.
@@ -35,7 +35,7 @@ The following guidance will demonstrate how to use Ondat's Volume Replication th
     EOF
     ```
 
-1.  Once the PVC resource has been successfully created, review and confirm that the `storageos.com/replicas=1`, label has been applied.
+1. Once the PVC resource has been successfully created, review and confirm that the `storageos.com/replicas=1`, label has been applied.
 
     ```bash
     # Get the label applied to the "pvc-replicated" PVC.
@@ -54,7 +54,7 @@ The following guidance will demonstrate how to use Ondat's Volume Replication th
     storageos-cli-77885d6d8b-mgbr8
     ```
 
-1.  With the Ondat CLI now deployed, you can check the count and location of the master and replica volumes created for `pvc-replicated`.
+1. With the Ondat CLI now deployed, you can check the count and location of the master and replica volumes created for `pvc-replicated`.
 
     ```bash
     # Get the volumes in the "default" namespace using the Ondat CLI.
@@ -98,12 +98,12 @@ The following guidance will demonstrate how to use Ondat's Volume Replication th
       Promotable        true
     ```
 
-    > 💡 As demonstrated in the output above, notice the number of master replica volumes created and which node they are located on. If we created a volume without a replica count defined in *Step 1* - only the master volume would be provisioned. 
+    > 💡 As demonstrated in the output above, notice the number of master replica volumes created and which node they are located on. If we created a volume without a replica count defined in *Step 1* - only the master volume would be provisioned.
 
 ### Example - Enable Volume Replication Through a `StorageClass` Definition
 
 The following guidance will demonstrate how to use Ondat's Volume Replication  through a `StorageClass` (PVC) definition.
--   The instructions will enable volume replication through a custom `StorageClass` and use the following parameter » `storageos.com/replicas=2` - which will create `1` master volume and `2` replica volumes respectively.
+- The instructions will enable volume replication through a custom `StorageClass` and use the following parameter » `storageos.com/replicas=2` - which will create `1` master volume and `2` replica volumes respectively.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a `StorageClass`.
 
@@ -131,7 +131,7 @@ The following guidance will demonstrate how to use Ondat's Volume Replication  t
     kubectl get sc | grep "ondat-replicated"
     ```
 
-1.  Create a `PersistentVolumeClaim` that will use `ondat-replicated` as its `StorageClass` and confirm that it was successfully created.
+1. Create a `PersistentVolumeClaim` that will use `ondat-replicated` as its `StorageClass` and confirm that it was successfully created.
 
     ```yaml
     # Create a "pvc-replicated-2" PVC that uses the "ondat-replicated" StorageClass.
@@ -160,7 +160,6 @@ The following guidance will demonstrate how to use Ondat's Volume Replication  t
 
     > 💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-replicated` StorageClass parameters defined in _Step 1_.
 
-
 1. To review and confirm that Ondat has successfully provisioned `1` master volume and `2` replica volume as defined in the `StorageClass` manifest earlier - deploy and run the  [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
 
     ```bash
@@ -170,7 +169,7 @@ The following guidance will demonstrate how to use Ondat's Volume Replication  t
     storageos-cli-77885d6d8b-mgbr8
     ```
 
-1.  With the Ondat CLI now deployed, you can check the count and location of the master and replica volumes created for `pvc-replicated-2`.
+1. With the Ondat CLI now deployed, you can check the count and location of the master and replica volumes created for `pvc-replicated-2`.
 
     ```bash
     # Get the volumes in the "default" namespace using the Ondat CLI.
@@ -222,4 +221,4 @@ The following guidance will demonstrate how to use Ondat's Volume Replication  t
       Promotable        true
     ```
 
-    > 💡 As demonstrated in the output above, notice the number of master replica volumes created and which node they are located on. If we created a volume without a replica count defined in *Step 1* - only the master volume would be provisioned. 
+    > 💡 As demonstrated in the output above, notice the number of master replica volumes created and which node they are located on. If we created a volume without a replica count defined in *Step 1* - only the master volume would be provisioned.
