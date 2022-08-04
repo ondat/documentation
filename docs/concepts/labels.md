@@ -13,7 +13,7 @@ Ondat Feature labels are [Kubernetes Labels](https://kubernetes.io/docs/concepts
 
 ### Ondat Volume Labels
 
-Below are the list of available feature labels that can be used to define [Volume resources](https://kubernetes.io/docs/concepts/storage/volumes/) and [StorageClass resources](https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource) in an Ondat cluster. 
+Below are the list of available feature labels that can be used to define [Volume resources](https://kubernetes.io/docs/concepts/storage/volumes/) and [StorageClass resources](https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource) in an Ondat cluster.
 
 > 💡 The **encryption** and **compression** labels can only applied at provisioning time, they can't be changed during execution.
 
@@ -39,7 +39,7 @@ When Ondat is run within Kubernetes, the [Ondat API Manager](https://github.com/
 
 Below are the list of available feature labels that can be used to define [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/) in an Ondat Cluster.
 
-> 💡 For a pod to be fenced by Ondat, a recommendation will be to review the the [Ondat Fencing](/docs/operations/fencing) operations page for more information. 
+> 💡 For a pod to be fenced by Ondat, a recommendation will be to review the the [Ondat Fencing](/docs/operations/fencing) operations page for more information.
 
 | Feature Name                               | Label Reference        | Values           | Feature Description                                                              |
 | :----------------------------------------- | :--------------------- | :--------------- | :------------------------------------------------------------------------------- |
