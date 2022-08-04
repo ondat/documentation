@@ -38,8 +38,8 @@ spec:
     - storageos
   selector:
     matchLabels:
-      service-discovery: storageos-metrics-exporter
       app: storageos
+      app.kubernetes.io/component: metrics-exporter
 ```
 
 ⚠️ The label selector fields must match those of our service.

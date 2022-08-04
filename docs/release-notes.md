@@ -9,20 +9,64 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.8.0`. For
+The latest tagged release is `2.8.1`. For
 installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.8.0`, available from
+The latest CLI release is `2.8.1`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
-## 2.8.0 - Release 2022-06-29
+## 2.8.1 - Release 2022-08-02
 
-2.8.0 Release Notes
+### New
+
+k8s
+
+* Operator:
+  * Install snapshot controller and related CRDs if not present
+  * Pod Disruption Budget support for k8s v1.25
+* Improve logging on kubectl plugin
+
+Data Plane
+
+* Warn that filesystem might go read-only after a failed write or sync SCSI command. The log of interest is: `"SCSI command failed - if the block device is mounted the filesystem may go read-only".`
+* Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: `"it is taking unsually long to send and receive IO from the presentation node"`. Metrics are included in the log message.
+  * Note: this measurement is tracking the time it takes to send the IO over the network to the master and any replicas and for the IO to be committed and the response sent back to the mount node.
+* Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: "it is taking unsually long to send and receive IO from the master deployment to its replica". Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.
+* Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format `"X operation took longer than Yms to complete completion_time=Zms".`
+
+Control Plane
+
+* Automatically round up storage requests to align with blocksize, instead of rejecting requests
+
+### Fixed
+
+k8s
+
+* Fixed an issue where Portal Manager would not work if installed in a namespace that was not `storageos`
+* Fixed an issue where CSI requests would occasionally not be serviced
+* Fixed an issue on GKE where some pods would not be scheduled if there was no resource quota
+* Fixed a bug where the operator would attempt to delete snapshot related CRs when the CRD did not exist
+* Fixed an issue where default containers were not correctly marked
+
+Control Plane
+
+* Reduced the amount of crash loop backoffs when installing via the helm chart
+* Reduced the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes)
+* Fixed an issue where formatting would timeout due to large TRIM writes being sent across the network
+* Fixed an issue where volume deployments would all be scheduled on the same nodes when deploying multiple PVC at the same time
+
+Data Plane
+
+* Fix `Convert<>` and add support for `uint16_t`.
+* Fix `Volume::GetConsumerCount`
+* Improve error message when a write/unmap SCSI command is not committed to the backend disk: `"a consumer IO was not committed to rdbplugin because its transaction ID lost. This could mean there are two consumers with the same transaction ID (bad); the CP has forgotten to increment the consumer count in between remounts of the volume (bad) or it could indicate that a retry of this IO operation has overtaken a previous IO attempt (normally indicative of a very slow/flaky network and/or disk)."`
+
+## 2.8.0 - Release 2022-06-29
 
 > 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.
 
