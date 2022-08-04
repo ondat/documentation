@@ -382,7 +382,7 @@ The following guidance will demonstrates how to enable Ondat's Data Encryption t
     key:   64 bytes
     vuk:   80 bytes
     ```
- 
+
     ```yaml
     # Review "storageos-volume-key-$RANDOM".
     # Notice that there are 4 data objects stored in the secret > "hmac", "iv", "vuk", "iv" respectively.
