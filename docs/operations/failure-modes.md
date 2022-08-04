@@ -5,8 +5,8 @@ linkTitle: How To Use Failure Modes
 
 ## Overview
 
-Ondat failure modes offer different guarantees with regards to a volume's mode of operation in the face of replica failure. 
-- If the failure mode is not specified it defaults to `hard`. 
+Ondat failure modes offer different guarantees with regards to a volume's mode of operation in the face of replica failure.
+- If the failure mode is not specified it defaults to `hard`.
 - Volume failure modes can be dynamically updated at runtime.
 
 > 💡  For more information on how the replication and failure mode features work, review the [Replication](/docs/concepts/replication) feature page.
