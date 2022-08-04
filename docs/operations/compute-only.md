@@ -41,7 +41,7 @@ The following guidance below will demonstrates how to create a centralised clust
     kubectl describe node aks-default-26276352-vmss000002 | grep "computeonly"
     ```
 
-1. Now we have labelled nodes with >> `storageos.com/computeonly=true` - the next step will be to [install Ondat](/docs/install/) onto the cluster. 
+1. Now we have labelled nodes with >> `storageos.com/computeonly=true` - the next step will be to [install Ondat](/docs/install/) onto the cluster.
     - Ensure that you have met the prerequisites for the Kubernetes distribution that you will be using for the Ondat deployment.
 
 1. Once we have successfully deployed Ondat, we are also going to deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster)  first, so that you can interact and manage Ondat alongside `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
@@ -93,7 +93,7 @@ The following guidance below will demonstrates how to create a centralised clust
     EOF
     ```
 
-1.  With the Ondat CLI and `kubectl`, you can check to see which Ondat volumes have been provisioned and the node location where the volumes reside.
+1. With the Ondat CLI and `kubectl`, you can check to see which Ondat volumes have been provisioned and the node location where the volumes reside.
 
     ```bash
     # List the PVCs that have been created in the previous step.
@@ -160,5 +160,5 @@ The following guidance below will demonstrates how to create a centralised clust
 As demonstrated above, notice how only `pvc-replicated-centralised-topology` is in a `Bound` state and its volume name  `pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2` has `1` master volume and `1` replica volume which are located on node `aks-storage-78891087-vmss000001` and `aks-storage-78891087-vmss000000` respectively.
 - The volumes have been successfully been provisioned on nodes which do not have the >> `storageos.com/computeonly=true` node label.
 
-For `pvc-replicated-centralised-topology-test`, we can see that it is stuck in a `Pending` state, as the PVC definition - we used the label >> `storageos.com/replicas=3` which requests for `1` master volume and `3` replica volumes respectively. 
+For `pvc-replicated-centralised-topology-test`, we can see that it is stuck in a `Pending` state, as the PVC definition - we used the label >> `storageos.com/replicas=3` which requests for `1` master volume and `3` replica volumes respectively.
 - This would mean that we require at least `4` nodes to provision the Ondat volume and its replicas - which is not possible as only `2` nodes are available to be used as storage nodes whilst the rest of the nodes are reserved for compute intensive tasks.
