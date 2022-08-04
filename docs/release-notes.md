@@ -28,7 +28,7 @@ k8s
 
 * Install resource quota for GKE
 * Operator:
-  * Add snapshot controller and related CRDs if not present
+  * Install snapshot controller and related CRDs if not present
   * Pod Disruption Budget support for k8s v1.25
 * Improve logging on kubectl plugin
 
