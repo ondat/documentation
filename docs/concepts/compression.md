@@ -25,6 +25,7 @@ Ondat detects whether a block can be compressed or not by creating a heuristic t
 ### How To Enable Ondat Compression?
 
 Compression can be enabled by setting the [Ondat Feature Label](/docs/concepts/labels) >> `storageos.com/nocompress=false` on a volume at volume creation time.
+
 - For more information on how to enable compression, review the [Data Compression](/docs/operations/compression) operations page.
 
 ### Ondat Compression & Data Encryption

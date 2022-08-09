@@ -158,7 +158,9 @@ The following guidance below will demonstrates how to create a centralised clust
     ```
 
 As demonstrated above, notice how only `pvc-replicated-centralised-topology` is in a `Bound` state and its volume name  `pvc-6ee17ec9-b845-409f-a00b-cb62f64aaca2` has `1` master volume and `1` replica volume which are located on node `aks-storage-78891087-vmss000001` and `aks-storage-78891087-vmss000000` respectively.
+
 - The volumes have been successfully been provisioned on nodes which do not have the >> `storageos.com/computeonly=true` node label.
 
 For `pvc-replicated-centralised-topology-test`, we can see that it is stuck in a `Pending` state, as the PVC definition - we used the label >> `storageos.com/replicas=3` which requests for `1` master volume and `3` replica volumes respectively.
+
 - This would mean that we require at least `4` nodes to provision the Ondat volume and its replicas - which is not possible as only `2` nodes are available to be used as storage nodes whilst the rest of the nodes are reserved for compute intensive tasks.
