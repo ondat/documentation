@@ -15,13 +15,13 @@ up resolution times for support issues.
 ```bash
 # linux/amd64
 curl -sSLo storageos \ 
-    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_linux_amd64 \
+    https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_linux_amd64 \
     && chmod +x storageos \
     && sudo mv storageos /usr/local/bin/
 
 # MacOS
 curl -sSLo storageos \
-    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_darwin_amd64 \
+    https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_darwin_amd64 \
     && chmod +x storageos \
     && sudo mv storageos /usr/local/bin/
 ```
