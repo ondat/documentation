@@ -6,6 +6,7 @@ linkTitle: How To Enable Data Encryption For Volumes
 ## Overview
 
 Encrypting a volume is done by simply creating a volume with the `storageos.com/encryption=true` label. This label can be applied against a `PersistentVolumeClaim` (PVC) resource definition or through a custom Ondat `StorageClass` resource definition.
+
 - Only the label is required to enable encryption. Once the label is present - during the volume creation, the [`MutatingAdmissionWebhook`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that runs as part of the [Ondat API Manager](/docs/concepts/components/#ondat-api-manager), will create the volume encryption key, link it to the PVC and store it in a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/).
 
 > ⚠️ Encryption can only be enabled before an Ondat volume is provisioned. Once the encrypted volume has been created, encryption cannot be removed during the [volume's lifetime](https://spot.io/resources/kubernetes-architecture/7-stages-in-the-life-of-a-kubernetes-persistent-volume-pv/).
@@ -15,6 +16,7 @@ Encrypting a volume is done by simply creating a volume with the `storageos.com/
 ### Example - Enable Volume Data Encryption Through a `PersistentVolumeClaim` Definition
 
 The following guidance will demonstrate how to enable Ondat's Data Encryption through a  `PersistentVolumeClaim` (PVC) definition.
+
 - The instructions will enable data encryption on a PVC that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
 1. Create a namespace called `encrypted` where the encrypted volume and `StatefulSet` will reside.
@@ -225,6 +227,7 @@ The following guidance will demonstrate how to enable Ondat's Data Encryption th
 ### Example - Enable Volume Data Encryption Through a `StorageClass` Definition
 
 The following guidance will demonstrates how to enable Ondat's Data Encryption through a `StorageClass` (PVC) definition.
+
 - The instructions will enable data encryption for PVCs through a custom `StorageClass` that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
     ```yaml
