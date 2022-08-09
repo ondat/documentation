@@ -69,7 +69,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.8.0
+      - image: storageos/cli:v2.8.1
         command:
           - "/bin/sh"
           - "-c"
@@ -95,7 +95,7 @@ into it to run commands.
 
 ```bash
 kubectl -n storageos run \
-    --image storageos/cli:v2.7.0
+    --image storageos/cli:v2.8.1
     --restart=Never                          \
     --env STORAGEOS_ENDPOINTS=storageos:5705 \
     --env STORAGEOS_USERNAME=storageos       \
