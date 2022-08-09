@@ -10,6 +10,7 @@ linkTitle: How To Enable Fencing
 ### How To Label a Pod for Fencing?
 
 When Ondat detects that a node has gone offline or become partitioned, it marks the node offline and performs volume failover operations.
+
 - The [Ondat Fencing Controller](https://github.com/storageos/api-manager/tree/master/controllers/fencer) watches for node failures and determines if there are any pods targeted for fencing.
 
 In order for a pod to be fenced, the following criteria listed below is required:
@@ -83,6 +84,7 @@ my-statefulset-0   1/1     Running   0          2m34s   10.244.4.6   aks-storage
 ## Understanding Ondat's Fencing Trigger
 
 The Ondat Fencing Controller checks the Ondat node health **every `5` seconds**. This is how quickly the fencing controller can react to node failures.
+
 - Pods assigned to unhealthy nodes will be evaluated immediately on state change, and then re-evaluated every hour, though this is configurable.
 - This retry allows pods that had unhealthy volumes which have now recovered to eventually failover, or pods that were rescheduled on an unhealthy node to be re-evaluated for fencing.
 

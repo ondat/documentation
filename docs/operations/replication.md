@@ -10,6 +10,7 @@ linkTitle: How To Use Volume Replication
 ### Example - Enable Volume Replication Through a `PersistentVolumeClaim` Definition
 
 The following guidance will demonstrate how to use Ondat's Volume Replication through a `PersistentVolumeClaim` (PVC) definition.
+
 - The instructions will enable volume replication on a PVC with the label » `storageos.com/replicas=1` - which will create `1` master volume and `1` replica volume respectively.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a `StorageClass`.
@@ -103,6 +104,7 @@ The following guidance will demonstrate how to use Ondat's Volume Replication th
 ### Example - Enable Volume Replication Through a `StorageClass` Definition
 
 The following guidance will demonstrate how to use Ondat's Volume Replication  through a `StorageClass` (PVC) definition.
+
 - The instructions will enable volume replication through a custom `StorageClass` and use the following parameter » `storageos.com/replicas=2` - which will create `1` master volume and `2` replica volumes respectively.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a `StorageClass`.

@@ -21,7 +21,9 @@ The latest CLI release is `2.8.2`, available from
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
 
 ## 2.8.2 - Release 2022-08-12
+
 ### Fixed
+
 Data Plane
 
 * Fixed an error with debug reporting
