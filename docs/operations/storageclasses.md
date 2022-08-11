@@ -146,8 +146,8 @@ allowedTopologies:
 - matchLabelExpressions:
   - key: topology.kubernetes.io/zone
     values:
-    - zone5
-    - zone3
+    - eu-west-2
+    - us-east-1
 ```
 
 Currently only the label "topology.kubernetes.io/zone" is supported.
@@ -162,4 +162,4 @@ containers:
     - --node-label-resync-interval=1m
 ```
 
-Where any input valid for <https://pkg.go.dev/time#ParseDuration> is accepted.
+Where any input valid for golang's [time.ParseDuration](https://pkg.go.dev/time#ParseDuration) is accepted.
