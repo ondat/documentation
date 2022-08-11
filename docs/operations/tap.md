@@ -6,6 +6,7 @@ linkTitle: How To Enable Topology-Aware Placement (TAP)
 ## Overview
 
 Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+
 - TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. In addition, TAP is an opt-in feature per volume.
 
 > 💡 For more information on the Ondat Topology-Aware Placement feature, review the [Ondat Topology-Aware Placement](/docs/concepts/tap) feature page.
@@ -13,6 +14,7 @@ Ondat Topology-Aware Placement is a feature that enforces placement of data acro
 ### Example - Enable Topology-Aware Placement Through a `PersistentVolumeClaim` Definition
 
 The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a `PersistentVolumeClaim` (PVC) definition.
+
 - The instructions will enable Topology-Aware Placement on a PVC, use a custom zone labelling scheme with the label >> `storageos.com/topology-key=custom-region` and set it to the `soft` Failure Mode.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.
@@ -150,6 +152,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 ### Example - Enable Topology-Aware Placement Through a `StorageClass` Definition
 
 The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a `StorageClass` definition.
+
 - The instructions will enable Topology-Aware Placement through a custom StorageClass, use the node label >> `topology.kubernetes.io/zone` and set the default volume replica count >> `storageos.com/replicas` to `2`.
 
     > 💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.

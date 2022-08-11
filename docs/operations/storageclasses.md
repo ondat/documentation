@@ -162,4 +162,4 @@ containers:
     - --node-label-resync-interval=1m
 ```
 
-Where any input valid for https://pkg.go.dev/time#ParseDuration is accepted.
+Where any input valid for <https://pkg.go.dev/time#ParseDuration> is accepted.
