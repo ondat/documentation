@@ -122,3 +122,41 @@ parameters:
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 ```
+
+### Topology volume Storage Class
+
+StorageClass that utilizes kubernetes node topology zones and a list of
+preferred and required zones to decide where its deployments should live.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storageos-rep-enc
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+allowedTopologies:
+- matchLabelExpressions:
+  - key: topology.kubernetes.io/zone
+    values:
+    - zone5
+    - zone3
+```
+
+Currently only the label "topology.kubernetes.io/zone" is supported.
+
+This label gets updated every hour but if you need a faster detection to a node label
+changing, it's possible to set a custom interval in the deployment/storageos-api-manager
+like so:
+
+```yaml
+containers:
+  - args:
+    - --node-label-resync-interval=1m
+```
+
+Where any input valid for https://pkg.go.dev/time#ParseDuration is accepted.
