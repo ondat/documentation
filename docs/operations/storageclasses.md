@@ -128,6 +128,9 @@ parameters:
 StorageClass that utilizes kubernetes node topology zones and a list of
 preferred and required zones to decide where its deployments should live.
 
+More on [k8s storage-classes](https://kubernetes.io/docs/concepts/storage/storage-classes/#allowed-topologies)
+and csi specs for [create volume](https://github.com/container-storage-interface/spec/blob/master/spec.md#createvolume)
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
