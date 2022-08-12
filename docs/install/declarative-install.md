@@ -190,12 +190,12 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 * There are two ways to conduct an installation with Helm, **declaratively** by creating a custom `values.yaml` (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
 
-> 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat chart [README.md](https://github.com/ondat/charts/blob/main/charts/ondat/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
+> 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat chart [README.md](https://github.com/ondat/charts/blob/main/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
 
 ##### Declarative (Recommended)
 
-1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml) configuration file, rename it to `custom-values.yaml`, then ensure that the following configurable parameters have been populated before beginning the installation.
-    * [`ondat-operator.cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml#L23)
+1. Make a copy of the [`values.yaml`](https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml) configuration file, rename it to `custom-values.yaml`, then ensure that the following configurable parameters have been populated before beginning the installation.
+    * [`ondat-operator.cluster.admin.password`](https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml#L23)
 
     ```yaml
         # Password to authenticate to the StorageOS API with. This must be at least
@@ -203,7 +203,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
         password: # for example -> storageos
     ```
 
-    * **If an external etcd installation is being used**, add [`ondat-operator.cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml)
+    * **If an external etcd installation is being used**, add [`ondat-operator.cluster.kvBackend.address`](https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml)
 
     ```yaml
         # Key-Value store backend.
@@ -211,7 +211,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
           address: # for example -> 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379
     ```
 
-    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml), set this to the StorageClass installed earlier
+    * **If an internal etcd installation is being used**, set [`etcd-cluster-operator.cluster.storageclass`](https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml), set this to the StorageClass installed earlier
 
     ```yaml
     # Storageclass for etcd backing storage
