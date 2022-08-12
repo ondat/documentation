@@ -11,7 +11,7 @@ description: >
 This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
 
 1. Using the [Ondat kubectl plugin](/docs/reference/kubectl-plugin/).
-1. Using the [Ondat Helm chart](https://github.com/ondat/charts/tree/main/charts/ondat).
+1. Using the [Ondat Helm chart](https://github.com/ondat/charts).
 
 ## Prerequisites
 
