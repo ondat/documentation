@@ -7,6 +7,7 @@ weight: 1
 ## Overview
 
 Ondat Feature labels are [Kubernetes Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) which provide a powerful and flexible way to control storage features.
+
 - Applying specific feature labels triggers [compression](/docs/concepts/compression/), [replication](/docs/concepts/replication/), [data encryption](/docs/concepts/encryption/) and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.
 
 ## Types Of Ondat Feature Labels
@@ -29,6 +30,7 @@ Below are the list of available feature labels that can be used to define [Volum
 ### Ondat Node Labels
 
 When Ondat is run within Kubernetes, the [Ondat API Manager](https://github.com/storageos/api-manager) syncs any [Kubernetes node labels](https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/) to the corresponding Ondat node. The Kubernetes node labels act as the "source of truth", so labels should be applied to the Kubernetes nodes rather than to Ondat nodes. This is because the Kubernetes node labels overwrite the Ondat node labels on sync.
+
 - Below are the list of available feature labels that can be used to define [Kubernetes Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) in an Ondat Cluster.
 
 | Feature Name                                                      | Label Reference             | Values           | Feature Description                                                                                                                                                                                                                     |
