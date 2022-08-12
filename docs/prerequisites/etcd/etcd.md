@@ -70,7 +70,7 @@ or plugin can be used, instead.
 
 ### Recommended: Installing the etcd operator via our helm chart
 
-For full instructions, visit [here](https://github.com/ondat/charts/tree/main/charts/ondat)
+For full instructions, visit [here](https://github.com/ondat/charts)
 
 ### Recommended: Installing Ondat (and the etcd operator) via our Plugin
 
