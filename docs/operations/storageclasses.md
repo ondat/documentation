@@ -125,7 +125,7 @@ parameters:
 
 ### Allowed topology volume Storage Class
 
-StorageClass that that restricts volume provisioning to specific topologies, as
+StorageClass that restricts volume provisioning to specific topologies, as
 described by Kubernetes [here](https://kubernetes.io/docs/concepts/storage/storage-classes/#allowed-topologies)
 
 ```yaml
