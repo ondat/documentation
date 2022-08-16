@@ -80,7 +80,7 @@ The Ondat Portal is how you can license and get the commands for installing Onda
 
 * Either login or create an account on the [Ondat Portal](https://portal.ondat.io/)
 * Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI
-* Add a Name for your cluster and where it is going to be located.  This will
+* Add a Name for your cluster and where it is going to be located. This will
 allow you to view the same prerequisites as are listed above
 
 ### Step 2 - Choosing the Installation Method
@@ -93,7 +93,7 @@ Kubernetes community, but both are fully supported and described below.
 ### Step 3a - Installing via Helm
 
 The Ondat Portal UI will display the following cmd that can be used to install
-Ondat using Helm and is unique to your installation.  The screenshots below are
+Ondat using Helm and is unique to your installation. The screenshots below are
 just for reference.
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
