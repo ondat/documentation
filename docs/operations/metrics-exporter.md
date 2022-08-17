@@ -1,6 +1,6 @@
 ---
-title: "Metric Exporter"
-linkTitle: Metric Exporter
+title: "Metrics Exporter"
+linkTitle: Metrics Exporter
 ---
 
 ## Enable the metrics
