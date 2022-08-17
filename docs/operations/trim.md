@@ -95,7 +95,7 @@ EOF
 
 > ⚠️ Trimming can be an I/O intensive operation so care should be taken when running `fstrim` against multiple volumes at once.
 
-### Using the `-o discard` Mount Option To Conduct Continuous Discarding
+### Example - Using the `-o discard` Mount Option To Conduct Continuous Discarding
 
 Ondat volumes can be mounted using the `-o discard` `mount` option which will automatically send TRIM commands when blocks are removed.
 > ⚠️ Caution should be used enabling this option as testing has shown that volumes with a lot of churn can experience performance degradation. The pathological case being a volume that is continuously filled with small files that are then all deleted, repeatedly.
