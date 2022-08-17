@@ -15,7 +15,7 @@ This guide provides instructions on how to upgrade Ondat.
 > v2.3](/docs/prerequisites/pidlimits) and that you have checked the init
 > container logs to ensure your environments PID limits are set correctly.
 
-> 💡 Pull down the new Ondat container image `storageos/node:v2.8.0` onto the
+> 💡 Pull down the new Ondat container image `storageos/node:v2.8.2` onto the
 > nodes beforehand so that the cluster spins up faster.
 
 > 💡 Speak with our support team [here](/docs/support/) so we can assist you
