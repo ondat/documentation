@@ -157,7 +157,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.8.0
+        image: storageos/cli:v2.8.2
         name: cli
 END
 ```
