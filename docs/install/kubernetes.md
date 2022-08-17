@@ -71,25 +71,19 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
-1. The first part of the commands adds the Ondat Helm repository and ensures a updated local cache.
+The 2 lines of the command adds the Ondat Helm repository and ensures a updated local cache.  The remaining command installs Ondat via Helm with a set of basic install parameters that are sufficient for a basic trial installation.
 
-![Helm Install part 1](/images/docs/install/HelmInstall-1.png)
-
-2. The next part of the command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.
-
-![Helm Install part 2](/images/docs/install/HelmInstall-2.png)
-
-3. The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
+The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
 ### Step 3b - Installing via kubectl-storageos plugin
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin.  The command created will be unique for you and the screenshot below is just for reference.
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-This command provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.
+This command that is provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. 
 
-![kubectl-storageos Install](/images/docs/install/PluginInstall-1.png)
+The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
 ### Step 4 - Verifying Ondat Installation
 
