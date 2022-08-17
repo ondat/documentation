@@ -98,7 +98,12 @@ just for reference.
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
-The first two lines of the command adds the Ondat Helm repository and ensures a updated local cache.  The remaining command installs Ondat via Helm with a set of basic install parameters that are sufficient for a basic trial installation and to connect the Ondat installation with your portal account for licensing.  The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
+The first two lines of the command adds the Ondat Helm repository and ensures a
+updated local cache.  The remaining command installs Ondat via Helm with a set
+of basic install parameters that are sufficient for a basic trial installation
+and to connect the Ondat installation with your portal account for licensing.
+The installation process may take a few minutes. The end of this guide contains
+information on verifying the installation and licensing.
 
 ### Step 3b - Installing via kubectl-storageos plugin
 
