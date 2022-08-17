@@ -108,7 +108,7 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-The command that is provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation. 
+The command that is provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation.
 
 The first two lines of the commands adds the Ondat Helm repository and ensures a updated local cache.  The remaining part of the command installs Ondat with a set of basic install
 parameters that are sufficient for a basic trial installation.
