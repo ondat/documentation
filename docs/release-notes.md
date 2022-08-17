@@ -26,7 +26,7 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 Data Plane
 
-* Fixed an error with debug reporting
+* Fixed a bug that would cause the Data Plane to crash due to a timing issue.
 
 ## 2.8.1 - Release 2022-08-02
 
