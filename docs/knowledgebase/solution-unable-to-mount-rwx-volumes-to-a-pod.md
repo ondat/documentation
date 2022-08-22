@@ -5,7 +5,7 @@ linkTitle: "Solution - Unable To Mount RWX Volumes To A Pod"
 
 ## Issue
 
-A `PersistentVolumeClaim` (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod. 
+A `PersistentVolumeClaim` (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
 - Below is the error message that is returned in the `Events` section when you describe the pod.
 
 ```bash
@@ -73,9 +73,10 @@ Master:
   Node                  ip-10-73-17-108.eu-west-2.compute.internal (26d7a07c-1d68-49e9-a541-d0eb93ab77b9)
   Health                online
 ```
+
 - Check and ensure that the ports in the range of `25705-25960` is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the [Firewall](/docs/prerequisites/firewalls/) prerequisites page.
  
 ## Root Cause
 
-- The error message is related to the fact that there is no `Service Endpoint:` for the RWX NFS server. 
-	- The Ondat Control Plane in the `storageos-node-xxxx` daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range [`25705-25960`](/docs/prerequisites/firewalls/). If the Pod cannot bound to the port for the Ganesha the `Service Endpoint:` value will show as empty.
+- The error message is related to the fact that there is no `Service Endpoint:` for the RWX NFS server.
+  - The Ondat Control Plane in the `storageos-node-xxxx` daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range [`25705-25960`](/docs/prerequisites/firewalls/). If the Pod cannot bound to the port for the Ganesha the `Service Endpoint:` value will show as empty.
