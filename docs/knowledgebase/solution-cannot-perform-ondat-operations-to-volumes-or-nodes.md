@@ -83,18 +83,18 @@ kubectl logs daemonsets.apps/storageos-node  --namespace=storageos | jq '{msg: .
 - To resolve the operations issues, this will require assessing and repairing the  `etcd`  cluster and ensuring that the cluster is healthy again - whether the issue is `etcd`, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from `etcd` successfully.
 
 1. Ensure that your `etcd` cluster is running and is healthy.
-	1. `etcdctl member list -wtable`
-	1. `etcdctl endpoint status -wtable`
-	1. `etcdctl endpoint health -wtable`
+    1. `etcdctl member list -wtable`
+    1. `etcdctl endpoint status -wtable`
+    1. `etcdctl endpoint health -wtable`
 2. Check to see if your `etcd` cluster has lost [quorum](https://en.wikipedia.org/wiki/Quorum) by reviewing the `etcd` logs.
 3. Check to see if your `etcd` cluster is routable.
 4. Check to see if your `etcd` cluster is in a Read Only (RO) state that has been caused by an `etcd` alarm.
-	1. `etcdctl alarm list`
+    1. `etcdctl alarm list`
 5. Check to see if your `etcd` cluster is struggling to write to disk fast enough (`etcd` is sensitive to latency on disk). 
-	1. Review the logs and prometheus monitoring metrics for `disk_wal_fsync` and `db_fsync` and check to see if there is any performance degradation. (ie, orders of seconds rather than milliseconds or nanoseconds).
+    1. Review the logs and prometheus monitoring metrics for `disk_wal_fsync` and `db_fsync` and check to see if there is any performance degradation. (ie, orders of seconds rather than milliseconds or nanoseconds).
 6. If your `etcd` cluster is healthy and routable, check to see if the nodes running the Ondat daemonset pods `daemonsets.apps/storageos-node` are healthy.
-	1. Are the pods under unusual load?
-	1. Are there any errors being reported in one daemonset pod or more?
+    1. Are the pods under unusual load?
+    1. Are there any errors being reported in one daemonset pod or more?
 
 ## Root Cause
 
