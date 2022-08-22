@@ -90,7 +90,7 @@ kubectl logs daemonsets.apps/storageos-node  --namespace=storageos | jq '{msg: .
 3. Check to see if your `etcd` cluster is routable.
 4. Check to see if your `etcd` cluster is in a Read Only (RO) state that has been caused by an `etcd` alarm.
     1. `etcdctl alarm list`
-5. Check to see if your `etcd` cluster is struggling to write to disk fast enough (`etcd` is sensitive to latency on disk). 
+5. Check to see if your `etcd` cluster is struggling to write to disk fast enough (`etcd` is sensitive to latency on disk).
     1. Review the logs and prometheus monitoring metrics for `disk_wal_fsync` and `db_fsync` and check to see if there is any performance degradation. (ie, orders of seconds rather than milliseconds or nanoseconds).
 6. If your `etcd` cluster is healthy and routable, check to see if the nodes running the Ondat daemonset pods `daemonsets.apps/storageos-node` are healthy.
     1. Are the pods under unusual load?
