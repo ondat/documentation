@@ -56,4 +56,4 @@ Events:
 ## Root Cause
 
 - The `error` message that is returned is due to an Ondat licence expiring or an Ondat cluster that has not been registered yet.
-	- For more information on the types of licences available, review the [Ondat features and pricing](https://www.ondat.io/pricing) page.
+  - For more information on the types of licences available, review the [Ondat features and pricing](https://www.ondat.io/pricing) page.
