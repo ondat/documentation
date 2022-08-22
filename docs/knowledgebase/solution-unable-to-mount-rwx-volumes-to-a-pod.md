@@ -75,7 +75,7 @@ Master:
 ```
 
 - Check and ensure that the ports in the range of `25705-25960` is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the [Firewall](/docs/prerequisites/firewalls/) prerequisites page.
- 
+
 ## Root Cause
 
 - The error message is related to the fact that there is no `Service Endpoint:` for the RWX NFS server.
