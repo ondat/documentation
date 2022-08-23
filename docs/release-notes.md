@@ -9,16 +9,24 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.8.1`. For
+The latest tagged release is `2.8.2`. For
 installation instructions see our
 [Install](/docs/reference/cluster-operator/install) page.
 
-The latest CLI release is `2.8.1`, available from
+The latest CLI release is `2.8.2`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
+
+## 2.8.2 - Release 2022-08-12
+
+### Fixed
+
+Data Plane
+
+* Fixed a bug that would cause the Data Plane to crash due to a timing issue.
 
 ## 2.8.1 - Release 2022-08-02
 

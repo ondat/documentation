@@ -62,7 +62,7 @@ It is assumed that both etcd clusters in this procedure are using mTLS.
     > using the same Secret name as the one used for the old etcd cluster
 
     > For more details, check the [etcd cluster operator
-    > chart](https://github.com/ondat/charts/tree/main/charts/etcd-cluster-operator).
+    > chart](https://github.com/ondat/charts/tree/main/charts/component-charts/etcd-cluster-operator).
 
 1. Validate etcd
 
