@@ -92,15 +92,11 @@ Kubernetes community, but both are fully supported and described below.
 
 ### Step 3a - Installing via Helm
 
-The Ondat Portal UI will display the following cmd that can be used to install
-Ondat using Helm and is unique to your installation. The screenshots below are
-just for reference.
+The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm. The command created will be unique for you and the screenshot below is just for reference.
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
-The first 2 lines of the command adds the Ondat Helm repository and ensures a updated local cache.  The remaining command installs Ondat via Helm with a set of basic install parameters that are sufficient for a basic trial installation.
-
-The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
+The first two lines of the command adds the Ondat Helm repository and ensures a updated local cache.  The remaining command installs Ondat via Helm with a set of basic install parameters that are sufficient for a basic trial installation and to connect the Ondat installation with your portal account for licensing.  The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
 ### Step 3b - Installing via kubectl-storageos plugin
 
@@ -108,12 +104,7 @@ The Ondat Portal UI will display the following cmd that can be used to install O
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
-The command that is provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation.
-
-The first two lines of the commands adds the Ondat Helm repository and ensures a updated local cache.  The remaining part of the command installs Ondat with a set of basic install
-parameters that are sufficient for a basic trial installation.
-
-The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
+The command that is provided by the Portal is unique to you and uses the `kubectl-storageos` plugin command with a set of basic install parameters that are sufficient for a basic trial installation and to connect the Ondat installation with your portal account for licensing.  The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.
 
 ### Step 4 - Verifying Ondat Installation
 
