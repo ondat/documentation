@@ -20,7 +20,7 @@ More information can be [found here](../prerequisites/systemconfiguration.md)
 
 This guide assumes you already have a Kubernetes cluster, with **at least** 3 worker nodes.
 
-### This guide works on the following Kubernetes distributions
+This guide works on the following Kubernetes distributions
 
 * Vanilla Kubernetes
 * Rancher
@@ -66,7 +66,6 @@ export ONDAT_PASSWORD="changeme"
 helm install ondat ondat/ondat --create-namespace --namespace storageos \
 --set ondat-operator.cluster.admin.username=${ONDAT_USERNAME},\
 ondat-operator.cluster.admin.password=${ONDAT_PASSWORD},\
-etcd-cluster-operator.cluster.namespace=storageos-etcd,\
 etcd-cluster-operator.cluster.replicas=3,\
 etcd-cluster-operator.cluster.storageclass=local-path,\
 etcd-cluster-operator.cluster.storage=6Gi,\
