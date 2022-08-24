@@ -57,6 +57,7 @@ Every Ondat cluster has a unique cluster ID that is generated once an Ondat depl
 - Note down the unique cluster ID so that it can be used to generate an Ondat licence through the [Ondat SaaS Platform](https://portal.ondat.io/) and apply it to your cluster so that it is successfully registered.
 
 > 💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster by following the steps below;
-> - Login to the **Ondat SaaS Platform** >> **Organisation** >> **Licences** >> **Generate A New Licence** >> **Choose an existing cluster** >> Select the cluster that you want to apply a licence to. 
+>
+> - Login to the **Ondat SaaS Platform** >> **Organisation** >> **Licences** >> **Generate A New Licence** >> **Choose an existing cluster** >> Select the cluster that you want to apply a licence to.
 
 - For information and guidance on how to generate and apply an Ondat licence to a cluster, review the [licensing documentation](/docs/operations/licensing/).
