@@ -93,8 +93,8 @@ Kubernetes community, but both are fully supported and described below.
 ### Step 3a - Installing via Helm
 
 The Ondat Portal UI will display the following cmd that can be used to install
-Ondat using Helm and is unique to your installation.  The screenshots below are
-just for reference.
+Ondat using Helm. The command created will be unique for you and the screenshot
+below is just for reference.
 
 ![Helm Install](/images/docs/install/HelmInstall.png)
 
@@ -107,7 +107,9 @@ information on verifying the installation and licensing.
 
 ### Step 3b - Installing via kubectl-storageos plugin
 
-The Ondat Portal UI will display the following cmd that can be used to install Ondat using the `kubectl-storageos` plugin.  The command created will be unique for you and the screenshot below is just for reference.
+The Ondat Portal UI will display the following cmd that can be used to install
+Ondat using the `kubectl-storageos` plugin.  The command created will be unique
+for you and the screenshot below is just for reference.
 
 ![kubectl-storageos Install](/images/docs/install/PluginInstall.png)
 
