@@ -30,7 +30,7 @@ Every Ondat cluster has a unique cluster ID that is generated once an Ondat depl
   - The cluster ID will printed out as a UUID value with either a `ID` or `ClusterID` key.
 
   ```bash
-  # Get cluster-wide information
+  # Get cluster-wide information.
   kubectl --namespace=storageos exec storageos-cli-6958b7c4cd-nc8q5 -- storageos get cluster
 
   ID:           ce7c9c90-896e-41d5-b823-27ed9a8d8c8f
@@ -55,4 +55,8 @@ Every Ondat cluster has a unique cluster ID that is generated once an Ondat depl
 ### Step 3 - Generate An Ondat Licence
 
 - Note down the unique cluster ID so that it can be used to generate an Ondat licence through the [Ondat SaaS Platform](https://portal.ondat.io/) and apply it to your cluster so that it is successfully registered.
-  - For information and guidance on how to generate and apply an Ondat licence to a cluster, review the [licensing documentation](/docs/operations/licensing/).
+
+> 💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster by following the steps below;
+> - Login to the **Ondat SaaS Platform** >> **Organisation** >> **Licences** >> **Generate A New Licence** >> **Choose an existing cluster** >> Select the cluster that you want to apply a licence to. 
+
+- For information and guidance on how to generate and apply an Ondat licence to a cluster, review the [licensing documentation](/docs/operations/licensing/).
