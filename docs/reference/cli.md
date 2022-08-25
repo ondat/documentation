@@ -92,7 +92,7 @@ kubectl --namespace=storageos exec storageos-cli-75874cd77f-b5dgp -- storageos v
 ```bash
 export STORAGEOS_USERNAME="storageos"                    
 export STORAGEOS_PASSWORD="storageos"
-export STORAGEOS_ENDPOINTS="203.0.113.10:5705"          # Enter the endpoint address of Ondat's REST API.
+export STORAGEOS_ENDPOINTS="storageos:5705"          # Enter the endpoint address of Ondat's REST API to access the cluster through the CLI.
 ```
 
 - Once you have defined the environment variables above, install the Ondat CLI on one of the supported operating systems listed below;
