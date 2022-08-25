@@ -9,6 +9,10 @@ weight: 1
 - The Ondat CLI is a utility tool that is used to manage and configure Ondat resources and conduct Day-2 storage operations. The Ondat CLI is also useful for providing useful information on the state of an Ondat cluster and troubleshooting issues.
   - The project repository is open source and can be located on  [GitHub](https://github.com/storageos/go-cli).
 
+## Prerequisites
+
+- Ensure that you have successfully [installed Ondat](/docs/install/) into your Kubernetes or Openshift cluster.
+
 ## How To Install The Ondat CLI
 
 ### Option 1 - Run The Ondat CLI As A Deployment (Recommended)
@@ -87,7 +91,7 @@ kubectl --namespace=storageos exec storageos-cli-75874cd77f-b5dgp -- storageos v
 
 ### Option 2 - Run The Ondat CLI On A Workstation
 
-- To be able to interact and manage your Ondat cluster, ensure that you define and export the `STORAGEOS_USERNAME`, `STORAGEOS_PASSWORD` and `STORAGEOS_ENDPOINTS` environment variables that will be used to manage your Ondat instance through the Ondat CLI.
+- To be able to interact and manage your Ondat cluster, ensure that you define and export the `STORAGEOS_USERNAME`, `STORAGEOS_PASSWORD` and `STORAGEOS_ENDPOINTS` environment variables that will be used to manage your Ondat cluster through the CLI.
 
 ```bash
 export STORAGEOS_USERNAME="storageos"                    
