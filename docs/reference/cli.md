@@ -7,7 +7,7 @@ weight: 1
 ## Overview
 
 - The Ondat CLI is a utility tool that is used to manage and configure Ondat resources and conduct Day-2 storage operations. The Ondat CLI is also useful for providing useful information on the state of an Ondat cluster and troubleshooting issues.
-  - The project repository is open source and can be located on  [GitHub](https://github.com/storageos/go-cli).
+  - The project repository is open source and can be located on [GitHub](https://github.com/storageos/go-cli).
 
 ## Prerequisites
 
