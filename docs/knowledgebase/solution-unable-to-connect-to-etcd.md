@@ -40,17 +40,3 @@ kubectl logs storageos-node-tw8fk --namespace storageos
 ## Root Cause
 
 - This issue is cause by the Ondat daemonset pods not being able to connect to the `etcd` cluster. This is generally caused by `etcd`  being unreachable due to [network partitioning](https://en.wikipedia.org/wiki/Network_partition) or misconfiguration.
-
-## Diagnostic Steps
-
-- Check the status of the daemonset pods with `kubectl`.
-
-```bash
-kubectl get pods --namespace storageos
-```
-
-- Check the logs of a daemonset pod with `kubectl`.
-
-```bash
-kubectl logs storageos-node-xxxx --namespace storageos
-```
