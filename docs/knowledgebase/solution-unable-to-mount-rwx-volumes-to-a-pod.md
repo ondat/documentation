@@ -6,6 +6,7 @@ linkTitle: "Solution - Unable To Mount RWX Volumes To A Pod"
 ## Issue
 
 A `PersistentVolumeClaim` (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
+
 - Below is the error message that is returned in the `Events` section when you describe the pod.
 
 ```bash

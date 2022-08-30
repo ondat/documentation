@@ -6,6 +6,7 @@ linkTitle: "Solution - Cannot Perform Ondat Operations To Volumes Or Nodes"
 ## Issue
 
 You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;
+
 - A specific `PersistentVolumeClaim` (PVC) can’t be created or deleted successfully.
 
 ```bash
