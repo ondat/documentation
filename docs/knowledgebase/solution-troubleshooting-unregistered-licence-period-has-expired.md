@@ -49,11 +49,11 @@ Events:
   Normal   ExternalProvisioning  1s (x5 over 54s)   persistentvolume-controller                                                                   waiting for a volume to be created, either by external provisioner "csi.storageos.com" or manually created by system administrator
 ```
 
-## Resolution
-
-- Ensure that you apply a valid Ondat licence to your cluster to be able to continue provisioning volumes with Ondat. You can find more information on how to get an Ondat licence on the [Licensing](https://docs.ondat.io/docs/operations/licensing/) operations page.
-
 ## Root Cause
 
 - The `error` message that is returned is due to an Ondat licence expiring or an Ondat cluster that has not been registered yet.
   - For more information on the types of licences available, review the [Ondat features and pricing](https://www.ondat.io/pricing) page.
+
+## Resolution
+
+- Ensure that you apply a valid Ondat licence to your cluster to be able to continue provisioning volumes with Ondat. You can find more information on how to get an Ondat licence on the [Licensing](https://docs.ondat.io/docs/operations/licensing/) operations page.
