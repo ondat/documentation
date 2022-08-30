@@ -80,7 +80,7 @@ kubectl logs daemonsets.apps/storageos-node  --namespace=storageos | jq '{msg: .
 
 ## Resolution
 
-- To resolve the operations issues, this will require assessing and repairing the  `etcd`  cluster and ensuring that the cluster is healthy again - whether the issue is `etcd`, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from `etcd` successfully.
+To resolve the operations issues, this will require assessing and repairing the  `etcd`  cluster and ensuring that the cluster is healthy again - whether the issue is `etcd`, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from `etcd` successfully.
 
 1. Ensure that your `etcd` cluster is running and is healthy.
     1. `etcdctl member list -wtable`
