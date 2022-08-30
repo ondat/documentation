@@ -29,6 +29,10 @@ kubectl logs storageos-node-tw8fk --namespace storageos
 {"level":"info","msg":"shutting down","time":"2022-02-13T19:17:35.556274893Z"}
 ```
 
+## Root Cause
+
+- This issue is cause by the Ondat daemonset pods not being able to connect to the `etcd` cluster. This is generally caused by `etcd`  being unreachable due to [network partitioning](https://en.wikipedia.org/wiki/Network_partition) or misconfiguration.
+
 ## Resolution
 
 - Ensure that your `etcd` cluster is healthy.
@@ -36,7 +40,3 @@ kubectl logs storageos-node-tw8fk --namespace storageos
 - Ensure that the `etcd` URL that is set in the `StorageOSCluster` custom resource is correct and it includes the port number.
 - Ensure that the `etcd` peers are routable from the `etcd` advertise addresses of each peer, and not only from a load balancer.
 - Ensure that `etcd`  is routable from the network where the worker nodes reside.
-
-## Root Cause
-
-- This issue is cause by the Ondat daemonset pods not being able to connect to the `etcd` cluster. This is generally caused by `etcd`  being unreachable due to [network partitioning](https://en.wikipedia.org/wiki/Network_partition) or misconfiguration.
