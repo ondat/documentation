@@ -39,6 +39,11 @@ Error: Multiple errors:
 [error when creating "manifestString": clusterroles.rbac.authorization.k8s.io is forbidden: User "jane@example.com" cannot create resource "clusterroles" in API group "rbac.authorization.k8s.io" at the cluster scope: requires one of ["container.clusterRoles.create"] permission(s)., error when creating "manifestString": clusterrolebindings.rbac.authorization.k8s.io is forbidden: User "jane@example.com" cannot create resource "clusterrolebindings" in API group "rbac.authorization.k8s.io" at the cluster scope: requires one of ["container.clusterRoleBindings.create"] permission(s).]
 ```
 
+## Root Cause
+
+- The permission error messages that are returned is due to not having the correct privileges to be able to install Ondat in a GKE cluster.
+  - For more information how to manage permissions in GKE clusters, review the GKE documentation on how to [authorize actions in clusters using role-based access control](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
+
 ## Resolution
 
 - To resolve this issue, ensure that your user account has cluster administrator privileges first so that you can install Ondat successfully.
@@ -48,8 +53,3 @@ kubectl create clusterrolebinding cluster-admin-binding \
   --clusterrole=cluster-admin \
   --user=$(gcloud config get-value account)
 ```
-
-## Root Cause
-
-- The permission error messages that are returned is due to not having the correct privileges to be able to install Ondat in a GKE cluster.
-  - For more information how to manage permissions in GKE clusters, review the GKE documentation on how to [authorize actions in clusters using role-based access control](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
