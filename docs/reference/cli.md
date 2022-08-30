@@ -72,6 +72,8 @@ spec:
 EOF
 ```
 
+#### Execute Commands Through The Ondat CLI Deployment 
+
 - Once the Ondat CLI deployment resource has been successfully created, get the pod name and take note of it for later reference.
 
 ```bash
@@ -96,7 +98,8 @@ kubectl --namespace=storageos exec storageos-cli-75874cd77f-b5dgp -- storageos v
 ```bash
 export STORAGEOS_USERNAME="storageos"                    
 export STORAGEOS_PASSWORD="storageos"
-export STORAGEOS_ENDPOINTS="storageos:5705"          # Enter the endpoint address of Ondat's REST API to access the cluster through the CLI.
+export STORAGEOS_ENDPOINTS="storageos.storageos.svc:5705"  # Enter the endpoint address of Ondat's REST API to access the cluster through the CLI.
+                                                           # When using "kubectl port-forward" to access the cluster, change the endpoint to "localhost:5705".
 ```
 
 - Once you have defined the environment variables above, install the Ondat CLI on one of the supported operating systems listed below;
@@ -130,6 +133,21 @@ curl --silent --show-error --location --output storageos \
 Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_windows_amd64.exe -OutFile storageos.exe `
   ; Write-Host "Plugin version installed:" `
   ; .\storageos.exe version
+```
+
+#### Execute Commands Through The Ondat CLI Binary 
+
+- Once you have successfully installed the Ondat CLI, you can leverage [`kubectl port-forward`](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) to establish a connection with your Ondat cluster in order to be able to execute commands.
+
+```bash
+# Change the "STORAGEOS_ENDPOINTS" to point to "localhost:5705".
+export STORAGEOS_ENDPOINTS="localhost:5705"
+
+# Use port forwarding to access the Ondat REST API locally.
+kubectl port-forward service/storageos 5705 --namespace=storageos
+
+# In a new shell, execute Ondat CLI commands to confirm that you can now interact with your Ondat cluster.
+storageos version
 ```
 
 ## Usage
