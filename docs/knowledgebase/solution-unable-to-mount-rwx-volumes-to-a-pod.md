@@ -21,6 +21,11 @@ Events:
   Warning  FailedMount  63s (x3 over 5m36s)  kubelet              Unable to attach or mount volumes: unmounted volumes=[v1], unattached volumes=[v1 kube-api-access-h9njv]: timed out waiting for the condition
 ```
 
+## Root Cause
+
+- The error message is related to the fact that there is no `Service Endpoint:` for the RWX NFS server.
+  - The Ondat Control Plane in the `storageos-node-xxxx` daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range [`25705-25960`](/docs/prerequisites/firewalls/). If the Pod cannot bound to the port for the Ganesha the `Service Endpoint:` value will show as empty.
+
 ## Resolution
 
 - Check and ensure that there is a [service](https://kubernetes.io/docs/concepts/services-networking/service/) for the RWX volume in the same namespace where the pod is located. If the service does not exist, a recommendation would be to follow the instructions below.
@@ -75,8 +80,3 @@ Master:
 ```
 
 - Check and ensure that the ports in the range of `25705-25960` is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the [Firewall](/docs/prerequisites/firewalls/) prerequisites page.
-
-## Root Cause
-
-- The error message is related to the fact that there is no `Service Endpoint:` for the RWX NFS server.
-  - The Ondat Control Plane in the `storageos-node-xxxx` daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range [`25705-25960`](/docs/prerequisites/firewalls/). If the Pod cannot bound to the port for the Ganesha the `Service Endpoint:` value will show as empty.
