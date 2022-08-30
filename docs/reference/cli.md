@@ -72,7 +72,7 @@ spec:
 EOF
 ```
 
-#### Execute Commands Through The Ondat CLI Deployment 
+#### Execute Commands Through The Ondat CLI Deployment
 
 - Once the Ondat CLI deployment resource has been successfully created, get the pod name and take note of it for later reference.
 
@@ -135,7 +135,7 @@ Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.1/s
   ; .\storageos.exe version
 ```
 
-#### Execute Commands Through The Ondat CLI Binary 
+#### Execute Commands Through The Ondat CLI Binary
 
 - Once you have successfully installed the Ondat CLI, you can leverage [`kubectl port-forward`](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) to establish a connection with your Ondat cluster in order to be able to execute commands.
 
