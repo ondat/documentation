@@ -78,6 +78,10 @@ kubectl logs daemonsets.apps/storageos-node  --namespace=storageos | jq '{msg: .
 }
 ```
 
+## Root Cause
+
+- The `error` messages that are returned from the Ondat daemonset `daemonsets.apps/storageos-node` indicates that the daemonset pods cannot successfully communicate with the `etcd` cluster.
+
 ## Resolution
 
 To resolve the operations issues, this will require assessing and repairing the  `etcd`  cluster and ensuring that the cluster is healthy again - whether the issue is `etcd`, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from `etcd` successfully.
@@ -95,7 +99,3 @@ To resolve the operations issues, this will require assessing and repairing the 
 1. If your `etcd` cluster is healthy and routable, check to see if the nodes running the Ondat daemonset pods `daemonsets.apps/storageos-node` are healthy.
     - Are the pods under unusual load?
     - Are there any errors being reported in one daemonset pod or more?
-
-## Root Cause
-
-- The `error` messages that are returned from the Ondat daemonset `daemonsets.apps/storageos-node` indicates that the daemonset pods cannot successfully communicate with the `etcd` cluster.
