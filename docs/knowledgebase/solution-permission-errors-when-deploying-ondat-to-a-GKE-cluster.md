@@ -52,4 +52,4 @@ kubectl create clusterrolebinding cluster-admin-binding \
 ## Root Cause
 
 - The permission error messages that are returned is due to not having the correct privileges to be able to install Ondat in a GKE cluster.
-  - For more information how to manage permissions in GKE clusters, review the GKE documentation on how to [authorize actions in clusters using role-based access control](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control) page.
+  - For more information how to manage permissions in GKE clusters, review the GKE documentation on how to [authorize actions in clusters using role-based access control](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
