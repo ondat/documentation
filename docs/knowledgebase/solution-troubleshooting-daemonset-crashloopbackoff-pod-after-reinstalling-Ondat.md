@@ -1,6 +1,6 @@
 ---
-title: "Solution - Troubleshooting Ondat Daemonset `CrashLoopBackOff`  Pod States after Re-installing Ondat"
-linkTitle: "Solution - Troubleshooting Ondat Daemonset `CrashLoopBackOff`  Pod States After Re-installing Ondat"
+title: "Solution - Troubleshooting Ondat Daemonset 'CrashLoopBackOff'  Pod States after Re-installing Ondat"
+linkTitle: "Solution - Troubleshooting Ondat Daemonset 'CrashLoopBackOff'  Pod States After Re-installing Ondat"
 ---
 
 ## Issue
