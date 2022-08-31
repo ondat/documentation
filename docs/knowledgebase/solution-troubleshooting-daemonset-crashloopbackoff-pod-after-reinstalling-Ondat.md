@@ -88,6 +88,7 @@ kubectl logs storageos-node-8zssp --namespace storageos | jq | grep "error"
 ## Root Cause
 
 The root cause of this is due to the existing Ondat configuration file that is stored at the following location >> `var/lib/storageos/config.json` on each node where Ondat daemonset pods runs. The configuration file is not removed to allow cluster administrators and end users to be able to successfully recover incase the uninstall was unintentional.
+
 - For more information on uninstalling Ondat, review the [How To Uninstall Ondat](/docs/operations/uninstall/) operations page.
 
 ## Resolution
