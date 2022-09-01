@@ -6,6 +6,7 @@ linkTitle: "Solution - Troubleshooting 'OutOfRange desc = unsupported capacity s
 ## Issue
 
 After deploying a stateful application into an Ondat cluster, you experience an issue where provisioning Ondat volume for the stateful application is stuck in a `Pending` state.
+
 - Upon further investigation into the persistent volume claims, the `Events:` section reports an `failed to provision volume with StorageClass "storageos": rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000` error message.
 
 ```yaml
@@ -62,8 +63,8 @@ Events:
 
 The cause of this error message is due to the usage of [powers of 10](https://en.wikipedia.org/wiki/Power_of_10) storage size units >> (ie, `E, P, T, G, M, k` ) defined in your stateful application manifests instead of using [powers of 2](https://en.wikipedia.org/wiki/Power_of_two) storage size units >> (ie, `Ei, Pi, Ti, Gi, Mi, Ki`).
 
-  - `1` _kilobyte_ (symbol `kB`) == `1,000` bytes, whereas
-  - `1` _kibibyte_ (symbol `KiB`) == `1,024` bytes.
+- `1` _kilobyte_ (symbol `kB`) == `1,000` bytes, whereas
+- `1` _kibibyte_ (symbol `KiB`) == `1,024` bytes.
 
 From the [`vmstat`](https://man7.org/linux/man-pages/man8/vmstat.8.html) man page;
 
@@ -76,11 +77,11 @@ Ondat conforms to using the default kernel block size -- `1024` bytes as compare
 ## Resolution
 
 To resolve this issue, end users can either;
-- **Option 1 - Upgrade Ondat to release `v2.8.0` or greater**.
-	- If users would like to continue to use powers of 10 storage sizing units, ensure that you Ondat cluster is on version `v2.8.0` or greater. 
-- **Option 2 - Change you manifests to use powers of 2  storage sizing units**.
-	- Users can modify their manifests to use `Ei, Pi, Ti, Gi, Mi, Ki` storage sizing units to allow for volumes to be successfully provisioned. 
 
+- **Option 1 - Upgrade Ondat to release `v2.8.0` or greater**.
+  - If users would like to continue to use powers of 10 storage sizing units, ensure that you Ondat cluster is on version `v2.8.0` or greater.
+- **Option 2 - Change you manifests to use powers of 2  storage sizing units**.
+  - Users can modify their manifests to use `Ei, Pi, Ti, Gi, Mi, Ki` storage sizing units to allow for volumes to be successfully provisioned.
 
 ## References
 
