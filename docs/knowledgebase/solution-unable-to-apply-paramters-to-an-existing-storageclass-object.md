@@ -5,7 +5,7 @@ linkTitle: "Solution - Unable To Apply Parameters To An Existing StorageClass Ob
 
 ## Issue
 
-You have created a custom `StorageClass` object in your Ondat cluster but you are experiencing an issue where you cannot interactively edit or patch the said `StorageClass` object and apply a custom `StorageClass` parameter to enable specific Ondat [features](/docs/concepts/labels/). 
+You have created a custom `StorageClass` object in your Ondat cluster but you are experiencing an issue where you cannot interactively edit or patch the said `StorageClass` object and apply a custom `StorageClass` parameter to enable specific Ondat [features](/docs/concepts/labels/).
 
 ```bash
 # Get the list of StorageClasses available.
@@ -14,6 +14,7 @@ NAME                          PROVISIONER                 RECLAIMPOLICY   VOLUME
 storageos                     csi.storageos.com           Delete          Immediate           true                   3h3m
 storageos-rep                 csi.storageos.com           Delete          Immediate           true                   23s
 ```
+
 Using the example below, try to edit `storageos-rep` and change the replica count to `2`:
 
 ```yaml
@@ -58,8 +59,9 @@ In Kubernetes, a `StorageClass` is an [immutable](https://en.wikipedia.org/wiki/
 ## Resolution
 
 To resolve this issue, an end user can either;
+
 - **Option 1 - Use [volume labels](/docs/concepts/labels/) to enable Ondat features.**
-	- Users can use the existing `StorageClass` object and dynamically create `PersistentVolumeClaim` definitions that enable Ondat features through volume labels:
+  - Users can use the existing `StorageClass` object and dynamically create `PersistentVolumeClaim` definitions that enable Ondat features through volume labels:
 
 ```yaml
 apiVersion: v1
