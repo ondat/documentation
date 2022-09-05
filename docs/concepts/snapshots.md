@@ -8,7 +8,8 @@ weight: 1
 
 > 💡 This feature is available in release `v2.8.0` or greater.
 
-The Ondat Snapshot feature can be used in conjunction with [Kasten K10](https://www.kasten.io/product/) or [Cloudcasa](https://cloudcasa.io/) to snapshot, backup and restore Kubernetes applications.
+The Ondat Snapshot feature can be used in conjunction with a backup tooling provider e.g. [Kasten K10](https://www.kasten.io/product/) or [Cloudcasa](https://cloudcasa.io/) to snapshot, backup and restore Kubernetes applications. 
+Kasten K10 and Cloudcasa have been tested and validated with our feature. 
 
 The snapshot functionality is useful for:
 
