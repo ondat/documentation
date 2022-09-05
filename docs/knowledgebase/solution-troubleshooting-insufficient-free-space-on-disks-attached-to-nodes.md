@@ -32,31 +32,32 @@ AttachVolume.Attach failed for volume "pvc-xxx" : rpc error: code = Internal des
 ## Root Cause
 
 The root cause of the issue due to the physical storage disks connected to your worker nodes in your Ondat cluster becoming full, or they are using disk space too quickly. To reduce the chances of downtime in the cluster, Kubernetes will automatically apply the [`node.kubernetes.io/disk-pressure` taint](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/#taint-based-evictions) on affected nodes.
+
 - The Ondat daemonset pods, which have the control and data plane components, has a [toleration](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) applied for this taint, to allow the daemonset to continue to run.
 
 ### What Are The Consequences Of A Full Storage Disk?
 
 - **Unable To Conduct Replica Failovers**.
-	- If there is a replica on a node where the storage disk has run out of space, the replica will be unable to failover successfully.
+  - If there is a replica on a node where the storage disk has run out of space, the replica will be unable to failover successfully.
 - **Unable To Provision Volumes**.
-	- When provisioning a new volume, the data plane component will check that there is at least **`1GB`** of storage space left on the nodes' underlying filesystem for the blob files located under >> `/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.0.blob` and >> `/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.1.blob`.
-	- If there is insufficient storage space for both of the blob files that Ondat uses to store data, then the data plane component will fail to complete the volume `create` request.
+  - When provisioning a new volume, the data plane component will check that there is at least **`1GB`** of storage space left on the nodes' underlying filesystem for the blob files located under >> `/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.0.blob` and >> `/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.1.blob`.
+  - If there is insufficient storage space for both of the blob files that Ondat uses to store data, then the data plane component will fail to complete the volume `create` request.
 - **Runtime Access Issues**.
-	- At runtime, if an attempted write to a blob file returns an `ENOSPC` exception, the data plane component marks the file as full.
-	- Once both Ondat blob files in a volume are marked as full, the data plane component marks the deployment with an error flag, and all subsequent read/write operations will return an I/O error.
+  - At runtime, if an attempted write to a blob file returns an `ENOSPC` exception, the data plane component marks the file as full.
+  - Once both Ondat blob files in a volume are marked as full, the data plane component marks the deployment with an error flag, and all subsequent read/write operations will return an I/O error.
 
 > 💡 This flag is only stored in memory, therefore, to clear this flag, the Ondat daemonset pod on the affected node must be restarted after remediating the disk space issue.
-
 
 ## Resolution
 
 To recover from a reported full disk error message, end users are recommended to either:
+
 1. **Option 1 - Expand Storage Capacity By Adding More Disks**.
-	- If you choose to address this issue by expanding your capacity, users have two main options:
-		- Add new storage devices under `/var/lib/storageos/data/dev[0-9]+` as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
-		- Expand the underlying filesystem that Ondat is using as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
+ - If you choose to address this issue by expanding your capacity, users have two main options:
+  - Add new storage devices under `/var/lib/storageos/data/dev[0-9]+` as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
+  - Expand the underlying filesystem that Ondat is using as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
 1. **Option 2 - Delete Existing `PersistentVolumeClaim`s (PVCs)**
-	- If you choose to address by deleting existing `PersistentVolumeClaim`s, users can use `kubectl` to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.
+ - If you choose to address by deleting existing `PersistentVolumeClaim`s, users can use `kubectl` to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.
 
 ```bash
 kubectl delete pvc $NAME_OF_PVC --namespace $PVC_NAMESPACE
