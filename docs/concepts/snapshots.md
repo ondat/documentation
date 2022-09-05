@@ -8,7 +8,7 @@ weight: 1
 
 > 💡 This feature is available in release `v2.8.0` or greater.
 
-The Ondat Snapshot feature can be used in conjunction with [Kasten K10](https://www.kasten.io/product/) to snapshot, backup and restore Kubernetes applications.
+The Ondat Snapshot feature can be used in conjunction with [Kasten K10](https://www.kasten.io/product/) or [Cloudcasa](https://cloudcasa.io/) to snapshot, backup and restore Kubernetes applications.
 
 The snapshot functionality is useful for:
 
@@ -25,21 +25,23 @@ A “**snapshot**” is a point-in-time copy of a PVC. Snapshots are modelled vi
 
 A “**backup**” is the process of materialising a new PVC, whose data source is a previously created snapshot and then extracting the data to a location outside of the cluster.
 
-- The Ondat Snapshots feature integrates with Kasten K10 to provide backup functionality.
+- The Ondat Snapshots feature integrates with Kasten K10 or Cloudcasa to provide backup functionality.
 
 A “**restore**” is the process of restoring an application from a given backup.
 
-- The Ondat Snapshots feature integrates with Kasten K10 to provide restore functionality.
+- The Ondat Snapshots feature integrates with Kasten K10 or Cloudcasa to provide restore functionality.
 
 ### How Does It Work?
 
 The Kubernetes [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) feature provides users with a set of custom resource definitions (CRD) and APIs to create and manage volume snapshots. Storage providers can then implement the necessary [Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/) APIs to integrate with this feature.
 
-This is exactly what we’ve done at Ondat. Additional backup tooling, like Kasten K10, can then be utilised to orchestrate and automate snapshotting, backups and restores.
+This is exactly what we’ve done at Ondat. Additional backup tooling solutions (e.g. Kasten K10 or Cloudcasa) can then be utilised to orchestrate and automate snapshotting, backups and restores.
 
-To get started with installing and configuring the Ondat Snapshot feature in your Ondat cluster with Kasten K10, review the [Snapshots](/docs/operations/backups-and-restores-with-kastenk10/) operations page for more information.
+For Kasten K10 users, review the [Backups and Restores with Kasten K10](/docs/operations/backups-and-restores-with-kastenk10/) page to get started.
 
-> ⚠️ The Ondat Snapshots feature is not fully CSI compliant yet. As of today, the feature can only be used with Kasten K10 and with restoration from an external backup.
+For Cloudcasa users, review the [Backup and restores with Ondat Snapshots and CloudCasa](/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/) page to get started.
+
+> ⚠️ The Ondat Snapshots feature is not fully CSI compliant yet. As of today, the feature can only be used with Kasten K10 or Cloudcasa, and with restoration from an external backup.
 
 ### Current Scope & Limitations
 
