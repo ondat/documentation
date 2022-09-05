@@ -271,7 +271,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
 
  1. **`storageos-cluster`**
 
-> 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Cluster Operator Configuration](https://docs.ondat.io/docs/reference/cluster-operator/configuration) and [Cluster Operator Examples](https://docs.ondat.io/docs/reference/cluster-operator/examples) reference pages for more information.
+> 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Operator Configuration](https://docs.ondat.io/docs/reference/operator/configuration) and [Operator Examples](https://docs.ondat.io/docs/reference/operator/examples) reference pages for more information.
 
 ### Step 6 - Installing Ondat
 

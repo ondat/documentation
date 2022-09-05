@@ -102,7 +102,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 #### Step 4 - Installing Ondat
 
 1. Run the following  `kubectl` command to install Ondat with the generated manifests in the `storageos-dry-run` directory. The manifests  can also be used in your [GitOps](https://www.weave.works/technologies/gitops/) workflow to deploy Ondat, enabling you to have a fully declarative approach towards managing your infrastructure deployments.
-    > 💡 **Advanced Users** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource manifest, review the [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
+    > 💡 **Advanced Users** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource manifest, review the [Operator Configuration](/docs/reference/operator/configuration) and  [Operator Examples](/docs/reference/operator/examples) reference pages for more information.
 
     ```bash
     # Apply the Operators and CustomResourceDefinitions (CRDs) first.
@@ -190,7 +190,7 @@ This guide will demonstrate how to install Ondat onto a Kubernetes cluster decla
 
 * There are two ways to conduct an installation with Helm, **declaratively** by creating a custom `values.yaml` (recommended method) or **interactively** by using the `--set` flags to overwrite specific values for the deployment.
 
-> 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat chart [README.md](https://github.com/ondat/charts/blob/main/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
+> 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own `StorageOSCluster` custom resource manifest, review the Ondat chart [README.md](https://github.com/ondat/charts/blob/main/README.md) document, [Operator Configuration](/docs/reference/operator/configuration) and  [Operator Examples](/docs/reference/operator/examples) reference pages for more information.
 
 ##### Declarative (Recommended)
 

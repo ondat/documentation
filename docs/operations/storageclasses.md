@@ -10,7 +10,7 @@ provisioner, which in the case of Ondat can be translated into behaviour
 applied to the Volumes. Many StorageClasses can be provisioned to apply
 different feature labels to the Ondat Volumes.
 
-By default the Ondat Cluster Operator installs the `storageos` StorageClass at
+By default the Ondat Operator installs the `storageos` StorageClass at
 bootstrap of Ondat. You can define its name in the Ondat Cluster Resource.
 
 ```yaml

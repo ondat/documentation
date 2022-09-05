@@ -44,7 +44,7 @@ errors.
 
 ## Uninstalling the Ondat Operator
 
-Delete the Cluster Operator once the Ondat Pods are terminated.
+Delete the Operator once the Ondat Pods are terminated.
 
 The procedure is finished. Ondat is now uninstalled.
 

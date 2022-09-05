@@ -24,9 +24,9 @@ Ondat is architected as a series of containers that fulfil separate, discrete fu
 
 - Below is a list of core Ondat components with a description for each components responsibilities & tasks:
 
-### Ondat Cluster Operator
+### Ondat Operator
 
-The [**Ondat Cluster Operator**](https://github.com/storageos/operator) is responsible for the creation and maintenance of the Ondat cluster.
+The [**Ondat Operator**](https://github.com/storageos/operator) is responsible for the creation and maintenance of the Ondat cluster.
 
 - This operator is primarily responsible for ensuring that all the relevant applications are running in your cluster.
 
@@ -85,11 +85,11 @@ The **Ondat Node Manager** is an out-of-band pod used for node management. It ru
 
 ## Putting It All Together
 
-Ondat is deployed by the **Ondat Cluster Operator**. In Kubernetes, the Ondat **Control Plane** and **Data Plane** are deployed in a single pod managed by a [daemonset](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
+Ondat is deployed by the **Ondat Operator**. In Kubernetes, the Ondat **Control Plane** and **Data Plane** are deployed in a single pod managed by a [daemonset](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/).
 
 - This daemonset runs on every node in the cluster that will consume or present storage.
 
-The **Ondat Scheduler**, **CSI Helper**, **Cluster Operator** and **API Manager** run as separate [pods](https://kubernetes.io/docs/concepts/workloads/pods/) and are controlled as [deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
+The **Ondat Scheduler**, **CSI Helper**, **Operator** and **API Manager** run as separate [pods](https://kubernetes.io/docs/concepts/workloads/pods/) and are controlled as [deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 
 Ondat is designed to feel familiar to Kubernetes users. Storage is managed through standard [StorageClasses](https://kubernetes.io/docs/concepts/storage/storage-classes/) , [PersistentVolumeClaims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), and [Ondat features](/docs/concepts/labels) are controlled by [Kubernetes labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/), prefixed with `storageos.com/`.
 

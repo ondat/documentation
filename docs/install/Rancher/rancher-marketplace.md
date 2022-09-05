@@ -91,7 +91,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
     | Password                    | `$STORAGEOS_PASSWORD` | Password of the StorageOS administrator account. Must be at least 8 characters long, for example > `storageos`                                                                                   |
     | External `etcd` address(es) | `$ETCD_ENDPOINTS`     | List of `etcd` endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example > `203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379` |
 
-    > 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own `StorageOSCluster` custom resource manifest, review the Ondat Operator [README.md](https://github.com/ondat/charts/blob/main/charts/component-charts/ondat-operator/README.md) document, [Cluster Operator Configuration](/docs/reference/cluster-operator/configuration) and  [Cluster Operator Examples](/docs/reference/cluster-operator/examples) reference pages for more information.
+    > 💡 **Advanced Users** - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own `StorageOSCluster` custom resource manifest, review the Ondat Operator [README.md](https://github.com/ondat/charts/blob/main/charts/component-charts/ondat-operator/README.md) document, [Operator Configuration](/docs/reference/operator/configuration) and  [Operator Examples](/docs/reference/operator/examples) reference pages for more information.
 
 1. Once the parameters have been successfully populated, select **Install** to deploy Ondat.
 

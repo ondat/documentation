@@ -1,5 +1,5 @@
 ---
-title: "Cluster Operator examples"
+title: "Operator examples"
 linkTitle: Examples
 weight: 30
 ---
@@ -45,7 +45,7 @@ default), irrespective of what NameSpace the CR is defined in.
 # Examples
 
 > You can checkout all the parameters configurable in the
-> [configuration](/docs/reference/cluster-operator/configuration)
+> [configuration](/docs/reference/operator/configuration)
 > page.
 
 All examples must reference the `storageos-api` Secret.

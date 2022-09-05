@@ -9,7 +9,7 @@ Ondat. The container also manages configuration changes required when
 upgrading Ondat versions.
 
 The container belongs to the DaemonSet that the [Ondat Cluster
-Operator](/docs/reference/cluster-operator/) starts when a
+Operator](/docs/reference/operator/) starts when a
 `StorageOSCluster` resource is created. The `storageos-init` container is
 executed as an
 [initContainer](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)

@@ -51,7 +51,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 6. Install the Operator. Set the update approval strategy to __Automatic__ to
    ensure that you always have the latest version of StorageOS installed.
 
-The Ondat Cluster Operator is installed into your specified cluster.
+The Ondat Operator is installed into your specified cluster.
 
 #### Step 2: Authentication
 
@@ -77,7 +77,7 @@ The Ondat Cluster Operator is installed into your specified cluster.
 
 2. Navigate to StorageOS on your __Installed Operators__ tab.
 
-    > 💡 Verify that the StorageOS Cluster Operator is installed.
+    > 💡 Verify that the StorageOS Operator is installed.
 
 3. Open to the __StorageOS Cluster__ tab and click __Create StorageOSCluster__.
 
@@ -89,7 +89,7 @@ The Ondat Cluster Operator is installed into your specified cluster.
    created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
    the `kvBackend.address` are mandatory.
 
-   > 💡 Additional `spec` parameters are available on the [Cluster Operator configuration](/docs/reference/cluster-operator/configuration) page.
+   > 💡 Additional `spec` parameters are available on the [Operator configuration](/docs/reference/operator/configuration) page.
 
    ```bash
    apiVersion: "storageos.com/v1"
