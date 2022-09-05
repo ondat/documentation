@@ -114,7 +114,7 @@ variables or the Ondat Cluster Spec.
 #### Ondat Cluster Spec
 
 Disable telemetry explicitly through the configurable [spec parameters](
-/docs/reference/cluster-operator/configuration) of the
+/docs/reference/operator/configuration) of the
 StorageOSCluster custom resource.
 
 #### Environment Variables

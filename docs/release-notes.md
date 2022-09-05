@@ -11,7 +11,7 @@ and to perform upgrades only after reading the release notes.
 
 The latest tagged release is `2.8.2`. For
 installation instructions see our
-[Install](/docs/reference/cluster-operator/install) page.
+[Install](/docs/install/_index.md) page.
 
 The latest CLI release is `2.8.2`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
