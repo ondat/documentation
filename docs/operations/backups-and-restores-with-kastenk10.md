@@ -12,16 +12,16 @@ Concepts](/docs/concepts/snapshots) page for an overview of the feature.
 
 We’ll now run through the steps required to configure and utilise the feature:
 
-1. Installing Ondat
-1. Installing the Kubernetes snapshot CRDs
-1. Configuring the Ondat VolumeSnapshotClass
-1. Installing and configuring Kasten K10
+1. Installing Ondat.
+1. Installing the Kubernetes snapshot CRDs.
+1. Configuring the Ondat VolumeSnapshotClass.
+1. Installing and configuring Kasten K10.
 1. Backup and restore walkthrough:
-    1. Creating an example application
-    1. Creating a backup policy
-    1. Adding pre/post-snapshot hooks to quiesce the application/filesystem
-    1. Manually running a backup job
-    1. Restoring an application from a backup
+    1. Creating an example application.
+    1. Creating a backup policy.
+    1. Adding pre/post-snapshot hooks to quiesce the application/filesystem.
+    1. Manually running a backup job.
+    1. Restoring an application from a backup.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Kasten supports Kubernetes versions up to 1.22.
 
 ### Step 1 - Installing Ondat
 
-Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
+Ondat Snapshots were introduced in `v2.8.0`. If you are installing Ondat for the
 first time then please follow the instructions
 [here](/docs/install/). If you are upgrading an existing
 Ondat deployment then please follow the instructions
