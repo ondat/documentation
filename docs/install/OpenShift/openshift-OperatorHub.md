@@ -49,7 +49,7 @@ Ondat v2 supports OpenShift v4. For more information, see the [OpenShift platfor
 
 6. On __Review Manual Install__ panel in the __Components__ tab, click __Approve__ to confirm the installation.
 
-The Ondat Cluster Operator is installed along the required CRDs.
+The Ondat Operator is installed along the required CRDs.
 
 #### Step 2: Authentication
 
@@ -73,7 +73,7 @@ The Ondat Cluster Operator is installed along the required CRDs.
       password: c3RvcmFnZW9z
     ```
 
-2. Go to the __Operators__->__Installed Operators__ and verify that the StorageOS Cluster Operator is installed.
+2. Go to the __Operators__->__Installed Operators__ and verify that the StorageOS Operator is installed.
 
 3. Go to the __StorageOS Cluster__ section.
 
@@ -87,7 +87,7 @@ The Ondat Cluster Operator is installed along the required CRDs.
    created. Parameters such as the `secretRefName`, the `secretRefNamespace` and
    the `kvBackend.address` are mandatory.
 
-   > 💡 Additional `spec` parameters are available on the [Cluster Operator configuration](/docs/reference/cluster-operator/configuration) page.
+   > 💡 Additional `spec` parameters are available on the [Operator configuration](/docs/reference/operator/configuration) page.
 
    ```bash
    apiVersion: "storageos.com/v1"

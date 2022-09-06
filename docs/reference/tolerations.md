@@ -49,4 +49,4 @@ tolerations:
 
 To add custom tolerations to the Ondat daemonset [configure them in the
 StorageOSCluster
-resource](/docs/reference/cluster-operator/examples#specifying-custom-tolerations).
+resource](/docs/reference/operator/examples#specifying-custom-tolerations).

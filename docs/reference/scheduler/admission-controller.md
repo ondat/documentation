@@ -21,7 +21,7 @@ Ondat scheduler if the Pod uses an Ondat volume.
 
 The Web Server hosting the web hook is executed in the Ondat Cluster
 Operator. Since only HTTPS requests are allowed, the Operator generates a
-self-signed x509 certificate every time it starts. The Cluster Operator will
+self-signed x509 certificate every time it starts. The Operator will
 also renew certificates upon expiry (certs are valid for one year).
 
 There is no manual intervention required regarding the SSL configuration as the

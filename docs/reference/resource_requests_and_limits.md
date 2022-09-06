@@ -32,4 +32,4 @@ documentation](https://kubernetes.io/docs/concepts/configuration/manage-resource
 
 ## Defining Pod resource requests and reservations
 
-To add resource requests and reservations to the Ondat DaemonSet [configure them in the StorageOSCluster resource](/docs/reference/cluster-operator/examples#defining-pod-resource-requests-and-reservations).
+To add resource requests and reservations to the Ondat DaemonSet [configure them in the StorageOSCluster resource](/docs/reference/operator/examples#defining-pod-resource-requests-and-reservations).

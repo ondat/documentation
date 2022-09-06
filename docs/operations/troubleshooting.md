@@ -53,7 +53,7 @@ root@node1:~# kubectl -n default describe stos | grep "Shared Dir"
 
 ### Solution
 
-The Cluster Operator Custom Definition should specify the SharedDir option as follows.
+The Operator Custom Definition should specify the SharedDir option as follows.
 
 ```bash
 spec:
@@ -62,7 +62,7 @@ spec:
 ```
 
 > 💡 See example on how to configure the [Ondat Custom
-> Resource](/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container).
+> Resource](/docs/reference/operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container).
 
 &nbsp; <!-- this is a blank line -->
 
@@ -421,9 +421,9 @@ DaemonSet won't allocate Pods on the masters. This can be achieved with taints,
 node selectors or labels.
 
 For installations with the Ondat operator you can specify which nodes to
-deploy Ondat on using nodeSelectors. See examples in the [Cluster Operator
+deploy Ondat on using nodeSelectors. See examples in the [Operator
 Examples
-page](/docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes).
+page](/docs/reference/operator/examples/#installing-to-a-subset-of-nodes).
 
 For more advanced installations using compute-only and storage nodes, check the
 `storageos.com/deployment=computeonly` label that can be added to the nodes
