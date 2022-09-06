@@ -64,11 +64,12 @@ Add Cluster button at the top right.
     ![kubectlCommand](/images/docs/operations/backups-CloudCasa/image4.png)
 
 1. Run the Kubectl command on your cluster and confirm that the registered Kubernetes cluster moves into the Active state in the CloudCasa UI. This should take no more than a couple of minutes. Your CloudCasa agent has now successfully been deployed.
- 
+
 ### Step 3 - Installing the Kubernetes Snapshot Controller
 
 By default with CloudCasa we provide the required Kubernetes snapshot CRDs however in order to use the Kubernetes snapshot feature the snapshot-controller must be installed.
- - The snapshot controller monitors the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install the controller with the following commands:
+
+* The snapshot controller monitors the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install the controller with the following commands:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml   
@@ -157,7 +158,8 @@ The sidecar container simply mounts in the PVC under `/mnt` and then lies dorman
 A backup policy allows you to define when backups that use it will run and for how long they will be retained. You can have multiple schedules with different retention times in one policy. For example, a policy may specify the creation of hourly backups that are retained for `7` days, and daily backups that are retained for `30` days.
 
 Navigate to the Policies tab via Configuration >> Protection >> Policies.
- - Create a Policy by clicking on the Add new policy button. Provide the required information, then click on the Create Policy button.
+
+* Create a Policy by clicking on the Add new policy button. Provide the required information, then click on the Create Policy button.
 
 ![backupPolicy](/images/docs/operations/backups-CloudCasa/image6.png)
 
@@ -268,4 +270,4 @@ Congratulations, You’re done! That’s all there is to it! Now you can sit bac
 
 # Any Further Questions?
 
-Get in touch with us at https://www.ondat.io/contact or casa@cloudcasa.io
+Get in touch with us at <https://www.ondat.io/contact> or casa@cloudcasa.io
