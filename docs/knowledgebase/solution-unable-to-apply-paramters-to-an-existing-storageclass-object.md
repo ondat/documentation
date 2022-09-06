@@ -5,7 +5,7 @@ linkTitle: "Solution - Unable To Apply Parameters To An Existing StorageClass Ob
 
 ## Issue
 
-You have created a custom `StorageClass` object in your Ondat cluster but you are experiencing an issue where you cannot interactively edit or patch the said `StorageClass` object and apply a custom `StorageClass` parameter to enable specific Ondat [features](/docs/concepts/labels/).
+You have created a custom `StorageClass` object in your Ondat cluster but you are experiencing an issue where you cannot interactively edit or patch the said `StorageClass` object to apply a custom `StorageClass` parameter to enable specific Ondat [features](/docs/concepts/labels/).
 
 ```bash
 # Get the list of StorageClasses available.
