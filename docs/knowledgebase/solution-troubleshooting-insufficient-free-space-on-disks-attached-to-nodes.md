@@ -57,7 +57,7 @@ To recover from a reported full disk error message, end users are recommended to
    - Add new storage devices under `/var/lib/storageos/data/dev[0-9]+` as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
    - Expand the underlying filesystem that Ondat is using as demonstrated in the [How To Extend Storage Capacity On Nodes](https://docs.ondat.io/docs/operations/managing-host-storage/) operations page.
 
-**Option 2 - Delete Existing `PersistentVolumeClaim`s (PVCs)**
+**Option 2 - Delete Existing `PersistentVolumeClaim`s (PVCs)**.
  - If you choose to address by deleting existing `PersistentVolumeClaim`s, users can use `kubectl` to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.
 
 ```bash
