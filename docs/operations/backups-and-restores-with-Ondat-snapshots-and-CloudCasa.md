@@ -43,7 +43,7 @@ Ondat Snapshots were introduced in `v2.8.0`. If you are installing Ondat for the
 
 ### Step 2 - Setting up a CloudCasa Account & Deploying the CloudCasa Agent
 
-1. Navigate to [cloudcasa.io/signup](cloudcasa.io/signup) to sign up for a
+1. Navigate to [CloudCasa's Get Started](https://cloudcasa.io/kubernetes-backup/) page to sign up for a
 free account by providing the login details. Then sign in to your account
 after verifying the registered email address, which will take you to
 the CloudCasa dashboard.
