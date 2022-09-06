@@ -37,8 +37,9 @@ A “**restore**” is the process of restoring an application from a given back
 The Kubernetes [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) feature provides users with a set of custom resource definitions (CRD) and APIs to create and manage volume snapshots. Storage providers can then implement the necessary [Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/) APIs to integrate with this feature.
 
 This is exactly what we’ve done at Ondat. Additional backup tooling solutions (e.g. Kasten K10 or Cloudcasa) can then be utilised to orchestrate and automate snapshotting, backups and restores.
- - For Kasten K10 users, review the [How To Backup & Restore Using Ondat Snapshots with Kasten K10](/docs/operations/backups-and-restores-with-kastenk10/) operations page to get started.
- - For Cloudcasa users, review the [How To Backup & Restore Using Ondat Snapshots with CloudCasa](/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/) operations page to get started.
+
+- For Kasten K10 users, review the [How To Backup & Restore Using Ondat Snapshots with Kasten K10](/docs/operations/backups-and-restores-with-kastenk10/) operations page to get started.
+- For Cloudcasa users, review the [How To Backup & Restore Using Ondat Snapshots with CloudCasa](/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/) operations page to get started.
 
 > ⚠️ The Ondat Snapshots feature is not fully CSI compliant yet. As of today, the feature can only be used with Kasten K10 or CloudCasa, and with restoration from an external backup.
 
