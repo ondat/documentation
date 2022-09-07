@@ -43,7 +43,7 @@ Drives will need to be added to the desired Kubernetes nodes and mounted inside 
 Example:
 If you install an nvme drive and want it to only be used by a storage pool you may mount it to `/var/lib/storageos/nvme1`.
 
-If you install an nvme drive and want it to be used by any volume you may mount it to `/var/lib/storageos/data/dev2`. Drives mounted like this can still be used by storage pools.   
+If you install an nvme drive and want it to be used by any volume you may mount it to `/var/lib/storageos/data/dev2`. Drives mounted like this can still be used by storage pools.
 
 #### Creating a Storage Pool
 
@@ -51,9 +51,10 @@ Storage pools are a [Kubernetes custom resource](https://kubernetes.io/docs/conc
 
 The storage pool controller will create a `StorageClass` from the storage pool, so the standard storage class fields should be set (for example `allowVolumeExpansion`, `parameters`, `reclaimPolicy` and `volumeBindingMode`). These fields will fallback to their defaults if not set.
 
-The other field that must be set is the `nodeDriveMap`, this defines the drives that are in the storage pool and specifies which nodes they're on and where they're mounted. 
+The other field that must be set is the `nodeDriveMap`, this defines the drives that are in the storage pool and specifies which nodes they're on and where they're mounted.
 
 Example:
+
 ```
 apiVersion: api.storageos.com/v1
 kind: Pool
