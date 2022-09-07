@@ -22,11 +22,12 @@ Events:
   Type     Reason              Age               From                         Message
   ----     ------              ----              ----                         -------
   Warning  ProvisioningFailed  7s (x2 over 18s)  persistentvolume-controller  Failed to provision volume with StorageClass "storageos": Get http://storageos-cluster/version: failed to dial all known cluster members, (10.233.59.206:5705)
-``` 
+```
 
 ## Root Cause
 
 For non Container Storage Interface (CSI) installations of Ondat, Kubernetes uses the Ondat API endpoint to communicate. If that communication fails, relevant actions such as create or mount volume can’t be transmitted to Ondat, hence the PVC will remain in `Pending` state. Ondat never received the action to perform, so it never sent back an acknowledgement.
+
 - In this case, the `Events:` message indicates that Ondat API is not responding, implying that Ondat is not running. For Kubernetes to confirm that Ondat pods are `READY`, health checks must be passed first.
 
 ## Resolution
