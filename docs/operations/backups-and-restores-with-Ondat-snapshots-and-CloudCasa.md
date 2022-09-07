@@ -190,7 +190,7 @@ and:
 kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
 ```
 
-## 4.4 - Define & Run a Backup
+#### 4.4 - Define & Run a Backup
 
 1. Navigate to the Dashboard tab. Click on Define Backup. Provide Backup Name, and select the Cluster for which you are defining a backup.
 1. Select either Full Cluster, a Specific Namespace, or provide a Label selector (Optional). If backing up a specific namespace, enter the name of the namespace you want to protect.
@@ -208,7 +208,7 @@ kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
 1. On the next page, enable *Run now* to run the Backup operation immediately and provide Retention days (the retention period is just for this ad-hoc run). Click on the Create button. This will create a Backup definition.
 1. Navigate to the *Dashboard* tab and find the Cluster Backup that you want to run. Click the *Run now* button on its line. You will see the job running in the dashboard’s Activity tab. Verify that it completes successfully.
 
-## 4.5 - Run a Restore Operation For the Dummy Application
+#### 4.5 - Run a Restore Operation For the Dummy Application
 
 1. Let’s setup a disaster recovery scenario, by deleting our dummy application and the associated namespace
 
@@ -264,10 +264,10 @@ will be restored.
 
 You can see the 44 min gap here which aligns with the snapshot time of `14:05` and the restore time of `14:51`
 
-# Recap
+### Recap
 
 Congratulations, You’re done! That’s all there is to it! Now you can sit back and relax, knowing that you can now take ad-hoc or scheduled backup and perform restores of your Kubernetes cluster resources, Ondat persistent volumes, and cloud-native applications.
 
-# Any Further Questions?
+## Any Further Questions?
 
 Get in touch with us at <https://www.ondat.io/contact> or casa@cloudcasa.io
