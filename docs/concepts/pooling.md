@@ -18,7 +18,6 @@ The Storage Pooling feature allows creation of "Storage Pools", defined as a gro
 
 Applications can then use this Storage Pool, meaning any data written by the application will only be written to the drives in the Storage Pool
 
-
 ### Why use Storage Pooling
 
 The main use-case for storage pooling is allowing heterogenous storage configurations in a cluster, without decreasing performance.
