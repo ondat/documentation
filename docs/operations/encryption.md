@@ -231,7 +231,7 @@ The following guidance will demonstrates how to enable Ondat's Data Encryption t
 - The instructions will enable data encryption for PVCs through a custom `StorageClass` that will be used by a `StatefulSet` resource in the `encrypted` namespace.
 
     ```yaml
-    # Create the "ondat-tap" StorageClass.
+    # Create the "ondat-encryption" StorageClass.
     cat <<EOF | kubectl create --filename -
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
