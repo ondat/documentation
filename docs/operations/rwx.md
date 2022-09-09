@@ -7,7 +7,7 @@ linkTitle: "How To Use Ondat Files (ReadWriteMany - RWX Volumes)"
 
 Ondat support [`ReadWriteMany`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) (RWX) persistent volumes. A RWX volume can be used simultaneously by different deployments conducting read and write operations in the same namespace.
 
-> ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through [Ondat's SaaS platform](https://portal.ondat.io/) and generate a licence so that it can be applied to your cluster. For more information on licences, review the [Ondat pricing](https://www.ondat.io/pricing) page.
+> ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the [Ondat SaaS platform](https://portal.ondat.io/) and generate a licence so that it can be applied to your cluster. For more information on licences, review the [Ondat pricing](https://www.ondat.io/pricing) page.
 
 > 💡 For more information on the Ondat Files feature, review the  [Ondat Files](https://github.com/ondat/documentation/blob/main/docs/concepts/encryption)  feature page.
 
