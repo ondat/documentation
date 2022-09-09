@@ -84,12 +84,12 @@ The resulting `StorageClass` will by default use `ext4`, allow volume expansion,
 
 #### Using a Storage Pool
 
-When a storage pool is created Ondat's storage pool controller will create a `StorageClass`, named in the form `storageos-<namespace>-<storage pool name>`. 
+When a storage pool is created Ondat's storage pool controller will create a `StorageClass`, named in the form `storageos-<namespace>-<storage pool name>`.
 
-Any PVCs that use the resulting `StorageClass` will use the storage pool and therefore will only write data to the drives specified by the storage pool. 
+Any PVCs that use the resulting `StorageClass` will use the storage pool and therefore will only write data to the drives specified by the storage pool.
 
-It's important to note that volumes that use a storage pool will only host primaries and replicas on nodes that are part of the pool. 
-If there's not enough nodes in the pool to host a volume the following error will be applied to the PVC's status: `not enough suitable nodes for the requested number of deployment`. 
+It's important to note that volumes that use a storage pool will only host primaries and replicas on nodes that are part of the pool.
+If there's not enough nodes in the pool to host a volume the following error will be applied to the PVC's status: `not enough suitable nodes for the requested number of deployment`.
 
 #### Updating a Storage Pool
 
