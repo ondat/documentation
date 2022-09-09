@@ -77,11 +77,18 @@ spec:
 
 Above defines a storage pool that has 4 drives total, 2 on worker-1 (mounted to `/var/lib/storageos/nvme1` and `/var/lib/storageos/nvme2` respectively), 1 on worker-2 (mounted to `/var/lib/storageos/really-fast-nvme`) and 1 on worker-3 (mounted to `/var/lib/storageos/data/dev1`).
 
-The resulting storage class will by default use `ext4`, allow volume expansion, immediately bind PVs and have 1 replica. The drive on worker-3 will be used for all volumes that land on that node, as well as any volumes that use the storage pool.
+The resulting `StorageClass` will by default use `ext4`, allow volume expansion, immediately bind PVs and have 1 replica. The drive on worker-3 will be used for all volumes that land on that node, as well as any volumes that use the storage pool.
 
 > Note: Volumes still need to be replicated to utilise more than a single node's drives.
 
 #### Using a Storage Pool
+
+When a storage pool is created Ondat's storage pool controller will create a `StorageClass`, named in the form `storageos-<namespace>-<storage pool name>`. 
+
+Any PVCs that use the resulting `StorageClass` will use the storage pool and therefore will only write data to the drives specified by the storage pool. 
+
+It's important to note that volumes that use a storage pool will only host primaries and replicas on nodes that are part of the pool. 
+If there's not enough nodes in the pool to host a volume the following error will be applied to the PVC's status: `not enough suitable nodes for the requested number of deployment`. 
 
 #### Updating a Storage Pool
 
