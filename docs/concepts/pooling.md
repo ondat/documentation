@@ -16,7 +16,7 @@ In short storage pooling allows applications to target which drives they want to
 
 The Storage Pooling feature allows creation of "Storage Pools", defined as a group of drives connected to a set of machines.
 
-Applications can then use this Storage Pool, meaning any data written by the application will only be written to the drives in the Storage Pool
+Applications can then use this storage pool, meaning any data written by the application will only be written to the drives in the storage pool
 
 ### Why use Storage Pooling
 
