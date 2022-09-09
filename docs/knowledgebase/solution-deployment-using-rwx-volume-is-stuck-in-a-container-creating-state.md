@@ -48,7 +48,7 @@ Events:
 
 1. To get the Community Edition licence, register your cluster through the [Ondat SaaS platform](https://portal.ondat.io/) and generate a licence so that it can be applied to your cluster.
 
-	> 💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster by following the steps below;
+ > 💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster by following the steps below;
 
 1. Login to the  **Ondat SaaS Platform**  »  **Organisation**  »  **Licences**  »  **Generate A New Licence**  »  **Choose an existing cluster**  » Select the cluster that you want to apply a licence to.
 1. Once the cluster has been successfully licensed, end users will be able to create resources that use Ondat RWX volumes.
