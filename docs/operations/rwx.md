@@ -365,7 +365,7 @@ The following guidance will demonstrate how to configure the squash mode for a R
  kubectl get pods --namespace storageos | grep "storageos-cli"
  storageos-cli-578c4f4674-wr9z2                       1/1     Running   0              3m43s
  ```
- 
+
  ```bash
  # Get the volumes in the "ondat-files-squash-mode" namespace using the Ondat CLI.
  kubectl --namespace=storageos exec storageos-cli-578c4f4674-wr9z2 -- storageos get volumes --namespace=ondat-files-squash-mode
