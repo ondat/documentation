@@ -94,12 +94,13 @@ If there's not enough nodes in the pool to host a volume the following error wil
 #### Updating a Storage Pool
 
 Storage pools support the following updates:
- - Adding a new drive, on an existing node, to the pool
- - Adding a new node to the pool (and therefore adding one or more new drives)
 
-In both cases the new drives will only be used for new volumes, existing volumes will not start using the new drives. 
+- Adding a new drive, on an existing node, to the pool
+- Adding a new node to the pool (and therefore adding one or more new drives)
 
-To update a pool simply edit the `Pool` CR and apply the changes. 
+In both cases the new drives will only be used for new volumes, existing volumes will not start using the new drives.
+
+To update a pool simply edit the `Pool` CR and apply the changes.
 
 > Note: Removing drives or nodes from a pool is not supported. Instead create a new pool with fewer drives/nodes.
 
@@ -107,4 +108,4 @@ To update a pool simply edit the `Pool` CR and apply the changes.
 
 Storage pools can only be deleted if they're not in use (i.e no volumes are using the storage class created by the pool). A finalizer is used to ensure this.
 
-If a pool is not in use and it is deleted the storage pool controller will cleanup the related storage class. 
+If a pool is not in use and it is deleted the storage pool controller will cleanup the related storage class.
