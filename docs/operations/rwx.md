@@ -31,7 +31,7 @@ The following guidance will demonstrate how to use RWX volumes through a  `Persi
  EOF
  ```
 
-1. Create a custom `PersistentVolumeClaim` named `ondat-files` and ensure that you add the following `accessMode` >> `ReadWriteMany`  added to the manifest.
+1. Create a custom `PersistentVolumeClaim` named `ondat-files` and ensure that you add the following `accessMode` >> `ReadWriteMany` to the manifest.
 
  ```yaml
  # Create a "ondat-files" PVC.
