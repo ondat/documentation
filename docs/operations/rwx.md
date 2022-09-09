@@ -104,7 +104,7 @@ The following guidance will demonstrate how to use RWX volumes through a  `Persi
  kubectl get deployments.apps --namespace=ondat-files
  ```
 
-1. When you review the [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/) in the `ondat-files` namespace, will notice that there is an [NFS Ganesha](https://github.com/nfs-ganesha/nfs-ganesha) service that exposes the PVC as a shared filesystem - in addition, provides the `ClusterIP` address of the service and the default NFS port of >> `2049/TCP`.
+1. When you review the [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/) in the `ondat-files` namespace, you will notice that there is an [NFS Ganesha](https://github.com/nfs-ganesha/nfs-ganesha) service that exposes the PVC as a shared filesystem - in addition, provides the `ClusterIP` address of the service and the default NFS port of >> `2049/TCP`.
 
  ```bash
  # Check the service created under the "ondat-files" namespace.
@@ -192,7 +192,7 @@ The following guidance will demonstrate how to use RWX volumes through a  `Persi
    Health                online
  ```
 
-1. Notice under `Attachment Type         nfs`, there detailed information about the RWX volume is returned.
+1. Notice under `Attachment Type         nfs`, the detailed information about the RWX volume is returned.
 
  ```yaml
  # truncated output..
@@ -219,7 +219,7 @@ The following guidance will demonstrate how to use RWX volumes through a  `Persi
 As part of the `v2.8.0` Ondat release, a change was made so that users can [configure the squash mode](https://linux.die.net/man/5/exports) for the NFS service that is used to provision RWX shares.
 
 - Historically, all shares were exported with a `Squash = All`  mode of operation. This was requested by most customers as the idea of identity in a container based deployment is very abstract.
-- There is now a Ondat volume [Feature label](/docs/concepts/labels/) that can applied to make this setting configurable. End users can now adjust the squash mode using the following label >> `storageos.com/nfs-squash: $APPLY_SQUASH_MODE_VALUE` when provisioning RWX volumes. Below are the list of different modes that users can apply (`all` is the default mode is the label is not applied to a `PersistentVolumeClaim`)
+- There is now a Ondat volume [Feature label](/docs/concepts/labels/) that can be applied to make this setting configurable. End users can now adjust the squash mode using the following label >> `storageos.com/nfs-squash: $APPLY_SQUASH_MODE_VALUE` when provisioning RWX volumes. Below are the list of different modes that users can apply (`all` is the default mode and the label is applied to a `PersistentVolumeClaim`)
 
 | Squash Mode - Options |
 | --------------------- |
@@ -323,7 +323,7 @@ The following guidance will demonstrate how to configure the squash mode for a R
  kubectl get deployments.apps --namespace=ondat-files-squash-mode
  ```
 
-1. When you review the [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/) in the `ondat-files-squash-mode` namespace, will notice that there is an [NFS Ganesha](https://github.com/nfs-ganesha/nfs-ganesha) service that exposes the PVC as a shared filesystem - in addition, provides the `clusterIP` address of the service and the default NFS port of >> `2049/TCP`.
+1. When you review the [Kubernetes service](https://kubernetes.io/docs/concepts/services-networking/service/) in the `ondat-files-squash-mode` namespace, you will notice that there is an [NFS Ganesha](https://github.com/nfs-ganesha/nfs-ganesha) service that exposes the PVC as a shared filesystem - in addition, provides the `clusterIP` address of the service and the default NFS port of >> `2049/TCP`.
 
  ```bash
  # Check the service created under the "ondat-files-squash-mode" namespace.
@@ -365,7 +365,7 @@ The following guidance will demonstrate how to configure the squash mode for a R
  kubectl get pods --namespace storageos | grep "storageos-cli"
  storageos-cli-578c4f4674-wr9z2                       1/1     Running   0              3m43s
  ```
-
+ 
  ```bash
  # Get the volumes in the "ondat-files-squash-mode" namespace using the Ondat CLI.
  kubectl --namespace=storageos exec storageos-cli-578c4f4674-wr9z2 -- storageos get volumes --namespace=ondat-files-squash-mode
