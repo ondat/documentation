@@ -9,7 +9,7 @@ Ondat support [`ReadWriteMany`](https://kubernetes.io/docs/concepts/storage/pers
 
 > ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the [Ondat SaaS platform](https://portal.ondat.io/) and generate a licence so that it can be applied to your cluster. For more information on licences, review the [Ondat pricing](https://www.ondat.io/pricing) page.
 
-> 💡 For more information on the Ondat Files feature, review the  [Ondat Files](https://github.com/ondat/documentation/blob/main/docs/concepts/encryption)  feature page.
+> 💡 For more information on the Ondat Files feature, review the  [Ondat Files](https://docs.ondat.io/docs/concepts/rwx/)  feature page.
 
 ### Example - Use the RWX Access Mode Through a `PersistentVolumeClaim` Definition
 
