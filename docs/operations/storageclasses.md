@@ -117,7 +117,7 @@ allowVolumeExpansion: true
 parameters:
   csi.storage.k8s.io/fstype: ext4
   storageos.com/replicas: "2"                          # Create 2 replica volumes.
-  storageos.com/topology-aware: "true"                 # Enable TAP (default looks for "https://topology.kubernetes.io/zone=" on nodes)
+  storageos.com/topology-aware: "true"                 # Enable TAP (default looks for "topology.kubernetes.io/zone=" on nodes)
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 EOF
@@ -147,7 +147,7 @@ parameters:
   csi.storage.k8s.io/fstype: ext4
   storageos.com/replicas: "2"                             # Create 2 replica volumes.
   storageos.com/encryption: "true"                        # Enable volume encryption.
-  storageos.com/topology-aware: "true"                    # Enable TAP (default looks for "https://topology.kubernetes.io/zone=" on nodes)
+  storageos.com/topology-aware: "true"                    # Enable TAP (default looks for "topology.kubernetes.io/zone=" on nodes)
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 EOF
