@@ -24,6 +24,7 @@ storageos-node-vkj92                                 0/3     Init:Err  0        
 ## Root Cause
 
 The root cause of this issue is due to missing [Linux-IO (LIO) related kernel modules](https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29) on worker nodes that are required for Ondat to successfully start up and run.
+
 - The Ondat daemonset will attempt to load the required kernel modules onto the worker nodes. If Ondat is unsuccessful in loading the kernel modules, an `Init:Err` error will be returned and fail Ondat from starting up without the required kernel modules.
 
 ## Resolution
@@ -48,4 +49,3 @@ modprobe: FATAL: Module tcm_loop not found.             # "tcm_loop" kernel modu
     - For more information on the required kernel modules for Ondat, review the [Ondat Prerequisites](/docs/prerequisites/systemconfiguration) page.
 
 1. Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.
-
