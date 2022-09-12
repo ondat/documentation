@@ -5,7 +5,8 @@ linkTitle: "How To Create Custom Ondat Storage Classes"
 
 ## Overview
 
-[Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in Kubernetes are used to link [`PersistentVolumeClaim`s (PVCs)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) with a backend storage provisioner such as Ondat. 
+[Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in Kubernetes are used to link [`PersistentVolumeClaim`s (PVCs)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) with a backend storage provisioner such as Ondat.
+
 - A `StorageClass` defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat `StorageClass` with different [feature labels](/docs/concepts/labels/).
 - By default, the Ondat Operator creates a `storageos` `StorageClass` when Ondat is deployed for the first time. End users can get more information about the `StorageClass` object created by running the following commands below;
 
@@ -58,6 +59,7 @@ volumeBindingMode: Immediate
 ## Creating Custom Ondat Storage Classes
 
 The following examples will demonstrate how to create custom Ondat storage classes with feature labels to fit end user's use cases.
+
 - End users can also find more custom Ondat storage classes examples in the [Ondat Use Cases](https://github.com/ondat/use-cases) project repository that is available on GitHub.
 
 ```bash
@@ -71,7 +73,7 @@ cd custom-storage-classes/
 ls -lah
 ```
 
-### Example - Create a StorageClass that Enables Volume Replication 
+### Example - Create a StorageClass that Enables Volume Replication
 
 Below is an example Ondat StorageClass definition called `ondat-replicated` that uses the [Volume Replication](/docs/concepts/replication/) feature label.
 
@@ -128,7 +130,6 @@ kubectl get sc | grep "ondat-tap"
 
 For a detailed demonstration of how to use the Volume Replication & Topology-Aware Placement features with persistent volumes, review the [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/) operations page.
 
-
 ### Example - Create a StorageClass that Enables Volume Replication, Topology-Aware Placement (TAP) & Volume Encryption
 
 Below is an example Ondat StorageClass definition called `ondat-replicated-tap-encrypted` that uses the [Volume Replication](/docs/concepts/replication/), [Topology-Aware Placement (TAP)](/docs/concepts/tap/) and [Volume Encryption](/docs/concepts/encryption/) feature labels.
@@ -159,7 +160,7 @@ kubectl get sc | grep "ondat-replicated-tap-encrypted"
 
 For a detailed demonstration of how to use the Volume Encryption feature with persistent volumes, review the [How To Enable Data Encryption For Volumes](/docs/operations/encryption/) operations page.
 
-### Example - Create a StorageClass that Enables Data Compression 
+### Example - Create a StorageClass that Enables Data Compression
 
 Below is an example Ondat StorageClass definition called `ondat-compressed` that uses the [Data Compression](/docs/concepts/replication/) feature label.
 
