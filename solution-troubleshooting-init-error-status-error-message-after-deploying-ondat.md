@@ -45,7 +45,7 @@ executing modprobe -b tcm_loop
 modprobe: FATAL: Module tcm_loop not found.             # "tcm_loop" kernel module is missing.
 ```
 
-1. If the logs report missing kernel modules that are required for Ondat to run, a recommendation would be to check and ensure that your node's distribution makes the kernel module available for use. End users can also install `linux-image-extra-$(uname -r)` package for your distribution which contains extra kernel modules that may have been left out of the base kernel package.
+1. If the logs report missing kernel modules that are required for Ondat to run, a recommendation would be to check and ensure that your node's distribution makes the kernel module available for use. End users can also install the `linux-image-extra-$(uname -r)` package for your distribution which contains extra kernel modules that may have been left out of the base kernel package.
     - For more information on the required kernel modules for Ondat, review the [Ondat Prerequisites](/docs/prerequisites/systemconfiguration) page.
 
 1. Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.
