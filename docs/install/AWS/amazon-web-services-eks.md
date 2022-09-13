@@ -16,10 +16,10 @@ This guide will demonstrate how to install Ondat onto a [Amazon EKS](https://aws
 
 The minimum cluster requirements for a **non-production installation** of Ondat are as follows:
 
-* Linux with a 64-bit architecture
-* 2 vCPU and 8GB of memory
-* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
-* Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guide takes you through that process as it is not easily available in the AWS Console
+* Linux with a 64-bit architecture.
+* 2 vCPU and 4GB of RAM per node.
+* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
+* Make sure your EKS clusters use [Ubuntu for EKS](https://cloud-images.ubuntu.com/docs/aws/eks/) as the default node operating system with an optimised kernel.  This installation guide takes you through that process as it is not easily available in the AWS Console.
 * For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules, see [System Configuration](/docs/prerequisites/systemconfiguration/).
 
 For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)

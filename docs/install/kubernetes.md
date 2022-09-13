@@ -25,7 +25,7 @@ The minimum cluster requirements for a **non-production installation** of ondat
 are as follows:
 
 * Linux with a 64-bit architecture
-* 2 vCPU and 8GB of memory
+* 2 vCPU and 4GB of RAM per node.
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control
 (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 permissions to deploy and manage applications in the cluster

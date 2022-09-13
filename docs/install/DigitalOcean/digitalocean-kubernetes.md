@@ -16,11 +16,11 @@ This guide will demonstrate how to install Ondat onto a [DigitalOcean Managed Ku
 
 The minimum cluster requirements for a **non-production installation** of ondat are as follows:
 
-* Linux with a 64-bit architecture
-* 2 vCPU and 8GB of memory
-* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
+* Linux with a 64-bit architecture.
+* 2 vCPU and 4GB of RAM per node.
+* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 * Make sure your DOKS cluster version is greater than or equal to `v1.21.10` or `v1.22.7` as they will have the required kernel modules available for Ondat to run successfully.
-* Ensure the following firewall ports are open: [Firewalls and VPS providers](https://docs.ondat.io/docs/prerequisites/firewalls/#firewalls-and-vps-providers)
+* Ensure the following firewall ports are open: [Firewalls and VPS providers](https://docs.ondat.io/docs/prerequisites/firewalls/#firewalls-and-vps-providers).
 
 For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
