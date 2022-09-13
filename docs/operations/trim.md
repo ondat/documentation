@@ -1,6 +1,6 @@
 ---
-title: "How To Use TRIM with Ondat Volumes"
-linkTitle: How To Use TRIM with Ondat Volumes
+title: "How To Use TRIM with Volumes"
+linkTitle: How To Use TRIM with Volumes
 ---
 
 ## Overview
