@@ -1,6 +1,6 @@
 ---
-title: "How To Backup & Restore Using Ondat Snapshots with CloudCasa"
-linkTitle: "How To Backup & Restore Using Ondat Snapshots with CloudCasa"
+title: "How To Backup & Restore Using Snapshots with CloudCasa"
+linkTitle: "How To Backup & Restore Using Snapshots with CloudCasa"
 ---
 
 ## Overview
