@@ -15,11 +15,11 @@ category=lio level=FATAL  msg="liocheck: FAIL (platform not supported, see previ
 
 ## Root Cause
 
-The root cause of this issue is due to one or more of the required [Linux-IO (LIO) related kernel modules](https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29) have not been successfully loaded onto the worker nodes were the Ondat daemonset will run.
+The root cause of this issue is due to one or more of the required [Linux-IO (LIO) related kernel modules](https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29) have not been successfully loaded onto the worker nodes where the Ondat daemonset will run.
 
 ## Resolution
 
-1. Ensure that the following kernel modules are are loaded onto the worker nodes where an Ondat daemonset pod will run.
+1. Ensure that the following kernel modules are loaded onto the worker nodes where an Ondat daemonset pod will run.
 
  ```bash
  # Check to see if you can successfully find and list the kernel modules that are required for Ondat to run.
