@@ -31,7 +31,7 @@ Data Plane
 
 k8s
 
-* Ability to disable the scheduler
+* The scheduler extender, that attempts to place workloads on the same nodes as volumes, can now be disabled
 
 ### Fixed
 
