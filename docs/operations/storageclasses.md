@@ -1,124 +1,184 @@
 ---
-title: "StorageClasses"
-linkTitle: StorageClasses
+title: "How To Create Custom Ondat Storage Classes"
+linkTitle: "How To Create Custom Ondat Storage Classes"
 ---
 
-[StorageClasses](https://kubernetes.io/docs/concepts/storage/storage-classes/)
-in Kubernetes are used to link PVCs with a backend storage provisioner - for
-instance, Ondat. A StorageClass defines parameters to pass to the
-provisioner, which in the case of Ondat can be translated into behaviour
-applied to the Volumes. Many StorageClasses can be provisioned to apply
-different feature labels to the Ondat Volumes.
+## Overview
 
-By default the Ondat Operator installs the `storageos` StorageClass at
-bootstrap of Ondat. You can define its name in the Ondat Cluster Resource.
+[Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in Kubernetes are used to link [`PersistentVolumeClaim`s (PVCs)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) with a backend storage provisioner such as Ondat.
 
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-allowVolumeExpansion: true
-provisioner: csi.storageos.com
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-parameters:
-  csi.storage.k8s.io/fstype: ext4
-  csi.storage.k8s.io/secret-name: storageos-api
-  csi.storage.k8s.io/secret-namespace: storageos
-```
-
-StorageClasses can be created to define default labels for Ondat volumes,
-but also to map to any semantic aggregation of volumes that suits your use
-case, whether there are different roles (dev, staging, prod), or a
-StorageClass maps to a team or customer using the cluster.
-
-## Examples
-
-You can find the basic examples in the Ondat use-cases repository, in
-the `00-basic/v2.5.storageclass-and-later` directory.
+- A `StorageClass` defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat `StorageClass` with different [feature labels](/docs/concepts/labels/).
+- By default, the Ondat Operator creates a `storageos` `StorageClass` when Ondat is deployed for the first time. End users can get more information about the `StorageClass` object created by running the following commands below:
 
 ```bash
-git clone https://github.com/storageos/use-cases.git storageos-usecases
-cd storageos-usecases/00-basic/v2.5.storageclass-and-later
+# Get more informaton about the "storageos" StorageClass object.
+kubectl get storageclasses storageos
+
+NAME        PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageos   csi.storageos.com   Delete          Immediate           true                   13m
+
+# Describe the "storageos" StorageClass object.
+kubectl describe storageclasses storageos
+
+Name:            storageos
+IsDefaultClass:  No
+Annotations:     kubectl.kubernetes.io/last-applied-configuration={"allowVolumeExpansion":true,"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{},"labels":{"app":"storageos","app.kubernetes.io/component":"storageclass"},"name":"storageos"},"parameters":{"csi.storage.k8s.io/fstype":"ext4","csi.storage.k8s.io/secret-name":"storageos-api","csi.storage.k8s.io/secret-namespace":"storageos"},"provisioner":"csi.storageos.com","reclaimPolicy":"Delete","volumeBindingMode":"Immediate"}
+
+Provisioner:           csi.storageos.com
+Parameters:            csi.storage.k8s.io/fstype=ext4,csi.storage.k8s.io/secret-name=storageos-api,csi.storage.k8s.io/secret-namespace=storageos
+AllowVolumeExpansion:  True
+MountOptions:          <none>
+ReclaimPolicy:         Delete
+VolumeBindingMode:     Immediate
+Events:                <none>
 ```
 
-### Replicated Storage Class
-
-StorageClass definition in `v2-storageclass-replicated.yaml`.
+- Below is the YAML output of the `storageos` StorageClass object after removing metadata details:
 
 ```yaml
+# "storageos" StorageClass.
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storageos-rep
+  labels:
+    app: storageos
+    app.kubernetes.io/component: storageclass
+  name: storageos
+parameters:
+  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+```
+
+> 💡 A `PersistentVolumeClaim` (PVC) definition takes precedence over a `StorageClass` definition.
+
+## Creating Custom Ondat Storage Classes
+
+The following examples will demonstrate how to create custom Ondat storage classes with feature labels to fit end user's use cases.
+
+- End users can also find more custom Ondat storage classes examples in the [Ondat Use Cases](https://github.com/ondat/use-cases) project repository that is available on GitHub.
+
+```bash
+# Clone the repository.
+git clone git@github.com:ondat/use-cases.git
+
+# Navigate into the directory
+cd custom-storage-classes/
+
+# List the StorageClass manifests in the directory.
+ls -lah
+```
+
+### Example - Create a StorageClass that Enables Volume Replication
+
+Below is an example Ondat StorageClass definition called `ondat-replicated` that uses the [Volume Replication](/docs/concepts/replication/) feature label.
+
+```yaml
+# Create the "ondat-replicated" StorageClass.
+cat <<EOF | kubectl create --filename -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-replicated
+provisioner: csi.storageos.com
+allowVolumeExpansion: true
+parameters:
+  storageos.com/replicas: "2"                           # Create 2 replica volumes.
+  csi.storage.k8s.io/fstype: ext4
+  csi.storage.k8s.io/secret-name: storageos-api
+  csi.storage.k8s.io/secret-namespace: storageos
+EOF
+```
+
+```bash
+# Review and confirm that "ondat-replicated" was created.
+kubectl get sc | grep "ondat-replicated"
+```
+
+For a detailed demonstration of how to use the Volume Replication feature with persistent volumes, review the [How To Use Volume Replication](/docs/operations/replication/) operations page.
+
+### Example - Create a StorageClass that Enables Volume Replication & Topology-Aware Placement (TAP)
+
+Below is an example Ondat StorageClass definition called `ondat-tap` that uses the [Volume Replication](/docs/concepts/replication/) and [Topology-Aware Placement (TAP)](/docs/concepts/tap/) feature labels.
+
+```yaml
+# Create the "ondat-tap" StorageClass.
+cat <<EOF | kubectl create --filename -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ondat-tap
 provisioner: csi.storageos.com
 allowVolumeExpansion: true
 parameters:
   csi.storage.k8s.io/fstype: ext4
-  storageos.com/replicas: "1"
+  storageos.com/replicas: "2"                          # Create 2 replica volumes.
+  storageos.com/topology-aware: "true"                 # Enable TAP (default looks for "topology.kubernetes.io/zone=" on nodes)
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
+EOF
 ```
 
-That StorageClass can be used by a PVC:
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: my-vol-1
-spec:
-  storageClassName: "ondat-replicated" # Ondat StorageClass
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+```bash
+# Review and confirm that "ondat-tap" was created.
+kubectl get sc | grep "ondat-tap"
 ```
 
-The above StorageClass has the `storageos.com/replicas` label set. This
-label tells Ondat to create a volume with a replica. Adding Ondat
-feature labels to the StorageClass ensures all volumes created with the
-StorageClass have the same labels.
+For a detailed demonstration of how to use the Volume Replication & Topology-Aware Placement features with persistent volumes, review the [How To Enable Topology-Aware Placement (TAP)](/docs/operations/tap/) operations page.
 
-You can also choose to add the label in the PVC definition rather than the
-StorageClass. The PVC definition takes precedence over the StorageClass.
+### Example - Create a StorageClass that Enables Volume Replication, Topology-Aware Placement (TAP) & Volume Encryption
 
-### Topology Aware Storage Class
-
-StorageClass that enables [Topology Aware Placement](/docs/reference/tap)
-and replication with [soft mode](/docs/operations/failure-modes):
+Below is an example Ondat StorageClass definition called `ondat-replicated-tap-encrypted` that uses the [Volume Replication](/docs/concepts/replication/), [Topology-Aware Placement (TAP)](/docs/concepts/tap/) and [Volume Encryption](/docs/concepts/encryption/) feature labels.
 
 ```yaml
+# Create the "ondat-encryption" StorageClass.
+cat <<EOF | kubectl create --filename -
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storageos-rep-tap
+  name: ondat-replicated-tap-encrypted
 provisioner: csi.storageos.com
 allowVolumeExpansion: true
 parameters:
   csi.storage.k8s.io/fstype: ext4
-  storageos.com/replicas: "2"
-  storageos.com/failure-mode: "soft"
-  storageos.com/topology-aware: "true"
+  storageos.com/replicas: "2"                             # Create 2 replica volumes.
+  storageos.com/encryption: "true"                        # Enable volume encryption.
+  storageos.com/topology-aware: "true"                    # Enable TAP (default looks for "topology.kubernetes.io/zone=" on nodes)
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
+EOF
 ```
 
-### Encrypted volumes Storage Class
+```bash
+# Review and confirm that "ondat-replicated-tap-encrypted" was created.
+kubectl get sc | grep "ondat-replicated-tap-encrypted"
+```
 
-StorageClass that enables encryption and replication for volumes.
+For a detailed demonstration of how to use the Volume Encryption feature with persistent volumes, review the [How To Enable Data Encryption For Volumes](/docs/operations/encryption/) operations page.
+
+### Example - Create a StorageClass that Enables Data Compression
+
+Below is an example Ondat StorageClass definition called `ondat-compressed` that uses the [Data Compression](/docs/concepts/replication/) feature label.
 
 ```yaml
+# Create the "ondat-compressed" StorageClass.
+cat <<EOF | kubectl create --filename -
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: storageos-rep-enc
+  name: ondat-compressed
 provisioner: csi.storageos.com
 allowVolumeExpansion: true
 parameters:
+  storageos.com/nocompress: "false"                     # Enable compression of data-at-rest and data-in-transit.
   csi.storage.k8s.io/fstype: ext4
-  storageos.com/replicas: "1"
-  storageos.com/encryption: "true"
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
+EOF
 ```
+
+For a detailed demonstration of how to use the compression for persistent volumes, review the [How To Enable Data Compression](/docs/operations/compression/) operations page.
