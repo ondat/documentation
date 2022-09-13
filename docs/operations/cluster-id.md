@@ -1,6 +1,6 @@
 ---
-title: "How To Get Your Ondat Cluster ID"
-linkTitle: "How To Get Your Ondat Cluster ID"
+title: "How To Get Your Cluster ID"
+linkTitle: "How To Get Your Cluster ID"
 ---
 
 ## Overview
