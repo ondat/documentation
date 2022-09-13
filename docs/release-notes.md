@@ -9,16 +9,46 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.8.2`. For
+The latest tagged release is `2.8.3`. For
 installation instructions see our
 [Install](/docs/install/) page.
 
-The latest CLI release is `2.8.2`, available from
+The latest CLI release is `2.8.3`, available from
 [GitHub](https://github.com/storageos/go-cli/releases).
 
 # Upgrading
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
+
+## 2.8.3 - Release 2022-09-14
+
+### New
+
+Data Plane
+
+* Add support for bottlerocket
+* Check whether the block device directory (usually /var/lib/storageos/volumes) is mounted with `nodev` and/or `ro`, and if so attempt to remount the filesystem `rw` and with `dev` access
+
+k8s
+
+* Ability to disable the scheduler
+
+### Fixed
+
+Dataplane
+
+* Increase the `LIO_DEVICE_TIMEOUT_SECS` to 300 seconds (5 minutes) and the `LIO_RETRY_LOOP_DURATION_SECS` to 240 seconds (4 minutes). This is more closely in line with iSCSI timeouts and affords us more time to retry IO on flaky/slow systems
+* Add environment variables so time-outs can be adjusted and tuned
+* Fix spelling mistake in alert log messages
+* Improve the clarity of the log messages which alert users that IO to the backend disk (fdatasync, preadv, pwritev and fallocate) is running unusually slowly
+* Fix an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
+
+Control Plane
+
+* Make master promotion more reliable to enables better cordon/drain/move
+* Fix evict replica for cordon/drain/move
+* Reduce the amount of crash looping when a node goes down
+
 
 ## 2.8.2 - Release 2022-08-12
 
