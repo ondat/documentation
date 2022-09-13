@@ -35,7 +35,7 @@ k8s
 
 ### Fixed
 
-Dataplane
+Data Plane
 
 * Increase the `LIO_DEVICE_TIMEOUT_SECS` to 300 seconds (5 minutes) and the `LIO_RETRY_LOOP_DURATION_SECS` to 240 seconds (4 minutes). This is more closely in line with iSCSI timeouts and affords us more time to retry IO on flaky/slow systems
 * Add environment variables so time-outs can be adjusted and tuned
@@ -43,9 +43,16 @@ Dataplane
 * Improve the clarity of the log messages which alert users that IO to the backend disk (fdatasync, preadv, pwritev and fallocate) is running unusually slowly
 * Fix an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
 
+k8s
+* The following fixes apply to k8s clusters running v1.23, v1.24 and v1.25, the bugs did not apply to older cluster versions
+  * api-manager will now have permissions to use `podsecuritypolicies`
+  * api-manager now has the expected resource limits
+  * api-manager will no longer run as root 
+  * api-manager pods will now be spread across nodes
+
 Control Plane
 
-* Reduce the amount of crash looping when a node goes down
+* The control plane will now crash loop less, when its pod is restarted
 
 ## 2.8.2 - Release 2022-08-12
 
