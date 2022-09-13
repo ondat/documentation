@@ -17,7 +17,7 @@ This guide will demonstrate how to install Ondat onto a [Rancher Kubernetes Engi
 The minimum requirements for the nodes are as follows:
 
 * Linux with a 64-bit architecture
-* 2 vCPU and 8GB of memory
+* 2 vCPU and 4GB of RAM per node.
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
 * Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review [SUSE Rancher Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/) documentation to ensure that you are using a supported Linux distribution.
 
