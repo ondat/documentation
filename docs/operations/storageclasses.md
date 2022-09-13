@@ -1,6 +1,6 @@
 ---
-title: "How To Create Custom Ondat Storage Classes"
-linkTitle: "How To Create Custom Ondat Storage Classes"
+title: "How To Create Custom Storage Classes"
+linkTitle: "How To Create Custom Storage Classes"
 ---
 
 ## Overview
