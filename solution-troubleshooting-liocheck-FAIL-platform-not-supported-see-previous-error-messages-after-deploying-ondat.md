@@ -37,6 +37,6 @@ The root cause of this issue is due to one or more of the required [Linux-IO (LI
  modprobe --all target_core_mod tcm_loop configfs target_core_user uio
  ```
 
-    > 💡 For more information on the required kernel modules for Ondat, review the  [Ondat Prerequisites](https://github.com/ondat/documentation/blob/kb-ondat-init-error-after-deployment/docs/prerequisites/systemconfiguration)  page.
+    > 💡 For more information on the required kernel modules for Ondat, review the [Ondat Prerequisites](https://github.com/ondat/documentation/blob/kb-ondat-init-error-after-deployment/docs/prerequisites/systemconfiguration) page.
 
 1. Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.
