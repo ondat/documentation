@@ -16,9 +16,9 @@ This guide will demonstrate how to install Ondat onto a [Google Anthos](https://
 
 The minimum requirements for the nodes are as follows:
 
-* Linux with a 64-bit architecture
-* 2 vCPU and 8GB of memory
-* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster
+* Linux with a 64-bit architecture.
+* 2 vCPU and 4GB of RAM per node.
+* 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
 * Make sure your Google Anthos cluster uses [`ubuntu_containerd`](https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd) as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.
 * For a comprehensive list of prerequisites please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
 
