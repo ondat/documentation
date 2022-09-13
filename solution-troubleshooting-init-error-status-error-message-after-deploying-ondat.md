@@ -25,7 +25,7 @@ storageos-node-vkj92                                 0/3     Init:Err  0        
 
 The root cause of this issue is due to missing [Linux-IO (LIO) related kernel modules](https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29) on worker nodes that are required for Ondat to successfully start up and run.
 
-- The Ondat daemonset will attempt to load the required kernel modules onto the worker nodes. If Ondat is unsuccessful in loading the kernel modules, an `Init:Err` error will be returned and fail Ondat from starting up without the required kernel modules.
+- The Ondat daemonset will attempt to load the required kernel modules onto the worker nodes. If Ondat is unsuccessful in loading the kernel modules, an `Init:Err` error will be returned and stop Ondat from starting up without the required kernel modules.
 
 ## Resolution
 
