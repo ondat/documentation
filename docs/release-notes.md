@@ -49,7 +49,6 @@ Control Plane
 * Fix evict replica for cordon/drain/move
 * Reduce the amount of crash looping when a node goes down
 
-
 ## 2.8.2 - Release 2022-08-12
 
 ### Fixed
