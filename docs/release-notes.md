@@ -44,10 +44,11 @@ Data Plane
 * Fix an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
 
 k8s
+
 * The following fixes apply to k8s clusters running v1.23, v1.24 and v1.25, the bugs did not apply to older cluster versions
   * api-manager will now have permissions to use `podsecuritypolicies`
   * api-manager now has the expected resource limits
-  * api-manager will no longer run as root 
+  * api-manager will no longer run as root
   * api-manager pods will now be spread across nodes
 
 Control Plane
