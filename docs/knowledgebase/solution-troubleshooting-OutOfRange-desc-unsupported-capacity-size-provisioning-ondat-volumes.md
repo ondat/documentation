@@ -1,6 +1,6 @@
 ---
-title: "Solution - Troubleshooting 'OutOfRange desc = unsupported capacity size' Error When Provisioning Ondat Volumes"
-linkTitle: "Solution - Troubleshooting 'OutOfRange desc = unsupported capacity size' Error When Provisioning Ondat Volumes"
+title: "Solution - Troubleshooting 'OutOfRange desc = unsupported capacity size' Error When Provisioning Volumes"
+linkTitle: "Solution - Troubleshooting 'OutOfRange desc = unsupported capacity size' Error When Provisioning Volumes"
 ---
 
 ## Issue
