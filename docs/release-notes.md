@@ -26,10 +26,10 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 Data Plane
 
-* Added support for bottlerocket
-* Added checks on whether the block device directory (usually `/var/lib/storageos/volumes`) supports creation of devices, and enable it if it is not already
+* Added support for AWS Bottlerocket
+* Added check for whether the block device directory (usually `/var/lib/storageos/volumes`) supports creation of devices, and enable it if it is not already
 
-k8s
+Kubernetes
 
 * The scheduler extender, that attempts to place workloads on the same nodes as volumes, can now be disabled
 
@@ -41,9 +41,9 @@ Data Plane
 * Added environment variables so time-outs can be adjusted and tuned
 * Fixed spelling mistake in alert log messages
 * Improved the clarity of the log messages which alert users that IO to the backend disk (fdatasync, preadv, pwritev and fallocate) is running unusually slowly
-* Fixed an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
+* Fixed an issue wherein creating a Ondat block device could erroneously fail because we'd fail to wait for the underlying kernel device to be available
 
-k8s
+Kubernetes
 
 * The following fixes apply to k8s clusters running v1.23, v1.24 and v1.25, the bugs did not apply to older cluster versions
   * api-manager will now have permissions to use `podsecuritypolicies`
