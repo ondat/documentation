@@ -27,7 +27,7 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 Data Plane
 
 * Added support for bottlerocket
-* The data plane will now check whether the block device directory (usually /var/lib/storageos/volumes) is mounted with `nodev` and/or `ro`, and if so attempt to remount the filesystem `rw` and with `dev` access
+* Added checks on whether the block device directory (usually `/var/lib/storageos/volumes`) supports creation of devices, and enable it if it is not already
 
 k8s
 
