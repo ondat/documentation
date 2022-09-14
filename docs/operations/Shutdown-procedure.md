@@ -9,7 +9,7 @@ To completely power down a cluster, for example when needing to support a machin
 
 ## Inspect your cluster to check that all volumes are online and all replicas are in-sync
 
-Using the Ondat command line, query all of the volumes and any replicas and check that the health of these is `online` for masters and `ready` for replicas, make sure nothing has a status of `offline` or `unknown`. For example:
+Using the Ondat command-line, query all of the volumes and any replicas and check that the health of these is `online` for masters and `ready` for replicas, make sure nothing has a status of `offline` or `unknown`. For example:
 
 ```bash
 kubectl exec -ti $(kubectl get pods -n storageos -l app=storageos-cli -o=jsonpath='{.items[0].metadata.name}') -n storageos -- storageos describe volume -A |grep Health
@@ -25,7 +25,7 @@ kubectl exec -ti $(kubectl get pods -n storageos -l app=storageos-cli -o=jsonpat
   Health            online
 ```
 
-## Scale down application workloads to stop disk IO. 
+## Scale down application workloads to stop disk IO
 
 First we want to stop disk I/O workloads gracefully and flush all the data to disk. To do this follow your standard kubernetes workflow or run book for scaling workloads to zero, it will probably look something similar to:
 
@@ -44,6 +44,7 @@ To shutdown the Ondat cluster, we are going to remove the Ondat kubernetes custo
 ```bash
 kubectl get -n storageos stos storageoscluster > ./stos-backup.yaml
 ```
+
 **Note** the above is based  on the default name, if you have used a different name please update the command as necessary.
 
 ## Backup the ETCD Cluster Custom Resource
@@ -85,10 +86,10 @@ The procedure will probably call for shutting down all of the worker nodes first
 
 To power on the cluster after a power down, we are going to restart the kubernetes platform which should be as simple as powering on the control plane and then the worker nodes. After a period of time we expect the kubernetes nodes to be in a ready state. Once the nodes are in the ready state we can restore the Ondat cluster definition and scale up the workloads.
 
-
 ## Restore the Ondat ETCD cluster definition
 
 To restore the Ondat ETCD cluster simply apply the yaml file we created as our backup procedure:
+
 ```bash
 kubectl apply -f ./stos-etcd-backup.yaml
 ```
@@ -104,9 +105,11 @@ kubectl get pods -n storageos-etcd
 ## Restore cluster definition
 
 After all the ETCD pods have become ready, restore the Ondat cluster by applying the other yaml file we created as our backup procedure:
+
 ```bash
 kubectl apply -f ./stos-backup.yaml
 ```
+
 Where in this case we have the backup yaml file in the local directory where we are running `kubectl` from.
 
 ## Check Ondat volumes and cluster
@@ -116,11 +119,12 @@ First check that the Ondat node daemon set has started up and all of the pods ar
 ```bash
 kubectl get pods -n storageos
 ```
+
 All of the pods should be in the `running` state and healthy.
 
 Once you have validated that the daemon set is up and running, you can query the volumes and replicas again to check they are all reporting correctly:
 
-Using the Ondat command line query all of the volumes and any replicas and check that the health of these is `online` for masters and `ready` for replicas, make sure nothing has a status of `offline` or `unknown`. For example:
+Using the Ondat command-line query all of the volumes and any replicas and check that the health of these is `online` for masters and `ready` for replicas, make sure nothing has a status of `offline` or `unknown`. For example:
 
 ```bash
 kubectl exec -ti $(kubectl get pods -n storageos -l app=storageos-cli -o=jsonpath='{.items[0].metadata.name}') -n storageos -- storageos describe volume -A |grep Health
@@ -128,10 +132,11 @@ kubectl exec -ti $(kubectl get pods -n storageos -l app=storageos-cli -o=jsonpat
 
 ## Scale up workloads
 
-The last step is to scale up the workloads again, e.g. 
+The last step is to scale up the workloads again, e.g.
 
 ```bash
 kubectl scale statefulset -n mynamespace <statefulset-name> --replicas=1
 kubectl scale deployment -n mynamespace <deployment-name> --replicas=1
 ```
+
 Where the number of replicas is appropriate for the application.
