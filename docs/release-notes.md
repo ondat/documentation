@@ -26,8 +26,8 @@ To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for a
 
 Data Plane
 
-* Add support for bottlerocket
-* Check whether the block device directory (usually /var/lib/storageos/volumes) is mounted with `nodev` and/or `ro`, and if so attempt to remount the filesystem `rw` and with `dev` access
+* Added support for bottlerocket
+* The data plane will now check whether the block device directory (usually /var/lib/storageos/volumes) is mounted with `nodev` and/or `ro`, and if so attempt to remount the filesystem `rw` and with `dev` access
 
 k8s
 
@@ -37,11 +37,11 @@ k8s
 
 Data Plane
 
-* Increase the `LIO_DEVICE_TIMEOUT_SECS` to 300 seconds (5 minutes) and the `LIO_RETRY_LOOP_DURATION_SECS` to 240 seconds (4 minutes). This is more closely in line with iSCSI timeouts and affords us more time to retry IO on flaky/slow systems
-* Add environment variables so time-outs can be adjusted and tuned
-* Fix spelling mistake in alert log messages
-* Improve the clarity of the log messages which alert users that IO to the backend disk (fdatasync, preadv, pwritev and fallocate) is running unusually slowly
-* Fix an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
+* Increased the LIO_DEVICE_TIMEOUT_SECS to 300 seconds (5 minutes) and the LIO_RETRY_LOOP_DURATION_SECS to 240 seconds (4 minutes). This provides additional flexibility for environments experiencing resource contention
+* Added environment variables so time-outs can be adjusted and tuned
+* Fixed spelling mistake in alert log messages
+* Improved the clarity of the log messages which alert users that IO to the backend disk (fdatasync, preadv, pwritev and fallocate) is running unusually slowly
+* Fixed an issue whereby creating a Ondat block device could erroneously fail because we fail to wait for the underlying kernel device to be available
 
 k8s
 
@@ -53,7 +53,7 @@ k8s
 
 Control Plane
 
-* The control plane will now crash loop less, when its pod is restarted
+* The control plane will now crash loop less when its pod is restarted
 
 ## 2.8.2 - Release 2022-08-12
 
