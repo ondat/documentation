@@ -181,4 +181,9 @@ parameters:
 EOF
 ```
 
+```bash
+# Review and confirm that "ondat-compressed" was created.
+kubectl get sc | grep "ondat-compressed"
+```
+
 For a detailed demonstration of how to use the compression for persistent volumes, review the [How To Enable Data Compression](/docs/operations/compression/) operations page.
