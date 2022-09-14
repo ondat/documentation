@@ -48,6 +48,7 @@ This is exactly what we’ve done at Ondat. Additional backup tooling solutions 
 The Ondat Snapshots feature has the following limitations:
 
 1. The feature has been designed to work with Kasten K10 & CloudCasa only. This is not a fully CSI compliant implementation of the specification yet.
+1. The feature does not currently support Openshift or Bottlerocket.
 1. Restoring via Kasten 10 from a “local snapshot” is not supported with the Ondat Snapshot feature. Users may only restore applications using a Kasten K10
 “External backup”.
 1. Snapshotting [ReadWriteMany (RWX)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) volumes is not supported. This is because it is next to impossible to ensure that a NFS mounted volume is in a suitable state for snapshotting.
