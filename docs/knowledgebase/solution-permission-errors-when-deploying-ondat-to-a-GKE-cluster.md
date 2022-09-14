@@ -1,6 +1,6 @@
 ---
-title: "Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster"
-linkTitle: "Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster"
+title: "Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster"
+linkTitle: "Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster"
 ---
 ## Issue
 
@@ -53,3 +53,7 @@ kubectl create clusterrolebinding cluster-admin-binding \
   --clusterrole=cluster-admin \
   --user=$(gcloud config get-value account)
 ```
+
+## References
+
+- [Authorize actions in clusters using role-based access control - Google Kubernetes Engine Documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control)
