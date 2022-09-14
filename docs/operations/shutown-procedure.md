@@ -3,10 +3,11 @@ title: "How To Safely Shut Down & Start Up A Cluster"
 linkTitle: "How To Safely Shut Down & Start Up A Cluster"
 ---
 
-## Overview 
+## Overview
 
 To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.
-- The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes. 
+
+- The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes.
 - As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow.
 
 ## Prerequisites
@@ -19,6 +20,7 @@ To completely power down an Ondat cluster, for example, when needing to support 
 ### Step 1 - Inspect The Cluster To Ensure That All Master Volumes Are Online & Replica Volumes Are In-sync
 
 Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either >> `online` for masters volumes and >> `ready` for replica volumes.
+
 - Ensure that no volume has a health status of >> `offline` or >> `unknown`.
 
 ```bash
@@ -46,7 +48,8 @@ First we want to stop disk I/O workloads gracefully and flush all the data to di
 kubectl scale statefulset,deployment -n $NAMESPACE --all --replicas=0
 ```
 
-At this point, there should be nothing running that is generating I/O operations to any Ondat volumes. This enables end users to move onto the next step of stopping Ondat. 
+At this point, there should be nothing running that is generating I/O operations to any Ondat volumes. This enables end users to move onto the next step of stopping Ondat.
+
 - Ondat needs to be stopped first before powering down your Kubernetes cluster, as Ondat is designed to create new replicas of data for volumes that are no longer available. To avoid Ondat from conducting its normal recovery actions as soon as Kubernetes start shutting down nodes, as this is a planned event. By scaling down the workloads and shutting down Ondat, this will freeze all the data in place and maintain the consistency.
 
 > 💡 Nothing is being done to the backing data or metadata. All of this will be preserved with this process, but as with every procedure where systems are being powered on and off, it is always recommended that backups are taken as a precaution in case your hardware has an issue powering back on.
@@ -54,7 +57,8 @@ At this point, there should be nothing running that is generating I/O operations
 ### Step 3 -  Backup The Ondat Cluster Custom Resource
 
 To shut down the Ondat cluster, the first step is to remove the Ondat cluster custom resource. End users, can explore the Ondat cluster definition by examining the Custom Resource Definition >> `storageosclusters.storageos.com`.
-- Before deleting this object, ensure that a copy of the definition YAML manifest is made, as this is going to be used in the restoration stage that will be described later. 
+
+- Before deleting this object, ensure that a copy of the definition YAML manifest is made, as this is going to be used in the restoration stage that will be described later.
 - To back up the YAML manifest, run the following command and ensure that the output backup file >> `stos-backup.yaml` is stored in a safe place (or even added to a configuration management system):
 
 ```bash
@@ -66,7 +70,8 @@ kubectl get -n storageos stos storageoscluster > ./stos-backup.yaml
 
 ### Step 4 - Backup The `etcd` Cluster Custom Resource
 
-For end users that are also self-hosting `etcd` in the cluster, a recommendation will be to also back up the `etcd` definition as well. 
+For end users that are also self-hosting `etcd` in the cluster, a recommendation will be to also back up the `etcd` definition as well.
+
 - To back up the YAML manifest,  run the following command and ensure that the output backup file >> `stos-etcd-backup.yaml` is stored in a safe place (or even added to a configuration management system):
 
 ```bash
@@ -76,7 +81,8 @@ kubectl get -n storageos-etcd etcdcluster storageos-etcd > ./stos-etcd-backup.ya
 
 ### Step 5 - Delete The Ondat Cluster
 
-Once Custom Resource definitions have been backed up, the next step will be to delete the Ondat cluster object. This will also delete the Ondat daemonset pods from all the nodes and, in effect, will be left with a static system which has all the data intact on the nodes - although the Ondat data plane and control plane are no longer running. 
+Once Custom Resource definitions have been backed up, the next step will be to delete the Ondat cluster object. This will also delete the Ondat daemonset pods from all the nodes and, in effect, will be left with a static system which has all the data intact on the nodes - although the Ondat data plane and control plane are no longer running.
+
 - This means that any node power down actions will not result in any volume recovery or failover actions as desired.
 
 ```bash
@@ -93,7 +99,7 @@ After the Ondat cluster is successfully deleted, the next step will be to need t
 kubectl delete -n storageos-etcd etcdcluster storageos-etcd
 ```
 
-### Step 7 - Shut Down The Kubernetes Nodes 
+### Step 7 - Shut Down The Kubernetes Nodes
 
 The next step will be to follow your Kubernetes distribution guidance on how to power down your cluster. This stage will probably be similar to the following Kubernetes documentation on How to [safely drain a node](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/), however, it is recommended to follow the specific instructions provided by your Kubernetes distribution on this topic.
 
@@ -106,7 +112,6 @@ ssh -t user@$NODE 'sudo shutdown now'
 ```
 
 The procedure will probably call for shutting down all the worker nodes first (usually these [can be done in parallel](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/#draining-multiple-nodes-in-parallel)), and then the master nodes, which again can usually all be done in parallel.
-
 
 ## Procedure - Start Up The Cluster
 
@@ -128,7 +133,7 @@ Once successfully applied, ensure that all the `ectd` pods are in a `Running` st
 kubectl get pods -n storageos-etcd
 ```
 
-###  Step 2 - Restore The Ondat Cluster Custom Resource
+### Step 2 - Restore The Ondat Cluster Custom Resource
 
 After all the `etcd` pods are in a `Running` statue and ready, restore the Ondat cluster by applying the other YAML manifest file that was created in the previous procedure:
 
@@ -149,6 +154,7 @@ kubectl get pods -n storageos
 Once you have validated that the Ondat daemonset is up and running, you can query the master volumes and replica volumes to check they are all reporting that they are back online and ready:
 
 Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either >> `online` for masters volumes and >> `ready` for replica volumes.
+
 - Ensure that no volume has a health status of >> `offline` or >> `unknown`.
 
 ```bash
