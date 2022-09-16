@@ -26,68 +26,70 @@ Ondat uses a [gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) to
 
 1. Check and ensure that the [required ports](/docs/prerequisites/firewalls/) for Ondat to run, are not being blocked by a firewall.
 
- ```bash
- # Connect to, for example "node04" on port 5705 from "node06" using "nc".
- nc -zv node04 5705
+    ```bash
+    # Connect to, for example "node04" on port 5705 from "node06" using "nc".
+    nc -zv node04 5705
 
- Ncat: Version 7.50 ( https://nmap.org/ncat  )
- Ncat: Connected to 10.0.1.166:5705.
- Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
- ```
+    Ncat: Version 7.50 ( https://nmap.org/ncat  )
+    Ncat: Connected to 10.0.1.166:5705.
+    Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
+    ```
 
 1. Ondat exposes network diagnostics through its API - which is viewable from the [Ondat CLI](/docs/reference/cli/). The diagnostic results show information from all known cluster members - If all the ports are blocked during the first bootstrap of the cluster, the diagnostics results won’t show any data as nodes could not register:
 
- ```bash
- # Check the network diagnostic results from the Ondat CLI.
- storageos cluster connectivity
+   > 💡 The command below is only available in Ondat `v1` deployments. For Ondat `v2` deployments, end users can [generate diagnostic and support bundles](/docs/reference/bundles/) to get more information about the connectivity in the cluster.
 
- SOURCE  NAME            ADDRESS            LATENCY      STATUS  MESSAGE
- node4   node2.nats      172.28.128.4:5708  1.949275ms   OK
- node4   node3.api       172.28.128.5:5705  3.070574ms   OK
- node4   node3.nats      172.28.128.5:5708  2.989238ms   OK
- node4   node2.directfs  172.28.128.4:5703  2.925707ms   OK
- node4   node3.etcd      172.28.128.5:5707  2.854726ms   OK
- node4   node3.directfs  172.28.128.5:5703  2.833371ms   OK
- node4   node1.api       172.28.128.3:5705  2.714467ms   OK
- node4   node1.nats      172.28.128.3:5708  2.613752ms   OK
- node4   node1.etcd      172.28.128.3:5707  2.594159ms   OK
- node4   node1.directfs  172.28.128.3:5703  2.601834ms   OK
- node4   node2.api       172.28.128.4:5705  2.598236ms   OK
- node4   node2.etcd      172.28.128.4:5707  16.650625ms  OK
- node3   node4.nats      172.28.128.6:5708  1.304126ms   OK
- node3   node4.api       172.28.128.6:5705  1.515218ms   OK
- node3   node2.directfs  172.28.128.4:5703  1.359827ms   OK
- node3   node1.api       172.28.128.3:5705  1.185535ms   OK
- node3   node4.directfs  172.28.128.6:5703  1.379765ms   OK
- node3   node1.etcd      172.28.128.3:5707  1.221176ms   OK
- node3   node1.nats      172.28.128.3:5708  1.330122ms   OK
- node3   node2.api       172.28.128.4:5705  1.238541ms   OK
- node3   node1.directfs  172.28.128.3:5703  1.413574ms   OK
- node3   node2.etcd      172.28.128.4:5707  1.214273ms   OK
- node3   node2.nats      172.28.128.4:5708  1.321145ms   OK
- node1   node4.directfs  172.28.128.6:5703  1.140797ms   OK
- node1   node3.api       172.28.128.5:5705  1.089252ms   OK
- node1   node4.api       172.28.128.6:5705  1.178439ms   OK
- node1   node4.nats      172.28.128.6:5708  1.176648ms   OK
- node1   node2.directfs  172.28.128.4:5703  1.529612ms   OK
- node1   node2.etcd      172.28.128.4:5707  1.165681ms   OK
- node1   node2.api       172.28.128.4:5705  1.29602ms    OK
- node1   node2.nats      172.28.128.4:5708  1.267454ms   OK
- node1   node3.nats      172.28.128.5:5708  1.485657ms   OK
- node1   node3.etcd      172.28.128.5:5707  1.469429ms   OK
- node1   node3.directfs  172.28.128.5:5703  1.503015ms   OK
- node2   node4.directfs  172.28.128.6:5703  1.484ms      OK
- node2   node1.directfs  172.28.128.3:5703  1.275304ms   OK
- node2   node4.nats      172.28.128.6:5708  1.261422ms   OK
- node2   node4.api       172.28.128.6:5705  1.465532ms   OK
- node2   node3.api       172.28.128.5:5705  1.252768ms   OK
- node2   node3.nats      172.28.128.5:5708  1.212332ms   OK
- node2   node3.directfs  172.28.128.5:5703  1.192792ms   OK
- node2   node3.etcd      172.28.128.5:5707  1.270076ms   OK
- node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
- node2   node1.api       172.28.128.3:5705  1.363071ms   OK
- node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
- ```
+    ```bash
+    # Check the network diagnostic results from the Ondat CLI (Ondat v1 deployments only).
+    storageos cluster connectivity
+
+    SOURCE  NAME            ADDRESS            LATENCY      STATUS  MESSAGE
+    node4   node2.nats      172.28.128.4:5708  1.949275ms   OK
+    node4   node3.api       172.28.128.5:5705  3.070574ms   OK
+    node4   node3.nats      172.28.128.5:5708  2.989238ms   OK
+    node4   node2.directfs  172.28.128.4:5703  2.925707ms   OK
+    node4   node3.etcd      172.28.128.5:5707  2.854726ms   OK
+    node4   node3.directfs  172.28.128.5:5703  2.833371ms   OK
+    node4   node1.api       172.28.128.3:5705  2.714467ms   OK
+    node4   node1.nats      172.28.128.3:5708  2.613752ms   OK
+    node4   node1.etcd      172.28.128.3:5707  2.594159ms   OK
+    node4   node1.directfs  172.28.128.3:5703  2.601834ms   OK
+    node4   node2.api       172.28.128.4:5705  2.598236ms   OK
+    node4   node2.etcd      172.28.128.4:5707  16.650625ms  OK
+    node3   node4.nats      172.28.128.6:5708  1.304126ms   OK
+    node3   node4.api       172.28.128.6:5705  1.515218ms   OK
+    node3   node2.directfs  172.28.128.4:5703  1.359827ms   OK
+    node3   node1.api       172.28.128.3:5705  1.185535ms   OK
+    node3   node4.directfs  172.28.128.6:5703  1.379765ms   OK
+    node3   node1.etcd      172.28.128.3:5707  1.221176ms   OK
+    node3   node1.nats      172.28.128.3:5708  1.330122ms   OK
+    node3   node2.api       172.28.128.4:5705  1.238541ms   OK
+    node3   node1.directfs  172.28.128.3:5703  1.413574ms   OK
+    node3   node2.etcd      172.28.128.4:5707  1.214273ms   OK
+    node3   node2.nats      172.28.128.4:5708  1.321145ms   OK
+    node1   node4.directfs  172.28.128.6:5703  1.140797ms   OK
+    node1   node3.api       172.28.128.5:5705  1.089252ms   OK
+    node1   node4.api       172.28.128.6:5705  1.178439ms   OK
+    node1   node4.nats      172.28.128.6:5708  1.176648ms   OK
+    node1   node2.directfs  172.28.128.4:5703  1.529612ms   OK
+    node1   node2.etcd      172.28.128.4:5707  1.165681ms   OK
+    node1   node2.api       172.28.128.4:5705  1.29602ms    OK
+    node1   node2.nats      172.28.128.4:5708  1.267454ms   OK
+    node1   node3.nats      172.28.128.5:5708  1.485657ms   OK
+    node1   node3.etcd      172.28.128.5:5707  1.469429ms   OK
+    node1   node3.directfs  172.28.128.5:5703  1.503015ms   OK
+    node2   node4.directfs  172.28.128.6:5703  1.484ms      OK
+    node2   node1.directfs  172.28.128.3:5703  1.275304ms   OK
+    node2   node4.nats      172.28.128.6:5708  1.261422ms   OK
+    node2   node4.api       172.28.128.6:5705  1.465532ms   OK
+    node2   node3.api       172.28.128.5:5705  1.252768ms   OK
+    node2   node3.nats      172.28.128.5:5708  1.212332ms   OK
+    node2   node3.directfs  172.28.128.5:5703  1.192792ms   OK
+    node2   node3.etcd      172.28.128.5:5707  1.270076ms   OK
+    node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
+    node2   node1.api       172.28.128.3:5705  1.363071ms   OK
+    node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
+    ```
 
 ## References
 
