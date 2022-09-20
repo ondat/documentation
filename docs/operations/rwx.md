@@ -1,6 +1,6 @@
 ---
-title: "How To Use Ondat Files (ReadWriteMany - RWX Volumes)"
-linkTitle: "How To Use Ondat Files (ReadWriteMany - RWX Volumes)"
+title: "How To Create ReadWriteMany (RWX) Volumes"
+linkTitle: "How To Create ReadWriteMany (RWX) Volumes"
 ---
 
 ## Overview

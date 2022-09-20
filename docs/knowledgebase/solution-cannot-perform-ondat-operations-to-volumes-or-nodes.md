@@ -1,6 +1,6 @@
 ---
-title: "Solution - Cannot Perform Ondat Operations To Volumes Or Nodes"
-linkTitle: "Solution - Cannot Perform Ondat Operations To Volumes Or Nodes"
+title: "Solution - Cannot Perform Operations To Volumes Or Nodes"
+linkTitle: "Solution - Cannot Perform Operations To Volumes Or Nodes"
 ---
 
 ## Issue

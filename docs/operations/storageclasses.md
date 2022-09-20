@@ -1,6 +1,6 @@
 ---
-title: "How To Create Custom Ondat Storage Classes"
-linkTitle: "How To Create Custom Ondat Storage Classes"
+title: "How To Create Custom Storage Classes"
+linkTitle: "How To Create Custom Storage Classes"
 ---
 
 ## Overview
@@ -179,6 +179,11 @@ parameters:
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 EOF
+```
+
+```bash
+# Review and confirm that "ondat-compressed" was created.
+kubectl get sc | grep "ondat-compressed"
 ```
 
 For a detailed demonstration of how to use the compression for persistent volumes, review the [How To Enable Data Compression](/docs/operations/compression/) operations page.
