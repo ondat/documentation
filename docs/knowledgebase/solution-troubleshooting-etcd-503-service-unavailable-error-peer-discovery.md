@@ -5,7 +5,7 @@ linkTitle: "Solution - Troubleshooting etcd '503 Service Unavailable' Error Mess
 
 ## Issue
 
-You have noticed that Ondat nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in after 1 minute of uptime:
+You have noticed that nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in after 1 minute of uptime:
 
 ```bash
 # Truncated output...
