@@ -1,6 +1,6 @@
 ---
-title: "Solution - Troubleshooting 'unable to validate against any security context constraint' Error When Deploying Ondat In OpenShift"
-linkTitle: "Solution - Troubleshooting 'unable to validate against any security context constraint' Error When Deploying Ondat In OpenShift"
+title: "Solution - Troubleshooting 'unable to validate against any security context constraint' Error When Deploying Into A OpenShift Cluster"
+linkTitle: "Solution - Troubleshooting 'unable to validate against any security context constraint' Error When Deploying Into A OpenShift Cluster"
 ---
 
 ## Issue
