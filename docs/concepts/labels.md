@@ -52,6 +52,7 @@ Below are the list of available feature labels that can be used to define [Kuber
 
 For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;
 
+- [How To Create Custom Storage Classes](/docs/operations/storageclasses).
 - [How To Setup A Centralised Cluster Topology](/docs/operations/compute-only).
 - [How To Use Volume Replication](/docs/operations/replication).
 - [How To Use Ondat Files (ReadWriteMany - RWX Volumes)](/docs/operations/rwx/).
