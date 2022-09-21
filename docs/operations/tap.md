@@ -17,6 +17,7 @@ across failure domains to guarantee high availability.
 > the [Ondat Topology-Aware Placement](/docs/concepts/tap) feature page.
 
 ### Example - Enable Topology-Aware Placement Through a `PersistentVolumeClaim`
+
 Definition
 
 The following guidance will demonstrate how to use Ondat Topology-Aware
@@ -92,9 +93,10 @@ custom-region` and `storageos.com/failure-mode: soft` labels have been applied.
     different failure domains defined by your custom label.
 
     > 💡 To place 2 replicas, the cluster needs at least `3` nodes (`1` primary
-    > + `2` replicas). Because of the use of the soft failure-mode, the volume
+    >
+    > - `2` replicas). Because of the use of the soft failure-mode, the volume
     > could operate with 2 nodes while waiting to be able to place a new
-    > replica, eventaully. 
+    > replica, eventaully.
 
     ```bash
     $ PV=pvc-b785737c-fc51-40a7-bf83-c1d660a222a3
@@ -142,6 +144,7 @@ custom-region` and `storageos.com/failure-mode: soft` labels have been applied.
     > different failure domains.
 
 ### Example - Enable Topology-Aware Placement Through a `StorageClass`
+
 Definition
 
 The following guidance will demonstrate how to use Ondat Topology-Aware
@@ -233,6 +236,6 @@ successfully created.
 1. Validate data placement
 
     ```bash
-    $ PV=pvc-d3662005-0bee-4b62-9a66-59ac65254687
-    $ kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
+    PV=pvc-d3662005-0bee-4b62-9a66-59ac65254687
+    kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
     ```
