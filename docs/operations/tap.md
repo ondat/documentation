@@ -39,7 +39,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```yaml
     # Create a "pvc-tap" PVC with TAP, custom topology key label called "custom-region" and "soft" failure mode is enabled.
-    cat <<EOF | kubectl create -f -
+    $ kubectl create -f-<<EOF
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
@@ -144,7 +144,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```yaml
     # Create the "ondat-tap" StorageClass.
-    cat <<EOF | kubectl create -f -
+    $ kubectl create -f-<<EOF
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
     metadata:
@@ -169,7 +169,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```yaml
     # Create a "pvc-tap-2" PVC that uses the "ondat-tap" StorageClass.
-    cat <<EOF | kubectl create --filename -
+    $ kubectl create -f-<<EOF
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
@@ -186,7 +186,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```bash
     # Ensure that the PVC was successfully provisioned with "ondat-tap".
-    kubectl get pvc --output=wide --show-labels --namespace=default
+    kubectl get pvc -owide --show-labels
 
     NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
     pvc-tap-2   Bound    pvc-d3662005-0bee-4b62-9a66-59ac65254687   5Gi        RWO            ondat-tap      4m    Filesystem   <none>
