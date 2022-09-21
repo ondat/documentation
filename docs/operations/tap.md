@@ -30,7 +30,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
     kubectl label node demo-worker-node-5 custom-region=2
 
     # Check that the worker nodes have been labeled successfully.
-    kubectl describe nodes | grep "custom-region"
+    kubectl describe nodes | grep -C 10 "custom-region"
     ```
 
 1. Create a custom `PersistentVolumeClaim` named `pvc-tap` and ensure that you add the following labels `storageos.com/topology-aware=true` and `storageos.com/topology-key=custom-region` to the manifest.
@@ -39,15 +39,16 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```yaml
     # Create a "pvc-tap" PVC with TAP, custom topology key label called "custom-region" and "soft" failure mode is enabled.
-    cat <<EOF | kubectl create --filename -
+    cat <<EOF | kubectl create -f -
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
-      name: pvc-tap
+      name: pvc-topology-aware-placement
       labels:
         storageos.com/topology-aware: "true"         # Enable Topology-Aware Placement.
         storageos.com/topology-key: custom-region    # Ensure that the topology failure domain node label is defined.
         storageos.com/failure-mode: soft             # Enable "soft" failure mode.
+        storageos.com/replicas: "2"
     spec:
       storageClassName: storageos
       accessModes:
@@ -62,92 +63,59 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```bash
     # Get the labels applied to the "pvc-tap" PVC.
-    kubectl get pvc --output=wide --show-labels --namespace=default
-
-    NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE     VOLUMEMODE   LABELS
-    pvc-tap   Bound    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a   5Gi        RWO            storageos      3m26s   Filesystem   storageos.com/failure-mode=soft,storageos.com/topology-aware=true,storageos.com/topology-key=custom-region
+    $ kubectl get pvc --show-labels pvc-topology-aware-placement
+    NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   LABELS
+    pvc-topology-aware-placement   Bound    pvc-b785737c-fc51-40a7-bf83-c1d660a222a3   5Gi        RWO            storageos      81s   storageos.com/replicas=2,storageos.com/topology-aware=true
     ```
 
-1. To quickly demonstrate Ondat TAP, use the `storageos.com/replicas` feature label to increase the number of volume replicas to `3` to match the number of `custom-region` zones that were defined in *Step 1*.
+1. Check data placement
 
-    > 💡 To place 3 replicas, the cluster needs at least `4` nodes (`1` master + `3` replicas).
+    Check that the primary of the volume and its replicas are placed on different failure domains defined by your custom label.
+
+    > 💡 To place 2 replicas, the cluster needs at least `3` nodes (`1` primary + `2` replicas). Because of the use of the soft failure-mode, the volume could operate with 2 nodes while waiting to be able to place a new replica, eventaully. 
 
     ```bash
-    # Increase the volume replicas for "pvc-tap" to 3.
-    kubectl label pvc pvc-tap storageos.com/replicas=3
+    $ PV=pvc-b785737c-fc51-40a7-bf83-c1d660a222a3
+    $ kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
+    ...
+    Spec:
+      Config Labels:
+        csi.storage.k8s.io/pv/name:        pvc-b785737c-fc51-40a7-bf83-c1d660a222a3
+        csi.storage.k8s.io/pvc/name:       pvc-topology-aware-placement
+        csi.storage.k8s.io/pvc/namespace:  default
+        storageos.com/nocompress:          true
+        storageos.com/replicas:            2
+        storageos.com/topology-aware:      true
+      Fs Type:                             ext4
+      Nfs:
+      Replicas:    2
+      Size Bytes:  5368709120
+    Status:
+      Attachment Type:  detached
+      Master:
+        Health:      online
+        Hostname:    demo-worker-node-1
+        Id:          d13623ab-78b6-4a4e-b971-c370b185c35c
+        Node ID:     99efd6b4-3cb4-4e20-a6e4-dbf9c97b7712
+        Promotable:  true
+      Replicas:
+        Health:      ready
+        Hostname:    demo-worker-node-3
+        Id:          39e9cc03-c2e3-4eea-9a08-2b3ad5afd9b6
+        Node ID:     d9a63f17-e07c-41d5-a9c5-5264bc896601
+        Promotable:  true
+        Sync Progress:
+        Health:      ready
+        Hostname:    demo-worker-node-2
+        Id:          f0c9a5f8-8034-4524-99cf-0e5602dfd70e
+        Node ID:     defbb2fa-66f5-40b3-86a7-7a167ba2e1ae
+        Promotable:  true
+        Sync Progress:
+      Volume Id:  3d70627d-5122-4255-839b-22f7215393fc
+    ...
     ```
 
-1. To review and confirm that Ondat TAP has successfully provisioned 3 volumes and evenly distributed in different `custom-region` zones - deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`. Once deployed, obtain the  Ondat CLI utility pod name for later reference.
-
-    ```bash
-    # Get the Ondat CLI utility pod name.
-    kubectl --namespace=storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli
-
-    storageos-cli-77885d6d8b-zqmnn
-    ```
-
-1. With the Ondat CLI now deployed, you can check the location of the master and replica volumes.
-
-    ```bash
-    # Get the volumes in the "default" namespace using the Ondat CLI.
-    kubectl --namespace=storageos exec storageos-cli-77885d6d8b-zqmnn -- storageos get volumes --namespace=default
-
-    NAMESPACE  NAME                                      SIZE     LOCATION                     ATTACHED ON  REPLICAS  AGE
-    default    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a  5.0 GiB  demo-worker-node-4 (online)               3/3       41 minutes ago
-
-    # Describe the "pvc-9af262b3-ab50-4d68-87bc-60eb825f1f99" volume.
-    kubectl --namespace=storageos exec storageos-cli-77885d6d8b-zqmnn -- storageos describe volume pvc-abb18d51-7e1a-4812-8d65-40dbc090362a --namespace=default
-
-    ID                  882ab4dd-1b35-4bb4-a825-68763719b991
-    Name                pvc-abb18d51-7e1a-4812-8d65-40dbc090362a
-    Description
-    AttachedOn
-    Attachment Type     detached
-    NFS
-      Service Endpoint
-      Exports:
-    Namespace           default (5055ae9d-6278-4374-a6c8-e4779c6cc58f)
-    Labels              csi.storage.k8s.io/pv/name=pvc-abb18d51-7e1a-4812-8d65-40dbc090362a,
-                        csi.storage.k8s.io/pvc/name=pvc-tap,
-                        csi.storage.k8s.io/pvc/namespace=default,
-                        storageos.com/failure-mode=soft,
-                        storageos.com/nocompress=true,
-                        storageos.com/replicas=3,
-                        storageos.com/topology-aware=true,
-                        storageos.com/topology-key=custom-region
-    Filesystem          ext4
-    Size                5.0 GiB (5368709120 bytes)
-    Version             OQ
-    Created at          2022-07-22T16:05:04Z (42 minutes ago)
-    Updated at          2022-07-22T16:26:35Z (21 minutes ago)
-
-    Master:
-      ID                248ea74d-8753-4f64-afbf-73b72ddc211b
-      Node              demo-worker-node-4 (1c9284c7-99a4-40c5-9ab9-95df19c1a8ac)
-      Health            online
-      Topology Domain   1
-
-    Replicas:
-      ID                3172c40c-e745-48a9-91cf-39352389e99e
-      Node              demo-worker-node-5 (37fdc95a-e215-44e7-a53d-45c1b7a7bad1)
-      Health            ready
-      Promotable        true
-      Topology Domain   2
-
-      ID                516bb457-4720-4b65-af70-327fb7d74898
-      Node              demo-worker-node-3 (669e2d13-2520-4238-9be6-4f58540f0f64)
-      Health            ready
-      Promotable        true
-      Topology Domain   3
-
-      ID                e48d6084-8ce8-4d57-8644-20d61c28005e
-      Node              demo-worker-node-1 (114ae6a7-c40d-40c2-87cb-1dc9dcc24348)
-      Health            ready
-      Promotable        true
-      Topology Domain   1
-    ```
-
-    > 💡  As demonstrated in the output above, notice how the master volume and each replica volume are deployed on a different nodes (`demo-worker-node-4`, `demo-worker-node-5`, `demo-worker-node-3` and `demo-worker-node-1` respectively) to ensure data protection and high availability in the event of a transient node failure.
+    > 💡  As demonstrated in the output above, notice how the primary volume and each replica volume are deployed on different nodes belonging to different failure domains.
 
 ### Example - Enable Topology-Aware Placement Through a `StorageClass` Definition
 
@@ -176,7 +144,7 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     ```yaml
     # Create the "ondat-tap" StorageClass.
-    cat <<EOF | kubectl create --filename -
+    cat <<EOF | kubectl create -f -
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
     metadata:
@@ -226,66 +194,9 @@ The following guidance will demonstrate how to use Ondat Topology-Aware Placemen
 
     > 💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the `ondat-tap` StorageClass parameters defined in *Step 2*.
 
-1. To review and confirm that Ondat TAP has successfully provisioned 2 volumes and evenly distributed in different zones - deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`. Once deployed, obtain the Ondat CLI utility pod name for later reference.
+1. Validate data placement
 
     ```bash
-    # Get the Ondat CLI utility pod name.
-    kubectl --namespace=storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli
-
-    storageos-cli-79787d586d-s2w66
+    $ PV=pvc-d3662005-0bee-4b62-9a66-59ac65254687
+    $ kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
     ```
-
-1. With the Ondat CLI now deployed, you can check the location of the master and replica volumes.
-
-    ```bash
-    # Get the volumes in the "default" namespace using the Ondat CLI.
-    kubectl --namespace=storageos exec storageos-cli-79787d586d-s2w66 -- storageos get volumes --namespace=default
-
-    NAMESPACE  NAME                                      SIZE     LOCATION                                  ATTACHED ON  REPLICAS  AGE
-    default    pvc-d3662005-0bee-4b62-9a66-59ac65254687  5.0 GiB  aks-storage-70602947-vmss000000 (online)               2/2       8 minutes ago
-
-    # Describe the "pvc-d3662005-0bee-4b62-9a66-59ac65254687" volume.
-    kubectl --namespace=storageos exec storageos-cli-79787d586d-s2w66 -- storageos describe volume pvc-d3662005-0bee-4b62-9a66-59ac65254687 --namespace=default
-
-    ID                  73d3e20a-1d48-472d-b64a-a1dfafceb593
-    Name                pvc-d3662005-0bee-4b62-9a66-59ac65254687
-    Description
-    AttachedOn
-    Attachment Type     detached
-    NFS
-      Service Endpoint
-      Exports:
-    Namespace           default (365ca0d2-4f24-4509-a3bd-7e026b8a7b63)
-    Labels              csi.storage.k8s.io/pv/name=pvc-d3662005-0bee-4b62-9a66-59ac65254687,
-                        csi.storage.k8s.io/pvc/name=pvc-tap-2,
-                        csi.storage.k8s.io/pvc/namespace=default,
-                        storageos.com/nocompress=true,
-                        storageos.com/replicas=2,
-                        storageos.com/topology-aware=true
-    Filesystem          ext4
-    Size                5.0 GiB (5368709120 bytes)
-    Version             Mg
-    Created at          2022-07-22T17:52:54Z (9 minutes ago)
-    Updated at          2022-07-22T17:52:55Z (9 minutes ago)
-
-    Master:
-      ID                11c2f323-e4a5-4864-861b-ed26501abbad
-      Node              aks-storage-70602947-vmss000000 (52619a91-8246-46eb-91dd-d6741739ae0f)
-      Health            online
-      Topology Domain   northeurope-1
-
-    Replicas:
-      ID                d681dfc8-7cce-4bac-a4ce-c3784a79e3bd
-      Node              aks-storage-70602947-vmss000001 (84305a4d-d007-4552-9733-3ce634161124)
-      Health            ready
-      Promotable        true
-      Topology Domain   northeurope-2
-
-      ID                d9d3eb81-aec4-4093-bbee-f85e947e2f79
-      Node              aks-default-53125611-vmss000002 (037dd333-9d68-4684-b40a-e0dcc8a53866)
-      Health            ready
-      Promotable        true
-      Topology Domain   northeurope-3
-    ```
-
-    > 💡  As demonstrated in the output above, notice how the master volume and each replica volume are deployed on a different nodes (`aks-storage-70602947-vmss000000`, `aks-storage-70602947-vmss000001` and `aks-default-53125611-vmss000002` respectively) to ensure data protection and high availability in the event of a transient node failure.
