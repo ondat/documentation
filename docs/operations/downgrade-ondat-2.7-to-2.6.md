@@ -1,52 +1,54 @@
 ---
-title: "Downgrade Ondat from 2.7.0 to 2.6.0"
-linkTitle: Downgrade Ondat from 2.7.0 to 2.6.0
+title: "How To Downgrade Ondat from 'v2.7.0' to 'v2.6.0'"
+linkTitle: "How To Downgrade Ondat from 'v2.7.0' to 'v2.6.0'"
 ---
 
-# Overview
+## Overview
 
-This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
+This guide will walk you through how to downgrade from Ondat `v2.7.0` to `v2.6.0`. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat `v2.7.0`.
+- As part of the `v2.7.0` release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format.
+	- In the past, Ondat supported different container orchestrators, which required Ondat to use an internal UUID reference for these blob files. As Ondat now focuses only Kubernetes distributions (including OpenShift), the Ondat team have removed this abstraction layer and the naming will reflect the Kubernetes objects.
+- As part of any operational upgrade plans, the Ondat team have provided guidance and steps in this document, should you need to roll back in case you experience any issues. 
+- The procedure below has been validated, however it is not a common operation, therefore it is recommended that cluster administrators proactively reach out the Ondat Support Team by [creating a support ticket](/docs/support/) and get assistance from the Customer Success team, as you conduct the downgrade.
 
-As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.
+## Prerequisites
 
-As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case [here](/docs/support/) and work with the customer success team as part of the downgrade process.
+- Ensure that all of your stateful workloads using Ondat volumes are scaled down to zero.
+- While the procedure is safe, it is strongly recommended that a backup of important stateful workloads done before performing the downgrade.
 
-For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.
+## Procedure
 
-# Prerequisites
+###  Step 1 - Uninstall Ondat `v2.7.0` - As If You Are Conducting An Upgrade
 
-> ⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.
+1. Delete the `storageoscluster` Custom Resource.
+1. Delete the Ondat Operator deployment.
+1. Ensure that you do not make any changes to Ondat's etcd cluster.
 
-> ⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.
+### Step 2 - Download & Update the `CLI_TOOL` Variable In The Downgrade Script
 
-> ⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.
+- Download the downgrade script and ensure that the [`CLI_TOOL` variable](https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh#L5-L6) in the downgrade script is using the correct CLI utility for your distribution.
+  - The default value is `kubectl` which is used to interact with Kubernetes distributions. If your cluster is  and OpenShift distribution, ensure that you use `oc` as the CLI utility.
 
-> 💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.
+```bash
+# Download the downgrade script.
+curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
 
-# Procedure
+# edit and apply changes to the CLI_TOOL` according toif necessary.
+vim downgrade-db-2-7-to-2-6.sh
+```
 
-## Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade
+### Step 3 - Run The Downgrade Script Against Your Cluster
 
-1. Delete your storageoscluster CR
-1. Delete your storageos operator deployment
-1. Make sure to leave your Ondat etcd alone
+> 💡 The downgrade script is idempotent, so in the case of interruption it can be safely run multiple times.
 
-## Step 2 - Run our downgrade script
+- Run the downgrade script against your Kubernetes or OpenShift cluster that has Ondat `v2.7.0` installed. The script will create a [Kubernetes daemonset](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) which will downgrade the internal data store on each node where Ondat is running. Once the downgrade is complete, the daemonset will be deleted.
 
-1. Download the following script and edit it to match your cluster's specifications.
+```bash
+# run the downgrade script.
+./downgrade-db-2-7-to-2-6.sh
+```
 
-    ```
-    curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
-    ```
+### Step 4 - Install Ondat `v2.6.0`
 
-1. Run the script below, with your Kubernetes CLI tool's context set to target your cluster:
-
-    ```
-    ./downgrade-db-2-7-to-2-6.sh
-    ```
-
-This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.
-
-## Step 3 - Install Ondat v2.6.0
-
-You will now be able to use Ondat v2.6.0.
+- Once the downgrade has completed, the next step will be to install Ondat v2.6.0 into your OpenShift or Kubernetes cluster.
+	- For guides on how to install Ondat, review the [Install](/docs/install/) documentation.
