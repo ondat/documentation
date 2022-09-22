@@ -6,9 +6,10 @@ linkTitle: "How To Downgrade Ondat from 'v2.7.0' to 'v2.6.0'"
 ## Overview
 
 This guide will walk you through how to downgrade from Ondat `v2.7.0` to `v2.6.0`. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat `v2.7.0`.
+
 - As part of the `v2.7.0` release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format.
-	- In the past, Ondat supported different container orchestrators, which required Ondat to use an internal UUID reference for these blob files. As Ondat now focuses only Kubernetes distributions (including OpenShift), the Ondat team have removed this abstraction layer and the naming will reflect the Kubernetes objects.
-- As part of any operational upgrade plans, the Ondat team have provided guidance and steps in this document, should you need to roll back in case you experience any issues. 
+  - In the past, Ondat supported different container orchestrators, which required Ondat to use an internal UUID reference for these blob files. As Ondat now focuses only Kubernetes distributions (including OpenShift), the Ondat team have removed this abstraction layer and the naming will reflect the Kubernetes objects.
+- As part of any operational upgrade plans, the Ondat team have provided guidance and steps in this document, should you need to roll back in case you experience any issues.
 - The procedure below has been validated, however it is not a common operation, therefore it is recommended that cluster administrators proactively reach out the Ondat Support Team by [creating a support ticket](/docs/support/) and get assistance from the Customer Success team, as you conduct the downgrade.
 
 ## Prerequisites
@@ -18,7 +19,7 @@ This guide will walk you through how to downgrade from Ondat `v2.7.0` to `v2.6.0
 
 ## Procedure
 
-###  Step 1 - Uninstall Ondat `v2.7.0` - As If You Are Conducting An Upgrade
+### Step 1 - Uninstall Ondat `v2.7.0` - As If You Are Conducting An Upgrade
 
 1. Delete the `storageoscluster` Custom Resource.
 1. Delete the Ondat Operator deployment.
@@ -51,4 +52,4 @@ vim downgrade-db-2-7-to-2-6.sh
 ### Step 4 - Install Ondat `v2.6.0`
 
 - Once the downgrade has completed, the next step will be to install Ondat v2.6.0 into your OpenShift or Kubernetes cluster.
-	- For guides on how to install Ondat, review the [Install](/docs/install/) documentation.
+  - For guides on how to install Ondat, review the [Install](/docs/install/) documentation.
