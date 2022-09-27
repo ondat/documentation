@@ -59,3 +59,8 @@ Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.
 - A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the **same** Kubernetes namespace.
 - Ondat RWX volumes support volume resize.
   - For more information on how to resize a volume, review the [Volume Resize](/docs/operations/resize) operations page.
+- As it's backed by an NFS instance, the resource consumption of a RWX volume can grow.
+  - This consumption scales linearly with the volume's throughput.
+  - If given insufficient resources the NFS server's IO can be blocked and it can fail.
+  - The resources in question are the speed of the underlying disk and CPU time of the machine hosting the volume's primary replica.
+  - Our attachments are unlikely to cause any issue outside of NFS. We have happily tested up to 800 consumers for volumes hosted on small hosts, for very low-throughput applications.
