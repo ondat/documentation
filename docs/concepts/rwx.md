@@ -1,6 +1,6 @@
 ---
-title: "Ondat Shared Filesystem"
-linkTitle: "Ondat Shared Filesystem"
+title: "Ondat Shared Filesystems"
+linkTitle: "Ondat Shared Filesystems"
 weight: 1
 ---
 
@@ -8,14 +8,14 @@ weight: 1
 
 > 💡 This feature is available in release `v2.3.0` or greater.
 
-### What Is Ondat Shared Filesystem?
+### What Are Ondat Shared Filesystems?
 
 Ondat provides support for [ReadWriteMany (RWX)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) persistent volumes.
 
 - A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
 - Ondat RWX persistent volumes are based on a [shared filesystem](https://en.wikipedia.org/wiki/Clustered_file_system), the protocol being used for this feature's backend is [Network Files System (NFS)](https://en.wikipedia.org/wiki/Network_File_System).
 
-### Ondat Shared Filesystem Architecture
+### Architecture Of Ondat Shared Filesystems
 
 For each RWX persistent volume, the following components below are required:
 
@@ -43,7 +43,7 @@ The sequence in which a RWX PVC is provisioned and used demonstrated in the step
 1. The *Ondat API Manager* publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.
 1. Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.
 
-For more information on how to get started with Ondat Shared Filesystem, review the [How To Create ReadWriteMany (RWX) Volumes](/docs/operations/rwx) operations page.
+For more information on how to get started with Ondat Shared Filesystems, review the [How To Create ReadWriteMany (RWX) Volumes](/docs/operations/rwx) operations page.
 
 ### High Availability For Ondat Shared Filesystems
 
