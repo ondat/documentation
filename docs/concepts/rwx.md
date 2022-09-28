@@ -1,6 +1,6 @@
 ---
-title: "Ondat Files"
-linkTitle: "Ondat Files"
+title: "Ondat Shared Filesystems"
+linkTitle: "Ondat Shared Filesystems"
 weight: 1
 ---
 
@@ -8,14 +8,14 @@ weight: 1
 
 > 💡 This feature is available in release `v2.3.0` or greater.
 
-### What Is Ondat Files?
+### What Are Ondat Shared Filesystems?
 
 Ondat provides support for [ReadWriteMany (RWX)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) persistent volumes.
 
 - A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
 - Ondat RWX persistent volumes are based on a [shared filesystem](https://en.wikipedia.org/wiki/Clustered_file_system), the protocol being used for this feature's backend is [Network Files System (NFS)](https://en.wikipedia.org/wiki/Network_File_System).
 
-### Ondat Files Architecture
+### Architecture Of Ondat Shared Filesystems
 
 For each RWX persistent volume, the following components below are required:
 
@@ -43,9 +43,9 @@ The sequence in which a RWX PVC is provisioned and used demonstrated in the step
 1. The *Ondat API Manager* publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.
 1. Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.
 
-For more information on how to get started with Ondat Files, review the [ReadWriteMany (RWX)](/docs/operations/rwx) operations page.
+For more information on how to get started with Ondat Shared Filesystems, review the [How To Create ReadWriteMany (RWX) Volumes](/docs/operations/rwx) operations page.
 
-### High Availability For Ondat Files
+### High Availability For Ondat Shared Filesystems
 
 Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.
 
@@ -59,3 +59,8 @@ Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.
 - A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the **same** Kubernetes namespace.
 - Ondat RWX volumes support volume resize.
   - For more information on how to resize a volume, review the [Volume Resize](/docs/operations/resize) operations page.
+- As it's backed by an NFS instance, the resource consumption of a RWX volume can grow.
+  - This consumption scales linearly with the volume's throughput.
+  - If given insufficient resources the NFS server's IO can be blocked and it can fail.
+  - The resources in question are the speed of the underlying disk and CPU time of the machine hosting the volume's primary replica.
+  - Our attachments are unlikely to cause any issue outside of NFS. We have happily tested up to 800 consumers for volumes hosted on small hosts, for very low-throughput applications.
