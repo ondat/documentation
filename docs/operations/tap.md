@@ -56,7 +56,7 @@ add the following labels `storageos.com/topology-aware=true` and
 
     ```yaml
     # Create a "pvc-tap" PVC with TAP, custom topology key label called "custom-region" and "soft" failure mode is enabled.
-    $ kubectl create -f-<<EOF
+    kubectl create -f-<<EOF
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
@@ -82,7 +82,7 @@ custom-region` and `storageos.com/failure-mode: soft` labels have been applied.
 
     ```bash
     # Get the labels applied to the "pvc-tap" PVC.
-    $ kubectl get pvc --show-labels pvc-topology-aware-placement
+    kubectl get pvc --show-labels pvc-topology-aware-placement
     NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   LABELS
     pvc-topology-aware-placement   Bound    pvc-b785737c-fc51-40a7-bf83-c1d660a222a3   5Gi        RWO            storageos      81s   storageos.com/replicas=2,storageos.com/topology-aware=true
     ```
@@ -96,11 +96,11 @@ custom-region` and `storageos.com/failure-mode: soft` labels have been applied.
     >
     > - `2` replicas). Because of the use of the soft failure-mode, the volume
     > could operate with 2 nodes while waiting to be able to place a new
-    > replica, eventaully.
+    > replica, eventually.
 
     ```bash
-    $ PV=pvc-b785737c-fc51-40a7-bf83-c1d660a222a3
-    $ kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
+    PV=pvc-b785737c-fc51-40a7-bf83-c1d660a222a3
+    kubectl describe volume $PV # volume[s] = volumes.api.storageos.com
     ...
     Spec:
       Config Labels:
@@ -139,7 +139,7 @@ custom-region` and `storageos.com/failure-mode: soft` labels have been applied.
     ...
     ```
 
-    > 💡As demonstrated in the output above, notice how the primary volume and
+    > 💡As demonstrated in the output above, note how the primary volume and
     > each replica volume are deployed on different nodes belonging to
     > different failure domains.
 
@@ -175,12 +175,12 @@ Placement through a `StorageClass` definition.
     topology.kubernetes.io/zone=northeurope-2
     ```
 
-1. Create a custom `StorageClass`, named `ondat-tap` and check that it has been
+1. Create a custom `StorageClass` named `ondat-tap` and check that it has been
 successfully created.
 
     ```yaml
     # Create the "ondat-tap" StorageClass.
-    $ kubectl create -f-<<EOF
+    kubectl create -f-<<EOF
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
     metadata:
@@ -206,7 +206,7 @@ successfully created.
 
     ```yaml
     # Create a "pvc-tap-2" PVC that uses the "ondat-tap" StorageClass.
-    $ kubectl create -f-<<EOF
+    kubectl create -f-<<EOF
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
