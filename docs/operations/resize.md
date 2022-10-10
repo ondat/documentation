@@ -13,10 +13,11 @@ information on how the resize works, see our [Resize Concepts](/docs/concepts/vo
 
 ### Before Resizing a Volume
 
-Before resizing a volume, ensure that the licence you have supports the storage 
+Before resizing a volume, ensure that the licence you have supports the storage
 size that will be requested as storage request sizes cannot be lowered.
 
 ### Resizing a Volume - Online
+
 From Ondat v2.9.0 online volume resizing is supported for xfs and ext4 filesystems.
 In order to resize a PVC the storage request field must be updated.
 
@@ -33,7 +34,6 @@ spec:
     requests:
       storage: 5Gi
 ```
-
 
 In order to edit a PVC you can use `kubectl edit` or `kubectl apply` to make
 changes.

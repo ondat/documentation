@@ -40,12 +40,14 @@ To ensure deterministic performance, individual Ondat volumes must fit on a sing
 Ondat supports online and offline resizing of volumes.
 
 Offline:
+
 - This means that a volume cannot be resized while it is in use. Furthermore, in order for a resize operation to take place the volume must not be attached to a node. This is to ensure that the volume is not in use.
 - This means that if a Kubernetes pod is currently consuming a volume that a resize request has been issued for, the resize will not be actioned until the pod is terminated and the volume is detached from the node.
 - The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) to expand the filesystem.
 
 Online:
 > This feature is available in release `v2.9.0` or greater.
+
 - This means that volumes can be resized when in use or when not in use.
 - The Ondat Control Plane will resize the underlying block device and run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) to expand the filesystem whilst allowing the volume to continue to be used.
 
