@@ -43,13 +43,13 @@ Offline:
 
 - This means that a volume cannot be resized while it is in use. Furthermore, in order for a resize operation to take place the volume must not be attached to a node. This is to ensure that the volume is not in use.
 - This means that if a Kubernetes pod is currently consuming a volume that a resize request has been issued for, the resize will not be actioned until the pod is terminated and the volume is detached from the node.
-- The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) to expand the filesystem.
+- The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) or [xfs_growfs](https://man7.org/linux/man-pages/man8/xfs_growfs.8.html), on Ext4 and XFS respectively, to expand the filesystem.
 
 Online:
 > This feature is available in release `v2.9.0` or greater.
 
 - This means that volumes can be resized when in use or when not in use.
-- The Ondat Control Plane will resize the underlying block device and run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) to expand the filesystem whilst allowing the volume to continue to be used.
+- The Ondat Control Plane will resize the underlying block device and run [resize2fs](https://man7.org/linux/man-pages/man8/resize2fs.8.html) or [xfs_growfs](https://man7.org/linux/man-pages/man8/xfs_growfs.8.html), on Ext4 and XFS respectively, to expand the filesystem whilst allowing the volume to continue to be used.
 
 For more information on how to resize a volume, review the [Volume Resize](/docs/operations/resize) operations page.
 
