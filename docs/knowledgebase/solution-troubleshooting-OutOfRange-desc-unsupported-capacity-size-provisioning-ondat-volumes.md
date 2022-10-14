@@ -78,7 +78,7 @@ Ondat conforms to using the default kernel block size -- `1024` bytes as compare
 
 To resolve this issue, end users can either;
 
-- **Option 1 - Upgrade Ondat to release `v2.8.0` or greater**.
+- **Option 1 - Upgrade Ondat to release `v2.8.2` or greater**.
   - If users would like to continue to use powers of 10 storage sizing units, ensure that you Ondat cluster is on version `v2.8.0` or greater.
 - **Option 2 - Change you manifests to use powers of 2  storage sizing units**.
   - Users can modify their manifests to use `Ei, Pi, Ti, Gi, Mi, Ki` storage sizing units to allow for volumes to be successfully provisioned.
