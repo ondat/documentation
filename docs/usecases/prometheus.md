@@ -89,7 +89,7 @@ storage.
    to start scraping metrics from the storageos-etcd pods. Assuming the
    storageos cluster was setup using ETCD as pods. For more information about
    service monitors, have a look at the upstream
-   [documentation](https://coreos.com/operators/prometheus/docs/latest/user-guides/getting-started.html).
+   [documentation](https://prometheus-operator.dev/docs/user-guides/getting-started/).
 
     ```bash
     $ kubectl get servicemonitor                       
