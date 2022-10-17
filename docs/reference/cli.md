@@ -21,7 +21,7 @@ weight: 1
 
 ```bash
 # Create the deployment for the Ondat CLI.
-cat <<EOF | kubectl create --filename -
+kubectl create --filename -<<EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -43,32 +43,40 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - command:
-        - /bin/sh
-        - -c
-        - while true; do sleep 3600; done
-        env:
-        - name: STORAGEOS_USERNAME
-          value: storageos
-        - name: STORAGEOS_PASSWORD
-          value: storageos
-        - name: STORAGEOS_ENDPOINTS
-          value: storageos:5705
-        image: storageos/cli:v2.8.1
-        imagePullPolicy: Always
-        name: cli
-        ports:
-        - containerPort: 5705
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 50m
-            memory: 32Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+        - command:
+            - /bin/sh
+            - -c
+            - while true; do sleep 3600; done
+          env:
+            - name: STORAGEOS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: storageos-api
+                  key: username
+                  optional: false
+            - name: STORAGEOS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: storageos-api
+                  key: password
+                  optional: false
+            - name: STORAGEOS_ENDPOINTS
+              value: storageos:5705
+          image: storageos/cli:v2.8.3
+          imagePullPolicy: Always
+          name: cli
+          ports:
+            - containerPort: 5705
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 32Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
 EOF
 ```
 
@@ -110,7 +118,7 @@ export STORAGEOS_ENDPOINTS="storageos.storageos.svc:5705"
 
 ```bash
 curl --silent --show-error --location --output storageos \
-  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_linux_amd64 \
+  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_linux_amd64 \
   && chmod +x storageos \
   && sudo mv storageos /usr/local/bin/ \
   && echo "CLI version installed:" \
@@ -121,7 +129,7 @@ curl --silent --show-error --location --output storageos \
 
 ```bash
 curl --silent --show-error --location --output storageos \
-  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_darwin_amd64 \
+  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_darwin_amd64 \
   && chmod +x storageos \
   && sudo mv storageos /usr/local/bin/ \
   && echo "CLI version installed:" \
@@ -132,7 +140,7 @@ curl --silent --show-error --location --output storageos \
 
 ```bash
 # PowerShell
-Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_windows_amd64.exe -OutFile storageos.exe `
+Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_windows_amd64.exe -OutFile storageos.exe `
   ; Write-Host "Plugin version installed:" `
   ; .\storageos.exe version
 ```
