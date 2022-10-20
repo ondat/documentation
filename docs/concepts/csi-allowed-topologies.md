@@ -31,6 +31,7 @@ fault-tolerance.
 Where T is the set of allowed topologies, D is the set of volume deployments
 (primary & replicas) and |T| and |D| are the sizes of those respective sets,
 Ondat's provisioning behaviour is this:
+
 - When |T|>|D| - All deployments are created on nodes within |D| unique topologies within T.
 - When |T|=|D| - All topologies in T contain exactly one deployment.
 - When |T|<|D| - All topologies in T contain at least one deployment.
@@ -50,7 +51,7 @@ operations page.
 
 ## Useful links
 
- - The CSI spec's definition of the Topology Requirement feature: https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc
- - Docs on Kubernetes' CSI's implementation of the CSI Topology Requirement feature: https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment
-   - Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.
- - The description of the `topology.kubernetes.io/zone` label, with information on how it's set by cloud providers: https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone
+- The CSI spec's definition of the Topology Requirement feature: <https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc>
+- Docs on Kubernetes' CSI's implementation of the CSI Topology Requirement feature: <https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment>
+  - Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.
+- The description of the `topology.kubernetes.io/zone` label, with information on how it's set by cloud providers: <https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone>

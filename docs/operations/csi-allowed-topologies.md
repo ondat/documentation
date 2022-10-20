@@ -25,6 +25,7 @@ check your cloud provider's behaviour before making changes outside of testing
 environments.
 
 ### Usage Notes
+
 - This feature is mutually exclusive with Ondat's
   [Topology-Aware-Provisioning](/docs/operations/tap) feature. A volume
   specifying both labels will fail to provision.
@@ -116,7 +117,6 @@ StorageClass and the Allowed Topologies feature.
     NAME                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE    VOLUMEMODE   LABELS
     allowed-topologies-pvc   Bound    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a   5Gi        RWO            ondat-allowed-topologies   107s   Filesystem   storageos.com/fixed-topology=true,storageos.com/replicas=1
     ```
-
 
 1. To confirm that Ondat has successfully provisioned volume deployments in the right topologies (the two zones specified in the StorageClass) deploy and run the [Ondat CLI utility as a deployment](https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster) first, so that you can interact and manage Ondat through `kubectl`.
 
