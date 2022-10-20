@@ -62,7 +62,7 @@ spec:
                   optional: false
             - name: STORAGEOS_ENDPOINTS
               value: storageos:5705
-          image: storageos/cli:v2.8.3
+          image: storageos/cli:v2.9.0
           imagePullPolicy: Always
           name: cli
           ports:
@@ -118,7 +118,7 @@ export STORAGEOS_ENDPOINTS="storageos.storageos.svc:5705"
 
 ```bash
 curl --silent --show-error --location --output storageos \
-  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_linux_amd64 \
+  https://github.com/storageos/go-cli/releases/download/v2.9.0/storageos_linux_amd64 \
   && chmod +x storageos \
   && sudo mv storageos /usr/local/bin/ \
   && echo "CLI version installed:" \
@@ -129,7 +129,7 @@ curl --silent --show-error --location --output storageos \
 
 ```bash
 curl --silent --show-error --location --output storageos \
-  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_darwin_amd64 \
+  https://github.com/storageos/go-cli/releases/download/v2.9.0/storageos_darwin_amd64 \
   && chmod +x storageos \
   && sudo mv storageos /usr/local/bin/ \
   && echo "CLI version installed:" \
@@ -140,7 +140,7 @@ curl --silent --show-error --location --output storageos \
 
 ```bash
 # PowerShell
-Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_windows_amd64.exe -OutFile storageos.exe `
+Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.9.0/storageos_windows_amd64.exe -OutFile storageos.exe `
   ; Write-Host "Plugin version installed:" `
   ; .\storageos.exe version
 ```
