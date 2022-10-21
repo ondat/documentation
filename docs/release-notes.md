@@ -22,14 +22,17 @@ The latest CLI release is `2.9.0`, available from
 ### New
 
 Storage Pools
+
 * Target applications to particular backend storage
 * Read more on our [feature page](docs/concepts/pooling)
 
 Online Volume Resize
+
 * Increase the capacity of your volumes, without the need for downtime.
 * Read more on our [feature page](docs/concepts/volumes/#ondat-volume-resizing)
 
 CSI Allowed Topologies
+
 * Ensure your data's located in specified locations
 * Implementation of the CSI spec's functionality
 * Read more on our [feature page](docs/concepts/csi-allowed-topologies)
@@ -37,6 +40,7 @@ CSI Allowed Topologies
 ### Fixed
 
 Data Plane
+
 * Improved logging
 * Increase a device command timeout
 * Removed the possiblity for a race condition when resizing
@@ -833,4 +837,3 @@ Blog](https://storageos.com/storageos-2-0-release-blog) for details.
 ## Upgrading to v2
 
 To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
-
