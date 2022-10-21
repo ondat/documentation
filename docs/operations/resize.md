@@ -18,7 +18,7 @@ size that will be requested as storage request sizes cannot be lowered.
 
 ### Resizing a Volume - Online
 
-From Ondat v2.9.0 online volume resizing is supported for XFS and Ext4 filesystems.
+From Ondat v2.9.0 online volume resizing is supported for XFS and ext4 filesystems.
 In order to resize a PVC the storage request field must be updated.
 
 ```
