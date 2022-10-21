@@ -1,6 +1,6 @@
 ---
-title: "CSI Allowed Topologies"
-linkTitle: "CSI Allowed Topologies"
+title: "Ondat CSI Allowed Topologies"
+linkTitle: "Ondat CSI Allowed Topologies"
 weight: 1
 ---
 ## Overview
