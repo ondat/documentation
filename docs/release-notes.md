@@ -9,16 +9,41 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.8.3`. For
+The latest tagged release is `2.9.0`. For
 installation instructions see our
 [Install](/docs/install/) page.
 
-The latest CLI release is `2.8.3`, available from
-[GitHub](https://github.com/storageos/go-cli/releases).
+The latest CLI release is `2.9.0`, available from
+[GitHub](https://github.com/storageos/go-cli/releases) or containerised from
+[DockerHub](https://hub.docker.com/r/storageos/cli).
 
-# Upgrading
+## 2.9.0 - Release 2022-10-21
 
-To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
+### New
+
+Storage Pools
+
+* Target applications to particular backend storage
+* Read more on our [feature page](docs/concepts/pooling)
+
+Online Volume Resize
+
+* Increase the capacity of your volumes, without the need for downtime.
+* Read more on our [feature page](docs/concepts/volumes/#ondat-volume-resizing)
+
+CSI Allowed Topologies
+
+* Ensure your data's located in specified locations
+* Implementation of the CSI spec's functionality
+* Read more on our [feature page](docs/concepts/csi-allowed-topologies)
+
+### Fixed
+
+Data Plane
+
+* Improved logging
+* Increase a device command timeout
+* Removed the possiblity for a race condition when resizing
 
 ## 2.8.3 - Release 2022-09-14
 
@@ -800,20 +825,15 @@ channel](https://storageos.slack.com).
 
 ### Fixed
 
-<<<<<<< HEAD
-
 * ui: centre licence types.
-* ui: capacity in ui is per namespace.
 * cli: fail gracefully if missing some output details (i.e. no node exists for ID).
-=======
-
-* ui: centre licence types.
 * ui: capacity in ui is per namespace.
-* cli: fail gracefully if missing some output details (i.e. no node exists for ID).
-
->>>>>>> main
 
 ## v2.0.0-rc.1 - Released 2020-03-31
 
 Initial release of version 2.x. See [Ondat v2.0 Release
 Blog](https://storageos.com/storageos-2-0-release-blog) for details.
+
+## Upgrading to v2
+
+To upgrade from version 1.x to 2.x, contact Ondat [support](/docs/support) for assistance.
