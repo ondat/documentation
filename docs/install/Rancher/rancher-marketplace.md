@@ -65,7 +65,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 #### Step 2 - Locate Ondat Operator Helm Chart
 
 1. In the Rancher UI, under the RKE cluster where Ondat will be deployed - select the **Menu** button in the top-left corner of the page and then select **Apps & Marketplace**.
-1. Under **Apps & Marketplace**, a **Charts** page will be displayed where you can locate the [Ondat Operator Helm chart](https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator) by searching for "**Ondat**" in the search filter box.
+1. Under **Apps & Marketplace**, a **Charts** page will be displayed where you can locate the [Ondat Operator Helm chart](https://github.com/rancher/partner-charts/tree/main-source/charts/ondat-operator/ondat-operator) by searching for "**Ondat**" in the search filter box.
 1. Once you have located the Ondat Operator Helm chart, select the chart. This will direct you to a page showing you more information about the Ondat Operator and how to install it.
 1. Select the **Install** button.
 

@@ -24,18 +24,18 @@ The latest CLI release is `2.9.0`, available from
 Storage Pools
 
 * Target applications to particular backend storage
-* Read more on our [feature page](docs/concepts/pooling)
+* Read more on our [feature page](/docs/concepts/pooling)
 
 Online Volume Resize
 
 * Increase the capacity of your volumes, without the need for downtime.
-* Read more on our [feature page](docs/concepts/volumes/#ondat-volume-resizing)
+* Read more on our [feature page](/docs/concepts/volumes/#ondat-volume-resizing)
 
 CSI Allowed Topologies
 
 * Ensure your data's located in specified locations
 * Implementation of the CSI spec's functionality
-* Read more on our [feature page](docs/concepts/csi-allowed-topologies)
+* Read more on our [feature page](/docs/concepts/csi-allowed-topologies)
 
 ### Fixed
 
