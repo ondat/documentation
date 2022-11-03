@@ -35,7 +35,7 @@ backup program for filesystems whose documentation can be found
 [here](https://restic.readthedocs.io/en/latest/100_references.html). The way it
 works is that it scans the volume directory for its files and then splits those
 files into blobs which are then sent to MinIO.
-[Here's](https://Velero.io/docs/main/restic/) how it integrates with Velero.
+[Here's](https://velero.io/docs/v1.9/restic/) how it integrates with Velero.
 
 ## Prerequisites
 
