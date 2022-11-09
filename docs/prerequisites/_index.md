@@ -14,7 +14,7 @@ One machine with the following:
 
 * Minimum two core with 4GB RAM
 * Linux with a 64-bit architecture
-* Kubernetes 1.19 - 1.23
+* Kubernetes 1.20+ with an N-4 release support where N is the current k8s release.
 * Container Runtime Engine: CRI-O, Containerd or Docker 1.10+ with [mount propagation](/docs/prerequisites/mountpropagation) enabled
 * The necessary ports should be open. See the [ports and firewall settings](/docs/prerequisites/firewalls)
 * [Etcd cluster](/docs/prerequisites/etcd) for Ondat
