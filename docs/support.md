@@ -13,7 +13,7 @@ It is important to select the priority of your ticket in accordance with the sev
 
 Responses to tickets will be cc'd via email.
 
-For personal support and general enquiries, join our [public Slack channel](https://slack.storageos.com).
+For personal support and general enquiries, join our [public Slack channel](https://slack.ondat.com).
 
 ## Information to include in tickets
 
