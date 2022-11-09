@@ -268,7 +268,9 @@ Below is a quick summary of the procedure that will be covered in this guide:
           RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
           RELATED_IMAGE_NODE_GUARD: $PRIVATE_REGISTRY_URL/node-guard:v0.0.4
         ```
-    1. Add an entry for the scheduler to the `storageos-related-images` `ConfigMap` YAML. *NOTE* there is no existing environment variable in the `RELATED_IMAGE_` section for this image as this image is dependent on the currenly installed kubernetes version and distribition. The Ondat scheduler uses existing scheduler image and adds some additional configuration. 
+
+    1. Add an entry for the scheduler to the `storageos-related-images` `ConfigMap` YAML. *NOTE* there is no existing environment variable in the `RELATED_IMAGE_` section for this image as this image is dependent on the currenly installed kubernetes version and distribition. The Ondat scheduler uses existing scheduler image and adds some additional configuration.
+
         ```yaml
         # After addition of Registry Line
         kind: ConfigMap
