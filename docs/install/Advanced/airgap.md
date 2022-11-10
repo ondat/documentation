@@ -269,6 +269,27 @@ Below is a quick summary of the procedure that will be covered in this guide:
           RELATED_IMAGE_NODE_GUARD: $PRIVATE_REGISTRY_URL/node-guard:v0.0.4
         ```
 
+    1. Add an entry for the scheduler to the `storageos-related-images` `ConfigMap` YAML. *NOTE* there is no existing environment variable in the `RELATED_IMAGE_` section for this image as this image is dependent on the currenly installed kubernetes version and distribition. The Ondat scheduler uses existing scheduler image and adds some additional configuration.
+
+        ```yaml
+        # After addition of Registry Line
+        kind: ConfigMap
+        data:
+        # Exampe for a scheduler string would be registry.k8s.io/kube-scheduler:v1.25.0
+          RELATED_IMAGE_KUBE_SCHEDULER: $PRIVATE_REGISTRY_URL/scheduler:version
+          RELATED_IMAGE_API_MANAGER: $PRIVATE_REGISTRY_URL/api-manager:v1.2.9
+          RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3: $PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0
+          RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER: $PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched
+          RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER: $PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0
+          RELATED_IMAGE_CSIV1_LIVENESS_PROBE: $PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0
+          RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR: $PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0
+          RELATED_IMAGE_NODE_MANAGER: $PRIVATE_REGISTRY_URL/node-manager:v0.0.6
+          RELATED_IMAGE_PORTAL_MANAGER: $PRIVATE_REGISTRY_URL/portal-manager:v1.0.2
+          RELATED_IMAGE_STORAGEOS_INIT: $PRIVATE_REGISTRY_URL/init:v2.1.2
+          RELATED_IMAGE_STORAGEOS_NODE: $PRIVATE_REGISTRY_URL/node:v2.7.0
+          RELATED_IMAGE_NODE_GUARD: $PRIVATE_REGISTRY_URL/node-guard:v0.0.4
+          ```
+
  1. **`storageos-cluster`**
 
 > 💡 **Optional** - For users who are looking to make further customisations to their `StorageOSCluster` custom resource in the `1-storageos-cluster.yaml` manifest, review the [Operator Configuration](https://docs.ondat.io/docs/reference/operator/configuration) and [Operator Examples](https://docs.ondat.io/docs/reference/operator/examples) reference pages for more information.
