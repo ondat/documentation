@@ -62,7 +62,7 @@ modern distributions:
 
 ```
 curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.2/kubectl-storageos_1.3.2_linux_amd64.tar.gz \
     && tar -xf kubectl-storageos.tar.gz \
     && chmod +x kubectl-storageos \
     && sudo mv kubectl-storageos /usr/local/bin/ \
@@ -94,8 +94,10 @@ kubectl storageos install  \
     --etcd-namespace storageos \
     --etcd-storage-class local-path \
     --admin-username storageos \
+    --etcd-replicas=3 \
     --admin-password storageos
 ```
+> 💡 We have set the etcd-replicas to 3 in the example above assuming a cluster with 3 worker nodes. You can set the replicas as low as 1 for single node evaluations for edge deployments for example, although remember a single etcd cluster does not provide any resilience.
 
 ### Verify Ondat installation
 
@@ -157,7 +159,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.8.2
+        image: storageos/cli:v2.9.0
         name: cli
 END
 ```
