@@ -19,7 +19,7 @@ The minimum cluster requirements for a **non-production installation** of Ondat 
 * Linux with a 64-bit architecture.
 * 2 vCPU and 4GB of RAM per node.
 * 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
-* Ondat works with Ubuntu, Bottlerocket or Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above) Linux distributions. 
+* Ondat works with Ubuntu, Bottlerocket or Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above) Linux distributions.
 * For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules, see [System Configuration](/docs/prerequisites/systemconfiguration/).
 
 For a comprehensive list of prerequisites and how to build a **production installation** of Ondat please refer to [Ondat Prerequisites](https://docs.ondat.io/docs/prerequisites/)
