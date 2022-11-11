@@ -97,6 +97,7 @@ kubectl storageos install  \
     --etcd-replicas=3 \
     --admin-password storageos
 ```
+
 > 💡 We have set the etcd-replicas to 3 in the example above assuming a cluster with 3 worker nodes. You can set the replicas as low as 1 for single node evaluations for edge deployments for example, although remember a single etcd cluster does not provide any resilience.
 
 ### Verify Ondat installation
