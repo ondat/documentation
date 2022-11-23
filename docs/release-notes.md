@@ -19,7 +19,7 @@ The latest CLI release is `2.9.1`, available from
 
 ## 2.9.1 - Release 2022-11-23
 
-This release improves stability and reduces resource consumption when creating many volumes at once. 
+This release improves stability and reduces resource consumption when creating many volumes at once.
 
 ### New
 
@@ -31,11 +31,10 @@ This release improves stability and reduces resource consumption when creating m
 * CSI Provisioner’s timeout now defaults to 30s (was 10s, which occasionally caused issues when creating many volumes at once)
 * Dataplane no longer unnecessarily serialises concurrent device creation. This helps when creating multiple volumes in parallel under certain scenarios.
 
-
 ### Fixed
 
 * Significantly reduce the CPU usage when creating volumes
-    - This fixes an issue where creating many volumes at once could cause small clusters to become unstable 
+  * This fixes an issue where creating many volumes at once could cause small clusters to become unstable
 * Placement service logs will now be output correctly to stdout
 * Remove arbitrary max presentations per node limit (it was 250)
 * No longer discard blocks when running mkfs for XFS
@@ -43,7 +42,6 @@ This release improves stability and reduces resource consumption when creating m
 * Recover gracefully rather than failing to start if we encounter a half initialised deployment column family
 * Faster recovery if the dataplane is uncleanly shutdown whilst configuring a SCSI device
 * No longer fail SCSI device creation immediately if sysfs is being slow
-
 
 ## 2.9.0 - Release 2022-10-21
 
