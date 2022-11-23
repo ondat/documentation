@@ -24,7 +24,8 @@ This release improves stability and reduces resource consumption when creating m
 ### New
 
 * Allow dataplane startup timeout to be configured
-* Increase control plane's default max log size to 25MiB and enable log compression
+* Increase control plane's default max log size to 25MiB (was 10 MiB) and enable log compression
+  * This means the maximum size of logs on a node will be 250 MiB (likely less due to compression), as up to 10 log files are retained before rollover
 * CSI helper timeouts can now be configured via the StorageosCluster CRD
 * CSI Provisioner’s number of worker threads can now be configured via the StorageosCluster CRD
 * CSI Provisioner’s number of worker threads now defaults to 32 (was 100, which caused issues when creating many volumes at once)
@@ -34,7 +35,6 @@ This release improves stability and reduces resource consumption when creating m
 ### Fixed
 
 * Significantly reduce the CPU usage when creating volumes
-  * This fixes an issue where creating many volumes at once could cause small clusters to become unstable
 * Placement service logs will now be output correctly to stdout
 * Remove arbitrary max presentations per node limit (it was 250)
 * No longer discard blocks when running mkfs for XFS
