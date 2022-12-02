@@ -6,7 +6,7 @@ linkTitle: Volume Resize
 
 Ondat supports both online (version >= v2.9.0) and offline resizing of volumes,
 either through editing a PVC storage request, or by updating the volume config
-via the CLI or UI.
+via the CLI or UI.  Online resizing is not supported for RWX volumes.
 
 Note, that Ondat only supports increasing volume size. For more
 information on how the resize works, see our [Resize Concepts](/docs/concepts/volumes#volume-resize) page.
