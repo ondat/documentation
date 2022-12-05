@@ -13,7 +13,7 @@ The `main` branch is the *latest* version of the documentation and is automatica
 Feel free to contribute! We love feedback and interaction with the Community ;)
 
 The below how-to assumes a general knowledge of Git and GitHub or similar services.
-If you are new to Git and GitHub, refer to the introduction [here](https://lab.github.com/githubtraining/introduction-to-github).
+If you are new to Git and GitHub, refer to the introduction [here](https://github.com/skills/introduction-to-github).
 
 ## How-to
 
