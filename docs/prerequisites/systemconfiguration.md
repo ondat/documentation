@@ -16,10 +16,10 @@ Current (non-EOL) versions of the following distributions are supported by defau
 * Debian
 * Ubuntu
 * Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above)
+* Bottlerocket (currently doesn't support [Snapshots](/docs/concepts/snapshots/))
 
 The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:
 
-* Bottlerocket
 * Google ContainerOS
 
 > 💡 If you require help with a specific issue with a listed distribution, [raise an issue on GitHub](https://github.com/ondat/documentation/issues) or reach out to us on our [Community Slack](https://slack.storageos.com)
