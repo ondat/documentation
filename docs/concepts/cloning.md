@@ -14,7 +14,7 @@ The Ondat Cloning feature adds support for specifying existing PVCs in the dataS
 
 A **clone** is defined as a duplicate of an existing Kubernetes Volume that can be consumed as any standard Volume would be.
 
-### Why use Cloning:
+### Why use Cloning
 
 TODO.
 
