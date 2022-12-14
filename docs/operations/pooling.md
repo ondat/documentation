@@ -48,7 +48,7 @@ spec:
   allowVolumeExpansion: true
   parameters:
     csi.storage.k8s.io/fstype: ext4
-    storageos.com/replicas: 1
+    storageos.com/replicas: "1"
 ```
 
 Above defines a storage pool that has 4 drives total, 2 on worker-1 (mounted to `/var/lib/storageos/nvme1` and `/var/lib/storageos/nvme2` respectively), 1 on worker-2 (mounted to `/var/lib/storageos/really-fast-nvme`) and 1 on worker-3 (mounted to `/var/lib/storageos/data/dev1`).
