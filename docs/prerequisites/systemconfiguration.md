@@ -4,7 +4,7 @@ linkTitle: System Configuration
 weight: 100
 ---
 
-Ondat requires certain standard kernel modules to function. In particular it requires [Linux-IO](http://linux-iscsi.org/wiki/Main_Page), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
+Ondat requires certain standard kernel modules to function. In particular it requires [Linux-IO (LIO)](https://en.wikipedia.org/wiki/LIO_(SCSI_target)), an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
 
 ## Supported Distributions
 
@@ -34,7 +34,7 @@ We require the following modules to be loaded:
 * `target_core_user`
 * `uio`
 
-> ⚠️ Other applications utilising [TCMU](http://linux-iscsi.org/wiki/LIO) cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.
+> ⚠️ Other applications utilising [TCMU]([https://docs.kernel.org/target/tcmu-design.html) cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.
 
 In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately.
 
