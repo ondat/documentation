@@ -15,6 +15,7 @@ This guide will demonstrate how to install Ondat onto a [OpenShift Container Pla
 ### 1 - Cluster & Node Prerequisites
 
 The minimum cluster requirements for a **non-production installation** of ondat are as follows:
+
 - Linux with a 64-bit architecture.
 - 2 vCPU and 4GB of RAM per node.
 - 3 worker nodes in the cluster and sufficient [Role-Based Access Control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) permissions to deploy and manage applications in the cluster.
@@ -26,9 +27,11 @@ For a comprehensive list of prerequisites and how to build a **production instal
 ### 2 - Client Tools Prerequisites
 
 The following CLI utilities are installed on your local machine and available in your `$PATH`:
+
 - [oc](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
 
 Ondat can be installed either via Helm Chart or using our command-line tool.  Depending on which installation method you choose you will require either:
+
 - [Ondat oc-storageos CLI](/docs/reference/kubectl-plugin/)
 - [Helm 3 CLI](https://helm.sh/docs/intro/install/)
 
@@ -37,6 +40,7 @@ Ondat can be installed either via Helm Chart or using our command-line tool.  De
 ### Step 1 - Adding a Cluster
 
 The Ondat Portal is how you can license and get the commands for installing Ondat.
+
 - Either login or create an account on the [Ondat Portal](https://portal.ondat.io/).
 - Choose the 'Install Ondat on your cluster' or 'Add cluster' options in the UI.
 - Add a Name for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.
