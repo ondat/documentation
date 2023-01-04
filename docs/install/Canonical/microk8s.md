@@ -89,4 +89,3 @@ To licence your cluster with the Community edition:
 1. In the following pop-up select the "**Community Licence**" option then click "**Generate**".
 
 This process generates a licence and installs it for you. Now you are good to go!
-
