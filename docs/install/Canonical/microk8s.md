@@ -49,9 +49,9 @@ microk8s enable ondat
 ```
 
 - For Ondat to be successfully deployed onto a MicroK8s cluster, the following [Core add-ons](https://microk8s.io/docs/addon-dns) should be available:
-	- [`dns`](https://microk8s.io/docs/addon-dns) - [CoreDNS](https://coredns.io/) to provide address resolution services and service discovery in your MicroK8s cluster.
-    - [`hostpath-storage`](https://microk8s.io/docs/addon-hostpath-storage) - Host storage for Ondat’s `etcd` cluster.
-    - [`helm3`](https://helm.sh/) - Helm 3 package manager for Kubernetes to deploy the Ondat Helm chart.
+  - [`dns`](https://microk8s.io/docs/addon-dns) - [CoreDNS](https://coredns.io/) to provide address resolution services and service discovery in your MicroK8s cluster.
+  - [`hostpath-storage`](https://microk8s.io/docs/addon-hostpath-storage) - Host storage for Ondat’s `etcd` cluster.
+  - [`helm3`](https://helm.sh/) - Helm 3 package manager for Kubernetes to deploy the Ondat Helm chart.
 
 > 💡 The Ondat add-on will automatically check and deploy the required core add-ons if they are not already installed in the MicroK8s cluster.
 
@@ -70,7 +70,7 @@ Once all the components are up and running, the output should look like this:
 
 ### Step 5 - Applying a Licence to the Cluster
 
-Once you have confirmed that your deployment was successful, the next step will be to [get your free Community edition licence](https://www.ondat.io/pricing) by signing up and registering your cluster through the Ondat Portal. 
+Once you have confirmed that your deployment was successful, the next step will be to [get your free Community edition licence](https://www.ondat.io/pricing) by signing up and registering your cluster through the Ondat Portal.
 
 > 💡 Newly installed Ondat clusters must be licensed within 24 hours.
 
@@ -80,7 +80,7 @@ To register your cluster:
 - Choose the "**Install Ondat on your cluster**" or "**Add cluster**" options in the UI.
 - Add a **Name** for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.
 - After selecting "**Next**", you will be provided with 2 options, namely "**New Installation**" and "**Existing Installation**".
-	- Select the "**Existing Installation**" option, then copy and paste the Helm commands into your terminal and run them against your MicroK8s cluster, which already has an existing Ondat installation.
+  - Select the "**Existing Installation**" option, then copy and paste the Helm commands into your terminal and run them against your MicroK8s cluster, which already has an existing Ondat installation.
 
 To licence your cluster with the Community edition:
 
