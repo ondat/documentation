@@ -1,7 +1,7 @@
 ---
 title: "GCP"
 linkTitle: "GCP"
-weight: 20
+weight: 10
 description: >
   Ondat deployment guides for Google Cloud Platform (GCP).
 ---
