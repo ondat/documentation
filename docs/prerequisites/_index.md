@@ -1,12 +1,19 @@
 ---
 title: "Prerequisites"
-linkTitle: Prerequisites
+linkTitle: "Prerequisites"
 weight: 300
 description: >
-  Ondat requirements to be executed. Hardware, Network rules, Operative System Distribution, Kernel modules, etc.
+  Key prerequisites and system requirements to deploy Ondat.
 ---
 
-# Prerequisites for using Ondat
+## Overview
+
+- This page provides information on the requirements that are required to successfully run Ondat on your container orchestrator. Ensure that you have met the requirements before attempting to do an Ondat deployment.
+
+
+
+
+
 
 ## Minimum requirements
 
