@@ -1,7 +1,7 @@
 ---
 title: "DigitalOcean"
 linkTitle: "DigitalOcean"
-weight: 60
+weight: 10
 description: >
   Ondat deployment guides for DigitalOcean (DO).
 ---
