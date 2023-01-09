@@ -1,7 +1,7 @@
 ---
 title: "Azure"
 linkTitle: "Azure"
-weight: 40
+weight: 10
 description: >
   Ondat deployment guides for Microsoft Azure.
 ---
