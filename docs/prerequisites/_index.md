@@ -20,7 +20,7 @@ description: >
 
 | **Minimum** | **Recommended** |
 | ----------- | --------------- |
-| `3`         | `5 or more`     |
+| `3`         | `5` or greater  |
 
 - Each worker node in cluster where Ondat will be deployed, should meet the following hardware requirements:
 
@@ -49,6 +49,18 @@ description: >
 | `4.x.x`            | `4096`                                                |
 | `5.x.x`            | `4096`                                                |
 | `6.x.x`            | `4096`                                                |
+
+### Linux Asynchronous I/O (AIO)
+
+- When the Ondat Data plane component is operational, Ondat leverages [Linux Asynchronous I/O (AIO)](https://developer.ibm.com/articles/l-async/) contexts to initiate a number of I/O requests without having to block or wait for any to complete to process the next task - thus allowing you to boost performance for applications that are able to simultaneously overlap processing and I/O.
+- The Linux kernel uses the [`/proc/sys/fs/aio-max-nr`](https://www.kernel.org/doc/Documentation/sysctl/fs.txt) virtual file to set the value of the maximum number of *allowable* AIO concurrent requests. The `/proc/sys/fs/aio-nr` virtual file also provides information on the current number of asynchronous requests on the node.
+- Ondat requires `4` AIO contexts per deployed volume, whether it is a master or replica volume.
+  - Trying to provision additional volumes once the `aio-nr` value reaches the `aio-max-nr`, will cause a `io_setup` system call to fail and return a [`EAGAIN` error](https://www.kernel.org/doc/Documentation/sysctl/fs.txt), meaning that the resource becomes temporarily unavailable.
+- Therefore, if your nodes `aio-max-nr` kernel parameter value is less than `1048576`, a strong recommendation will be to set a new value in your `/etc/sysctl.conf` or through a custom configuration file in `/etc/sysctl.d/` to increase the number of AIO contexts that can be requested:
+
+| Kernel Parameter | Value     |
+| ---------------- | --------- |
+| `fs.aio-max-nr`  | `1048576` |
 
 ### Required Kernel Modules
 
@@ -87,3 +99,9 @@ description: >
 > 💡 As a general rule of thumb, Ondat is agnostic and will run on any Linux distribution as long as the [required kernel modules prerequisites](#required-kernel-modules) are available and can be successfully loaded. In most modern Linux distributions, the key kernel modules are distributed as part of the default Linux kernel packages. In some older distributions, the kernel modules were part of the kernel `extras` package that needed to be installed separately.
 
 > 💡 If you need help with a specific issue with one of the listed distributions we support, [raise an issue up on GitHub](https://github.com/ondat/documentation/issues) or reach out to us through our [Community Slack](https://slack.storageos.com/).
+
+## Container Orchestrators
+
+### Supported Kubernetes Distributions
+
+### Container Runtimes
