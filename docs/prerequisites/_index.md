@@ -26,11 +26,11 @@ description: >
 
 **Node Hardware Requirements**
 
-| **Requirement**                 | **Minimum** | **Recommended** |
-| ------------------------------- | ----------- | --------------- |
-| CPU                             | `2 Cores`   | `4 Cores`       |
-| Memory                          | `4 GB`      | `8 GB`          |
-| Storage (`/var/lib/storageos/`) | `1 GiB`     | `Unlimited`     |
+| **Requirement**                      | **Minimum** | **Recommended** |
+| ------------------------------------ | ----------- | --------------- |
+| CPU                                  | `2 Cores`   | `4 Cores`       |
+| Memory                               | `4 GB`      | `8 GB`          |
+| Disk Storage (`/var/lib/storageos/`) | `1 GiB`     | `Unlimited`     |
 
 ### Architecture
 
