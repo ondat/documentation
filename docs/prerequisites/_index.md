@@ -68,3 +68,23 @@ description: >
 - Once the kernel modules are available, during the deployment process - Ondat will run an [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) which conducts preflight checks to ensure that the kernel modules are loaded and ready to be used by the Ondat daemonset that runs on each worker node.
 
 ### Operating System
+
+- Below is the following list of current Linux distributions (non-EOL) that are supported by Ondat:
+
+| **Name**                                                                                                    | **Linux Distribution Support Notes**                                                                              |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [`Amazon Linux 2022 (AL2022)`](https://aws.amazon.com/linux/amazon-linux-2022/)                             | Yes - (Available from the **11th of November 2022** release on kernel `5.4.219-126.411.amzn2.x86_64` or greater). |
+| [`Bottlerocket`](https://aws.amazon.com/bottlerocket/)                                                      | Yes - ([Snapshots feature](https://docs.ondat.io/docs/concepts/snapshots/) is currently unavailable).             |
+| [`CentOS`](https://www.centos.org/)                                                                         | Yes.                                                                                                              |
+| [`Debian`](https://www.debian.org/)                                                                         | Yes.                                                                                                              |
+| [`Fedora`](https://getfedora.org/)                                                                          | Yes.                                                                                                              |
+| [`Google Container-Optimized OS (COS)`](https://cloud.google.com/container-optimized-os/)                   | Yes - (The required kernel modules are available, but the distribution has not undergone exhaustive testing yet). |
+| [`openSUSE`](https://www.opensuse.org/)                                                                     | Yes.                                                                                                              |
+| [`RedHat Enterprise Linux (RHEL)`](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | Yes.                                                                                                              |
+| [`SUSE Linux Enterprise Server (SLES)`](https://www.suse.com/products/server/)                              | Yes.                                                                                                              |
+| [`Ubuntu`](https://ubuntu.com/)                                                                             | Yes.                                                                                                              |
+
+> 💡 As a general rule of thumb, Ondat is agnostic and will run on any Linux distribution as long as the [required kernel modules prerequisites](#required-kernel-modules) are available and can be successfully loaded. In most modern Linux distributions, the key kernel modules are distributed as part of the default Linux kernel packages. In some older distributions, the kernel modules were part of the kernel `extras` package that needed to be installed separately.
+
+> 💡 If you need help with a specific issue with one of the listed distributions we support, [raise an issue up on GitHub](https://github.com/ondat/documentation/issues) or reach out to us through our [Community Slack](https://slack.storageos.com/).
+
