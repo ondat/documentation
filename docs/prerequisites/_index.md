@@ -156,3 +156,10 @@ description: >
 > 💡 To check if the PID limit of the PID `cgroup` slice that the Ondat pods runs in is set to at least `32768`, Ondat  will run an [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) which conducts preflight checks to ensure that the correct limit is set. If your cluster defaults to a low PID limit, it is recommended to follow your distribution's documentation on how to configure and set a higher limit. Review the [Kubernetes - Configure Pod PID Limits](https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits) and [OpenShift - Creating a ContainerRuntimeConfig CR to Edit CRI-O Parameters](https://docs.openshift.com/container-platform/latest/post_installation_configuration/machine-configuration-tasks.html#create-a-containerruntimeconfig_post-install-machine-configuration-tasks) documentation for guidance.
 
 > ⚠️ OpenShift uses [CRI-O](https://cri-o.io/) as the container runtime, which has a PID limit that defaults to `1024` as demonstrated above. It is strongly recommended that you raise the PID limit to at least `32768` to avoid instability issues.
+
+## Networking
+
+### Firewall Rules
+
+For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes.
+
