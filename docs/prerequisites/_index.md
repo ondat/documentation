@@ -1,5 +1,6 @@
 
 ---
+
 title: "Prerequisites"
 linkTitle: "Prerequisites"
 weight: 300
@@ -101,8 +102,6 @@ description: >
 
 > 💡 If you need help with a specific issue with one of the listed distributions we support, [raise an issue up on GitHub](https://github.com/ondat/documentation/issues) or reach out to us through our [Community Slack](https://slack.storageos.com/).
 
-
-
 ## Container Orchestrators
 
 ### Supported Kubernetes Distributions
@@ -125,8 +124,8 @@ description: >
 | [`Rancher Kubernetes Engine (RKE)`](https://docs.ondat.io/docs/install/rancher/)                                               | Yes - (`n - 4`)            |
 | [`Rancher Kubernetes Engine 2 (RKE2)`](https://docs.ondat.io/docs/install/rancher/)                                            | Yes - (`n - 4`)            |
 
-
 ### Container Runtimes
+
 | **Name**                                    | **Supported Versions**     |
 | ------------------------------------------- | -------------------------- |
 | [`containerd`](https://containerd.io/)      | Yes                        |
@@ -145,7 +144,7 @@ description: >
 > 💡 If your container orchestrator has mount propagation disabled, and you are looking for guidance on how to enable it, review the [Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) and [OpenShift](https://docs.openshift.com/container-platform/3.11/install_config/storage_examples/mount_propagation.html) documentation on mount propagation for more information.
 
 ### Process ID (PID) Limits
-    
+
 - Ondat pods that are running in a Kubernetes or OpenShift cluster are part of a PID `cgroup` that may limit the maximum number of PIDs that all containers in the PID `cgroup` slice can spawn.
 - As the Linux kernel assigns a PID to processes and [Light-Weight Processes (LWPs)](https://en.wikipedia.org/wiki/Light-weight_process), a low PID limit can be easily reached without breaching any other resource limits, which could then potentially cause instability issues as Ondat won’t be able to spawn new processes.
 - Depending on the container orchestrator you are using, the PID limit is set by the distribution or the container runtime being used. Therefore, ensure that the [PID limit](https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits/) is set to at least `32768` for Ondat pods in your cluster:
