@@ -162,4 +162,3 @@ description: >
 ### Firewall Rules
 
 For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes.
-
