@@ -1,3 +1,4 @@
+
 ---
 title: "Prerequisites"
 linkTitle: "Prerequisites"
@@ -36,8 +37,8 @@ description: >
 
 | **Name**                                                | **Supported** |
 | ------------------------------------------------------- | ------------- |
-| [x86-64 (64)](https://en.wikipedia.org/wiki/X86-64) bit | `Yes`         |
-| [arm64](https://en.wikipedia.org/wiki/AArch64) bit      | `Coming Soon` |
+| [`x86-64 (64)`](https://en.wikipedia.org/wiki/X86-64) bit | `Yes`         |
+| [`arm64`](https://en.wikipedia.org/wiki/AArch64) bit      | `Coming Soon` |
 
 ### Linux Kernel
 
@@ -83,25 +84,76 @@ description: >
 
 - Below is the following list of current Linux distributions (non-EOL) that are supported by Ondat:
 
-| **Name**                                                                                                    | **Linux Distribution Support Notes**                                                                              |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [`Amazon Linux 2022 (AL2022)`](https://aws.amazon.com/linux/amazon-linux-2022/)                             | Yes - (Available from the **11th of November 2022** release on kernel `5.4.219-126.411.amzn2.x86_64` or greater). |
-| [`Bottlerocket`](https://aws.amazon.com/bottlerocket/)                                                      | Yes - ([Snapshots feature](https://docs.ondat.io/docs/concepts/snapshots/) is currently unavailable).             |
-| [`CentOS`](https://www.centos.org/)                                                                         | Yes.                                                                                                              |
-| [`Debian`](https://www.debian.org/)                                                                         | Yes.                                                                                                              |
-| [`Fedora`](https://getfedora.org/)                                                                          | Yes.                                                                                                              |
-| [`Google Container-Optimized OS (COS)`](https://cloud.google.com/container-optimized-os/)                   | Yes - (The required kernel modules are available, but the distribution has not undergone exhaustive testing yet). |
-| [`openSUSE`](https://www.opensuse.org/)                                                                     | Yes.                                                                                                              |
-| [`RedHat Enterprise Linux (RHEL)`](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | Yes.                                                                                                              |
-| [`SUSE Linux Enterprise Server (SLES)`](https://www.suse.com/products/server/)                              | Yes.                                                                                                              |
-| [`Ubuntu`](https://ubuntu.com/)                                                                             | Yes.                                                                                                              |
+| **Name**                                                                                                    | **Linux Distribution Support Notes**                                                                             |
+| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [`Amazon Linux 2022 (AL2022)`](https://aws.amazon.com/linux/amazon-linux-2022/)                             | Yes - (Available from the **11th of November 2022** release on kernel `5.4.219-126.411.amzn2.x86_64` or greater) |
+| [`Bottlerocket`](https://aws.amazon.com/bottlerocket/)                                                      | Yes - ([Snapshots feature](https://docs.ondat.io/docs/concepts/snapshots/) is currently unavailable)             |
+| [`CentOS`](https://www.centos.org/)                                                                         | Yes                                                                                                              |
+| [`Debian`](https://www.debian.org/)                                                                         | Yes                                                                                                              |
+| [`Fedora`](https://getfedora.org/)                                                                          | Yes                                                                                                              |
+| [`Google Container-Optimized OS (COS)`](https://cloud.google.com/container-optimized-os/)                   | Yes - (The required kernel modules are available, but the distribution has not undergone exhaustive testing yet) |
+| [`openSUSE`](https://www.opensuse.org/)                                                                     | Yes                                                                                                              |
+| [`RedHat Enterprise Linux (RHEL)`](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | Yes                                                                                                              |
+| [`SUSE Linux Enterprise Server (SLES)`](https://www.suse.com/products/server/)                              | Yes                                                                                                              |
+| [`Ubuntu`](https://ubuntu.com/)                                                                             | Yes                                                                                                              |
 
 > 💡 As a general rule of thumb, Ondat is agnostic and will run on any Linux distribution as long as the [required kernel modules prerequisites](#required-kernel-modules) are available and can be successfully loaded. In most modern Linux distributions, the key kernel modules are distributed as part of the default Linux kernel packages. In some older distributions, the kernel modules were part of the kernel `extras` package that needed to be installed separately.
 
 > 💡 If you need help with a specific issue with one of the listed distributions we support, [raise an issue up on GitHub](https://github.com/ondat/documentation/issues) or reach out to us through our [Community Slack](https://slack.storageos.com/).
 
+
+
 ## Container Orchestrators
 
 ### Supported Kubernetes Distributions
 
+- Ondat will run on Kubernetes `v1.2x` or OpenShift `v4.x` channels, with an (`n - 4`) release support, where `n` is the latest stable Kubernetes version release available.
+
+> 💡 Review the official [Kubernetes releases](https://kubernetes.io/releases/) page for more information on the versions available.
+
+| **Name**                                                                                                                       | **Supported Versions**     |
+| ------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
+| [`Kubernetes`](https://docs.ondat.io/docs/install/kubernetes/)                                                                 | Yes - (`n - 4`)            |
+| [`Amazon Elastic Kubernetes Service (EKS)`](https://docs.ondat.io/docs/install/aws/)                                           | Yes - (`n - 4`)            |
+| [`Amazon EKS Anywhere`](https://docs.ondat.io/docs/install/aws/)                                                               | Yes - (`n - 4`)            |
+| [`Microsoft Azure Kubernetes Service (AKS)`](https://docs.ondat.io/docs/install/azure/)                                        | Yes - (`n - 4`)            |
+| [`DigitalOcean Kubernetes (DOKS)`](https://docs.ondat.io/docs/install/digitalocean/)                                           | Yes - (`n - 4`)            |
+| [`Google Kubernetes Engine (GKE)`](https://docs.ondat.io/docs/install/gcp/)                                                    | Yes - (`n - 4`)            |
+| [`Google Anthos`](https://docs.ondat.io/docs/install/gcp/)                                                                     | Yes - (`n - 4`)            |
+| [`Red Hat OpenShift Container Platform (OCP)`](https://docs.ondat.io/docs/install/openshift/openshift-container-platform-ocp/) | Yes - (`n - 4`)            |
+| [`MicroK8s`](https://docs.ondat.io/docs/install/canonical/)                                                                    | Yes - (`v1.26` or greater) |
+| [`Rancher Kubernetes Engine (RKE)`](https://docs.ondat.io/docs/install/rancher/)                                               | Yes - (`n - 4`)            |
+| [`Rancher Kubernetes Engine 2 (RKE2)`](https://docs.ondat.io/docs/install/rancher/)                                            | Yes - (`n - 4`)            |
+
+
 ### Container Runtimes
+| **Name**                                    | **Supported Versions**     |
+| ------------------------------------------- | -------------------------- |
+| [`containerd`](https://containerd.io/)      | Yes                        |
+| [`cri-o`](https://cri-o.io/)                | Yes                        |
+| [`docker`](https://docs.docker.com/engine/) | Yes - (`v1.10` or greater) |
+
+### Mount Propagation
+
+- It is required that [mount propagation](https://kubernetes-csi.github.io/docs/deploying.html#enabling-mount-propagation) is enabled for the container orchestrator where Ondat will be deployed in. Mount propagation is enabled by default in the newer release versions of Kubernetes and OpenShift.
+
+| **Name**     | **Enabled Versions** |
+| ------------ | -------------------- |
+| `Kubernetes` | `1.10` or greater    |
+| `OpenShift`  | `3.11` or greater    |
+
+> 💡 If your container orchestrator has mount propagation disabled, and you are looking for guidance on how to enable it, review the [Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) and [OpenShift](https://docs.openshift.com/container-platform/3.11/install_config/storage_examples/mount_propagation.html) documentation on mount propagation for more information.
+
+### Process ID (PID) Limits
+    
+- Ondat pods that are running in a Kubernetes or OpenShift cluster are part of a PID `cgroup` that may limit the maximum number of PIDs that all containers in the PID `cgroup` slice can spawn.
+- As the Linux kernel assigns a PID to processes and [Light-Weight Processes (LWPs)](https://en.wikipedia.org/wiki/Light-weight_process), a low PID limit can be easily reached without breaching any other resource limits, which could then potentially cause instability issues as Ondat won’t be able to spawn new processes.
+- Depending on the container orchestrator you are using, the PID limit is set by the distribution or the container runtime being used. Therefore, ensure that the [PID limit](https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits/) is set to at least `32768` for Ondat pods in your cluster:
+
+| Kubelet Parameter                  | Value   |
+| ---------------------------------- | ------- |
+| `--pod-max-pids` or `PodPidsLimit` | `32768` |
+
+> 💡 To check if the PID limit of the PID `cgroup` slice that the Ondat pods runs in is set to at least `32768`, Ondat  will run an [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) which conducts preflight checks to ensure that the correct limit is set. If your cluster defaults to a low PID limit, it is recommended to follow your distribution's documentation on how to configure and set a higher limit. Review the [Kubernetes - Configure Pod PID Limits](https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits) and [OpenShift - Creating a ContainerRuntimeConfig CR to Edit CRI-O Parameters](https://docs.openshift.com/container-platform/latest/post_installation_configuration/machine-configuration-tasks.html#create-a-containerruntimeconfig_post-install-machine-configuration-tasks) documentation for guidance.
+
+> ⚠️ OpenShift uses [CRI-O](https://cri-o.io/) as the container runtime, which has a PID limit that defaults to `1024` as demonstrated above. It is strongly recommended that you raise the PID limit to at least `32768` to avoid instability issues.
