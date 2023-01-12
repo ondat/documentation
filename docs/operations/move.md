@@ -5,7 +5,7 @@ linkTitle: "Move"
 
 ## Moving Ondat volume instances
 
-A volume instance (replica or primary) can be moved freely between nodes, this can be extremely useful in very specific scenarios, and it's available through a new command in the CLI tool.
+A volume instance (replica or primary) can be moved freely between nodes, this can be extremely useful in very specific scenarios, and it's available through a new command in the command-line tool.
 
 It allows to manually re-balance a cluster, reduce load on over-loaded nodes, etc.
 
