@@ -173,4 +173,4 @@ For Ondat components to be able to successfully communicate with each other in a
 ### Hardware Clock Synchronisation
 
 - It is recommended that the [hardware/system clock](https://en.wikipedia.org/wiki/System_time) for the nodes in your cluster are correctly synchronised to use reliable [Network Time Protocol (NTP)](https://en.wikipedia.org/wiki/Network_Time_Protocol) servers.  
--   While Ondat’s distributed consensus algorithm does not require synchronised hardware clocks, it is useful for troubleshooting through logs by being able to easily correlate logs across multiple Ondat nodes and prevent [clock drift](https://en.wikipedia.org/wiki/Clock_drift) in your cluster.
+- While Ondat’s distributed consensus algorithm does not require synchronised hardware clocks, it is useful for troubleshooting through logs by being able to easily correlate logs across multiple Ondat nodes and prevent [clock drift](https://en.wikipedia.org/wiki/Clock_drift) in your cluster.
