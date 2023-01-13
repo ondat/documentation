@@ -162,3 +162,15 @@ description: >
 ### Firewall Rules
 
 For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes.
+
+> 💡 Ondat also uses [ephemeral ports](https://en.wikipedia.org/wiki/Ephemeral_port) to dial-out to the ports listed below to other Ondat nodes in the cluster. For this reason, egress/outgoing traffic flows to other nodes is allowed.
+
+### IPv6 Availability
+
+- Although Ondat does not require `IPv6` addressing or routing to be configured in order to run successfully, specific Ondat components do require to be able to listen on a standard dual-stack [`AF_INET6`](https://www.ibm.com/docs/en/i/latest?topic=family-af-inet6-address) socket type and accept client requests from either `IPv4` or `IPv6` nodes.
+- The `IPv6` address family must be supported in your cluster so that Ondat can leverage the `AF_INET6` socket type.
+
+### Hardware Clock Synchronisation
+
+- It is recommended that the [hardware/system clock](https://en.wikipedia.org/wiki/System_time) for the nodes in your cluster are correctly synchronised to use reliable [Network Time Protocol (NTP)](https://en.wikipedia.org/wiki/Network_Time_Protocol) servers.  
+-   While Ondat’s distributed consensus algorithm does not require synchronised hardware clocks, it is useful for troubleshooting through logs by being able to easily correlate logs across multiple Ondat nodes and prevent [clock drift](https://en.wikipedia.org/wiki/Clock_drift) in your cluster.
