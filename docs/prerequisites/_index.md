@@ -136,10 +136,10 @@ description: >
 
 - It is required that [mount propagation](https://kubernetes-csi.github.io/docs/deploying.html#enabling-mount-propagation) is enabled for the container orchestrator where Ondat will be deployed in. Mount propagation is enabled by default in the newer release versions of Kubernetes and OpenShift.
 
-| **Name**     | **Enabled Versions** |
-| ------------ | -------------------- |
-| `Kubernetes` | `1.10` or greater    |
-| `OpenShift`  | `3.11` or greater    |
+| **Name**     | **Enabled Versions**  |
+| ------------ | --------------------- |
+| `Kubernetes` | `v1.10` or greater    |
+| `OpenShift`  | `v3.11` or greater    |
 
 > 💡 If your container orchestrator has mount propagation disabled, and you are looking for guidance on how to enable it, review the [Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) and [OpenShift](https://docs.openshift.com/container-platform/3.11/install_config/storage_examples/mount_propagation.html) documentation on mount propagation for more information.
 
