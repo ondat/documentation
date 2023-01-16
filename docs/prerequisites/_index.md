@@ -1,6 +1,4 @@
-
 ---
-
 title: "Prerequisites"
 linkTitle: "Prerequisites"
 weight: 300
