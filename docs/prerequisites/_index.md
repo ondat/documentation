@@ -16,7 +16,7 @@ description: >
 
 - For Ondat to successfully pool the attached storage disks in a Kubernetes cluster, an Ondat daemonset will be deployed where each pod will run on **worker nodes**:
 
-**Number Of Worker Nodes (Virtual or Bare-metal)**
+#### Number Of Worker Nodes (Virtual or Bare-metal)
 
 | **Minimum** | **Recommended** |
 | ----------- | --------------- |
@@ -24,7 +24,7 @@ description: >
 
 - Each worker node in cluster where Ondat will be deployed, should meet the following hardware requirements:
 
-**Node Hardware Requirements**
+#### Node Hardware Requirements
 
 | **Requirement**                      | **Minimum** | **Recommended** |
 | ------------------------------------ | ----------- | --------------- |
@@ -34,8 +34,8 @@ description: >
 
 ### Architecture
 
-| **Name**                                                | **Supported** |
-| ------------------------------------------------------- | ------------- |
+| **Name**                                                  | **Supported** |
+| --------------------------------------------------------- | ------------- |
 | [`x86-64 (64)`](https://en.wikipedia.org/wiki/X86-64) bit | `Yes`         |
 | [`arm64`](https://en.wikipedia.org/wiki/AArch64) bit      | `Coming Soon` |
 
@@ -78,6 +78,30 @@ description: >
 > ⚠️ You cannot concurrently run Ondat and other applications that utilise [TCMU](https://www.kernel.org/doc/Documentation/target/tcmu-design.txt). Doing so will result in data loss and corruption. On startup, Ondat will automatically detect if there are other applications that utilise TCMU to avoid data loss and corruption.
 
 - Once the kernel modules are available, during the deployment process - Ondat will run an [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) which conducts preflight checks to ensure that the kernel modules are loaded and ready to be used by the Ondat daemonset that runs on each worker node.
+
+### Supported Filesystems
+
+#### Host/Node Filesystems
+
+- Ondat uses the `/var/lib/storageos` path on each node as a base directory for storing its [configuration file and and blob files](https://docs.ondat.io/docs/concepts/volumes/) related to the persistent volumes running in the cluster. Below are the list of node filesystem types that are supported by Ondat:
+
+| **Supported Node Filesystems**               |
+| -------------------------------------------- |
+| [`ext4`](https://en.wikipedia.org/wiki/Ext4) |
+| [`xfs`](https://en.wikipedia.org/wiki/XFS)   |
+
+> 💡 If the listed filesystem above is different from the one you are using, you can raise a feature request for it by contacting us through through our [Community Slack](https://slack.storageos.com/) or through the [Support Portal](https://docs.ondat.io/docs/support/).
+
+#### Ondat Persistent Volume Filesystems
+
+- Ondat provides a block device on which a filesystem can be created. The creation of that filesystem is either handled by Ondat or by Kubernetes, which affects what filesystems can be created. When using the Ondat CSI (Container Storage Interface) driver, it will be responsible for running [`mkfs`](https://en.wikipedia.org/wiki/Mkfs) against the block device that the pod will mount. Below are the list of filesystems that Ondat is able to create for the persistent volumes:
+
+| **Supported Persistent Volume Filesystem**s  |
+| -------------------------------------------- |
+| [`ext2`](https://en.wikipedia.org/wiki/Ext2) |
+| [`ext3`](https://en.wikipedia.org/wiki/Ext3) |
+| [`ext4`](https://en.wikipedia.org/wiki/Ext4) |
+| [`xfs`](https://en.wikipedia.org/wiki/XFS)   |
 
 ### Operating System
 
@@ -134,10 +158,10 @@ description: >
 
 - It is required that [mount propagation](https://kubernetes-csi.github.io/docs/deploying.html#enabling-mount-propagation) is enabled for the container orchestrator where Ondat will be deployed in. Mount propagation is enabled by default in the newer release versions of Kubernetes and OpenShift.
 
-| **Name**     | **Enabled Versions**  |
-| ------------ | --------------------- |
-| `Kubernetes` | `v1.10` or greater    |
-| `OpenShift`  | `v3.11` or greater    |
+| **Name**     | **Enabled Versions** |
+| ------------ | -------------------- |
+| `Kubernetes` | `v1.10` or greater   |
+| `OpenShift`  | `v3.11` or greater   |
 
 > 💡 If your container orchestrator has mount propagation disabled, and you are looking for guidance on how to enable it, review the [Kubernetes](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) and [OpenShift](https://docs.openshift.com/container-platform/3.11/install_config/storage_examples/mount_propagation.html) documentation on mount propagation for more information.
 
@@ -163,16 +187,16 @@ For Ondat components to be able to successfully communicate with each other in a
 
 > 💡 Ondat also uses [ephemeral ports](https://en.wikipedia.org/wiki/Ephemeral_port) to dial-out to the ports listed below to other Ondat nodes in the cluster. For this reason, egress/outgoing traffic flows to other nodes is allowed.
 
-| Ports         | Protocol     | Traffic Flow | Description                                                                                              |
-| ------------- | ------------ | ------------ | -------------------------------------------------------------------------------------------------------- |
-| `2379-2380`   | `TCP`        | `Two-way`    | `etcd` communication for Ondat.                                                                          |
-| `5703`        | `TCP`        | `Ingress`    | DirectFS communication.                                                                                  |
-| `5704`        | `TCP`        | `Ingress`    | [Ondat Data Plane](https://docs.ondat.io/docs/concepts/components/#ondat-data-plane) supervisor.         |
-| `5705`        | `TCP`        | `Ingress`    | Ondat [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API.                         |
-| `5710`        | `TCP`        | `Ingress`    | Ondat [gRPC](https://en.wikipedia.org/wiki/GRPC) API.                                                    |
-| `5711`        | `TCP`+`UDP`  | `Ingress`    | [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) communication.                          |
-| `8443`        | `TCP`        | `Egress`     | [Ondat Portal](https://portal.ondat.io/) communication.                                                  |
-| `25705-25960` | `TCP`        | `Ingress`    | [Shared Filesystems - `ReadWriteMany` (RWX)](https://docs.ondat.io/docs/concepts/rwx/) volume endpoints. |
+| Ports         | Protocol      | Traffic Flow | Description                                                                                              |
+| ------------- | ------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
+| `2379-2380`   | `TCP`         | `Two-way`    | `etcd` communication for Ondat.                                                                          |
+| `5703`        | `TCP`         | `Ingress`    | DirectFS communication.                                                                                  |
+| `5704`        | `TCP`         | `Ingress`    | [Ondat Data Plane](https://docs.ondat.io/docs/concepts/components/#ondat-data-plane) supervisor.         |
+| `5705`        | `TCP`         | `Ingress`    | Ondat [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API.                         |
+| `5710`        | `TCP`         | `Ingress`    | Ondat [gRPC](https://en.wikipedia.org/wiki/GRPC) API.                                                    |
+| `5711`        | `TCP` + `UDP` | `Ingress`    | [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) communication.                          |
+| `8443`        | `TCP`         | `Egress`     | [Ondat Portal](https://portal.ondat.io/) communication.                                                  |
+| `25705-25960` | `TCP`         | `Ingress`    | [Shared Filesystems - `ReadWriteMany` (RWX)](https://docs.ondat.io/docs/concepts/rwx/) volume endpoints. |
 
 ### IPv6 Availability
 
