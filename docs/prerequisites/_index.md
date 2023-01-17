@@ -37,7 +37,7 @@ description: >
 | **Name**                                                  | **Supported** |
 | --------------------------------------------------------- | ------------- |
 | [`x86-64 (64)`](https://en.wikipedia.org/wiki/X86-64) bit | `Yes`         |
-| [`arm64`](https://en.wikipedia.org/wiki/AArch64) bit      | `Coming Soon` |
+| [`arm64`](https://en.wikipedia.org/wiki/AArch64) bit      | `Coming soon` |
 
 ### Linux Kernel
 
@@ -45,10 +45,10 @@ description: >
 
 | **Kernel Version** | **Maximum Number Of Active Volumes Per Node Allowed** |
 | ------------------ | ----------------------------------------------------- |
-| `3.x.x`            | `256`                                                 |
-| `4.x.x`            | `4096`                                                |
-| `5.x.x`            | `4096`                                                |
-| `6.x.x`            | `4096`                                                |
+| `v3.x.x`           | `256`                                                 |
+| `v4.x.x`           | `4096`                                                |
+| `v5.x.x`           | `4096`                                                |
+| `v6.x.x`           | `4096`                                                |
 
 ### Linux Asynchronous I/O (AIO)
 
@@ -186,6 +186,8 @@ description: >
 For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes.
 
 > 💡 Ondat also uses [ephemeral ports](https://en.wikipedia.org/wiki/Ephemeral_port) to dial-out to the ports listed below to other Ondat nodes in the cluster. For this reason, egress/outgoing traffic flows to other nodes is allowed.
+
+> 💡 Ondat does not expose any service externally by default, ie each service is published with the [`ClusterIP`](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) service type which makes services only reachable from within a cluster.
 
 | Ports         | Protocol      | Traffic Flow | Description                                                                                              |
 | ------------- | ------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
