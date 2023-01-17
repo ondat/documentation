@@ -183,7 +183,7 @@ description: >
 
 ### Firewall Rules
 
-For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes.
+For Ondat components to be able to successfully communicate with each other in a cluster, ensure that you add the following firewall rules or web proxy exceptions between nodes. Ensure that these ports are only accessible inside of the scope of the cluster in your environment.
 
 > 💡 Ondat also uses [ephemeral ports](https://en.wikipedia.org/wiki/Ephemeral_port) to dial-out to the ports listed below to other Ondat nodes in the cluster. For this reason, egress/outgoing traffic flows to other nodes is allowed.
 
