@@ -26,7 +26,7 @@ metadata:
 
 Under some specific scenarios a volume instance may not be able to follow a pod, I.E. into a compute-only node, thus remains where it current is.
 
-The change is triggered again when the pod moves again though! And if needed, it can be [moved manually](/docs/concepts/move.md).
+The change is triggered again when the pod moves again though! And if needed, it can be [moved manually](/docs/concepts/move).
 
 ## Safety first
 
