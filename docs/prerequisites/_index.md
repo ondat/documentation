@@ -163,6 +163,17 @@ For Ondat components to be able to successfully communicate with each other in a
 
 > 💡 Ondat also uses [ephemeral ports](https://en.wikipedia.org/wiki/Ephemeral_port) to dial-out to the ports listed below to other Ondat nodes in the cluster. For this reason, egress/outgoing traffic flows to other nodes is allowed.
 
+| Ports         | Protocol     | Traffic Flow | Description                                                                                              |
+| ------------- | ------------ | ------------ | -------------------------------------------------------------------------------------------------------- |
+| `2379-2380`   | `TCP`        | `Two-way`    | `etcd` communication for Ondat.                                                                          |
+| `5703`        | `TCP`        | `Ingress`    | DirectFS communication.                                                                                  |
+| `5704`        | `TCP`        | `Ingress`    | [Ondat Data Plane](https://docs.ondat.io/docs/concepts/components/#ondat-data-plane) supervisor.         |
+| `5705`        | `TCP`        | `Ingress`    | Ondat [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API.                         |
+| `5710`        | `TCP`        | `Ingress`    | Ondat [gRPC](https://en.wikipedia.org/wiki/GRPC) API.                                                    |
+| `5711`        | `TCP`+`UDP`  | `Ingress`    | [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) communication.                          |
+| `8443`        | `TCP`        | `Egress`     | [Ondat Portal](https://portal.ondat.io/) communication.                                                  |
+| `25705-25960` | `TCP`        | `Ingress`    | [Shared Filesystems - `ReadWriteMany` (RWX)](https://docs.ondat.io/docs/concepts/rwx/) volume endpoints. |
+
 ### IPv6 Availability
 
 - Although Ondat does not require `IPv6` addressing or routing to be configured in order to run successfully, specific Ondat components do require to be able to listen on a standard dual-stack [`AF_INET6`](https://www.ibm.com/docs/en/i/latest?topic=family-af-inet6-address) socket type and accept client requests from either `IPv4` or `IPv6` nodes.
