@@ -83,14 +83,14 @@ description: >
 
 #### Host/Node Filesystems
 
-- Ondat uses the `/var/lib/storageos` path on each node as a base directory for storing its [configuration file and and blob files](https://docs.ondat.io/docs/concepts/volumes/) related to the persistent volumes running in the cluster. Below are the list of node filesystem types that are supported by Ondat:
+- Ondat uses the `/var/lib/storageos` path on each node as a base directory for storing its [configuration file and and blob files](/docs/concepts/volumes) related to the persistent volumes running in the cluster. Below are the list of node filesystem types that are supported by Ondat:
 
 | **Supported Node Filesystems**               |
 | -------------------------------------------- |
 | [`ext4`](https://en.wikipedia.org/wiki/Ext4) |
 | [`xfs`](https://en.wikipedia.org/wiki/XFS)   |
 
-> 💡 If the listed filesystem above is different from the one you are using, you can raise a feature request for it by contacting us through through our [Community Slack](https://slack.storageos.com/) or through the [Support Portal](https://docs.ondat.io/docs/support/).
+> 💡 If the listed filesystem above is different from the one you are using, you can raise a feature request for it by contacting us through through our [Community Slack](https://slack.storageos.com/) or through the [Support Portal](/docs/support).
 
 #### Ondat Persistent Volume Filesystems
 
@@ -110,7 +110,7 @@ description: >
 | **Name**                                                                                                    | **Linux Distribution Support Notes**                                                                             |
 | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [`Amazon Linux 2022 (AL2022)`](https://aws.amazon.com/linux/amazon-linux-2022/)                             | Yes - (Available from the **11th of November 2022** release on kernel `5.4.219-126.411.amzn2.x86_64` or greater) |
-| [`Bottlerocket`](https://aws.amazon.com/bottlerocket/)                                                      | Yes - ([Snapshots feature](https://docs.ondat.io/docs/concepts/snapshots/) is currently unavailable)             |
+| [`Bottlerocket`](https://aws.amazon.com/bottlerocket/)                                                      | Yes - ([Snapshots feature](/docs/concepts/snapshots) is currently unavailable)                                   |
 | [`CentOS`](https://www.centos.org/)                                                                         | Yes                                                                                                              |
 | [`Debian`](https://www.debian.org/)                                                                         | Yes                                                                                                              |
 | [`Fedora`](https://getfedora.org/)                                                                          | Yes                                                                                                              |
@@ -132,19 +132,19 @@ description: >
 
 > 💡 Review the official [Kubernetes releases](https://kubernetes.io/releases/) page for more information on the versions available.
 
-| **Name**                                                                                                                       | **Supported Versions**     |
-| ------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
-| [`Kubernetes`](https://docs.ondat.io/docs/install/kubernetes/)                                                                 | Yes - (`n - 4`)            |
-| [`Amazon Elastic Kubernetes Service (EKS)`](https://docs.ondat.io/docs/install/aws/)                                           | Yes - (`n - 4`)            |
-| [`Amazon EKS Anywhere`](https://docs.ondat.io/docs/install/aws/)                                                               | Yes - (`n - 4`)            |
-| [`Microsoft Azure Kubernetes Service (AKS)`](https://docs.ondat.io/docs/install/azure/)                                        | Yes - (`n - 4`)            |
-| [`DigitalOcean Kubernetes (DOKS)`](https://docs.ondat.io/docs/install/digitalocean/)                                           | Yes - (`n - 4`)            |
-| [`Google Kubernetes Engine (GKE)`](https://docs.ondat.io/docs/install/gcp/)                                                    | Yes - (`n - 4`)            |
-| [`Google Anthos`](https://docs.ondat.io/docs/install/gcp/)                                                                     | Yes - (`n - 4`)            |
-| [`Red Hat OpenShift Container Platform (OCP)`](https://docs.ondat.io/docs/install/openshift/openshift-container-platform-ocp/) | Yes - (`n - 4`)            |
-| [`MicroK8s`](https://docs.ondat.io/docs/install/canonical/)                                                                    | Yes - (`v1.26` or greater) |
-| [`Rancher Kubernetes Engine (RKE)`](https://docs.ondat.io/docs/install/rancher/)                                               | Yes - (`n - 4`)            |
-| [`Rancher Kubernetes Engine 2 (RKE2)`](https://docs.ondat.io/docs/install/rancher/)                                            | Yes - (`n - 4`)            |
+| **Name**                                                                                                | **Supported Versions**     |
+| ------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`Kubernetes`](/docs/install/kubernetes)                                                                | Yes - (`n - 4`)            |
+| [`Amazon Elastic Kubernetes Service (EKS)`](/docs/install/aws)                                          | Yes - (`n - 4`)            |
+| [`Amazon EKS Anywhere`](/docs/install/aws)                                                              | Yes - (`n - 4`)            |
+| [`Microsoft Azure Kubernetes Service (AKS)`](/docs/install/azure)                                       | Yes - (`n - 4`)            |
+| [`DigitalOcean Kubernetes (DOKS)`](/docs/install/digitalocean)                                          | Yes - (`n - 4`)            |
+| [`Google Kubernetes Engine (GKE)`](/docs/install/gcp)                                                   | Yes - (`n - 4`)            |
+| [`Google Anthos`](/docs/install/gcp)                                                                    | Yes - (`n - 4`)            |
+| [`Red Hat OpenShift Container Platform (OCP)`](docs/install/openshift/openshift-container-platform-ocp) | Yes - (`n - 4`)            |
+| [`MicroK8s`](docs/install/canonical)                                                                    | Yes - (`v1.26` or greater) |
+| [`Rancher Kubernetes Engine (RKE)`](/docs/install/rancher)                                              | Yes - (`n - 4`)            |
+| [`Rancher Kubernetes Engine 2 (RKE2)`](/docs/install/rancher)                                           | Yes - (`n - 4`)            |
 
 ### Container Runtimes
 
@@ -189,16 +189,16 @@ For Ondat components to be able to successfully communicate with each other in a
 
 > 💡 Ondat does not expose any service externally by default, ie each service is published with the [`ClusterIP`](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) service type which makes services only reachable from within a cluster.
 
-| Ports         | Protocol      | Traffic Flow | Description                                                                                              |
-| ------------- | ------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
-| `2379-2380`   | `TCP`         | `Two-way`    | `etcd` communication for Ondat.                                                                          |
-| `5703`        | `TCP`         | `Ingress`    | DirectFS communication.                                                                                  |
-| `5704`        | `TCP`         | `Ingress`    | [Ondat Data Plane](https://docs.ondat.io/docs/concepts/components/#ondat-data-plane) supervisor.         |
-| `5705`        | `TCP`         | `Ingress`    | Ondat [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API.                         |
-| `5710`        | `TCP`         | `Ingress`    | Ondat [gRPC](https://en.wikipedia.org/wiki/GRPC) API.                                                    |
-| `5711`        | `TCP` + `UDP` | `Ingress`    | [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) communication.                          |
-| `8443`        | `TCP`         | `Egress`     | [Ondat Portal](https://portal.ondat.io/) communication.                                                  |
-| `25705-25960` | `TCP`         | `Ingress`    | [Shared Filesystems - `ReadWriteMany` (RWX)](https://docs.ondat.io/docs/concepts/rwx/) volume endpoints. |
+| Ports         | Protocol      | Traffic Flow | Description                                                                        |
+| ------------- | ------------- | ------------ | ---------------------------------------------------------------------------------- |
+| `2379-2380`   | `TCP`         | `Two-way`    | `etcd` communication for Ondat.                                                    |
+| `5703`        | `TCP`         | `Ingress`    | DirectFS communication.                                                            |
+| `5704`        | `TCP`         | `Ingress`    | [Ondat Data Plane](/docs/concepts/components/#ondat-data-plane) supervisor.        |
+| `5705`        | `TCP`         | `Ingress`    | Ondat [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API.   |
+| `5710`        | `TCP`         | `Ingress`    | Ondat [gRPC](https://en.wikipedia.org/wiki/GRPC) API.                              |
+| `5711`        | `TCP` + `UDP` | `Ingress`    | [Gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol) communication.    |
+| `8443`        | `TCP`         | `Egress`     | [Ondat Portal](https://portal.ondat.io/) communication.                            |
+| `25705-25960` | `TCP`         | `Ingress`    | [Shared Filesystems - `ReadWriteMany` (RWX)](/docs/concepts/rwx) volume endpoints. |
 
 ### IPv6 Availability
 
