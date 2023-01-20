@@ -20,7 +20,7 @@ TODO.
 
 ### How Does It Work?
 
-The Kubernetes [Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/) feature provides users with a mechanism to create a clone volume  an existing Volume.
+The Kubernetes [Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/) feature provides users with a mechanism to create a clone volume from an existing source volume.
 
 For more information, see [How to Clone a Volume](/docs/operations/how-to-clone-a-volume).
 
