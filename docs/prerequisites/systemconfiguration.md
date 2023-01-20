@@ -11,7 +11,7 @@ Ondat requires certain standard kernel modules to function. In particular it req
 Current (non-EOL) versions of the following distributions are supported by default:
 
 * SUSE Linux Enterprise Server
-* Red Hat Enterprise Linux
+* Red Hat Enterprise Linux (also supported with real-time kernel)
 * CentOS
 * Debian
 * Ubuntu
