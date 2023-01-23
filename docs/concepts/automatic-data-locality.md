@@ -30,4 +30,4 @@ The change is triggered again when the pod moves again though! And if needed, it
 
 ## Safety first
 
-The process is safe to use and only ever removes data when a new deployment of it has been synced within the new node.
+The process is safe to use and only ever removes data when a new deployment has been synced within the new node.

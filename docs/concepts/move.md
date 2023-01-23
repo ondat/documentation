@@ -20,7 +20,7 @@ storageos update volume move my-volume-id source-node-id destination-node-id --n
 
 ## Large volumes
 
-Syncing large volumes can take a long time depending on the amount of data and cluster's technical specifications (disks, bandwidth, etc) thus we recommended the use of an equality long timeout for this operation.
+Syncing large volumes can take a long time depending on the amount of data and cluster's technical specifications (disks, bandwidth, etc) thus we recommended the use of a long timeout for this operation.
 
 The global `timeout` flag is available for all commands.
 
@@ -32,4 +32,4 @@ When attempting to move a volume master deployment into a node that already hous
 
 ## Safety first
 
-The process is safe to use and only ever removes data when a new deployment of it has been synced within the new node.
+The process is safe to use and only ever removes data when a new deployment has been synced within the new node.
