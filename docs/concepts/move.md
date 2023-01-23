@@ -4,26 +4,32 @@ linkTitle: "Move"
 weight: 1
 ---
 
-## Moving Ondat volume instances
+## Moving Ondat volume deployments
 
-A volume instance (replica or primary) can be moved freely between nodes, this can be extremely useful in very specific scenarios, and it's available through a new command in the command-line tool.
+A volume deployment (replica or primary) can be moved freely between nodes, this can be extremely useful in specific scenarios, and it's available through a new command in the command-line tool.
 
-It allows to manually re-balance a cluster, reduce load on over-loaded nodes, etc.
+It can be used to manually re-balance the cluster, reduce load on over-loaded nodes, etc.
 
 ## Example of use
 
-Here's an example of how the CLI cmd works:
+Here's an example of how the CLI command works:
 
 ```bash
-storageos update volume move my-volume-id source-node-id destination-node-id --namespace my-namespace-name
+storageos update volume move my-volume-id source-node-id destination-node-id --namespace my-namespace-name --timeout 30m
 ```
 
-## Moving to where an instance already exists
+## Large volumes
 
-When trying to move an Ondat volume instance into a node with another instance, the only scenario where this is valid is when the source node coincides with the primary and the destination node with the replica, in which case we take an approach of moving the "roles" as opposed to the data itself thus attempt to promote the replica on destination node to be the new primary instance of the Ondat volume.
+Syncing large volumes can take a long time depending on the amount of data and cluster's technical specifications (disks, bandwidth, etc) thus we recommended the use of an equality long timeout for this operation.
 
-⚠️ Nothing will happen when trying to move a replica instance of an Ondat volume to another replica instance as there's no functional distinction between the two.
+The global `timeout` flag is available for all commands.
+
+## Moving to where a deployment already exists
+
+When attempting to move a volume master deployment into a node that already houses a replica, we'll instead attempt to promote that replica to a primary thus swapping roles.
+
+⚠️ Nothing will happen when trying to move a volume replica deployment into another replica as there's no functional distinction between these two.
 
 ## Safety first
 
-The process is safe to use and only ever removes data when a new instance of it has been synced within the new node.
+The process is safe to use and only ever removes data when a new deployment of it has been synced within the new node.
