@@ -5,7 +5,7 @@ linkTitle: How To Clone a Volume
 
 ## Create a Clone of an Existing Volume
 
-The Kubernetes [Volume Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/) feature provides users with a mechanism to create a clone Volume by adding a dataSource that references an existing Volume.
+[Cloning](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/) a volume is done by referring to an existing volume in the "dataSource" field of the manifest during the creation process.
 
 ```yaml
 apiVersion: v1
@@ -25,4 +25,4 @@ spec:
     name: pvc-1
 ```
 
-The result is a new Volume with the name clone-of-pvc-1 that has the exact same content as the specified source Volume `pvc-1`.
+This results in a new volume named `clone-of-pvc-1` which contains a copy of the data in source volume `pvc-1`.
