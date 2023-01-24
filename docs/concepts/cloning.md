@@ -8,8 +8,8 @@ weight: 1
 
 > 💡 This feature is available in release `v2.10.0` or greater.
 
-The Ondat Cloning feature adds support for specifying existing PVCs in the dataSource field to indicate a user would like to clone a volume.
-
+The Ondat Cloning feature enables the user to create a new volume which is pre-populated with a copy of the data from an existing volume.
+ 
 ### What is a Clone?
 
 A clone is a duplicate of an existing Kubernetes volume that is its own unique volume on the system and can be consumed as any standard volume would be. However, with a clone, the data from a separate source is duplicated to the destination (clone). A clone is similar to a snapshot in that it's a point in time copy of a volume, however rather than creating a new snapshot object from a volume, we're instead creating a new independent volume, sometimes thought of as pre-populating the newly created volume.
