@@ -14,9 +14,9 @@ The Ondat Cloning feature adds support for specifying existing PVCs in the dataS
 
 A clone is a duplicate of an existing Kubernetes volume that is its own unique volume on the system and can be consumed as any standard volume would be. However, with a clone, the data from a separate source is duplicated to the destination (clone). A clone is similar to a snapshot in that it's a point in time copy of a volume, however rather than creating a new snapshot object from a volume, we're instead creating a new independent volume, sometimes thought of as pre-populating the newly created volume.
 
-### Why use Cloning
+### Why use Cloning?
 
-TODO.
+Cloning is very useful when you need to copy the data from one persistent volume to another. For example there could be an application error where an issue is caused by a data quality issue. Being able to copy the contents of a volume and debug this without affecting the running application can be extremely useful when attempting to fix such issues.
 
 ### How Does It Work?
 
