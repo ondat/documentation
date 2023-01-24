@@ -10,6 +10,8 @@ A volume deployment (replica or primary) can be moved freely between nodes, this
 
 It can be used to manually re-balance the cluster, reduce load on over-loaded nodes, etc.
 
+> Ondat will always place the resilience and protection of your data first, for this reason we only ever remove data when a new deployment has been fully synced within the new node. On account of that, additional space and bandwidth will be required during such an operation.
+
 ## Example of use
 
 Here's an example of how the CLI command works:
@@ -29,7 +31,3 @@ The global `timeout` flag is available for all commands.
 When attempting to move a volume master deployment into a node that already houses a replica, we'll instead attempt to promote that replica to a primary thus swapping roles.
 
 ⚠️ Nothing will happen when trying to move a volume replica deployment into another replica as there's no functional distinction between these two.
-
-## Safety first
-
-The process is safe to use and only ever removes data when a new deployment has been synced within the new node.
