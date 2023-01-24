@@ -3,7 +3,7 @@ title: "Kubernetes"
 linkTitle: "Kubernetes"
 weight: 1
 description: >
-   Walkthrough guide to install Ondat onto a generic Kubernetes Cluster.
+   Walkthrough guide to install Ondat onto a generic Kubernetes cluster.
 ---
 ## Overview
 
