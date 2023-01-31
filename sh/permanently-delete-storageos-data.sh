@@ -42,6 +42,6 @@ spec:
           path: /var/lib
 END
 
-sleep 20
+sleep 90
 
 kubectl -n $NAMESPACE delete ds storageos-cleanup
