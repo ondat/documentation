@@ -14,8 +14,3 @@ description: >
 - 3.x kernels have a limitation of 256 active volumes per node
 - 4.x kernels have a limitation of 4096 active volumes per node
 - We are distribution agnostic as long as our prerequisites are met
-
-## Orchestrators
-
-- Kubernetes 1.19 to 1.23
-- OpenShift 4.0+
