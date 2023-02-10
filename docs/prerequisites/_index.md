@@ -12,6 +12,8 @@ description: >
 
 ## System Requirements
 
+### Hardware
+
 - For Ondat to successfully pool the attached storage disks in a Kubernetes cluster, an Ondat daemonset will be deployed where each pod will run on **worker nodes**:
 
 #### Number Of Worker Nodes (Virtual or Bare-metal)
@@ -137,8 +139,8 @@ description: >
 | [`DigitalOcean Kubernetes (DOKS)`](/docs/install/digitalocean)                                          | Yes - (`v1.21`,`v1.22`,`v1.23`,`v1.24`,`v1.25`) |
 | [`Google Kubernetes Engine (GKE)`](/docs/install/gcp)                                                   | Yes - (`v1.21`,`v1.22`,`v1.23`,`v1.24`,`v1.25`) |
 | [`Google Anthos`](/docs/install/gcp)                                                                    | Yes - (`v1.21`,`v1.22`,`v1.23`,`v1.24`,`v1.25`) |
-| [`Red Hat OpenShift Container Platform (OCP)`](docs/install/openshift/openshift-container-platform-ocp) | Yes - (`v4.8`,`v4.9`,`v4.10`,`v4.11`,`v4.12`)   |
-| [`MicroK8s`](docs/install/canonical)                                                                    | Yes - (`v1.26`)                                 |
+| [`Red Hat OpenShift Container Platform (OCP)`](/docs/install/openshift/openshift-container-platform-ocp) | Yes - (`v4.8`,`v4.9`,`v4.10`,`v4.11`,`v4.12`)   |
+| [`MicroK8s`](/docs/install/canonical)                                                                    | Yes - (`v1.26`)                                 |
 | [`Rancher Kubernetes Engine (RKE)`](/docs/install/rancher)                                              | Yes - (`v1.21`,`v1.22`,`v1.23`,`v1.24`,`v1.25`) |
 | [`Rancher Kubernetes Engine 2 (RKE2)`](/docs/install/rancher)                                           | Yes - (`v1.21`,`v1.22`,`v1.23`,`v1.24`,`v1.25`) |
 
