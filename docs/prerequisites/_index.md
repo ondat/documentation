@@ -32,7 +32,7 @@ description: >
 | Memory                               | `2 GB`      | `8 GB`          |
 | Disk Storage (`/var/lib/storageos/`) | `2 GiB`     | `Unlimited`     |
 
-> 💡 The requirements above will also be dependant on the stateful applications that will be running in your cluster, therefore, it is recommended to review your stateful applications resources requirements when factoring in requirements for Ondat. 
+> 💡 The requirements above will also be dependant on the stateful applications that will be running in your cluster, therefore, it is recommended to review your stateful applications resources requirements when factoring in requirements for Ondat.
 
 ### Architecture
 
@@ -64,7 +64,7 @@ description: >
 | ---------------- | --------- |
 | `fs.aio-max-nr`  | `1048576` |
 
->  💡 If your node(s) `aio-max-nr` kernel parameter value is less than `1048576`, the affected Ondat daemonset pods will report a warning error message in their logs.
+> 💡 If your node(s) `aio-max-nr` kernel parameter value is less than `1048576`, the affected Ondat daemonset pods will report a warning error message in their logs.
 
 ### Required Kernel Modules
 
