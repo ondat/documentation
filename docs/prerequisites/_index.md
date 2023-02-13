@@ -43,7 +43,7 @@ description: >
 
 ### Linux Kernel
 
-- Below is the list supported Linux kernel versions and the maximum number of active volumes that can run per node in an Ondat cluster:
+- Below is the list of supported Linux kernel versions and the maximum number of active volumes that can run per node in an Ondat cluster:
 
 | **Kernel Version** | **Maximum Number Of Mounted Volumes Per Node Allowed** |
 | ------------------ | ------------------------------------------------------ |
@@ -63,8 +63,6 @@ description: >
 | Kernel Parameter | Value     |
 | ---------------- | --------- |
 | `fs.aio-max-nr`  | `1048576` |
-
-> 💡 If your node(s) `aio-max-nr` kernel parameter value is less than `1048576`, the affected Ondat daemonset pods will report a warning error message in their logs.
 
 ### Required Kernel Modules
 
