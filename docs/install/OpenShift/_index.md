@@ -1,7 +1,7 @@
 ---
 title: "OpenShift"
 linkTitle: "OpenShift"
-weight: 20
+weight: 10
 description: >
   Ondat deployment guides for Red Hat OpenShift.
 ---
