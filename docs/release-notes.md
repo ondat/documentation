@@ -36,7 +36,7 @@ This release contains various new features and improves stability.
 * The [Move](docs/concepts/move) feature, supported for technical previews, allows volumes to be moved between nodes.
 ### Fixed
 
-* Fixed various bugs that could affect replicas during failovers
+* Implemented various fixes to improve replica handling during failovers
 * Performing multiple volume mounts at the same time should now be much faster
 * Reduced the storage usage of empty (thin-provisioned) volumes
 * Fixed a rare memory leak in the api-manager
