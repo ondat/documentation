@@ -17,7 +17,7 @@ The latest CLI release is `2.10.0`, available from
 [GitHub](https://github.com/storageos/go-cli/releases) or containerised from
 [DockerHub](https://hub.docker.com/r/storageos/cli).
 
-## 2.10.0 - Release 2022-04-01
+## 2.10.0 - Release 2023-04-01
 
 This release contains various new features and improves stability.
 
