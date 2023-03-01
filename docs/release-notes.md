@@ -9,11 +9,11 @@ description: >
 We recommend always using "tagged" versions of Ondat rather than "latest",
 and to perform upgrades only after reading the release notes.
 
-The latest tagged release is `2.9.1`. For
+The latest tagged release is `2.10.0`. For
 installation instructions see our
 [Install](/docs/install/) page.
 
-The latest CLI release is `2.9.1`, available from
+The latest CLI release is `2.10.0`, available from
 [GitHub](https://github.com/storageos/go-cli/releases) or containerised from
 [DockerHub](https://hub.docker.com/r/storageos/cli).
 
@@ -24,16 +24,16 @@ This release contains various new features and improves stability.
 ### New
 
 * [Cloning](/docs/concepts/cloning) is now supported
-* [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods. 
+* [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods, via the `storageoscluster` resource. 
 * The new [Move](docs/concepts/move) feature allows volumes to be moved between nodes.
 * We now support Red Hat Enterprise Linux for Real Time
 * The operator now installs the CLI pod by default
 
 ### Fixed
 
-* Fix various bugs that could affect replicas during failovers
+* Fixed various bugs that could affect replicas during failovers
 * Performing multiple volume mounts at the same time should now be much faster
-* Reduce the storage usage of empty (thin-provisioned) volumes
+* Reduced the storage usage of empty (thin-provisioned) volumes
 * Fixed a rare memory leak in the api-manager   
 
 ## 2.9.1 - Release 2022-11-23
