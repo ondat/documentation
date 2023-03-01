@@ -6,6 +6,8 @@ weight: 1
 
 ## Overview
 
+  > ⚠️ This is a tech preview, we only recommend using this feature on your test clusters
+
 > 💡 This feature is available in release `v2.10.0` or greater.
 
 The Ondat Cloning feature enables the user to create a new volume which is pre-populated with a copy of the data from an existing volume.

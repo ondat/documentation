@@ -4,6 +4,8 @@ linkTitle: "Move"
 weight: 1
 ---
 
+  > ⚠️ This is a tech preview, we only recommend using this feature on your test clusters
+
 ## Moving Ondat volume deployments
 
 A volume deployment (replica or primary) can be moved freely between nodes, this can be extremely useful in specific scenarios, and it's available through a new command in the command-line tool.
