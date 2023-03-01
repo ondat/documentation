@@ -17,6 +17,25 @@ The latest CLI release is `2.9.1`, available from
 [GitHub](https://github.com/storageos/go-cli/releases) or containerised from
 [DockerHub](https://hub.docker.com/r/storageos/cli).
 
+## 2.10.0 - Release 2022-04-01
+
+This release contains various new features and improves stability.
+
+### New
+
+* [Cloning](/docs/concepts/cloning) is now supported
+* [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods. 
+* The new [Move](docs/concepts/move) feature allows volumes to be moved between nodes.
+* We now support Red Hat Enterprise Linux for Real Time
+* The operator now installs the CLI pod by default
+
+### Fixed
+
+* Fix various bugs that could affect replicas during failovers
+* Performing multiple volume mounts at the same time should now be much faster
+* Reduce the storage usage of empty (thin-provisioned) volumes
+* Fixed a rare memory leak in the api-manager   
+
 ## 2.9.1 - Release 2022-11-23
 
 This release improves stability and reduces resource consumption when creating many volumes at once.
