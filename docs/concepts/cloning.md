@@ -28,6 +28,6 @@ For more information, see [How to Clone a Volume](/docs/operations/how-to-clone-
 
 The Ondat Cloning feature has the following limitations:
 
-1. Cloning volumes across namespaces is not supported.
+1. Cloning volumes across namespaces is only supported in Kubernetes v1.26.0 or greater.
 1. A clone volume must be the same size as the source volume which it is attempting to clone.
 1. A clone volume must have the same filesystem as the source volume which it is attempting to clone.
