@@ -23,7 +23,7 @@ This release contains various new features and improves stability.
 
 ### New
 
-* [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods, via the `storageoscluster` resource. 
+* [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods, via the `storageoscluster` resource.
 * [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods, via the `storageoscluster` resource.
 * We now support Red Hat Enterprise Linux for Real Time
 * The operator now installs the CLI pod by default
@@ -34,6 +34,7 @@ This release contains various new features and improves stability.
 
 * [Cloning](/docs/concepts/cloning) is now supported for technical preview
 * The [Move](docs/concepts/move) feature, supported for technical previews, allows volumes to be moved between nodes.
+
 ### Fixed
 
 * Implemented various fixes to improve replica handling during failovers
