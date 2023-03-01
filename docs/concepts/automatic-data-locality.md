@@ -4,6 +4,8 @@ linkTitle: "Automatic data locality"
 weight: 1
 ---
 
+  > ⚠️ This is a tech preview, we only recommend using this feature on your test clusters
+
 ## Ondat volumes move with their pods
 
 When a pod moves to another node, Ondat will make sure the application still has access to the persistent volume, however there may be some additional network hops required if the primary volume is now on a different node to the pod.
