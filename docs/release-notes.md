@@ -27,6 +27,8 @@ This release contains various new features and improves stability.
 * [Container resource limits](/docs/operations/how-to-set-ondat-container-requests-and-limits) can now be set for most Ondat pods, via the `storageoscluster` resource.
 * We now support Red Hat Enterprise Linux for Real Time
 * The operator now installs the CLI pod by default
+* All CLI commands are now available through the plugin
+* New options to filter volumes added to the `get` and `describe` commands of the plugin
 
 ### New - Technical Preview
 
@@ -41,6 +43,7 @@ This release contains various new features and improves stability.
 * Performing multiple volume mounts at the same time should now be much faster
 * Reduced the storage usage of empty (thin-provisioned) volumes
 * Fixed a rare memory leak in the api-manager
+* Fixed the output of error messages in the plugin
 
 ## 2.9.1 - Release 2022-11-23
 
