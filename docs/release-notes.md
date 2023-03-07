@@ -35,7 +35,7 @@ This release contains various new features and improves stability.
   > ⚠️ Features available for technical preview may contain bugs and are not recommended for production clusters
 
 * [Cloning](/docs/concepts/cloning) is now supported for technical preview
-* The [Move](docs/concepts/move) feature, supported for technical previews, allows volumes to be moved between nodes.
+* The [Move](/docs/concepts/move) feature, supported for technical previews, allows volumes to be moved between nodes.
 
 ### Fixed
 
