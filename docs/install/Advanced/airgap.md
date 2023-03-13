@@ -163,7 +163,7 @@ Below is a quick summary of the procedure that will be covered in this guide:
 
     ```bash
     export KUBERNETES_VERSION="v1.23.5"
-    docker pull k8s.gcr.io/kube-scheduler:${KUBERNETES_VERSION}
+    docker pull registry.k8s.io/kube-scheduler:${KUBERNETES_VERSION}
     ```
 
 ### Step 5 - Modify Deployment Manifests
